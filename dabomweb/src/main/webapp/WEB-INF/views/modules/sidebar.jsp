@@ -34,7 +34,7 @@
                         <ul aria-expanded="false">
                         
                         	<!-- 추수은 -->
-                            <li><a href="resources/index.html">개인채널</a></li>
+                            <li><a href="mychannel/mychannellist">개인채널</a></li>
                             <!-- 추수은 -->
                             
                             <!-- 강효준 -->

@@ -5,7 +5,6 @@ public class AccountServiceImpl {
 	public void registerMember() {
 		
 		
-		
 	}
 	
 }
