@@ -6,9 +6,9 @@
         ***********************************-->
         <div class="nav-header">
             <a href="/dabomweb/home" class="brand-logo">
-                <img class="logo-abbr" src="resources/images/logo.jpg" alt="">
-                <img class="logo-compact" src="resources/images/dabom.jpg" alt="">
-                <img class="brand-title" src="resources/images/logo-text.jpg" alt="">
+                <img class="logo-abbr" src="/dabomweb/resources/images/logo.jpg" alt="">
+                <img class="logo-compact" src="/dabomweb/resources/images/dabom.jpg" alt="">
+                <img class="brand-title" src="/dabomweb/resources/images/logo-text.jpg" alt="">
             </a>
 
             <div class="nav-control">
