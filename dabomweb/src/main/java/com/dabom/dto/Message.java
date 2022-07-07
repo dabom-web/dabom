@@ -1,6 +1,6 @@
 package com.dabom.dto;
 
-public class MessageDto {
+public class Message {
 
 	private int messageNo;
 	private String message;
