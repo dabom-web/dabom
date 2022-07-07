@@ -119,6 +119,9 @@
                     <br>
                     <a href="/dabomweb/account/login" aria-expanded="false">
                     <span class="nav-text">Login</span></a>
+                    
+                      <a href="/dabomweb/account/register" aria-expanded="false">
+                    <span class="nav-text">register</span></a>
                 </ul>
             </div>
 
