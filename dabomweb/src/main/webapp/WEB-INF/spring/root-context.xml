@@ -8,13 +8,13 @@
 						http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd">
 	
 	
-	<bean id="accountService" class="com.dabom.service.AccountServiceImpl">
+	 <bean id="accountService" class="com.dabom.service.AccountServiceImpl">
 		<property name="memberMapper" ref="memberMapper"/>
-	</bean>
+	</bean> 
 	
-	<bean id="produecBoardService" class="com.dabom.service.ProduceBoardServiceImpl">
+	<!--  <bean id="produecBoardService" class="com.dabom.service.ProduceBoardServiceImpl">
 		<property name="produceBoardMapper" ref="produceBoardMapper" />
-	</bean>
+	</bean> -->
 	
 	
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
