@@ -12,6 +12,10 @@
 		<property name="memberMapper" ref="memberMapper"/>
 	</bean>
 	
+	<bean id="produecBoardService" class="com.dabom.service.ProduceBoardServiceImpl">
+		<property name="produceBoardMapper" ref="produceBoardMapper" />
+	</bean>
+	
 	
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactory"/>
@@ -32,6 +36,6 @@
 		<property name="maxWaitMillis" value="-1"/>
 	</bean>
 	
-	<mybatis:scan base-package="com.dabomweb.mapper"/>
+	<mybatis:scan base-package="com.dabom.mapper"/>
 	
 </beans>
