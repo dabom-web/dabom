@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
  	<title>DABOM HOME</title>
-    <link rel="icon" type="image/png" sizes="16x16" href="resources/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="resources/images/dabom.jpg">
     <link rel="stylesheet" href="resources/vendor/owl-carousel/css/owl.carousel.min.css">
     <link rel="stylesheet" href="resources/vendor/owl-carousel/css/owl.theme.default.min.css">
     <link href="resources/vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet">
@@ -15,10 +15,7 @@
 
 </head>
 <body>
-
-    <!--*******************
-        Preloader start
-    ********************-->
+    
     <div id="preloader">
         <div class="sk-three-bounce">
             <div class="sk-child sk-bounce1"></div>
@@ -26,33 +23,18 @@
             <div class="sk-child sk-bounce3"></div>
         </div>
     </div>
-    <!--*******************
-        Preloader end
-    ********************-->
-
-
-    <!--**********************************
-        Main wrapper start
-    ***********************************-->
+ 
     <div id="main-wrapper">
-
       <jsp:include page="/WEB-INF/views/modules/header.jsp"></jsp:include>
       <jsp:include page="/WEB-INF/views/modules/sidebar.jsp"></jsp:include>
-
-
-
-
-      
-
-
     </div>
-    <!--**********************************
-        Main wrapper end
-    ***********************************-->
+  
 
-    <!--**********************************
-        Scripts
-    ***********************************-->
+
+
+
+
+
     <!-- Required vendors -->
     <script src="/dabomweb/resources/vendor/global/global.min.js"></script>
     <script src="/dabomweb/resources/js/quixnav-init.js"></script>

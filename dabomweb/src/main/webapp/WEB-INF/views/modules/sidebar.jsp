@@ -90,9 +90,9 @@
 	                                class="icon icon-single-04"></i><span class="nav-text">Porducer</span></a>
 	                        <ul aria-expanded="false">
 	                        
-	                            <li><a href="#">감독</a></li>
+	                            <li><a href="/dabomweb/produceBoard/directer">감독</a></li>
 	                 
-	                            <li><a href="#">배우</a></li>
+	                            <li><a href="/dabomweb/produceBoard/actor">배우</a></li>
 	                       
 	                            
 	                        </ul>
@@ -119,6 +119,9 @@
                     <br>
                     <a href="/dabomweb/account/login" aria-expanded="false">
                     <span class="nav-text">Login</span></a>
+                    
+                      <a href="/dabomweb/account/register" aria-expanded="false">
+                    <span class="nav-text">register</span></a>
                 </ul>
             </div>
 
