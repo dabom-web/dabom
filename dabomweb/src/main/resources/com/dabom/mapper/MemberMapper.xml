@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mapper namesapce="com.dabom.mapper.MeberMapper">
+
+	<insert id="insertMember" parameterType="com.dabom.dto.Member">
+		
+		INSERT INTO member (memberid)
+		
+	</insert>
+
+</mapper>
