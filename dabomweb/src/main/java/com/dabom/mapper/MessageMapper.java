@@ -1,5 +1,5 @@
 package com.dabom.mapper;
 
-public class MessageMapper {
+public interface MessageMapper {
 
 }
