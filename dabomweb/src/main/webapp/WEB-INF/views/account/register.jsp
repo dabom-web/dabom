@@ -25,35 +25,35 @@
                                     <form action="index.html">
                                         <div class="form-group">
                                             <label><strong>이름</strong></label>
-                                            <input type="text" class="form-control" placeholder="이름을 입력하세요">
+                                            <input type="text" id="userName" class="form-control" placeholder="이름을 입력하세요">
                                         </div>
                                         <div class="form-group">
                                             <label><strong>생년월일</strong></label>
-                                            <input type="text" class="form-control" placeholder="6자리를 입력하세요">
+                                            <input type="text" id="birth" class="form-control" placeholder="6자리를 입력하세요">
                                         </div>
                                          <div class="form-group">
                                             <label><strong>아이디</strong></label>
-                                            <input type="text" class="form-control" placeholder="아이디를 입력하세요">
+                                            <input type="text" id="memberId" class="form-control" placeholder="아이디를 입력하세요">
                                         </div>  
                                          <div class="form-group">
                                             <label><strong>닉네임</strong></label>
-                                            <input type="text" class="form-control" placeholder="닉네임을 입력하세요">
+                                            <input type="text" id="nickName" class="form-control" placeholder="닉네임을 입력하세요">
                                         </div>  
                                         <div class="form-group">
                                             <label><strong>비밀번호</strong></label>
-                                            <input type="password" class="form-control" value="비밀번호 확인">
+                                            <input type="password" id="passwd" class="form-control" value="비밀번호 확인">
                                         </div>
                                          <div class="form-group">
                                             <label><strong>비밀번호 확인</strong></label>
-                                            <input type="password" class="form-control" value="비밀번호 확인">
+                                            <input type="password" id="confirm" class="form-control" value="비밀번호 확인">
                                         </div>
                                          <div class="form-group">
                                             <label><strong>이메일</strong></label>
-                                            <input type="email" class="form-control" placeholder="hello@example.com">
+                                            <input type="email" id="email" class="form-control" placeholder="hello@example.com">
                                         </div>
                                           <div class="form-group">
                                             <label><strong>핸드폰</strong></label>
-                                            <input type="text" class="form-control" placeholder="010-0000-0000">
+                                            <input type="text" id="phone" class="form-control" placeholder="010-0000-0000">
                                         </div>  
                                         
                                         <div class="basic-dropdown">

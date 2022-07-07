@@ -9,20 +9,20 @@
 	
 	<bean id="accountService" class="com.dabom.service.AccountServiceImpl">
 		<property name="memberMapper" ref="memberMapper"/>
-	</bean>
+	</bean> 
 	
 	<bean id="produecBoardService" class="com.dabom.service.ProduceBoardServiceImpl">
 		<property name="produceBoardMapper" ref="produceBoardMapper" />
 	</bean>
-	<!-- 
+	 
 	<bean id="messageService" class="com.dabom.service.MessageSerciveImpl">
 		<property name="messageMapper" ref="messageMapper"></property>
 	</bean>
-	
+
 	<bean id="myChannelService" class="com.dabom.service.MyChannelServiceImpl">
 		<property name="myChannelMapper" ref="myChannelMapper"></property>
 	</bean>
-	 -->	
+	
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactory"/>
 	</bean>
