@@ -6,9 +6,10 @@
 <configuration>
 	
 	<typeAliases>
-		
+		<typeAlias type="com.dabom.dto.Member" alias="Member"/>
 	</typeAliases>
 
 	<mappers>	
+		<mapper resource="com/dabom/mapper/MemberMapper.xml"/>
 	</mappers>
 </configuration>
