@@ -8,6 +8,23 @@
             <div class="quixnav-scroll">
                 <ul class="metismenu" id="menu">
                 
+                <!-- 홈 -->
+                <li class="nav-label first">DA!BOM Home</li>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                                class="icon icon-single-04"></i><span class="nav-text">Home</span></a>
+                        <ul aria-expanded="false">                        
+                      
+                            <li><a href="#">최근 업데이트 영상</a></li>                           
+                            <li><a href="#">인기 채널</a></li>
+                            <li><a href="#">구독 채널</a></li>
+                            <li><a href="#">찜 목록</a></li>
+                            <li><a href="#">응원 감독 영상</a></li> 
+                            <li><a href="#">응원 배우 영상</a></li>                                          
+                       
+                            
+                        </ul>
+                    </li>
+                 <!-- 홈 -->
                 
                  <!-- / 채널영역 -->
                  
@@ -32,14 +49,16 @@
                     
                      <!-- / 관리자 페이지  -->
                  
-                    <li class="nav-label first">관리하기</li>
+                    <li class="nav-label first">사이트 관리</li>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-single-04"></i><span class="nav-text">관리하기</span></a>
+                                class="icon icon-single-04"></i><span class="nav-text">Management</span></a>
                         <ul aria-expanded="false">
                         
-                            <li><a href="resources/index.html">개인채널</a></li>
-                           
-                            <li><a href="resources/index2.html">영상업로드</a></li>
+                        	<li><a href="resources/index2.html">문의메세지</a></li>
+                            <li><a href="resources/index.html">회원계정관리</a></li>                           
+                            <li><a href="resources/index2.html">채널관리</a></li>
+                            <li><a href="resources/index2.html">게시글&댓글관리</a></li>
+                            <li><a href="resources/index2.html">업로드승인</a></li>                        
                        
                             
                         </ul>
@@ -66,14 +85,14 @@
                 
 	                 <!-- / 영상팀소개 -->
 	                 
-	                    <li class="nav-label first">영상팀소개</li>
+	                    <li class="nav-label first">영상팀 정보</li>
 	                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-	                                class="icon icon-single-04"></i><span class="nav-text">영상팀소개</span></a>
+	                                class="icon icon-single-04"></i><span class="nav-text">Porducer</span></a>
 	                        <ul aria-expanded="false">
 	                        
-	                            <li><a href="resources/index.html">개인채널</a></li>
+	                            <li><a href="#">감독</a></li>
 	                 
-	                            <li><a href="resources/index2.html">영상업로드</a></li>
+	                            <li><a href="#">배우</a></li>
 	                       
 	                            
 	                        </ul>
