@@ -38,7 +38,8 @@
                             <!-- 추수은 -->
                             
                             <!-- 강효준 -->
-                            <li><a href="resources/index2.html">영상업로드</a></li>
+                            <li><a href="video/upload">영상업로드</a></li>
+                            <li><a href="video/liveStream">라이브방송</a></li>
                             <!-- 강효준 -->
                             
                         </ul>
