@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(path = { "/mychannel" })
 public class MyChannelController {
 	
-	@RequestMapping(path = { "/mychanellist" })
+	@RequestMapping(path = { "/mychannellist" })
 	public String mychanel() {
-		return "mychannel/mychanellist";
+		return "mychannel/mychannellist";
 	}
 }

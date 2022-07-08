@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(path = { "/message" })
 public class MessageController {
 	
-	@RequestMapping(path = { "/message" })
+	@RequestMapping(path = { "/messagelist" })
 	public String message() {
-		return "message/message";
+		return "message/messagelist";
 	}
 
 }
