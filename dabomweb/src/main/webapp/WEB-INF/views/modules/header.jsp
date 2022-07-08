@@ -61,9 +61,9 @@
                                         <i class="icon-user"></i>
                                         <span class="ml-2">Profile </span>
                                     </a>
-                                    <a href="resources/email-inbox.html" class="dropdown-item">
+                                    <a href="message/messagelist" class="dropdown-item">
                                         <i class="icon-envelope-open"></i>
-                                        <span class="ml-2">Inbox </span>
+                                        <span class="ml-2">Message </span>
                                     </a>
                                     <a href="resources/page-login.html" class="dropdown-item">
                                         <i class="icon-key"></i>

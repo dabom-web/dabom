@@ -73,7 +73,7 @@
                                 class="icon icon-single-04"></i><span class="nav-text">Webtoon</span></a>
                         <ul aria-expanded="false">
                         
-                            <li><a href="resources/index.html">개인채널</a></li>
+                            <li><a href="mychannel/mychannellist">개인채널</a></li>
                  
                             <li><a href="resources/index2.html">영상업로드</a></li>
                        

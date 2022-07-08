@@ -1,6 +1,6 @@
 package com.dabom.dto;
 
-public class MyChannelDto {
+public class MyChannel {
 
 	private String memberId;
 	private String channelName;

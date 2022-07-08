@@ -4,6 +4,7 @@ public class Member {
 
 	private String memberId;
 	private int memberNo;
+	private String userName;
 	private String nickName;
 	private String emoji;
 	private int birth;
@@ -13,6 +14,7 @@ public class Member {
 	private boolean active;
 	private int point;
 	private int accountno;
+	private String passwd;
 	
 	public String getMemberId() {
 		return memberId;
@@ -79,6 +81,18 @@ public class Member {
 	}
 	public void setAccountno(int accountno) {
 		this.accountno = accountno;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	public String getPasswd() {
+		return passwd;
+	}
+	public void setPasswd(String passwd) {
+		this.passwd = passwd;
 	}
 	
 }
