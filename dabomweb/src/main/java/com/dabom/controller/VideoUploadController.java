@@ -13,9 +13,9 @@ public class VideoUploadController {
 
 	private VideoUploadService videoUploadService;
 
-	@GetMapping(path = { "/list" })
+	@GetMapping(path = { "/uploadList" })
 	public String list() {
-		return "video/list";
+		return "video/uploadList";
 
 	}
 
@@ -28,7 +28,7 @@ public class VideoUploadController {
 
 	@PostMapping(path = { "/upload" })
 	public String upload() {
-		return "redirect:list";
+		return "redirect:uploadList";
 
 	}
 
@@ -40,7 +40,7 @@ public class VideoUploadController {
 
 	@GetMapping(path = { "/delete" })
 	public String delete() {
-		return "redirect:list";
+		return "redirect:uploadList";
 
 	}
 
@@ -52,7 +52,7 @@ public class VideoUploadController {
 
 	@PostMapping(path = { "/edit" })
 	public String edit() {
-		return "redirect:list";
+		return "redirect:uploadList";
 
 	}
 
