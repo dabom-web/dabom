@@ -1,21 +1,33 @@
 package com.dabom.dto;
 
 import java.util.Date;
+import java.util.List;
 
+import lombok.Data;
+
+@Data
 public class ProduceBoard {
 
 	private int boardNo; 
-	private String title; 
-	private String content;
+	private String infor;
+	private String writer;
+	private String contact;
+	private String sns;
 	private Date writedate;
 	private Date modifydate;
 	private String type;
 	private boolean ok;
 	private boolean deleted;
-	private int produceNo;
-	private int performerNo;
-	private String writer;
 	
+	private List<ProducerAttach> files;
+	
+	public List<ProducerAttach> getFiles() {
+		return files;
+	}
+	
+	public void setFiles(List<ProducerAttach> files) {
+		this.files = files;
+	}
 	
 	public int getBoardNo() {
 		return boardNo;
@@ -23,17 +35,29 @@ public class ProduceBoard {
 	public void setBoardNo(int boardNo) {
 		this.boardNo = boardNo;
 	}
-	public String getTitle() {
-		return title;
+	public String getInfor() {
+		return infor;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+	public void setInfor(String infor) {
+		this.infor = infor;
 	}
-	public String getContent() {
-		return content;
+	public String getWriter() {
+		return writer;
 	}
-	public void setContent(String content) {
-		this.content = content;
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
+	public String getContact() {
+		return contact;
+	}
+	public void setContact(String contact) {
+		this.contact = contact;
+	}
+	public String getSns() {
+		return sns;
+	}
+	public void setSns(String sns) {
+		this.sns = sns;
 	}
 	public Date getWritedate() {
 		return writedate;
@@ -65,24 +89,7 @@ public class ProduceBoard {
 	public void setDeleted(boolean deleted) {
 		this.deleted = deleted;
 	}
-	public int getProduceNo() {
-		return produceNo;
-	}
-	public void setProduceNo(int produceNo) {
-		this.produceNo = produceNo;
-	}
-	public int getPerformerNo() {
-		return performerNo;
-	}
-	public void setPerformerNo(int performerNo) {
-		this.performerNo = performerNo;
-	}
-	public String getWriter() {
-		return writer;
-	}
-	public void setWriter(String writer) {
-		this.writer = writer;
-	}
+	
 	
 	
 }

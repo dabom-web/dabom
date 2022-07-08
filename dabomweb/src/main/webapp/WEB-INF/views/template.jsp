@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
  <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
- 	<title>е╦юлф╡╪Жа╓го╪╪©Д</title>
+ 	<title>М┐─Л²╢М▀─Л┬≤Л═∙М∙≤Л└╦Л ■</title>
     <link rel="icon" type="image/png" sizes="16x16" href="resources/images/dabom.jpg">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.theme.default.min.css">
@@ -19,7 +19,7 @@
 	<jsp:include page="/WEB-INF/views/modules/css/top.jsp" />
    
 			
-			<!-- ©╘╠Б©║ Ё╩©К ют╥бго╫ц╦И ╣к╢о╢ы~!~! -->
+			<!-- Л≈╛Й╦╟Л≈░ К┌╢Л ╘ Л·┘К═╔М∙≤Л▀°К╘╢ К░╘К▀┬К▀╓~!~! -->
 
 
 

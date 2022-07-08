@@ -11,7 +11,7 @@
 		<property name="memberMapper" ref="memberMapper"/>
 	</bean> 
 	
-	<bean id="produecBoardService" class="com.dabom.service.ProduceBoardServiceImpl">
+	<bean id="produceBoardService" class="com.dabom.service.ProduceBoardServiceImpl">
 		<property name="produceBoardMapper" ref="produceBoardMapper" />
 	</bean>
 	<!--  

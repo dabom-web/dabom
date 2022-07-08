@@ -1,7 +1,9 @@
 package com.dabom.service;
 
+import com.dabom.dto.ProduceBoard;
+
 public interface ProduceBoardService {
 
-	void writeDirecterInfor(ProduceBoardService produceBoard);
+	void writeInfor(ProduceBoard produceBoard);
 	
 }
