@@ -22,55 +22,48 @@
                             <div class="col-xl-12">
                                 <div class="auth-form">
                                     <h4 class="text-center mb-4">회원가입</h4>
-                                    <form action="index.html">
+                                    <form id="writeform" method="post" action="/dabomweb/account/register">
                                         <div class="form-group">
                                             <label><strong>이름</strong></label>
-                                            <input type="text" id="userName" class="form-control" placeholder="이름을 입력하세요">
+                                            <input type="text" id="userName" name="userName" class="form-control" placeholder="이름을 입력하세요">
                                         </div>
                                         <div class="form-group">
                                             <label><strong>생년월일</strong></label>
-                                            <input type="text" id="birth" class="form-control" placeholder="6자리를 입력하세요">
+                                            <input type="text" id="birth" name="birth" class="form-control" placeholder="6자리를 입력하세요">
                                         </div>
                                          <div class="form-group">
                                             <label><strong>아이디</strong></label>
-                                            <input type="text" id="memberId" class="form-control" placeholder="아이디를 입력하세요">
+                                            <input type="text" id="memberId" name="memberId" class="form-control" placeholder="아이디를 입력하세요">
                                         </div>  
                                          <div class="form-group">
                                             <label><strong>닉네임</strong></label>
-                                            <input type="text" id="nickName" class="form-control" placeholder="닉네임을 입력하세요">
+                                            <input type="text" id="nickName" name="nickName" class="form-control" placeholder="닉네임을 입력하세요">
                                         </div>  
                                         <div class="form-group">
                                             <label><strong>비밀번호</strong></label>
-                                            <input type="password" id="passwd" class="form-control" value="비밀번호 확인">
+                                            <input type="password" id="passwd" name="passwd" class="form-control" value="비밀번호 확인">
                                         </div>
                                          <div class="form-group">
                                             <label><strong>비밀번호 확인</strong></label>
-                                            <input type="password" id="confirm" class="form-control" value="비밀번호 확인">
+                                            <input type="password" id="confirm" name="confirm" class="form-control" value="비밀번호 확인">
                                         </div>
                                          <div class="form-group">
                                             <label><strong>이메일</strong></label>
-                                            <input type="email" id="email" class="form-control" placeholder="hello@example.com">
+                                            <input type="email" id="email" name="email" class="form-control" placeholder="hello@example.com">
                                         </div>
                                           <div class="form-group">
                                             <label><strong>핸드폰</strong></label>
-                                            <input type="text" id="phone" class="form-control" placeholder="010-0000-0000">
+                                            <input type="text" id="phone" name="phone" class="form-control" placeholder="010-0000-0000">
                                         </div>  
-                                        
-                                        <div class="basic-dropdown">
-		                                    <div class="dropdown">
-		                                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-		                                            회원 종류
-		                                        </button>
-		                                        <div class="dropdown-menu">
-		                                            <a class="dropdown-item" href="#">일반 회원</a>
-		                                            <a class="dropdown-item" href="#">영상 업로더</a>
-		                                            <a class="dropdown-item" href="#">웹툰 업로더</a>
-		                                        </div>
-		                                    </div>
-		                                </div>
+                                  
+                                 			<select id="single-select" name="type">
+			                                    <option value="AL">일반회원</option>
+			                                    <option value="WY">영상업로더</option>
+			                                    <option value="WY">웹툰업로더</option>
+			                                </select>
                                         
                                         <div class="text-center mt-4">
-                                            <button type="submit" class="btn btn-primary btn-block">Sign me up</button>
+                                            <a href="javascript:" id="write" class="btn btn-primary btn-block">Sign me up</a>
                                         </div>
                                     </form>
                                     <div class="new-account mt-3">
@@ -92,5 +85,13 @@
     <script src="/dabomweb/resources/vendor/global/global.min.js"></script>
     <script src="/dabomweb/resources/js/quixnav-init.js"></script>
     <!--endRemoveIf(production)-->
+    
+    <script type="text/javascript">
+    	$('#write').on("click", function(event){
+    		event.preventDefault();
+    		$('#writeform').submit();
+    	})
+    </script>
+    
 </body>
 </html>

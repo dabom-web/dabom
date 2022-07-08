@@ -21,29 +21,29 @@
                         <div class="row no-gutters">
                             <div class="col-xl-12">
                                 <div class="auth-form">
-                                    <h4 class="text-center mb-4">Sign in your account</h4>
-                                    <form action="index.html">
+                                    <h4 class="text-center mb-4">로그인</h4>
+                                    <form id="loginform" method="post" action="/dabomweb/account/login">
                                         <div class="form-group">
-                                            <label><strong>Email</strong></label>
-                                            <input type="email" class="form-control" value="hello@example.com">
+                                            <label><strong>아이디</strong></label>
+                                            <input type="text" name="memberId" class="form-control" value="아이디를 입력하세요">
                                         </div>
                                         <div class="form-group">
                                             <label><strong>Password</strong></label>
-                                            <input type="password" class="form-control" value="Password">
+                                            <input type="password" name="passwd" class="form-control" value="Password">
                                         </div>
                                         <div class="form-row d-flex justify-content-between mt-4 mb-2">
                                             <div class="form-group">
                                                 <div class="form-check ml-2">
                                                     <input class="form-check-input" type="checkbox" id="basic_checkbox_1">
-                                                    <label class="form-check-label" for="basic_checkbox_1">Remember me</label>
+                                                    <label class="form-check-label" for="basic_checkbox_1">아이디 기억</label>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <a href="page-forgot-password.html">Forgot Password?</a>
+                                                <a href="page-forgot-password.html">비밀번호를 잃어버리셨나요?</a>
                                             </div>
                                         </div>
                                         <div class="text-center">
-                                            <button type="submit" class="btn btn-primary btn-block">Sign me in</button>
+                                            <a href="javascript:" id="login" class="btn btn-primary btn-block">Sign me in</a>
                                         </div>
                                     </form>
                                     <div class="new-account mt-3">
@@ -66,6 +66,13 @@
     <script src="/dabomweb/resources/vendor/global/global.min.js"></script>
     <script src="/dabomweb/resources/js/quixnav-init.js"></script>
     <script src="/dabomweb/resources/js/custom.min.js"></script>
+
+	<script type="text/javascript">
+		$('#login').on("click",function(event){
+			event.preventDefault();
+			$('#loginform').submit();
+		})
+	</script>
 
 </body>
 </html>
