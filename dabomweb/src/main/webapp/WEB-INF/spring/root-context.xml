@@ -7,31 +7,11 @@
 						http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
 						http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd">
 	
-	<bean id="accountService" class="com.dabom.service.AccountServiceImpl">
-		<property name="memberMapper" ref="memberMapper"/>
-	</bean> 
-	
-	<bean id="produecBoardService" class="com.dabom.service.ProduceBoardServiceImpl">
-		<property name="produceBoardMapper" ref="produceBoardMapper" />
-	</bean>
-	<!--  
-	<bean id="messageService" class="com.dabom.service.MessageServiceImpl">
-		<property name="messageMapper" ref="messageMapper" />
-	</bean>
-
-	<bean id="myChannelService" class="com.dabom.service.MyChannelServiceImpl">
-		<property name="myChannelMapper" ref="myChannelMapper" />
-	</bean>
-	 -->
-	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
-		<constructor-arg index="0" ref="sqlSessionFactory"/>
-	</bean>
-	
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource"/>
-		<property name="configLocation" value="classpath:mybatis-config.xml"/>
-	</bean>
-	
+	<import resource="root-context-account.xml" />	
+	<import resource="root-context-message.xml" />
+	<import resource="root-context-mychannel.xml" />
+	<import resource="root-context-produceBoard.xml" />
+		
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
 		<property name="url" value="jdbc:mysql://3.34.197.123:3306/dabomweb"/>
