@@ -6,7 +6,7 @@
  <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
- 	<title>Write Directer Infor</title>
+ 	<title>Write Actor Infor</title>
     <link rel="icon" type="image/png" sizes="16x16" href="resources/images/dabom.jpg">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.theme.default.min.css">
@@ -36,7 +36,7 @@
 			<div class="row page-titles mx-0">
 				<div class="col-sm-6 p-md-0">
 					<div class="welcome-text">
-						<h4>감독 소개 정보를 입력해주세요</h4>
+						<h4>배우 소개 정보를 입력해주세요</h4>
 						<br>
 					</div>
 				</div>
@@ -61,8 +61,8 @@
 									action="writeDirecterInfor" 
 									method="post"
 									enctype="multipart/form-data">
-																	
-									<input type="hidden" name="type" value="directer">
+									
+									<input type="hidden" name="type" value="actor">
 									<input type="hidden" name="writer" value="tester">
 									<div class="row">
 										<div class="col-xl-6">
@@ -71,7 +71,7 @@
 													class="text-danger">*</span>
 												</label>
 												<div class="col-lg-6">
-													<input type="text" class="form-control" id="directer-name"
+													<input type="text" class="form-control" id="actor-name"
 														name="memberId" value="김테스터" placeholder="(업로더회원정보)">
 												</div>
 											</div>
