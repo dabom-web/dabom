@@ -1,6 +1,7 @@
 package com.dabom.service;
 
 
+import com.dabom.common.Util;
 import com.dabom.dto.Member;
 import com.dabom.mapper.MemberMapper;
 
@@ -14,6 +15,10 @@ public class AccountServiceImpl implements AccountService {
 	
 	
 	public void registerMember(Member member) {
+		
+		String passwd = member.getPasswd();
+		passwd = Util.getHashedString(passwd, "SHA-256");
+		member.setPasswd(passwd);
 		
 		memberMapper.insertUser(member);
 		memberMapper.insertMember(member);

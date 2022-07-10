@@ -123,6 +123,9 @@
                     
                       <a href="/dabomweb/account/register" aria-expanded="false">
                     <span class="nav-text">register</span></a>
+                    
+                     <a href="/dabomweb/account/logout" aria-expanded="false">
+                    <span class="nav-text">logout</span></a>
                 </ul>
             </div>
 

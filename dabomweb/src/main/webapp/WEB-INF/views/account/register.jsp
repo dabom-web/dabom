@@ -87,11 +87,87 @@
     <!--endRemoveIf(production)-->
     
     <script type="text/javascript">
-    	$('#write').on("click", function(event){
-    		event.preventDefault();
-    		$('#writeform').submit();
-    	})
-    </script>
+    
+	  	$('#write').on("click", function(event){
+			event.preventDefault();
+			if (!check()) {
+				return;
+			}	
+			$('#writeform').submit();
+		})
+    		
+		// 회원가입 유효성 검사
+		
+    	function check(){
+			var userName = document.getElementById("userName");
+			var birth = document.getElementById("birth");
+			var memberId = document.getElementById("memberId");
+			var nickName = document.getElementById("nickName");
+			var passwd = document.getElementById("passwd");
+			var confirm = document.getElementById("confirm");
+			var email = document.getElementById("email");
+			var phone = document.getElementById("phone");		
+			
+			
+			if(userName.value=="" || !isKoreaOnly(userName.value)){
+				alert("이름을 정확히 입력하세요")	
+				return false;
+			}else if(!isCheckBirth(birth.value)){
+				alert("6자리 생년월일 입력하세요")
+				return false;
+			}else if(memberId.value=="" || !isCheckId(memberId.value)){
+				alert("4~12자리 아이디를 입력하세요(영문,숫자)")
+				return false;
+			}else if(nickName.value=="" ){
+				alert("별명을 입력하세요(한글,영문,숫자)")
+				return false;
+			}else if(passwd.value==""){
+				alert("비밀번호를 입력하세요")	
+				return false;
+			}else if(confirm.value !== passwd.value){
+				alert("비밀번호가 일치하지 않습니다")	
+				return false;
+			}else if(email.value==""){
+				alert("올바른 이메일 형식을 입력해주세요")	
+				return false;
+			}else if(!isCheckPhone(phone.value) ) {
+				alert("11자리 핸드폰 번호를 입력하세요");
+				return false;
+			}
+			return true;
+    	}
+    	
+    		function isCheckBirth(text) { 
+				var checkBirth = /^[0-9]{6}$/; // 숫자만 입력하는 정규식, 함수로 뺀 이유는 얘는 위치를 기억하므로 함수로 처리를 하지 않으면 111, 111 이렇게 똑같이 세자리씩 들어오면 인식을 하지 x 
+				return checkBirth.test(text);
+    		} 
+    		
+    		function isCheckPhone(text){
+    			var checkPhone = /^[0-9]{11}$/;
+    			return checkPhone.test(text);
+    		}
+    		
+     		function isCheckId(text){
+    			var checkId = /^[a-zA-Z0-9]{4,12}$/;
+    			return checkId.test(text);
+    		} 
+    		
+    		function isKoreaOnly(text){
+    			var checkKorea =/^[가-힣]/;
+    			return checkKorea.test(text);
+    		}
+    		
+    		function isNickName(text){
+    			var checkNickName =/^[a-zA-Z가-힣]/;
+    			return checkNickName.test(text);
+    		}
+    		
+    		/* fucntion isCheckEmail(text){
+    			var checkEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+    			return checkEmail.test(text);
+    		} */
+
+	</script>
     
 </body>
 </html>

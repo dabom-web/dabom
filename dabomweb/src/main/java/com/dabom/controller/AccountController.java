@@ -53,6 +53,14 @@ public class AccountController {
 		
 		return "redirect:login";
 	}
+	
+	@GetMapping(path= {"/logout"})
+	public String logout(HttpSession session) {
+		
+		session.removeAttribute("loginuser");
+		
+		return "redirect:/home";
+	}
 
 	
 }
