@@ -49,23 +49,26 @@
 										<tr>
 											<th style="width: 1000px;">이   름</th>											
 											<th style="width: 470px;">작성일자</th>											
-											<th>수정신청</th>
+											<th style="width: 100px;">수정신청</th>
 										</tr>
-									</thead>									
+									</thead>
+									<c:forEach var="board" items="${ directerList }">								
 									<tbody>								
 										<tr style="height: 70px;">
-											<td style="width: 1000px;">Tiger Nixon</td>											
-											<td style="width: 470px;">System Architect</td>
-											<td>
+											
+											<td style="width: 1000px;"><a href="directerDetail?boardno=${ board.boardNo }">${ board.writer }</a></td>											
+											<td style="width: 470px;">${ board.writedate }</td>										
+											<td style="width: 100px;">
 											<a href="#" class="badge badge-rounded badge-dark">신청</a>
                                             </td>											
 										</tr>										
 									</tbody>
+									</c:forEach>	
 									<tfoot>
 										<tr>
 											<th style="width: 1000px;">Name</th>											
 											<th style="width: 470px;">WriteDate</th>
-											<th>Update</th>											
+											<th style="width: 100px;">Update</th>											
 										</tr>
 									</tfoot>
 								</table>

@@ -2,20 +2,25 @@ package com.dabom.controller;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.dabom.common.Util;
+import com.dabom.dto.Member;
 import com.dabom.dto.ProduceBoard;
 import com.dabom.dto.ProducerAttach;
+import com.dabom.service.AccountService;
 import com.dabom.service.ProduceBoardService;
 
 
@@ -30,9 +35,9 @@ public class ProduceBoardController {
 	private ProduceBoardService produceBoardService;
 	
 	@GetMapping(path = { "/directer" })
-	public String directerInforList() {
-		
-		
+	public String directerInforList(Model model) {
+		List<ProduceBoard> directerList = produceBoardService.findDirecterList();
+		model.addAttribute("directerList", directerList);	
 		
 		return "produceBoard/directer";
 	}
@@ -42,7 +47,7 @@ public class ProduceBoardController {
 		return "produceBoard/writeDirecterInfor";
 	}
 	
-	@PostMapping(path = {"/writeDirecterInfor"})
+	@PostMapping(path = { "/writeDirecterInfor" })
 	public String writeDirecterInfor(ProduceBoard produceBoard,
 									 MultipartFile[] producerAttach,
 									 HttpServletRequest req) {
@@ -71,7 +76,9 @@ public class ProduceBoardController {
 	}
 	
 	@GetMapping(path = { "/actor" })
-	public String actorInforList() {
+	public String actorInforList(Model model) {
+		List<ProduceBoard> actorList = produceBoardService.findActorList();
+		model.addAttribute("actorList",actorList);
 		return "produceBoard/actor";
 	}
 	
@@ -80,7 +87,7 @@ public class ProduceBoardController {
 		return "produceBoard/writeActorInfor";
 	}
 	
-	@PostMapping(path = {"/writeActorInfor"})
+	@PostMapping(path = { "/writeActorInfor" })
 	public String writeActorInfor(ProduceBoard produceBoard,
 								  MultipartFile[] producerAttach,
 								  HttpServletRequest req) {
@@ -108,5 +115,28 @@ public class ProduceBoardController {
 		return "redirect:/produceBoard/actor";
 		
 	}
+	
+	@GetMapping(path = { "/directerDetail" })
+	public String produceDetailForm(Model model,
+									@RequestParam(name="boardno", defaultValue = "-1")int boardNo,
+									@RequestParam(name="attachno", defaultValue = "-1")int attachNo) {
+		
+		if (boardNo == -1) {
+			return "redirect:/produceBoard/directer";
+		}
+		
+		ProduceBoard produceBoard = produceBoardService.findByBoardNo(boardNo);
+		ProducerAttach producerAttach = produceBoardService.findByProducerAttachNo(attachNo);
+		if (produceBoard == null) {
+			return "redirect:/produceBoard/directer";			
+		}
+		
+		model.addAttribute("uploadDir", "/resources/upload-files/");
+		model.addAttribute("produceBoard", produceBoard);
+		model.addAttribute("producerAttach", producerAttach);
+		
+		return "/produceBoard/directerDetail";
+	}
+	
 	
 }

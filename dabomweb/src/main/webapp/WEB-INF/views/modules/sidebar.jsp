@@ -11,15 +11,16 @@
                 <!-- 홈 -->
                 <li class="nav-label first">DA!BOM Home</li>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-single-04"></i><span class="nav-text">Home</span></a>
+                                class="icon icon-world-2"></i><span class="nav-text">Collect</span></a>
                         <ul aria-expanded="false">                        
-                      
-                            <li><a href="#">최근 업데이트 영상</a></li>                           
-                            <li><a href="#">인기 채널</a></li>
-                            <li><a href="#">구독 채널</a></li>
-                            <li><a href="#">찜 목록</a></li>
-                            <li><a href="#">응원 감독 영상</a></li> 
-                            <li><a href="#">응원 배우 영상</a></li>                                          
+                      		
+                      		<li><a href="/dabomweb/collect/chart">채널차트</a></li>
+                            <li><a href="/dabomweb/collect/newUpdateVideo">최근 업데이트 영상</a></li>                           
+                            <li><a href="/dabomweb/collect/hotChannel">인기 채널</a></li>
+                            <li><a href="/dabomweb/collect/subscribeChannel">구독 채널</a></li>
+                            <li><a href="/dabomweb/collect/wishList">찜 목록</a></li>
+                            <li><a href="/dabomweb/collect/supportDirecter">응원 감독 영상</a></li> 
+                            <li><a href="/dabomweb/collect/supportActor">응원 배우 영상</a></li>                                          
                        
                             
                         </ul>

@@ -63,7 +63,7 @@
 									enctype="multipart/form-data">
 																	
 									<input type="hidden" name="type" value="directer">
-									<input type="hidden" name="writer" value="tester">
+									<input type="hidden" name="writer" value="na0stone">
 									<div class="row">
 										<div class="col-xl-6">
 											<div class="form-group row">
@@ -72,7 +72,7 @@
 												</label>
 												<div class="col-lg-6">
 													<input type="text" class="form-control" id="directer-name"
-														name="memberId" value="김테스터" placeholder="(업로더회원정보)">
+														name="memberId" value="나영석" placeholder="(업로더회원정보)">
 												</div>
 											</div>
 											<div class="form-group row">
@@ -81,7 +81,7 @@
 												</label>
 												<div class="col-lg-6">
 													<input type="text" class="form-control" id="email"
-														name="email" value="test@test.com" placeholder="(회원정보에서)">
+														name="email" value="na0stone@pd.com" placeholder="(회원정보에서)">
 												</div>
 											</div>
 											<div class="form-group row">
