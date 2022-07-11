@@ -32,7 +32,7 @@ public interface ProduceBoardMapper {
 	void insertProducerAttach(ProducerAttach produceAttach);
 
 	@Select("select  boardno, infor, writedate, modifydate, type, ok, deleted, writer, contact, sns "
-			+ "from produceboard where type = 'actor' "
+			+ "from produceboard where type = 'actor' and deleted = 0 "
 			+ "order by boardno desc")
 	@Results({
 		@Result(id= true, column = "boardno", property = "boardNo"),
@@ -53,7 +53,7 @@ public interface ProduceBoardMapper {
 	
 
 	@Select("select  boardno, infor, writedate, modifydate, type, ok, deleted, writer, contact, sns "
-			+ "from produceboard where type = 'director' "
+			+ "from produceboard where type = 'director' and deleted = 0 "
 			+ "order by boardno desc")
 	@Results({
 		@Result(id= true, column = "boardno", property = "boardNo"),
