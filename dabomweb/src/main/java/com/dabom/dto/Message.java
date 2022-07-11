@@ -2,36 +2,43 @@ package com.dabom.dto;
 
 public class Message {
 
-	private int messageNo;
-	private String message;
-	private String sendDate;
-	private boolean messageDelete;
+	private int message_No;
+	private String message_Title;
+	private String message_Content;
+	private String send_Date;
+	private boolean message_Delete;
 	private String sender;
 	private String receiver;
 	
-	public int getMessageNo() {
-		return messageNo;
+	public int getMessage_No() {
+		return message_No;
 	}
-	public void setMessageNo(int messageNo) {
-		this.messageNo = messageNo;
+	public void setMessage_No(int message_No) {
+		this.message_No = message_No;
 	}
-	public String getMessage() {
-		return message;
+	public String getMessage_Title() {
+		return message_Title;
 	}
-	public void setMessage(String message) {
-		this.message = message;
+	public void setMessage_Title(String message_Title) {
+		this.message_Title = message_Title;
 	}
-	public String getSendDate() {
-		return sendDate;
+	public String getMessage_Content() {
+		return message_Content;
 	}
-	public void setSendDate(String sendDate) {
-		this.sendDate = sendDate;
+	public void setMessage_Content(String message_Content) {
+		this.message_Content = message_Content;
 	}
-	public boolean isMessageDelete() {
-		return messageDelete;
+	public String getSend_Date() {
+		return send_Date;
 	}
-	public void setMessageDelete(boolean messageDelete) {
-		this.messageDelete = messageDelete;
+	public void setSend_Date(String send_Date) {
+		this.send_Date = send_Date;
+	}
+	public boolean isMessage_Delete() {
+		return message_Delete;
+	}
+	public void setMessage_Delete(boolean message_Delete) {
+		this.message_Delete = message_Delete;
 	}
 	public String getSender() {
 		return sender;
@@ -45,4 +52,7 @@ public class Message {
 	public void setReceiver(String receiver) {
 		this.receiver = receiver;
 	}
-}
+	
+	
+		
+}	
