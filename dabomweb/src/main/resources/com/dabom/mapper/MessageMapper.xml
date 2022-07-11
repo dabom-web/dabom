@@ -4,18 +4,34 @@
 				 
 <mapper namespace="com.dabom.mapper.MessageMapper">
 	
-	<select id="selectAllMessage" resultType="Message">
+	<select id="selectAllMessage" parameterType="String" resultType="Message">
 		SELECT message_no, message_title, message_content, send_date, sender, receiver, message_delete 
 		FROM message 
+		where receiver = #{receiver}
 		ORDER BY send_date DESC
 	</select>	
 	
-	<select id="selectMessageCount" resultType="int">
-		SELECT COUNT(*) FROM message
+	<select id="selectAllSendMessage" parameterType="String" resultType="Message">
+		SELECT message_no, message_title, message_content, send_date, sender, receiver, message_delete 
+		FROM message 
+		WHERE sender = #{sender}
+		ORDER BY send_date DESC
+	</select>
+	
+	<select id="selectMessageReceiveCount" parameterType="String" resultType="int">
+		SELECT COUNT(*) 
+		FROM message 
+		where receiver = #{receiver}
+	</select>
+	
+	<select id="selectMessageSendCount" parameterType="String" resultType="int">
+		SELECT COUNT(*) 
+		FROM message 
+		where sender = #{sender}
 	</select>
 
 	<insert id="insertMessage" parameterType="Message">
-		<selectKey keyProperty="messageNo" resultType="int" order="AFTER">
+		<selectKey keyProperty="message_No" resultType="int" order="AFTER">
 			SELECT LAST_INSERT_ID()		
 		</selectKey>		
 		INSERT INTO message (message_title, receiver, sender, message_content)

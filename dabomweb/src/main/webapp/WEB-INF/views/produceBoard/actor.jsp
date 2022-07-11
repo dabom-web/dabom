@@ -55,7 +55,7 @@
 									<c:forEach var="board" items="${ actorList }">
 										<tbody>
 											<tr style="height: 70px;">
-												<td style="width: 1000px;">${ board.writer }</td>
+												<td style="width: 1000px;"><a href="actorDetail?boardno=${ board.boardNo }">${ board.member.userName }</a></td>
 												<td style="width: 470px;">${ board.writedate }</td>
 												<td style="width: 100px;"><a href="#"
 													class="badge badge-rounded badge-dark">신청</a></td>

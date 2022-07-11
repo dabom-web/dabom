@@ -21,7 +21,7 @@
                             <li><a href="/dabomweb/collect/hotChannel">인기 채널</a></li>
                             <li><a href="/dabomweb/collect/subscribeChannel">구독 채널</a></li>
                             <li><a href="/dabomweb/collect/wishList">찜 목록</a></li>
-                            <li><a href="/dabomweb/collect/supportDirecter">응원 감독 영상</a></li> 
+                            <li><a href="/dabomweb/collect/supportDirector">응원 감독 영상</a></li> 
                             <li><a href="/dabomweb/collect/supportActor">응원 배우 영상</a></li>                                          
                        
                             
@@ -92,7 +92,7 @@
 	                                class="icon icon-single-04"></i><span class="nav-text">Porducer</span></a>
 	                        <ul aria-expanded="false">
 	                        
-	                            <li><a href="/dabomweb/produceBoard/directer">감독</a></li>
+	                            <li><a href="/dabomweb/produceBoard/director">감독</a></li>
 	                 
 	                            <li><a href="/dabomweb/produceBoard/actor">배우</a></li>
 	                       

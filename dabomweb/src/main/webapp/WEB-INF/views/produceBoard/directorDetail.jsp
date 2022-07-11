@@ -7,13 +7,25 @@
  <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
- 	<title>정보상세보기</title>
+ 	<title>감독정보상세보기</title>
     <link rel="icon" type="image/png" sizes="16x16" href="resources/images/dabom.jpg">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.theme.default.min.css">
     <link href="/dabomweb/resources/vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet">
     <link href="/dabomweb/resources/css/style.css" rel="stylesheet">
 
+<style type="text/css">
+img {
+  object-fit: cover;
+  overflow: hidden;
+}
+.box {
+    width: 150px;
+    height: 150px; 
+    border-radius: 70%;
+    overflow: hidden;
+}
+</style>
 </head>
 <body>
 
@@ -27,10 +39,12 @@
 					<div class="profile">
 						<div class="profile-head">
 							<div class="photo-content">
-								<div class="cover-photo"></div>
-								<div class="profile-photo">
-									<img src="images/profile/profile.png"
-										class="img-fluid rounded-circle" alt="">
+								<div style="background-color: black;"><table><tr style=" height: 100px;">
+								<h1 style="color: white; text-align: center;" ><br><br><br>
+								${ member.nickName }<h1></tr></table></div>
+								<div class="profile-photo" >
+									<img src="/dabomweb/resources/upload-files/${ producerAttach.savedFileName }"
+										class="box" alt="">
 								</div>
 							</div>
 							<div class="profile-info">
@@ -39,7 +53,7 @@
 										<div class="row">
 											<div class="col-xl-4 col-sm-4 border-right-1 prf-col">
 												<div class="profile-name">
-													<h4 class="text-primary">이름</h4>
+													<h4 class="text-primary">${ member.userName }</h4>
 													<p>${ produceBoard.type }</p>
 												</div>
 											</div>
@@ -96,9 +110,9 @@
 															<div class="tab-pane fade" id="list-profile"
 																role="tabpanel">
 																<h4 class="mb-4">Profile</h4>
-																<p>이 름 </p>
-																<p>생 일 </p>
-																<p>이메일 </p>
+																<p>이 름 &nbsp;${ member.userName }</p>
+																<p>생 일 &nbsp;${ member.birth }</p>
+																<p>이메일 &nbsp;${ member.email } </p>
 															</div>
 															<div class="tab-pane fade" id="list-messages">
 																<h4 class="mb-4">SNS</h4>

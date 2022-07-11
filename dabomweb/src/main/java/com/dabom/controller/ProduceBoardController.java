@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -34,21 +35,21 @@ public class ProduceBoardController {
 	@Qualifier("produceBoardService")
 	private ProduceBoardService produceBoardService;
 	
-	@GetMapping(path = { "/directer" })
-	public String directerInforList(Model model) {
-		List<ProduceBoard> directerList = produceBoardService.findDirecterList();
-		model.addAttribute("directerList", directerList);	
-		
-		return "produceBoard/directer";
+	@GetMapping(path = { "/director" })
+	public String directorInforList(Model model) {
+	
+		List<ProduceBoard> directorList = produceBoardService.findDirectorList();
+		model.addAttribute("directorList", directorList);
+		return "produceBoard/director";
 	}
 	
-	@GetMapping(path = { "/writeDirecterInfor" })
-	public String writeDirecterInforForm() {
-		return "produceBoard/writeDirecterInfor";
+	@GetMapping(path = { "/writeDirectorInfor" })
+	public String writeDirectorInforForm() {
+		return "produceBoard/writeDirectorInfor";
 	}
 	
-	@PostMapping(path = { "/writeDirecterInfor" })
-	public String writeDirecterInfor(ProduceBoard produceBoard,
+	@PostMapping(path = { "/writeDirectorInfor" })
+	public String writeDirectorInfor(ProduceBoard produceBoard,
 									 MultipartFile[] producerAttach,
 									 HttpServletRequest req) {
 		
@@ -72,7 +73,7 @@ public class ProduceBoardController {
 		}
 		produceBoard.setFiles(files);
 		produceBoardService.writeInfor(produceBoard);
-		return "redirect:/produceBoard/directer";
+		return "redirect:/produceBoard/director";
 	}
 	
 	@GetMapping(path = { "/actor" })
@@ -116,26 +117,52 @@ public class ProduceBoardController {
 		
 	}
 	
-	@GetMapping(path = { "/directerDetail" })
-	public String produceDetailForm(Model model,
-									@RequestParam(name="boardno", defaultValue = "-1")int boardNo,
-									@RequestParam(name="attachno", defaultValue = "-1")int attachNo) {
+	@GetMapping(path = { "/directorDetail" })
+	public String produceDirectorDetailForm(Model model,
+									@RequestParam(name="boardno", defaultValue = "-1")int boardNo) {
 		
 		if (boardNo == -1) {
-			return "redirect:/produceBoard/directer";
+			return "redirect:/produceBoard/director";
 		}
-		
+				
 		ProduceBoard produceBoard = produceBoardService.findByBoardNo(boardNo);
-		ProducerAttach producerAttach = produceBoardService.findByProducerAttachNo(attachNo);
+		Member member = produceBoardService.findMemberInfor(produceBoard.getWriter());
+		ProducerAttach producerAttach = produceBoardService.findByProducerByBoardNo(boardNo);
+		
 		if (produceBoard == null) {
-			return "redirect:/produceBoard/directer";			
+			return "redirect:/produceBoard/director";		
 		}
 		
 		model.addAttribute("uploadDir", "/resources/upload-files/");
 		model.addAttribute("produceBoard", produceBoard);
 		model.addAttribute("producerAttach", producerAttach);
+		model.addAttribute("member", member);
 		
-		return "/produceBoard/directerDetail";
+		return "/produceBoard/directorDetail";
+	}
+	
+	@GetMapping(path = { "/actorDetail" })
+	public String produceActorDetailForm(Model model,
+									@RequestParam(name="boardno", defaultValue = "-1")int boardNo) {
+		
+		if (boardNo == -1) {
+			return "redirect:/produceBoard/director";
+		}
+				
+		ProduceBoard produceBoard = produceBoardService.findByBoardNo(boardNo);
+		Member member = produceBoardService.findMemberInfor(produceBoard.getWriter());
+		ProducerAttach producerAttach = produceBoardService.findByProducerByBoardNo(boardNo);
+		
+		if (produceBoard == null) {
+			return "redirect:/produceBoard/actor";		
+		}
+		
+		model.addAttribute("uploadDir", "/resources/upload-files/");
+		model.addAttribute("produceBoard", produceBoard);
+		model.addAttribute("producerAttach", producerAttach);
+		model.addAttribute("member", member);
+		
+		return "/produceBoard/actorDetail";
 	}
 	
 	

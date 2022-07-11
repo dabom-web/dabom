@@ -4,11 +4,15 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Many;
+import org.apache.ibatis.annotations.One;
 import org.apache.ibatis.annotations.Options;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
 
+import com.dabom.dto.Member;
 import com.dabom.dto.ProduceBoard;
 import com.dabom.dto.ProducerAttach;
 
@@ -30,34 +34,60 @@ public interface ProduceBoardMapper {
 	@Select("select  boardno, infor, writedate, modifydate, type, ok, deleted, writer, contact, sns "
 			+ "from produceboard where type = 'actor' "
 			+ "order by boardno desc")
+	@Results({
+		@Result(id= true, column = "boardno", property = "boardNo"),
+		@Result(column = "writdate", property = "writdate"),
+		@Result(column = "infor", property = "infor"),
+		@Result(column = "modifydate", property = "modifydate"),
+		@Result(column = "type", property = "type"),
+		@Result(column = "ok", property = "ok"),
+		@Result(column = "deleted", property = "deleted"),
+		@Result(column = "contact", property = "contact"),
+		@Result(column = "sns", property = "sns"),
+		@Result(column = "writer", property = "member",
+				one = @One(select="selectMemberInfor"))
+	})
 	List<ProduceBoard> selectActor();
 	
-	@Select("select  boardno, infor, writedate, modifydate, type, ok, deleted, writer, contact, sns "
-			+ "from produceboard where type = 'directer' "
-			+ "order by boardno desc")
-	List<ProduceBoard> selectDirecter();
+	
+	
 
-//	@Select("select boardno, infor, writedate, modifydate, type, ok, deleted, writer, contact, sns "
-//				 + "memberid, birth, email, username "
-//			+ "from  member left outer join produceboard "
-//			+ "on member.memberid = produceboard.writer "
-//			+ "where boardno = #{ boardNo } and ok = 1")
-//	@Result({
-//		@Result(id = true, column = "memberid", property = "memberId"),
-//		@Result(column = "birth", property = "birth"),
-//		@Result(column = "email", property = "email"),
-//		@Result(column = "username", property = "userName")
-//				many = @Many(resultMap = "")
-//	})
+	@Select("select  boardno, infor, writedate, modifydate, type, ok, deleted, writer, contact, sns "
+			+ "from produceboard where type = 'director' "
+			+ "order by boardno desc")
+	@Results({
+		@Result(id= true, column = "boardno", property = "boardNo"),
+		@Result(column = "writdate", property = "writdate"),
+		@Result(column = "infor", property = "infor"),
+		@Result(column = "modifydate", property = "modifydate"),
+		@Result(column = "type", property = "type"),
+		@Result(column = "ok", property = "ok"),
+		@Result(column = "deleted", property = "deleted"),
+		@Result(column = "contact", property = "contact"),
+		@Result(column = "sns", property = "sns"),
+		@Result(column = "writer", property = "member",
+				one = @One(select="selectMemberInfor"))
+	})
+	List<ProduceBoard> selectDirector();
+
+
 	@Select("select boardno, infor, writedate, modifydate, type, ok, deleted, writer, contact, sns "
 		+ "from  produceboard "
 		+ "where boardno = #{ boardNo } and ok = 1")
-	ProduceBoard selectByBoardNo(int boardNo);
+	ProduceBoard selectByBoardNo(@Param("boardNo") int boardNo);
 	
 	@Select("select attachno, produceboardno, userfilename, savedfilename "
 			+ "from producer_attach "
 			+ "where produceboardno = #{ boardNo }")
-	ProducerAttach selectByProducerAttachNo(int attachNo);
+	ProducerAttach selectByProducerBoardNo(@Param("boardNo") int boardNo);
+
+	@Select("select memberid, birth, email, username, nickname, emoji, phone, grade, active, point "
+			+ "from member "
+			+ "where memberid = #{ writer }")
+	Member selectMemberInfor(@Param("writer") String writer);
+
+//	@Select("select username from member")
+//	Member selectMemberByUserName();
 	
 	
 

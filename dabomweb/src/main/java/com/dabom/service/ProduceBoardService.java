@@ -2,6 +2,7 @@ package com.dabom.service;
 
 import java.util.List;
 
+import com.dabom.dto.Member;
 import com.dabom.dto.ProduceBoard;
 import com.dabom.dto.ProducerAttach;
 
@@ -11,10 +12,14 @@ public interface ProduceBoardService {
 
 	List<ProduceBoard> findActorList();
 
-	List<ProduceBoard> findDirecterList();
+	List<ProduceBoard> findDirectorList();
 
 	ProduceBoard findByBoardNo(int boardNo);
 
-	ProducerAttach findByProducerAttachNo(int attachNo);
+	ProducerAttach findByProducerByBoardNo(int attachNo);
+
+	Member findMemberInfor(String writer);
+
+//	Member findUserName();
 	
 }

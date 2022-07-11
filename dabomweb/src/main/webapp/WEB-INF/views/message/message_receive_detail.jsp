@@ -1,12 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@page import="com.dabom.dto.Message"%>
+<%@ page language="java" 
+		 contentType="text/html; charset=utf-8"
+    	 pageEncoding="utf-8"%>  
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+
 <!DOCTYPE html>
 <html>
 <head>
  <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
- 	<title>MESSAGEDETAIL</title>
+ 	<title>MESSAGEDETAIL(${ receiveCount })</title>
     <link rel="icon" type="image/png" sizes="16x16" href="resources/images/dabom.jpg">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.theme.default.min.css">
@@ -25,14 +29,14 @@
                 <div class="row page-titles mx-0">
                     <div class="col-sm-6 p-md-0">
                         <div class="welcome-text">
-                            <h4>∏ﬁºº¡ˆ ¿–±‚!</h4>
+                            <h4>Î©îÏÑ∏ÏßÄ ÏùΩÍ∏∞!</h4>
                             <span class="ml-1">MESSAGE</span>
                         </div>
                     </div>
                     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="messagelist">πﬁ¿∫∏ﬁºº¡ˆ</a></li>
-                            <li class="breadcrumb-item active"><a href="messagedetail?message_no=${ message.message_No }">∏ﬁºº¡ˆ¿–±‚</a></li>
+                            <li class="breadcrumb-item"><a href="messagelist">Î∞õÏùÄÎ©îÏÑ∏ÏßÄ</a></li>
+                            <li class="breadcrumb-item active"><a href="messagedetail?message_no=${ message.message_No }">Î©îÏÑ∏ÏßÄÏùΩÍ∏∞</a></li>
                         </ol>
                     </div>
                 </div>
@@ -43,21 +47,23 @@
                             <div class="card-body">
                                 <div class="email-left-box generic-width px-0 mb-5">
                                     <div class="p-0">
-                                      <a href="messagewrite" class="btn btn-primary btn-block">ªı ∏ﬁºº¡ˆ ¿€º∫</a>
+                                     <a href="message_write?sender=${ loginuser.memberId }" class="btn btn-primary btn-block">ÏÉà Î©îÏÑ∏ÏßÄ ÏûëÏÑ±</a>
                                   </div>
                                   <div class="mail-list mt-4">
-                                      <a href="messagelist" class="list-group-item active"><i
-                                              class="fa fa-inbox font-18 align-middle mr-2"></i> πﬁ¿∫∏ﬁºº¡ˆ <span
-                                              class="badge badge-primary badge-sm float-right">${ count }</span> </a>
+                                      <a href="message_receive_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="list-group-item active"><i
+                                              class="fa fa-inbox font-18 align-middle mr-2"></i> Î∞õÏùÄÎ©îÏÑ∏ÏßÄ <span
+                                              class="badge badge-primary badge-sm float-right">${ receiveCount }</span></a>
+                                      <a href="message_send_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="list-group-item"><i
+                                              class="fa fa-paper-plane font-18 align-middle mr-2"></i>Î≥¥ÎÇ∏Î©îÏÑ∏ÏßÄ<span
+                                              class="badge badge-primary badge-sm float-right">${ sendCount }</span></a> 
                                       <a href="javascript:void()" class="list-group-item"><i
-                                              class="fa fa-paper-plane font-18 align-middle mr-2"></i>∫∏≥Ω∏ﬁºº¡ˆ</a> <a href="javascript:void()" class="list-group-item"><i
-                                              class="fa fa-star font-18 align-middle mr-2"></i>∏ﬁºº¡ˆ ∫∏∞¸«‘ <span
+                                              class="fa fa-star font-18 align-middle mr-2"></i>Î©îÏÑ∏ÏßÄ Î≥¥Í¥ÄÌï® <span
                                               class="badge badge-danger text-white badge-sm float-right">47</span>
                                       </a>
                                       <a href="javascript:void()" class="list-group-item"><i
-                                              class="fa fa-trash font-18 align-middle mr-2"></i>ªË¡¶µ» ∏ﬁºº¡ˆ</a>
+                                              class="fa fa-trash font-18 align-middle mr-2"></i>ÏÇ≠Ï†úÎêú Î©îÏÑ∏ÏßÄ</a>
                                   </div>                                  
-                                </div>
+                              </div>
                                 <div class="email-right-box ml-0 ml-sm-4 ml-sm-0">
                                     <div class="row">
                                         <div class="col-12">
@@ -77,7 +83,7 @@
                                                                 class="fa fa-trash"></i></a>
                                                     </div><hr>
                                                         <div class="media-body"><span class="pull-right">${ message.send_Date }</span>
-                                                            <h5 class="my-1 text-primary">∫∏≥ΩªÁ∂˜ : ${ message.sender }</h5>
+                                                            <h5 class="my-1 text-primary">Î≥¥ÎÇ∏ÏÇ¨Îûå : ${ message.sender }</h5>
                                                             <p class="read-content-email">
                                                                 To:Me,invernessmckenzie@example.com</p>
                                                         </div>
@@ -87,7 +93,7 @@
                                                         <h5 class="pt-3">${ message.message_Content }</h5><hr>
                                                     </div>    
                                                     <div class="read-content-attachment">
-                                                        <h6><i class="fa fa-download mb-2"></i> √∑∫Œ∆ƒ¿œ
+                                                        <h6><i class="fa fa-download mb-2"></i> Ï≤®Î∂ÄÌååÏùº
                                                             <span>(3)</span></h6>
                                                         <div class="row attachment">
                                                             <div class="col-auto">

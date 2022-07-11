@@ -2,6 +2,7 @@ package com.dabom.service;
 
 import java.util.List;
 
+import com.dabom.dto.Member;
 import com.dabom.dto.ProduceBoard;
 import com.dabom.dto.ProducerAttach;
 import com.dabom.mapper.ProduceBoardMapper;
@@ -32,9 +33,9 @@ public class ProduceBoardServiceImpl implements ProduceBoardService {
 	}
 
 	@Override
-	public List<ProduceBoard> findDirecterList() {
-		List<ProduceBoard> directerList = produceBoardMapper.selectDirecter();
-		return directerList;
+	public List<ProduceBoard> findDirectorList() {
+		List<ProduceBoard> directorList = produceBoardMapper.selectDirector();
+		return directorList;
 	}
 
 	@Override
@@ -44,10 +45,22 @@ public class ProduceBoardServiceImpl implements ProduceBoardService {
 	}
 
 	@Override
-	public ProducerAttach findByProducerAttachNo(int attachNo) {
-		ProducerAttach producerAttach = produceBoardMapper.selectByProducerAttachNo(attachNo);
+	public ProducerAttach findByProducerByBoardNo(int boardNo) {
+		ProducerAttach producerAttach = produceBoardMapper.selectByProducerBoardNo(boardNo);
 		return producerAttach;
 	}
+
+	@Override
+	public Member findMemberInfor(String writer) {
+		Member member = produceBoardMapper.selectMemberInfor(writer);
+		return member;
+	}
+
+//	@Override
+//	public Member findUserName() {
+//		Member member = produceBoardMapper.selectMemberByUserName();
+//		return member;
+//	}
 	
 
 	

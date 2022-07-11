@@ -7,7 +7,7 @@
  <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
- 	<title>Directer</title>
+ 	<title>Director</title>
     <link rel="icon" type="image/png" sizes="16x16" href="/dabomweb/resources/images/dabom.jpg">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.theme.default.min.css">
@@ -28,7 +28,7 @@
 				<div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item">
-						<a href="/dabomweb/produceBoard/writeDirecterInfor">감독 정보 업데이트 신청</a></li>						
+						<a href="/dabomweb/produceBoard/writeDirectorInfor">감독 정보 업데이트 신청</a></li>						
 					</ol>
 				</div>
 
@@ -52,11 +52,10 @@
 											<th style="width: 100px;">수정신청</th>
 										</tr>
 									</thead>
-									<c:forEach var="board" items="${ directerList }">								
+									<c:forEach var="board" items="${ directorList }">								
 									<tbody>								
 										<tr style="height: 70px;">
-											
-											<td style="width: 1000px;"><a href="directerDetail?boardno=${ board.boardNo }">${ board.writer }</a></td>											
+											<td style="width: 1000px;"><a href="directorDetail?boardno=${ board.boardNo }">${ board.member.userName }</a></td>											
 											<td style="width: 470px;">${ board.writedate }</td>										
 											<td style="width: 100px;">
 											<a href="#" class="badge badge-rounded badge-dark">신청</a>

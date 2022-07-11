@@ -16,10 +16,12 @@ public interface MessageMapper {
 //	@Select("SELECT message_no, message, send_date, sender, receiver " +
 //			"FROM message " +
 //			"ORDER BY send_date DESC ")
-	List<Message> selectAllMessage();
+	List<Message> selectAllMessage(String receiver);
+	List<Message> selectAllSendMessage(String sender);
 
 //	@Select("SELECT COUNT(*) FROM message")
-	int selectMessageCount();
+	int selectMessageReceiveCount(String receiver);
+	int selectMessageSendCount(String sender);
 	
 //	@SelectKey(statement = "SELECT LAST_INSERT_ID()",
 //			   resultType = Integer.class,
