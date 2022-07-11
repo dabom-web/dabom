@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,30 +15,20 @@
     <link href="/dabomweb/resources/css/style.css" rel="stylesheet">
 </head>
 <body>   
-    <div id="preloader">
-        <div class="sk-three-bounce">
-            <div class="sk-child sk-bounce1"></div>
-            <div class="sk-child sk-bounce2"></div>
-            <div class="sk-child sk-bounce3"></div>
-        </div>
-    </div>
-    <div id="main-wrapper">
-      <jsp:include page="/WEB-INF/views/modules/header.jsp"></jsp:include>
-      <jsp:include page="/WEB-INF/views/modules/sidebar.jsp"></jsp:include>
-    </div>
+    	<jsp:include page="/WEB-INF/views/modules/css/top.jsp" />
 
 	<div class="content-body">
 		<div class="container-fluid">
 			<div class="row page-titles mx-0">
 				<div class="col-sm-6 p-md-0">
 					<div class="welcome-text">
-						<h4>øµªÛ ¡¶¿€¿⁄ ¡§∫∏</h4>
+						<h4>ÏòÅÏÉÅ Ï†úÏûëÏûê Ï†ïÎ≥¥</h4>
 					</div>
 				</div>
 				<div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item">
-						<a href="/dabomweb/produceBoard/writeDirecterInfor">∞®µ∂ ¡§∫∏ æ˜µ•¿Ã∆Æ Ω≈√ª</a></li>						
+						<a href="/dabomweb/produceBoard/writeDirecterInfor">Í∞êÎèÖ Ï†ïÎ≥¥ ÏóÖÎç∞Ïù¥Ìä∏ Ïã†Ï≤≠</a></li>						
 					</ol>
 				</div>
 
@@ -49,47 +40,35 @@
 				<div class="col-12">
 					<div class="card">
 						<div class="card-header">
-							<h4 class="card-title">∞®µ∂ ¡§∫∏ ∫∏±‚</h4>
+							<h4 class="card-title">Í∞êÎèÖ Ï†ïÎ≥¥ Î≥¥Í∏∞</h4>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
 								<table id="example" class="display" style="min-width: 845px">
 									<thead>
 										<tr>
-											<th>Name</th>
-											<th>Position</th>
-											<th>Office</th>
-											<th>Age</th>
-											<th>Start date</th>
-											<th>Salary</th>
+											<th style="width: 1000px;">Ïù¥   Î¶Ñ</th>											
+											<th style="width: 470px;">ÏûëÏÑ±ÏùºÏûê</th>											
+											<th style="width: 100px;">ÏàòÏ†ïÏã†Ï≤≠</th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr>
-											<td>Tiger Nixon</td>
-											<td>System Architect</td>
-											<td>Edinburgh</td>
-											<td>61</td>
-											<td>2011/04/25</td>
-											<td>$320,800</td>
-										</tr>
-										<tr>
-											<td>Garrett Winters</td>
-											<td>Accountant</td>
-											<td>Tokyo</td>
-											<td>63</td>
-											<td>2011/07/25</td>
-											<td>$170,750</td>
-										</tr>
+									<c:forEach var="board" items="${ directerList }">								
+									<tbody>								
+										<tr style="height: 70px;">
+											
+											<td style="width: 1000px;"><a href="directerDetail?boardno=${ board.boardNo }">${ board.writer }</a></td>											
+											<td style="width: 470px;">${ board.writedate }</td>										
+											<td style="width: 100px;">
+											<a href="#" class="badge badge-rounded badge-dark">Ïã†Ï≤≠</a>
+                                            </td>											
+										</tr>										
 									</tbody>
+									</c:forEach>	
 									<tfoot>
 										<tr>
-											<th>Name</th>
-											<th>Position</th>
-											<th>Office</th>
-											<th>Age</th>
-											<th>Start date</th>
-											<th>Salary</th>
+											<th style="width: 1000px;">Name</th>											
+											<th style="width: 470px;">WriteDate</th>
+											<th style="width: 100px;">Update</th>											
 										</tr>
 									</tfoot>
 								</table>
@@ -101,42 +80,10 @@
 			</div>
 		</div>
 	</div>
+	
+	
+	
+<jsp:include page="/WEB-INF/views/modules/css/bottom.jsp" />
 
-
-	<script src="/dabomweb/resources/vendor/global/global.min.js"></script>
-		<script src="/dabomweb/resources/js/quixnav-init.js"></script>
-		<script src="/dabomweb/resources/js/custom.min.js"></script>
-
-
-		<!-- Vectormap -->
-		<script src="/dabomweb/resources/vendor/raphael/raphael.min.js"></script>
-		<script src="/dabomweb/resources/vendor/morris/morris.min.js"></script>
-
-
-		<script
-			src="/dabomweb/resources/vendor/circle-progress/circle-progress.min.js"></script>
-		<script
-			src="/dabomweb/resources/vendor/chart.js/Chart.bundle.min.js"></script>
-
-		<script src="/dabomweb/resources/vendor/gaugeJS/dist/gauge.min.js"></script>
-
-		<!--  flot-chart js -->
-		<script src="/dabomweb/resources/vendor/flot/jquery.flot.js"></script>
-		<script src="/dabomweb/resources/vendor/flot/jquery.flot.resize.js"></script>
-
-		<!-- Owl Carousel -->
-		<script
-			src="/dabomweb/resources/vendor/owl-carousel/js/owl.carousel.min.js"></script>
-
-		<!-- Counter Up -->
-		<script
-			src="/dabomweb/resources/vendor/jqvmap/js/jquery.vmap.min.js"></script>
-		<script
-			src="/dabomweb/resources/vendor/jqvmap/js/jquery.vmap.usa.js"></script>
-		<script
-			src="/dabomweb/resources/vendor/jquery.counterup/jquery.counterup.min.js"></script>
-
-
-		<script src="/dabomweb/resources/js/dashboard/dashboard-1.js"></script>
 </body>
 </html>

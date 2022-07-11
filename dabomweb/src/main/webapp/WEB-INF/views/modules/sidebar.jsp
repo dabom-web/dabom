@@ -11,15 +11,16 @@
                 <!-- 홈 -->
                 <li class="nav-label first">DA!BOM Home</li>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-single-04"></i><span class="nav-text">Home</span></a>
+                                class="icon icon-world-2"></i><span class="nav-text">Collect</span></a>
                         <ul aria-expanded="false">                        
-                      
-                            <li><a href="#">최근 업데이트 영상</a></li>                           
-                            <li><a href="#">인기 채널</a></li>
-                            <li><a href="#">구독 채널</a></li>
-                            <li><a href="#">찜 목록</a></li>
-                            <li><a href="#">응원 감독 영상</a></li> 
-                            <li><a href="#">응원 배우 영상</a></li>                                          
+                      		
+                      		<li><a href="/dabomweb/collect/chart">채널차트</a></li>
+                            <li><a href="/dabomweb/collect/newUpdateVideo">최근 업데이트 영상</a></li>                           
+                            <li><a href="/dabomweb/collect/hotChannel">인기 채널</a></li>
+                            <li><a href="/dabomweb/collect/subscribeChannel">구독 채널</a></li>
+                            <li><a href="/dabomweb/collect/wishList">찜 목록</a></li>
+                            <li><a href="/dabomweb/collect/supportDirecter">응원 감독 영상</a></li> 
+                            <li><a href="/dabomweb/collect/supportActor">응원 배우 영상</a></li>                                          
                        
                             
                         </ul>
@@ -38,7 +39,8 @@
                             <!-- 추수은 -->
                             
                             <!-- 강효준 -->
-                            <li><a href="resources/index2.html">영상업로드</a></li>
+                            <li><a href="video/uploadList">영상업로드</a></li>
+                            <li><a href="video/liveStream">라이브방송</a></li>
                             <!-- 강효준 -->
                             
                         </ul>
@@ -122,6 +124,9 @@
                     
                       <a href="/dabomweb/account/register" aria-expanded="false">
                     <span class="nav-text">register</span></a>
+                    
+                     <a href="/dabomweb/account/logout" aria-expanded="false">
+                    <span class="nav-text">logout</span></a>
                 </ul>
             </div>
 
