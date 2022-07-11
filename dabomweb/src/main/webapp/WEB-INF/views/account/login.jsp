@@ -43,7 +43,7 @@
                                             </div>
                                         </div>
                                         <div class="text-center">
-                                            <a href="javascript:" id="login" class="btn btn-primary btn-block">Sign me in</a>
+                                            <a href="javascript:" id="login" class="btn btn-primary btn-block" >Sign me in</a>
                                         </div>
                                     </form>
                                     <div class="new-account mt-3">
@@ -99,6 +99,9 @@
 	
 		
 	});
+	
+	
+	
 	</script>
 	
 	
