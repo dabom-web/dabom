@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
     
   <!--**********************************
             Sidebar start
@@ -75,10 +77,8 @@
                                 class="icon icon-single-04"></i><span class="nav-text">Webtoon</span></a>
                         <ul aria-expanded="false">
                         
-                            <li><a href="mychannel/mychannellist">개인채널</a></li>
-                 
-                            <li><a href="resources/index2.html">영상업로드</a></li>
-                       
+                            <li><a href="/dabomweb/webtoon/webtoonList">웹툰 보기</a></li>
+          
                             
                         </ul>
                     </li>
@@ -119,14 +119,22 @@
                 
                 
                     <br>
-                    <a href="/dabomweb/account/login" aria-expanded="false">
-                    <span class="nav-text">Login</span></a>
-                    
-                      <a href="/dabomweb/account/register" aria-expanded="false">
-                    <span class="nav-text">register</span></a>
-                    
-                     <a href="/dabomweb/account/logout" aria-expanded="false">
-                    <span class="nav-text">logout</span></a>
+                    <c:choose>
+                    <c:when test="${empty loginuser }">
+	                    <a href="/dabomweb/account/login" aria-expanded="false">
+	                    <span class="nav-text">로그인</span></a>
+	                    
+	                      <a href="/dabomweb/account/register" aria-expanded="false">
+	                    <span class="nav-text">회원가입</span></a>
+	                    
+	                      <a href="/dabomweb/account/findId" aria-expanded="false">
+	                    <span class="nav-text">비밀번호 찾기</span></a>
+	                 </c:when>
+	                 <c:otherwise>   
+	                     <a href="/dabomweb/account/logout" aria-expanded="false">
+	                    <span class="nav-text">로그아웃</span></a>
+	                 </c:otherwise>
+	                </c:choose>
                 </ul>
             </div>
 

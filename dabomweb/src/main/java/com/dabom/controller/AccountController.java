@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,14 +27,14 @@ public class AccountController {
 	}
 	
 	@PostMapping(path = {"/login"})
-	public String login(Member member, HttpSession session) {
+	public String login(Member member, HttpSession session, Model model) {
 		
 		Member member2 = accountService.login(member);
 		
 		if(member2 != null) {
 			session.setAttribute("loginuser", member2);
 		}else {
-			System.out.println("실패용");
+			return "redirect:/account/login?loginFail=로그인 실패";
 		}
 		
 		return "redirect:/home";
@@ -60,6 +61,13 @@ public class AccountController {
 		session.removeAttribute("loginuser");
 		
 		return "redirect:/home";
+	}
+	
+	@GetMapping(path= {"/findId"})
+	public String findId() {
+		
+		return "account/findId";
+		
 	}
 
 	

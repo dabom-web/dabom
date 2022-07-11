@@ -41,11 +41,11 @@
                                         </div>  
                                         <div class="form-group">
                                             <label><strong>비밀번호</strong></label>
-                                            <input type="password" id="passwd" name="passwd" class="form-control" value="비밀번호 확인">
+                                            <input type="password" id="passwd" name="passwd" class="form-control" placeholder="Password">
                                         </div>
                                          <div class="form-group">
                                             <label><strong>비밀번호 확인</strong></label>
-                                            <input type="password" id="confirm" name="confirm" class="form-control" value="비밀번호 확인">
+                                            <input type="password" id="confirm" name="confirm" class="form-control" placeholder="Password">
                                         </div>
                                          <div class="form-group">
                                             <label><strong>이메일</strong></label>

@@ -29,6 +29,10 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public Member login(Member member) {
 		
+		String passwd = member.getPasswd();
+		passwd = Util.getHashedString(passwd, "SHA-256");
+		member.setPasswd(passwd);
+		
 		Member member2 = memberMapper.loginUser(member);
 		
 		return member2;
