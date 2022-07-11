@@ -12755,7 +12755,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
       .email-list .message .col-mail-3 .date {
         position: absolute;
         top: 0;
-        left: 630px;        
+        left: 600px;        
         right: 0; }   
 
 .email-checkbox {

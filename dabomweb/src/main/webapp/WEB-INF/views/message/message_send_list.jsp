@@ -1,7 +1,8 @@
 <%@page import="com.dabom.dto.Message"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>    
+<%@ page language="java" 
+		 contentType="text/html; charset=utf-8"
+    	 pageEncoding="utf-8"%>  
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 
 <!DOCTYPE html>
@@ -10,7 +11,7 @@
  <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
- 	<title>MESSAGELIST(${ count })</title>
+ 	<title>MESSAGELIST(${ sendCount })</title>
     <link rel="icon" type="image/png" sizes="16x16" href="resources/images/dabom.jpg">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.theme.default.min.css">
@@ -29,13 +30,13 @@
               <div class="row page-titles mx-0">
                   <div class="col-sm-6 p-md-0">
                       <div class="welcome-text">
-                          <h4>Hi, welcome back!</h4>
-                          <span class="ml-1">Email</span>
+                          <h4>Î≥¥ÎÇ∏ Î©îÏÑ∏ÏßÄÌï®</h4>
+                          <span class="ml-1">MESSAGE</span>
                       </div>
                   </div>
                   <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="messagelist">πﬁ¿∫∏ﬁºº¡ˆ</a></li>
+                            <li class="breadcrumb-item"><a href="messagelist">Î∞õÏùÄÎ©îÏÑ∏ÏßÄ</a></li>
                       </ol>
                   </div>
               </div>
@@ -46,19 +47,21 @@
                           <div class="card-body">
                               <div class="email-left-box px-0 mb-5">
                                   <div class="p-0">
-                                      <a href="messagewrite" class="btn btn-primary btn-block">ªı ∏ﬁºº¡ˆ ¿€º∫</a>
+                                      <a href="message_write" class="btn btn-primary btn-block">ÏÉà Î©îÏÑ∏ÏßÄ ÏûëÏÑ±</a>
                                   </div>
                                   <div class="mail-list mt-4">
-                                      <a href="messagelist" class="list-group-item active"><i
-                                              class="fa fa-inbox font-18 align-middle mr-2"></i> πﬁ¿∫∏ﬁºº¡ˆ <span
-                                              class="badge badge-primary badge-sm float-right">${ count }</span> </a>
+                                      <a href="message_receive_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="list-group-item"><i
+                                              class="fa fa-inbox font-18 align-middle mr-2"></i> Î∞õÏùÄÎ©îÏÑ∏ÏßÄ <span
+                                              class="badge badge-primary badge-sm float-right">${ receiveCount }</span></a>
+                                      <a href="message_send_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="list-group-item active"><i
+                                              class="fa fa-paper-plane font-18 align-middle mr-2"></i>Î≥¥ÎÇ∏Î©îÏÑ∏ÏßÄ<span
+                                              class="badge badge-primary badge-sm float-right">${ sendCount }</span></a>
                                       <a href="javascript:void()" class="list-group-item"><i
-                                              class="fa fa-paper-plane font-18 align-middle mr-2"></i>∫∏≥Ω∏ﬁºº¡ˆ</a> <a href="javascript:void()" class="list-group-item"><i
-                                              class="fa fa-star font-18 align-middle mr-2"></i>∏ﬁºº¡ˆ ∫∏∞¸«‘ <span
+                                              class="fa fa-star font-18 align-middle mr-2"></i>Î©îÏÑ∏ÏßÄ Î≥¥Í¥ÄÌï® <span
                                               class="badge badge-danger text-white badge-sm float-right">47</span>
                                       </a>
                                       <a href="javascript:void()" class="list-group-item"><i
-                                              class="fa fa-trash font-18 align-middle mr-2"></i>ªË¡¶µ» ∏ﬁºº¡ˆ</a>
+                                              class="fa fa-trash font-18 align-middle mr-2"></i>ÏÇ≠Ï†úÎêú Î©îÏÑ∏ÏßÄ</a>
                                   </div>                                  
                               </div>
                               <div class="email-right-box ml-0 ml-sm-4 ml-sm-0">
@@ -70,7 +73,7 @@
                                           </div>
                                       </div>
                                   </div>
-                                     <c:forEach var="message" items="${ messageList }">                            
+                                     <c:forEach var="message" items="${ messageList2 }">                            
 	                                  <div class="email-list mt-5">
 	                                      <div class="message">
 	                                          <div>
@@ -83,8 +86,8 @@
 	                                                      <button class="border-0 bg-transparent align-middle p-0"><i
 	                                                              class="fa fa-star" aria-hidden="true"></i></button>
 	                                                  </div>	                                                  	                                                                                         
-	                                              <a href="messagedetail?message_no=${ message.message_No }" class="col-mail col-mail-3">  
-	                                                  <div class="sender">${ message.sender }</div>
+	                                              <a href="message_send_detail?message_no=${ message.message_No }" class="col-mail col-mail-3">  
+	                                                  <div class="sender">${ message.receiver }</div>
 	                                                  <div class="subject">${ message.message_Title }</div>
 	                                             	  <div class="date">${ message.send_Date }</div>                                              
 	                                              </a>  

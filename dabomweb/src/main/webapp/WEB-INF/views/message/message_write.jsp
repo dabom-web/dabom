@@ -1,7 +1,8 @@
 <%@page import="com.dabom.dto.Member"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" 
+		 contentType="text/html; charset=utf-8"
+    	 pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
     
 <!DOCTYPE html>
@@ -28,15 +29,15 @@
                 <div class="row page-titles mx-0">
                     <div class="col-sm-6 p-md-0">
                         <div class="welcome-text">
-                            <h4>¸Ş¼¼Áö º¸³»±â!</h4>
+                            <h4>ë©”ì„¸ì§€ ë³´ë‚´ê¸°!</h4>
                             <span class="ml-1">MESSAGE</span>
                         </div>
                     </div>
                     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="messagelist">¹ŞÀº¸Ş¼¼Áö</a></li>
+                            <li class="breadcrumb-item"><a href="messagelist">ë°›ì€ë©”ì„¸ì§€</a></li>
                             <li class="breadcrumb-item active">
-                            <a href="javascript:void()" id="new-message-write2">¸Ş¼¼ÁöÀÛ¼º</a></li>
+                            <a href="javascript:void()" id="new-message-write2">ë©”ì„¸ì§€ì‘ì„±</a></li>
                         </ol>
                     </div>
                 </div>
@@ -48,64 +49,57 @@
                                 <div class="email-left-box px-0 mb-5">
                                     <div class="p-0">
                                         <a href="javascript:void()" id="new-message-write"
-                                           class="btn btn-primary btn-block">»õ ¸Ş¼¼Áö ÀÛ¼º</a>
+                                           class="btn btn-primary btn-block">ìƒˆ ë©”ì„¸ì§€ ì‘ì„±</a>
                                     </div>
                                     <div class="mail-list mt-4">
-                                        <a href="messagelist" class="list-group-item active"><i
-                                           class="fa fa-inbox font-18 align-middle mr-2"></i> ¹ŞÀº¸Ş¼¼Áö <span
-                                           class="badge badge-primary badge-sm float-right">${ count }</span></a>
-                                      	<a href="javascript:void()" class="list-group-item"><i
-                                           class="fa fa-paper-plane font-18 align-middle mr-2"></i>º¸³½¸Ş¼¼Áö</a> <a href="javascript:void()" class="list-group-item"><i
-                                           class="fa fa-star font-18 align-middle mr-2"></i>¸Ş¼¼Áö º¸°üÇÔ <span
-                                           class="badge badge-danger text-white badge-sm float-right">47</span>
-	                                    </a>
+	                                    <a href="message_receive_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="list-group-item"><i
+                                              class="fa fa-inbox font-18 align-middle mr-2"></i> ë°›ì€ë©”ì„¸ì§€ <span
+                                              class="badge badge-primary badge-sm float-right">${ receiveCount }</span></a>
+                                      <a href="message_send_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="list-group-item"><i
+                                              class="fa fa-paper-plane font-18 align-middle mr-2"></i>ë³´ë‚¸ë©”ì„¸ì§€<span
+                                              class="badge badge-primary badge-sm float-right">${ sendCount }</span></a> 
+                                      <a href="javascript:void()" class="list-group-item"><i
+                                              class="fa fa-star font-18 align-middle mr-2"></i>ë©”ì„¸ì§€ ë³´ê´€í•¨ <span
+                                              class="badge badge-danger text-white badge-sm float-right">47</span>
+                                      </a>
 	                                    <a href="javascript:void()" class="list-group-item"><i
-                                           class="fa fa-trash font-18 align-middle mr-2"></i>»èÁ¦µÈ ¸Ş¼¼Áö</a>
+                                           class="fa fa-trash font-18 align-middle mr-2"></i>ì‚­ì œëœ ë©”ì„¸ì§€</a>
                                   </div>                                   
                                 </div>
                                 <div class="email-right-box ml-0 ml-sm-4 ml-sm-0">                                    
                                     <div class="compose-content">
-                                        <form id="messagewriteform" action="messagewrite" 
+                                        <form id="messagewriteform" action="message_write" 
 									          method="post"	enctype="multipart/form-data">
 									        <div class="form-group">
                                                 <input type="text"
                                                 	   id="message_Title"
                                                 	   name="message_Title"                                                	                                               	   
                                                 	   class="form-control bg-transparent"                                                	   
-                                                	   placeholder="Á¦¸ñÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä"></div>  
+                                                	   placeholder="ì œëª©ì„ ì…ë ¥í•´ì£¼ì„¸ìš”"></div>  
                                             <div class="form-group">
                                                 <input type="text"
                                                 	   id="receiver"
                                                 	   name="receiver"
                                                 	   list="seachreceiver"                                                 	   
                                                 	   class="form-control bg-transparent" 
-                                               		   placeholder="¹Ş´Â»ç¶÷">
+                                               		   placeholder="ë°›ëŠ”ì‚¬ëŒ">
                                                	 <datalist id="seachreceiver">
                                                	  <c:forEach var="member" items="${ memberList }">
 								                     <option value="${ member.memberId }"></option>
 				                        		  </c:forEach>
 						                         </datalist>
-                                            </div>
+                                            </div>                                            
                                             <div class="form-group">
-                                                <input type="text"
-                                                	   id="sender"
-                                                	   name="sender"  
-                                                	   list="seachsender"                                                	   
-                                                	   class="form-control bg-transparent"                                                	   
-                                                	   placeholder="º¸³»´Â»ç¶÷" />
-                                           	     <datalist id="seachsender">
-                                           		  <c:forEach var="member" items="${ memberList }">
-								                    <option value="${ member.memberId }"></option>
-				                        		  </c:forEach>
-						                         </datalist>						                        
+                                                <input type="hidden"
+							 						   name="sender" id="sender" value="${ loginuser.memberId }">                                             	     						                        
                                             </div>
                                             <div class="form-group">
                                                 <textarea name="message_Content" id="message_Content" 
                                                 		  class="textarea_editor form-control bg-transparent" rows="15" 
-                                                		  placeholder="¸Ş¼¼Áö¸¦ ÀÔ·ÂÇÏ¼¼¿ä"></textarea>
+                                                		  placeholder="ë©”ì„¸ì§€ë¥¼ ì…ë ¥í•˜ì„¸ìš”"></textarea>
                                             </div>
                                         </form>
-                                        <h5 class="mb-4"><i class="fa fa-paperclip"></i> Ã·ºÎÆÄÀÏ</h5>
+                                        <h5 class="mb-4"><i class="fa fa-paperclip"></i> ì²¨ë¶€íŒŒì¼</h5>
                                         <form action="#" class="d-flex flex-column align-items-center justify-content-center">
                                             <div class="fallback w-100">
                                                 <input type="file" class="dropify" data-default-file="" />
@@ -115,10 +109,10 @@
                                     <div class="text-left mt-4 mb-5">
                                         <button class="btn btn-primary btn-sl-sm mr-3" 
                                         		type="button" id="send" href='javascript:'><span
-                                                class="mr-2"><i class="fa fa-paper-plane"></i></span>Àü¼Û</button>
+                                                class="mr-2"><i class="fa fa-paper-plane"></i></span>ì „ì†¡</button>
                                         <button class="btn btn-dark btn-sl-sm" 
                                         		type="button" id="cancel" href="javascript:"><span 
-                                        		class="mr-2"><i class="fa fa-times" aria-hidden="true"></i></span>Ãë¼Ò</button>
+                                        		class="mr-2"><i class="fa fa-times" aria-hidden="true"></i></span>ì·¨ì†Œ</button>
                                     </div>
                                 </div>
                             </div>
@@ -137,25 +131,25 @@
 		$(function() {
 			$('#new-message-write').on('click',function(event) { 
 				event.preventDefault();
-				var ok = confirm('ÀÌ ÆäÀÌÁö¸¦ ¹ş¾î³ª¸é ÀÛ¼ºÁßÀÎ ³»¿ëÀº ÀúÀåµÇÁö ¾Ê½À´Ï´Ù.');
+				var ok = confirm('ì´ í˜ì´ì§€ë¥¼ ë²—ì–´ë‚˜ë©´ ì‘ì„±ì¤‘ì¸ ë‚´ìš©ì€ ì €ì¥ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤.');
 				if (ok) {
-					location.href = 'messagewrite';
+					location.href = 'message_write?sender=${ loginuser.memberId }';
 				}			
 			});
 		 });
 		$(function() {
 			$('#new-message-write2').on('click',function(event) { 
 				event.preventDefault();
-				var ok = confirm('ÀÌ ÆäÀÌÁö¸¦ ¹ş¾î³ª¸é ÀÛ¼ºÁßÀÎ ³»¿ëÀº ÀúÀåµÇÁö ¾Ê½À´Ï´Ù.');
+				var ok = confirm('ì´ í˜ì´ì§€ë¥¼ ë²—ì–´ë‚˜ë©´ ì‘ì„±ì¤‘ì¸ ë‚´ìš©ì€ ì €ì¥ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤.');
 				if (ok) {
-					location.href = 'messagewrite';
+					location.href = 'message_write?sender=${ loginuser.memberId }';
 				}			
 			});
 		 });
 		$(function() {
 			$('#send').on('click',function(event) { 
 				event.preventDefault();
-				var ok = confirm('¸Ş¼¼Áö¸¦ Àü¼ÛÇÒ±î¿ä?');
+				var ok = confirm('ë©”ì„¸ì§€ë¥¼ ì „ì†¡í• ê¹Œìš”?');
 				if (ok) {
 					$('#messagewriteform').submit();
 				}			
@@ -164,9 +158,9 @@
 		$(function() {
 			$('#cancel').on('click',function(event) { 
 				event.preventDefault();
-				var ok = confirm('¸Ş¼¼Áö¸¦ Àü¼ÛÀ» Ãë¼ÒÇÕ´Ï´Ù.');
+				var ok = confirm('ë©”ì„¸ì§€ë¥¼ ì „ì†¡ì„ ì·¨ì†Œí•©ë‹ˆë‹¤.');
 				if (ok) {
-					location.href = 'messagelist';
+					location.href = 'message_send_list';
 				}			
 			});
 		 });
