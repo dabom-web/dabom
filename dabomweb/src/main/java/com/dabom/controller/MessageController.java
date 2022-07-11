@@ -24,48 +24,85 @@ public class MessageController {
 	@Qualifier("messageService")
 	private MessageService messageService;
 	
-	@GetMapping(path = { "/messagelist" })
-	public String message(Model model) {
+	@GetMapping(path = { "/message_receive_list" })
+	public String messageReceive(String receiver, String sender, Model model) {
 		
-		int count = 0;
-		count = messageService.findMessageCount();
-		model.addAttribute("count",count);
+		int receiveCount = 0;
+		receiveCount = messageService.findMessageReceiveCount(receiver);
+		model.addAttribute("receiveCount",receiveCount);
+		int sendCount = 0;
+		sendCount = messageService.findMessageSendCount(sender);
+		model.addAttribute("sendCount",sendCount);
 		
-		List<Message> messageList = messageService.findAllMessage();		
+		List<Message> messageList = messageService.findAllMessage(receiver);		
 		model.addAttribute("messageList", messageList);
-		return "message/messagelist";
+		return "message/message_receive_list";
 	}
 	
-	@GetMapping(path = { "/messagewrite" })
-	public String messagewriteForm(Model model) {
-		int count = 0;
-		count = messageService.findMessageCount();
-		model.addAttribute("count",count);
+	@GetMapping(path = { "/message_send_list" })
+	public String messageSend(String receiver, String sender, Model model) {
 		
-		List<Member> memberList = messageService.findMemberid();
-		model.addAttribute("memberList", memberList);
-		return "message/messagewrite";
+		int receiveCount = 0;
+		receiveCount = messageService.findMessageReceiveCount(receiver);
+		model.addAttribute("receiveCount",receiveCount);
+		int sendCount = 0;
+		sendCount = messageService.findMessageSendCount(sender);
+		model.addAttribute("sendCount",sendCount);
+		
+		List<Message> messageList2 = messageService.findAllSendMessage(sender);		
+		model.addAttribute("messageList2", messageList2);
+		return "message/message_send_list";
+	}
+	
+	@GetMapping(path = { "/message_write" })
+	public String messagewriteForm(String receiver, String sender, Model model) {
+		int receiveCount = 0;
+		receiveCount = messageService.findMessageReceiveCount(receiver);
+		model.addAttribute("receiveCount",receiveCount);
+		int sendCount = 0;
+		sendCount = messageService.findMessageSendCount(sender);
+		model.addAttribute("sendCount",sendCount);
+		
+		List<Member> memberList = messageService.findMemberid();		
+		model.addAttribute("memberList", memberList);		
+		return "message/message_write";
 	}
 
-	@PostMapping(path = { "/messagewrite" })
+	@PostMapping(path = { "/message_write" })
 	public String messagewrite(Message message) {		
 		messageService.writeMessage(message);
-		return "redirect:messagelist";
+		return "redirect:message_receive_list"; // 여기 보낸메세지함으로 바꿔
 	}
 	
-	@GetMapping(path = { "/messagedetail" })
-	public String messageDetail(@RequestParam(name="message_no", defaultValue = "-1" )int messageNo, 
+	@GetMapping(path = { "/message_receive_detail" })
+	public String messageReceiveDetail(@RequestParam(name="message_no", defaultValue = "-1" )int messageNo, 
 								Model model) {
 		if(messageNo == -1) {
-			return "redirect:messagelist";
+			return "redirect:message_receive_list";
 		}
 		
 		Message message = messageService.findByMessageNo(messageNo);
 		if (message == null) { // 해당 번호의 게시글이 없는 경우
-			return "redirect:messagelist";
+			return "redirect:message_receive_list";
 		}
 		model.addAttribute("message", message);
 		
-		return "message/messagedetail";
+		return "message/message_receive_detail";
+	}
+	
+	@GetMapping(path = { "/message_send_detail" })
+	public String messageSendDetail(@RequestParam(name="message_no", defaultValue = "-1" )int messageNo, 
+								Model model) {
+		if(messageNo == -1) {
+			return "redirect:message_send_list";
+		}
+		
+		Message message = messageService.findByMessageNo(messageNo);
+		if (message == null) { // 해당 번호의 게시글이 없는 경우
+			return "redirect:message_send_list";
+		}
+		model.addAttribute("message", message);
+		
+		return "message/message_send_detail";
 	}
 }

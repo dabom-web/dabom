@@ -7,9 +7,13 @@ import com.dabom.dto.Message;
 
 public interface MessageService {
 	
-	List<Message> findAllMessage();
+	List<Message> findAllMessage(String receiver);
+	
+	List<Message> findAllSendMessage(String sender);
 
-	int findMessageCount(); 
+	int findMessageReceiveCount(String receiver);
+	
+	int findMessageSendCount(String sender);
 
 	void writeMessage(Message message);
 

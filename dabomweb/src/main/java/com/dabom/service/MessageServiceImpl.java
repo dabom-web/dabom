@@ -14,16 +14,29 @@ public class MessageServiceImpl implements MessageService {
 	private MessageMapper messageMapper;
 	
 	@Override
-	public List<Message> findAllMessage() {
+	public List<Message> findAllMessage(String receiver) {
 		
-		List<Message> messageList = messageMapper.selectAllMessage();
+		List<Message> messageList = messageMapper.selectAllMessage(receiver);
 		return messageList;
 	}
 	
+	public List<Message> findAllSendMessage(String sender) {
+		
+		List<Message> messageList2 = messageMapper.selectAllSendMessage(sender);
+		return messageList2;
+	}
+	
 	@Override
-	public int findMessageCount() {
-		int count = messageMapper.selectMessageCount();
-		return count;
+	public int findMessageReceiveCount(String receiver) {
+		int receiveCount = messageMapper.selectMessageReceiveCount(receiver);
+		return receiveCount;
+		
+	}
+	
+	@Override
+	public int findMessageSendCount(String sender) {
+		int sendCount = messageMapper.selectMessageSendCount(sender);
+		return sendCount;
 		
 	}
 	
