@@ -47,7 +47,7 @@
                           <div class="card-body">
                               <div class="email-left-box px-0 mb-5">
                                   <div class="p-0">
-                                      <a href="message_write" class="btn btn-primary btn-block">새 메세지 작성</a>
+                                      <a href="message_write?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="btn btn-primary btn-block">새 메세지 작성</a>
                                   </div>
                                   <div class="mail-list mt-4">
                                       <a href="message_receive_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="list-group-item"><i
@@ -55,52 +55,43 @@
                                               class="badge badge-primary badge-sm float-right">${ receiveCount }</span></a>
                                       <a href="message_send_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="list-group-item active"><i
                                               class="fa fa-paper-plane font-18 align-middle mr-2"></i>보낸메세지<span
-                                              class="badge badge-primary badge-sm float-right">${ sendCount }</span></a>
+                                              class="badge badge-danger text-white badge-sm float-right">${ sendCount }</span></a> 
                                       <a href="javascript:void()" class="list-group-item"><i
                                               class="fa fa-star font-18 align-middle mr-2"></i>메세지 보관함 <span
-                                              class="badge badge-danger text-white badge-sm float-right">47</span>
+                                              class="badge badge-primary badge-sm float-right">?</span>
                                       </a>
                                       <a href="javascript:void()" class="list-group-item"><i
                                               class="fa fa-trash font-18 align-middle mr-2"></i>삭제된 메세지</a>
-                                  </div>                                  
+                                  </div>                                   
                               </div>
-                              <div class="email-right-box ml-0 ml-sm-4 ml-sm-0">
-                                  <div role="toolbar" class="toolbar ml-4 ml-sm-0">
-                                      <div class="btn-group mb-4">
-                                          
-                                          <div class="dropdown-menu"> <a href="javascript: void(0);" class="dropdown-item">Mark as Unread</a> <a href="javascript: void(0);" class="dropdown-item">Add to Tasks</a>
-                                              <a href="javascript: void(0);" class="dropdown-item">Add Star</a> <a href="javascript: void(0);" class="dropdown-item">Mute</a>
-                                          </div>
+                              <div class="email-right-box ml-0 ml-sm-4 ml-sm-0">                                 
+                                <c:forEach var="message" items="${ messageList2 }">                            
+                                  <div class="email-list">
+                                      <div class="message">
+                                          <div>	                                            
+                                              <div class="d-flex message-single">
+                                                  <div class="custom-control custom-checkbox pl-4">
+                                                      <input type="checkbox">
+                                                  </div>
+                                                  <div class="ml-2">
+                                                      <button class="border-0 bg-transparent align-middle p-0"><i
+                                                              class="fa fa-star" aria-hidden="true"></i></button>
+                                                  </div>	                                                  	                                                                                         
+                                              <a href="message_send_detail?message_no=${ message.message_No }&sender=${ loginuser.memberId }" class="col-mail col-mail-3">  
+                                                  <div class="sender">${ message.receiver }</div>
+                                                  <div class="subject">${ message.message_Title }</div>
+                                             	  <div class="date">${ message.send_Date }</div>                                              
+                                              </a>  
+                                               </div>                                		                                        
+                                          </div>	                                     
                                       </div>
                                   </div>
-                                     <c:forEach var="message" items="${ messageList2 }">                            
-	                                  <div class="email-list mt-5">
-	                                      <div class="message">
-	                                          <div>
-	                                            
-	                                              <div class="d-flex message-single">
-	                                                  <div class="custom-control custom-checkbox pl-4">
-	                                                      <input type="checkbox">
-	                                                  </div>
-	                                                  <div class="ml-2">
-	                                                      <button class="border-0 bg-transparent align-middle p-0"><i
-	                                                              class="fa fa-star" aria-hidden="true"></i></button>
-	                                                  </div>	                                                  	                                                                                         
-	                                              <a href="message_send_detail?message_no=${ message.message_No }" class="col-mail col-mail-3">  
-	                                                  <div class="sender">${ message.receiver }</div>
-	                                                  <div class="subject">${ message.message_Title }</div>
-	                                             	  <div class="date">${ message.send_Date }</div>                                              
-	                                              </a>  
-	                                               </div> 
-	                                              	                                     		                                        
-	                                          </div>	                                     
-	                                      </div>
-	                                  </div>
-                                 	</c:forEach> 
+                              	</c:forEach> 
+                              	
                                   <!-- panel -->
                                   <div class="row mt-4 m-4 mx-sm-4">
                                       <div class="col-7">
-                                          <div class="text-left">1 - 20 of 568</div>
+                                          <div class="text-left">전체글 수 > ${ sendCount }</div>
                                       </div>
                                       <div class="col-5">
                                           <div class="btn-group float-right">

@@ -52,18 +52,18 @@
                                            class="btn btn-primary btn-block">새 메세지 작성</a>
                                     </div>
                                     <div class="mail-list mt-4">
-	                                    <a href="message_receive_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="list-group-item"><i
+                                      <a href="message_receive_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="list-group-item active"><i
                                               class="fa fa-inbox font-18 align-middle mr-2"></i> 받은메세지 <span
-                                              class="badge badge-primary badge-sm float-right">${ receiveCount }</span></a>
+                                              class="badge badge-danger text-white badge-sm float-right">${ receiveCount }</span></a>
                                       <a href="message_send_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="list-group-item"><i
                                               class="fa fa-paper-plane font-18 align-middle mr-2"></i>보낸메세지<span
                                               class="badge badge-primary badge-sm float-right">${ sendCount }</span></a> 
                                       <a href="javascript:void()" class="list-group-item"><i
                                               class="fa fa-star font-18 align-middle mr-2"></i>메세지 보관함 <span
-                                              class="badge badge-danger text-white badge-sm float-right">47</span>
+                                              class="badge badge-primary badge-sm float-right">?</span>
                                       </a>
-	                                    <a href="javascript:void()" class="list-group-item"><i
-                                           class="fa fa-trash font-18 align-middle mr-2"></i>삭제된 메세지</a>
+                                      <a href="javascript:void()" class="list-group-item"><i
+                                              class="fa fa-trash font-18 align-middle mr-2"></i>삭제된 메세지</a>
                                   </div>                                   
                                 </div>
                                 <div class="email-right-box ml-0 ml-sm-4 ml-sm-0">                                    
@@ -98,13 +98,7 @@
                                                 		  class="textarea_editor form-control bg-transparent" rows="15" 
                                                 		  placeholder="메세지를 입력하세요"></textarea>
                                             </div>
-                                        </form>
-                                        <h5 class="mb-4"><i class="fa fa-paperclip"></i> 첨부파일</h5>
-                                        <form action="#" class="d-flex flex-column align-items-center justify-content-center">
-                                            <div class="fallback w-100">
-                                                <input type="file" class="dropify" data-default-file="" />
-                                            </div>
-                                        </form>
+                                        </form>                                        
                                     </div>
                                     <div class="text-left mt-4 mb-5">
                                         <button class="btn btn-primary btn-sl-sm mr-3" 

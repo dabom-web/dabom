@@ -1,5 +1,6 @@
 package com.dabom.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Insert;
@@ -16,8 +17,9 @@ public interface MessageMapper {
 //	@Select("SELECT message_no, message, send_date, sender, receiver " +
 //			"FROM message " +
 //			"ORDER BY send_date DESC ")
-	List<Message> selectAllMessage(String receiver);
+	List<Message> selectAllReceiveMessage(String receiver);
 	List<Message> selectAllSendMessage(String sender);
+//	List<Message> selectAllSendMessage(HashMap<String, Object> params);	
 
 //	@Select("SELECT COUNT(*) FROM message")
 	int selectMessageReceiveCount(String receiver);
@@ -35,6 +37,7 @@ public interface MessageMapper {
 	List<Member> selectReceiver();
 	
 	Message selectByMessageNo(int messageNo);
+	
 
 	
 
