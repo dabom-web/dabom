@@ -58,21 +58,21 @@
 							<div class="form-validation">
 								<form id="write-form"
 									class="form-valide" 
-									action="writeDirecterInfor" 
+									action="writeDirectorInfor" 
 									method="post"
 									enctype="multipart/form-data">
 									
 									<input type="hidden" name="type" value="actor">
-									<input type="hidden" name="writer" value="tester">
+									<input type="hidden" name="writer" value="${ loginuser.memberId }">
 									<div class="row">
 										<div class="col-xl-6">
 											<div class="form-group row">
-												<label class="col-lg-4 col-form-label">Name <span
+												<label class="col-lg-4 col-form-label">Name<span
 													class="text-danger">*</span>
 												</label>
 												<div class="col-lg-6">
 													<input type="text" class="form-control" id="actor-name"
-														name="memberId" value="김테스터" placeholder="(업로더회원정보)">
+														name="memberId" value="${ loginuser.userName }" placeholder="${ loginuser.userName }">
 												</div>
 											</div>
 											<div class="form-group row">
@@ -81,7 +81,7 @@
 												</label>
 												<div class="col-lg-6">
 													<input type="text" class="form-control" id="email"
-														name="email" value="test@test.com" placeholder="(회원정보에서)">
+														name="email" value="${ loginuser.email }" placeholder="${ loginuser.email }">
 												</div>
 											</div>
 											<div class="form-group row">

@@ -6,7 +6,7 @@
  <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
- 	<title>Write Directer Infor</title>
+ 	<title>Write Director Infor</title>
     <link rel="icon" type="image/png" sizes="16x16" href="resources/images/dabom.jpg">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.theme.default.min.css">
@@ -58,12 +58,12 @@
 							<div class="form-validation">
 								<form id="write-form"
 									class="form-valide" 
-									action="writeDirecterInfor" 
+									action="writeDirectorInfor" 
 									method="post"
 									enctype="multipart/form-data">
 																	
-									<input type="hidden" name="type" value="directer">
-									<input type="hidden" name="writer" value="na0stone">
+									<input type="hidden" name="type" value="director">
+									<input type="hidden" name="writer" value="${ loginuser.memberId }">
 									<div class="row">
 										<div class="col-xl-6">
 											<div class="form-group row">
@@ -71,8 +71,8 @@
 													class="text-danger">*</span>
 												</label>
 												<div class="col-lg-6">
-													<input type="text" class="form-control" id="directer-name"
-														name="memberId" value="나영석" placeholder="(업로더회원정보)">
+													<input type="text" class="form-control" id="director-name"
+														name="memberId" value="${ loginuser.userName }" placeholder="${ loginuser.userName }">
 												</div>
 											</div>
 											<div class="form-group row">
@@ -81,7 +81,7 @@
 												</label>
 												<div class="col-lg-6">
 													<input type="text" class="form-control" id="email"
-														name="email" value="na0stone@pd.com" placeholder="(회원정보에서)">
+														name="email" value="${ loginuser.email }" placeholder="${ loginuser.email }">
 												</div>
 											</div>
 											<div class="form-group row">

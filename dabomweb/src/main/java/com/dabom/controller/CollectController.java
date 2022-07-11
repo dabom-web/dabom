@@ -33,9 +33,9 @@ public class CollectController {
 		return "collect/supportActor";
 	}
 	
-	@GetMapping(path = { "/supportDirecter" })
-	public String supprtDirecterList() {
-		return "collect/supportDirecter";
+	@GetMapping(path = { "/supportDirector" })
+	public String supprtDirectorList() {
+		return "collect/supportDirector";
 	}
 	
 	@GetMapping(path = { "/wishList" })
