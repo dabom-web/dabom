@@ -53,15 +53,12 @@
                                            class="btn btn-primary btn-block">새 메세지 작성</a>
                                     </div>
                                     <div class="mail-list mt-4">
-                                      <a href="message_receive_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="list-group-item active"><i
-                                              class="fa fa-inbox font-18 align-middle mr-2"></i> 받은메세지 <span
-                                              class="badge badge-danger text-white badge-sm float-right">${ receiveCount }</span></a>
+                                      <a href="message_receive_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="list-group-item"><i
+                                              class="fa fa-inbox font-18 align-middle mr-2"></i> 받은메세지 </a>
                                       <a href="message_send_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="list-group-item"><i
-                                              class="fa fa-paper-plane font-18 align-middle mr-2"></i>보낸메세지<span
-                                              class="badge badge-primary badge-sm float-right">${ sendCount }</span></a> 
+                                              class="fa fa-paper-plane font-18 align-middle mr-2"></i>보낸메세지</a> 
                                       <a href="javascript:void()" class="list-group-item"><i
-                                              class="fa fa-star font-18 align-middle mr-2"></i>메세지 보관함 <span
-                                              class="badge badge-primary badge-sm float-right">?</span>
+                                              class="fa fa-star font-18 align-middle mr-2"></i>메세지 보관함
                                       </a>
                                       <a href="javascript:void()" class="list-group-item"><i
                                               class="fa fa-trash font-18 align-middle mr-2"></i>삭제된 메세지</a>
@@ -69,7 +66,7 @@
                                 </div>
                                 <div class="email-right-box ml-0 ml-sm-4 ml-sm-0">                                    
                                     <div class="compose-content">
-                                        <form id="messagewriteform" action="message_receiver_direct_write" 
+                                        <form id="messagewriteform" action="message_direct_write" 
 									          method="post"	enctype="multipart/form-data">
 									        <div class="form-group">
                                                 <input type="text"
