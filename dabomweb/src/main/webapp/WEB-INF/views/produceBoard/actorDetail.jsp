@@ -39,9 +39,16 @@ img {
 					<div class="profile">
 						<div class="profile-head">
 							<div class="photo-content">
-								<div style="background-color: black;"><table><tr style=" height: 100px;">
-								<h1 style="color: white; text-align: center;" ><br><br><br>
-								${ member.nickName }<h1></tr></table></div>
+								<div style="background-color: black;">
+									<table>
+										<tr style="height: 100px;">
+											<h1 style="color: white; text-align: center;">
+												<br>
+												<br>
+												<br>${ member.nickName }<h1>
+										</tr>
+									</table>
+								</div>
 								<div class="profile-photo" >
 									<img src="/dabomweb/resources/upload-files/${ producerAttach.savedFileName }"
 										class="box" alt="">
@@ -58,17 +65,23 @@ img {
 												</div>
 											</div>
 											<div class="col-xl-4 col-sm-4 border-right-1 prf-col">
-												<div class="profile-email">
-													<button type="button" class="btn btn-dark">응원하기 <span
-					                                        class="btn-icon-right"><i class="fa fa-heart"></i></span>
-					                                </button><br>													
+												<div class="profile-email ">
+													<a id="support-btn" href="javascript:" class="btn btn-dark"
+														style='display: ${ not empty produceSupport and produceSupport.support == 1 ? "none" : "" }'>
+														응원하기<span class="btn-icon-right"><i
+															class="fa fa-heart"></i></span>
+													</a> <a id="support-btn2" href="javascript:"
+														class="btn btn-danger"
+														style='display: ${ not empty produceSupport and produceSupport.support == 1 ? "" : "none" }'>
+														응원하는 배우🤍<span><i></i></span>
+													</a> <br>
 													<c:set var="contact" value="${ produceBoard.contact }"/>
 													<p><c:if test="${ empty contact }"> 
 														연락처 비공개
 													</c:if><p>
 													<p>${ produceBoard.contact }</p>
 												
-												</div>
+												</div> 
 											</div>
 											
 										</div>
@@ -105,7 +118,7 @@ img {
 														<div class="tab-content" id="nav-tabContent">
 															<div class="tab-pane fade show active" id="list-home">
 																<h4 class="mb-4">Channel</h4>
-																<p>운영하는 채널</p>
+																<p>출연한 채널</p>
 															</div>
 															<div class="tab-pane fade" id="list-profile"
 																role="tabpanel">
@@ -120,7 +133,7 @@ img {
 																<c:if test="${ empty sns }"> 
 																	SNS 정보가 없습니다.
 																</c:if>
-																<p>${ produceBoard.sns }</p>
+																<p><a href="${ produceBoard.sns }" target="_blank">${ produceBoard.sns }</a></p>
 															</div>
 															<div class="tab-pane fade" id="list-settings">
 																<h4 class="mb-4">Information</h4>
@@ -145,6 +158,59 @@ img {
 
 
 	<jsp:include page="/WEB-INF/views/modules/css/bottom.jsp" />
+
+	<script type="text/javascript">
+	
+	$(function() {
+		$('#support-btn').on('click', function(event) {
+			event.preventDefault();
+			
+			$.ajax({
+				"url" : "support-producer",
+				"method" : "post",
+				"async" : true,
+				"data" : "produceBoardNo=${produceBoard.boardNo}&memberId=${loginuser.memberId}&support=1&isNew=${ empty produceSupport }",
+				"dataType" : "text",
+				"success" : function(result, status, xhr) {
+					if (result === "success"){
+						//alert('응원하기 성공');							
+						$('#support-btn').hide();
+						$('#support-btn2').show();
+					} else {
+						alert('실패');
+					}
+				},
+				"errer" : function(xhr, status, err) {
+					alert('다시 시도해 주세요.');
+				}
+			});
+		});
+		$('#support-btn2').on('click', function(event) {
+			event.preventDefault();
+			
+			$.ajax({
+				"url" : "support-producer",
+				"method" : "post",
+				"async" : true,
+				"data" : "produceBoardNo=${produceBoard.boardNo}&memberId=${loginuser.memberId}&support=0&isNew=false",
+				"dataType" : "text",
+				"success" : function(result, status, xhr) {
+					if (result === "success"){
+						//alert('응원 취소 성공');							
+						$('#support-btn').show();
+						$('#support-btn2').hide();						
+					} else {
+						alert('실패');
+					}
+				},
+				"errer" : function(xhr, status, err) {
+					alert('다시 시도해 주세요.');
+				}
+			});
+		});
+	});
+	
+	</script>
 
 </body>
 </html>

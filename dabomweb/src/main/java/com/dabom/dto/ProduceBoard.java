@@ -18,8 +18,11 @@ public class ProduceBoard {
 	private String type;
 	private boolean ok;
 	private boolean deleted;
+	private int supportCnt;
 	
 	private Member member;
+	
+	private ProduceSupport produceSupport;
 	
 	private List<ProducerAttach> files;
 	
