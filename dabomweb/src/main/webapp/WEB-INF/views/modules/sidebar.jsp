@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
     
   <!--**********************************
             Sidebar start
@@ -11,15 +13,16 @@
                 <!-- 홈 -->
                 <li class="nav-label first">DA!BOM Home</li>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-single-04"></i><span class="nav-text">Home</span></a>
+                                class="icon icon-world-2"></i><span class="nav-text">Collect</span></a>
                         <ul aria-expanded="false">                        
-                      
-                            <li><a href="#">최근 업데이트 영상</a></li>                           
-                            <li><a href="#">인기 채널</a></li>
-                            <li><a href="#">구독 채널</a></li>
-                            <li><a href="#">찜 목록</a></li>
-                            <li><a href="#">응원 감독 영상</a></li> 
-                            <li><a href="#">응원 배우 영상</a></li>                                          
+                      		
+                      		<li><a href="/dabomweb/collect/chart">채널차트</a></li>
+                            <li><a href="/dabomweb/collect/newUpdateVideo">최근 업데이트 영상</a></li>                           
+                            <li><a href="/dabomweb/collect/hotChannel">인기 채널</a></li>
+                            <li><a href="/dabomweb/collect/subscribeChannel">구독 채널</a></li>
+                            <li><a href="/dabomweb/collect/wishList">찜 목록</a></li>
+                            <li><a href="/dabomweb/collect/supportDirector">응원 감독 영상</a></li> 
+                            <li><a href="/dabomweb/collect/supportActor">응원 배우 영상</a></li>                                          
                        
                             
                         </ul>
@@ -74,10 +77,8 @@
                                 class="icon icon-single-04"></i><span class="nav-text">Webtoon</span></a>
                         <ul aria-expanded="false">
                         
-                            <li><a href="mychannel/mychannellist">개인채널</a></li>
-                 
-                            <li><a href="resources/index2.html">영상업로드</a></li>
-                       
+                            <li><a href="/dabomweb/webtoon/webtoonList">웹툰 보기</a></li>
+          
                             
                         </ul>
                     </li>
@@ -91,7 +92,7 @@
 	                                class="icon icon-single-04"></i><span class="nav-text">Porducer</span></a>
 	                        <ul aria-expanded="false">
 	                        
-	                            <li><a href="/dabomweb/produceBoard/directer">감독</a></li>
+	                            <li><a href="/dabomweb/produceBoard/director">감독</a></li>
 	                 
 	                            <li><a href="/dabomweb/produceBoard/actor">배우</a></li>
 	                       
@@ -118,11 +119,22 @@
                 
                 
                     <br>
-                    <a href="/dabomweb/account/login" aria-expanded="false">
-                    <span class="nav-text">Login</span></a>
-                    
-                      <a href="/dabomweb/account/register" aria-expanded="false">
-                    <span class="nav-text">register</span></a>
+                    <c:choose>
+                    <c:when test="${empty loginuser }">
+	                    <a href="/dabomweb/account/login" aria-expanded="false">
+	                    <span class="nav-text">로그인</span></a>
+	                    
+	                      <a href="/dabomweb/account/register" aria-expanded="false">
+	                    <span class="nav-text">회원가입</span></a>
+	                    
+	                      <a href="/dabomweb/account/findId" aria-expanded="false">
+	                    <span class="nav-text">비밀번호 찾기</span></a>
+	                 </c:when>
+	                 <c:otherwise>   
+	                     <a href="/dabomweb/account/logout" aria-expanded="false">
+	                    <span class="nav-text">로그아웃</span></a>
+	                 </c:otherwise>
+	                </c:choose>
                 </ul>
             </div>
 

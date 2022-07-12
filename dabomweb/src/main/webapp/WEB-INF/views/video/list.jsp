@@ -59,7 +59,7 @@
                                     <!-- panel -->
                                     <div class="row mt-4 m-4 mx-sm-4">
                                         <div class="col-7">
-                                            <div class="text-left">1 - 20 of 568</div>
+                                            <div class="text-left"></div>
                                         </div>
                                         <div class="col-5">
                                             <div class="btn-group float-right">

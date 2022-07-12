@@ -12729,6 +12729,34 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
         top: 0;
         right: 0;
         width: 4rem; }
+     .email-list .message .col-mail-3 {
+      position: absolute;
+      top: 0;
+      left: 5rem;
+      right: 0;
+      bottom: 0; }
+      .email-list .message .col-mail-3 .sender {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap; } 
+      .email-list .message .col-mail-3 .subject {
+        position: absolute;
+        top: 0;
+        left: 7rem;
+        width:30rem;
+        right: 0;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap; }   
+      .email-list .message .col-mail-3 .date {
+        position: absolute;
+        top: 0;
+        left: 40rem;        
+        right: 0; }   
 
 .email-checkbox {
   cursor: pointer;

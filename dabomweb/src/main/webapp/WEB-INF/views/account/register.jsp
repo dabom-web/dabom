@@ -22,55 +22,48 @@
                             <div class="col-xl-12">
                                 <div class="auth-form">
                                     <h4 class="text-center mb-4">회원가입</h4>
-                                    <form action="index.html">
+                                    <form id="writeform" method="post" action="/dabomweb/account/register">
                                         <div class="form-group">
                                             <label><strong>이름</strong></label>
-                                            <input type="text" id="userName" class="form-control" placeholder="이름을 입력하세요">
+                                            <input type="text" id="userName" name="userName" class="form-control" placeholder="이름을 입력하세요">
                                         </div>
                                         <div class="form-group">
                                             <label><strong>생년월일</strong></label>
-                                            <input type="text" id="birth" class="form-control" placeholder="6자리를 입력하세요">
+                                            <input type="text" id="birth" name="birth" class="form-control" placeholder="6자리를 입력하세요">
                                         </div>
                                          <div class="form-group">
                                             <label><strong>아이디</strong></label>
-                                            <input type="text" id="memberId" class="form-control" placeholder="아이디를 입력하세요">
+                                            <input type="text" id="memberId" name="memberId" class="form-control" placeholder="아이디를 입력하세요">
                                         </div>  
                                          <div class="form-group">
                                             <label><strong>닉네임</strong></label>
-                                            <input type="text" id="nickName" class="form-control" placeholder="닉네임을 입력하세요">
+                                            <input type="text" id="nickName" name="nickName" class="form-control" placeholder="닉네임을 입력하세요">
                                         </div>  
                                         <div class="form-group">
                                             <label><strong>비밀번호</strong></label>
-                                            <input type="password" id="passwd" class="form-control" value="비밀번호 확인">
+                                            <input type="password" id="passwd" name="passwd" class="form-control" placeholder="Password">
                                         </div>
                                          <div class="form-group">
                                             <label><strong>비밀번호 확인</strong></label>
-                                            <input type="password" id="confirm" class="form-control" value="비밀번호 확인">
+                                            <input type="password" id="confirm" name="confirm" class="form-control" placeholder="Password">
                                         </div>
                                          <div class="form-group">
                                             <label><strong>이메일</strong></label>
-                                            <input type="email" id="email" class="form-control" placeholder="hello@example.com">
+                                            <input type="email" id="email" name="email" class="form-control" placeholder="hello@example.com">
                                         </div>
                                           <div class="form-group">
                                             <label><strong>핸드폰</strong></label>
-                                            <input type="text" id="phone" class="form-control" placeholder="010-0000-0000">
+                                            <input type="text" id="phone" name="phone" class="form-control" placeholder="010-0000-0000">
                                         </div>  
-                                        
-                                        <div class="basic-dropdown">
-		                                    <div class="dropdown">
-		                                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-		                                            회원 종류
-		                                        </button>
-		                                        <div class="dropdown-menu">
-		                                            <a class="dropdown-item" href="#">일반 회원</a>
-		                                            <a class="dropdown-item" href="#">영상 업로더</a>
-		                                            <a class="dropdown-item" href="#">웹툰 업로더</a>
-		                                        </div>
-		                                    </div>
-		                                </div>
+                                  
+                                 			<select id="single-select" name="type">
+			                                    <option value="AL">일반회원</option>
+			                                    <option value="WY">영상업로더</option>
+			                                    <option value="WY">웹툰업로더2</option>
+			                                </select>
                                         
                                         <div class="text-center mt-4">
-                                            <button type="submit" class="btn btn-primary btn-block">Sign me up</button>
+                                            <a href="javascript:" id="write" class="btn btn-primary btn-block">Sign me up</a>
                                         </div>
                                     </form>
                                     <div class="new-account mt-3">
@@ -92,5 +85,92 @@
     <script src="/dabomweb/resources/vendor/global/global.min.js"></script>
     <script src="/dabomweb/resources/js/quixnav-init.js"></script>
     <!--endRemoveIf(production)-->
+    
+    <script type="text/javascript">
+    
+	  	$('#write').on("click", function(event){
+			event.preventDefault();
+			if (!check()) {
+				return;
+			}	
+			$('#writeform').submit();
+		})
+    		
+		// 회원가입 유효성 검사
+		
+    	function check(){
+			var userName = document.getElementById("userName");
+			var birth = document.getElementById("birth");
+			var memberId = document.getElementById("memberId");
+			var nickName = document.getElementById("nickName");
+			var passwd = document.getElementById("passwd");
+			var confirm = document.getElementById("confirm");
+			var email = document.getElementById("email");
+			var phone = document.getElementById("phone");		
+			
+			
+			if(userName.value=="" || !isKoreaOnly(userName.value)){
+				alert("이름을 정확히 입력하세요")	
+				return false;
+			}else if(!isCheckBirth(birth.value)){
+				alert("6자리 생년월일 입력하세요")
+				return false;
+			}else if(memberId.value=="" || !isCheckId(memberId.value)){
+				alert("4~12자리 아이디를 입력하세요(영문,숫자)")
+				return false;
+			}else if(nickName.value=="" ){
+				alert("별명을 입력하세요(한글,영문,숫자)")
+				return false;
+			}else if(passwd.value==""){
+				alert("비밀번호를 입력하세요")	
+				return false;
+			}else if(confirm.value !== passwd.value){
+				alert("비밀번호가 일치하지 않습니다")	
+				return false;
+			}else if(email.value==""){
+				alert("올바른 이메일 형식을 입력해주세요")	
+				return false;
+			}else if(!isCheckPhone(phone.value) ) {
+				alert("11자리 핸드폰 번호를 입력하세요");
+				return false;
+			}
+			return true;
+    	}
+    	
+    		function isCheckBirth(text) { 
+				var checkBirth = /^[0-9]{6}$/; // 숫자만 입력하는 정규식, 함수로 뺀 이유는 얘는 위치를 기억하므로 함수로 처리를 하지 않으면 111, 111 이렇게 똑같이 세자리씩 들어오면 인식을 하지 x 
+				return checkBirth.test(text);
+    		} 
+    		
+    		function isCheckPhone(text){
+    			var checkPhone = /^[0-9]{11}$/;
+    			return checkPhone.test(text);
+    		}
+    		
+     		function isCheckId(text){
+    			var checkId = /^[a-zA-Z0-9]{4,12}$/;
+    			return checkId.test(text);
+    		} 
+    		
+    		function isKoreaOnly(text){
+    			var checkKorea =/^[가-힣]/;
+    			return checkKorea.test(text);
+    		}
+    		
+    		function isNickName(text){
+    			var checkNickName =/^[a-zA-Z가-힣]/;
+    			return checkNickName.test(text);
+    		}
+    		
+    		/* fucntion isCheckEmail(text){
+    			var checkEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+    			return checkEmail.test(text);
+    		} */
+
+
+    
+    		
+	</script>
+    
 </body>
 </html>

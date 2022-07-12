@@ -36,7 +36,7 @@
                 </div>
                 <!-- row -->
                 <form id="uploadform" action="upload" method="post" enctype="multipart/form-data">
-                <div class="email-right-box ml-0 ml-sm-4 ml-sm-0">
+                <div class="email-right-box col-lg-12"><!-- 이걸 right를 지워 말어... right 해서 left에다가 영상 미리보기를 집어넣을까? -->
                                     <div class="toolbar mb-4" role="toolbar">
                                         <div class="form-group col-lg-2">
 						                   <label>분류</label>
@@ -62,7 +62,7 @@
                                                 <input type="text" class="form-control bg-transparent" name="memberId" value="1" readonly>
                                             </div>
                                             <div class="form-group">
-                                                <textarea id="email-compose-editor" class="textarea_editor form-control bg-transparent" name="content" rows="15" placeholder="내용을 소개해보세요"></textarea>
+                                                <textarea id="email-compose-editor" class="textarea_editor form-control bg-transparent" name="content" rows="15" placeholder="내용을 소개해보세요" style="resize:none"></textarea>
                                             </div>
                                         
                                         <h5 class="mb-4"><i class="fa fa-paperclip"></i> 동영상 업로드</h5>

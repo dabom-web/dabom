@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
      <!--**********************************
             Nav header start
         ***********************************-->
@@ -61,10 +61,22 @@
                                         <i class="icon-user"></i>
                                         <span class="ml-2">Profile </span>
                                     </a>
-                                    <a href="message/messagelist" class="dropdown-item">
+                                    
+                                    <c:choose>
+                                    <c:when test="${ !empty loginuser.memberId }">                                    
+                                    <a href="/dabomweb/message/message_receive_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="dropdown-item">
                                         <i class="icon-envelope-open"></i>
                                         <span class="ml-2">Message </span>
                                     </a>
+                                    </c:when>
+                                    <c:otherwise>
+                                    <a href="/dabomweb/account/login" class="dropdown-item">
+                                        <i class="icon-envelope-open"></i>
+                                        <span class="ml-2">Message </span>
+                                    </a>
+                                    </c:otherwise>
+                                    </c:choose>   
+                                    
                                     <a href="resources/page-login.html" class="dropdown-item">
                                         <i class="icon-key"></i>
                                         <span class="ml-2">Logout </span>
