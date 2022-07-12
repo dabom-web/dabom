@@ -102,8 +102,7 @@
 				"dataType" : "text",
 				"success": function(result, status, xhr) {
 					if (result === "success") {
-						alert('승인되었습니다.');
-						// button의 속성 변경
+						alert('승인되었습니다.');						
 						$('tr[data-boardno=' + boardNo +']').remove();
 					} else {
 						alert('승인 실패');

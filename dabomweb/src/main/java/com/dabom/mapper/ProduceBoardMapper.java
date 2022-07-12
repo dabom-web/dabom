@@ -92,7 +92,7 @@ public interface ProduceBoardMapper {
 	
 	@Select("select boardno, infor, writedate, modifydate, type, ok, deleted, writer, contact, sns "
 		+ "from  produceboard "
-		+ "where boardno = #{ boardNo } and ok = 1")
+		+ "where boardno = #{ boardNo } and ok = 0")
 	ProduceBoard selectByBoardNo(@Param("boardNo") int boardNo);
 	
 	@Select("select attachno, produceboardno, userfilename, savedfilename "
