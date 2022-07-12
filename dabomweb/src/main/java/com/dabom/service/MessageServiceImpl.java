@@ -64,6 +64,12 @@ public class MessageServiceImpl implements MessageService {
 	}
 	
 	@Override
+	public void DirectwriteMessage(Message message) {
+		
+		messageMapper.insertDirectMessage(message);
+	}
+	
+	@Override
 	public List<Member> findMemberid() {
 		
 		List<Member> memberList = messageMapper.selectReceiver();		

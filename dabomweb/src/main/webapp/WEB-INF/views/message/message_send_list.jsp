@@ -76,12 +76,13 @@
                                                   <div class="ml-2">
                                                       <button class="border-0 bg-transparent align-middle p-0"><i
                                                               class="fa fa-star" aria-hidden="true"></i></button>
-                                                  </div>	                                                  	                                                                                         
+                                                  </div>
+                                                  	                                                  	                                                                                         
                                               <a href="message_send_detail?message_no=${ message.message_No }&sender=${ loginuser.memberId }" class="col-mail col-mail-3">  
-                                                  <div class="sender">${ message.receiver }</div>
-                                                  <div class="subject">${ message.message_Title }</div>
-                                             	  <div class="date">${ message.send_Date }</div>                                              
-                                              </a>  
+                                              	<div class="sender">${ message.receiver }</div>
+                                                <div class="subject">${ message.message_Title }</div>
+                                             	<div class="date">${ message.send_Date }</div>                                              
+                                           	  </a>                                             
                                                </div>                                		                                        
                                           </div>	                                     
                                       </div>

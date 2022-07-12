@@ -18,10 +18,14 @@ public interface MessageService {
 	int findMessageSendCount(String sender);
 
 	void writeMessage(Message message);
+	
+	void DirectwriteMessage(Message message);
 
 	List<Member> findMemberid();
 
 	Message findByMessageNo(int messageNo);
+
+	
 
 	
 

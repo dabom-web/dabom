@@ -32,11 +32,14 @@ public interface MessageMapper {
 //	@Insert("INSERT INTO message (receiver, sender, message)" +
 //			"VALUES (#{receiver},  #{sender}, #{message}) " )
 	void insertMessage(Message message);
+	
+	void insertDirectMessage(Message message);
 
 //	@Select("SELECT memberid FROM member ") 
 	List<Member> selectReceiver();
 	
 	Message selectByMessageNo(int messageNo);
+	
 	
 
 	

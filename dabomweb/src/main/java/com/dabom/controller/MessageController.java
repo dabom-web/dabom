@@ -3,6 +3,8 @@ package com.dabom.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.dabom.dto.Member;
 import com.dabom.dto.Message;
+import com.dabom.service.AccountService;
 import com.dabom.service.MessageService;
 import com.dabom.ui.TheMessagePager;
 
@@ -27,7 +30,7 @@ public class MessageController {
 	
 	@GetMapping(path = { "/message_receive_list" })
 	public String messageReceiveList(String receiver, String sender, Model model) {
-		
+				
 		int receiveCount = 0;
 		receiveCount = messageService.findMessageReceiveCount(receiver);
 		model.addAttribute("receiveCount",receiveCount);
@@ -37,7 +40,7 @@ public class MessageController {
 		
 		List<Message> messageList = messageService.findAllMessage(receiver);		
 		model.addAttribute("messageList", messageList);
-		return "message/message_receive_list";
+		return "message/message_receive_list";			
 	}
 	
 	@GetMapping(path = { "/message_send_list" })
@@ -93,7 +96,7 @@ public class MessageController {
 	}
 
 	@PostMapping(path = { "/message_write" })
-	public String messagewrite(Message message, String receiver, String sender,Model model) {	
+	public String messageWrite(Message message, String receiver, String sender,Model model) {	
 		
 		int receiveCount = 0;
 		receiveCount = messageService.findMessageReceiveCount(receiver);
@@ -103,7 +106,88 @@ public class MessageController {
 		model.addAttribute("sendCount",sendCount);
 		
 		messageService.writeMessage(message);
-		return "redirect:message_receive_list"; // 여기 보낸메세지함으로 바꿔
+		return "redirect:message_send_list"; 
+	}
+	@GetMapping(path = { "/message_sender_direct_write" })
+	public String messageSenderDirectWriteForm(@RequestParam(name="message_no", defaultValue = "-1" )int messageNo,
+													   String receiver, String sender, Model model) {
+		int receiveCount = 0;
+		receiveCount = messageService.findMessageReceiveCount(receiver);
+		model.addAttribute("receiveCount",receiveCount);
+		int sendCount = 0;
+		sendCount = messageService.findMessageSendCount(sender);
+		model.addAttribute("sendCount",sendCount);
+		
+		List<Member> memberList = messageService.findMemberid();		
+		model.addAttribute("memberList", memberList);
+		
+		if(messageNo == -1) {
+			return "redirect:message_receive_list";
+		}
+		
+		Message message = messageService.findByMessageNo(messageNo);
+		if (message == null) { // 해당 번호의 게시글이 없는 경우
+			return "redirect:message_receive_list";
+		}
+		model.addAttribute("message", message);
+		return "message/message_sender_direct_write";
+	}
+
+	@PostMapping(path = { "/message_sender_direct_write" })
+	public String messageSenderDirectWrite(Message message, String receiver, String sender, Model model) {	
+		
+		int receiveCount = 0;
+		receiveCount = messageService.findMessageReceiveCount(receiver);
+		model.addAttribute("receiveCount",receiveCount);
+		int sendCount = 0;
+		sendCount = messageService.findMessageSendCount(sender);
+		model.addAttribute("sendCount",sendCount);
+		
+		messageService.DirectwriteMessage(message);
+		
+		
+		return "redirect:message_send_list"; 
+	}
+	
+	@GetMapping(path = { "/message_receiver_direct_write" })
+	public String messageReceiverDirectWriteForm(@RequestParam(name="message_no", defaultValue = "-1" )int messageNo,
+			   String receiver, String sender, Model model) {
+		int receiveCount = 0;
+		receiveCount = messageService.findMessageReceiveCount(receiver);
+		model.addAttribute("receiveCount",receiveCount);
+		int sendCount = 0;
+		sendCount = messageService.findMessageSendCount(sender);
+		model.addAttribute("sendCount",sendCount);
+		
+		List<Member> memberList = messageService.findMemberid();		
+		model.addAttribute("memberList", memberList);
+		
+		if(messageNo == -1) {
+		return "redirect:message_receive_list";
+		}
+		
+		Message message = messageService.findByMessageNo(messageNo);
+		if (message == null) { // 해당 번호의 게시글이 없는 경우
+		return "redirect:message_receive_list";
+		}
+		model.addAttribute("message", message);
+		return "message/message_receiver_direct_write";
+	}
+	
+	@PostMapping(path = { "/message_receiver_direct_write" })
+	public String messageReceiverDirectWrite(Message message, String receiver, String sender, Model model) {	
+		
+		int receiveCount = 0;
+		receiveCount = messageService.findMessageReceiveCount(receiver);
+		model.addAttribute("receiveCount",receiveCount);
+		int sendCount = 0;
+		sendCount = messageService.findMessageSendCount(sender);
+		model.addAttribute("sendCount",sendCount);
+		
+		messageService.DirectwriteMessage(message);
+		
+		
+		return "redirect:message_send_list"; 
 	}
 	
 	@GetMapping(path = { "/message_receive_detail" })

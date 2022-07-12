@@ -46,10 +46,16 @@
 		</selectKey>		
 		INSERT INTO message (message_title, receiver, sender, message_content)
 		VALUES ( #{message_Title}, #{receiver}, #{sender}, #{message_Content} )
-		<!-- VALUES ('dd', 'dd', 'fffffffffffffffffffff') -->	 
-		
-	</insert>	
+	</insert>
 	
+	<insert id="insertDirectMessage" parameterType="Message">
+		<selectKey keyProperty="message_No" resultType="int" order="AFTER">
+			SELECT LAST_INSERT_ID()		
+		</selectKey>		
+		INSERT INTO message (message_title, receiver, sender, message_content)
+		VALUES ( #{message_Title}, #{receiver}, #{sender}, #{message_Content} )
+	</insert>
+		
 	<select id="selectReceiver" resultType="Member">
 		SELECT memberid	FROM member		
 	</select>

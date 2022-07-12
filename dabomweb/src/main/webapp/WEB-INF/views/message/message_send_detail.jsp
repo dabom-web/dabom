@@ -3,6 +3,7 @@
 		 contentType="text/html; charset=utf-8"
     	 pageEncoding="utf-8"%>  
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html>
@@ -71,7 +72,7 @@
                                                
                                                 <div class="read-content">
                                                     <div class="media pt-3">
-                                                        <img class="mr-4 rounded-circle" alt="image" src="dabom/resources/images/dabom.jpg">
+                                                        <img class="mr-4 rounded-circle" alt="image" src="/dabomweb/resources/images/avatar/2.png">
                                                         <div class="media-body">
                                                             <h5 class="text-primary">제목 : ${ message.message_Title }</h5>
                                                         </div>
@@ -83,16 +84,21 @@
                                                                 class="fa fa-trash"></i></a>
                                                     </div><hr>
                                                         <div class="media-body"><span class="pull-right">${ message.send_Date }</span>
-                                                            <h5 class="my-1 text-primary">보낸사람 : ${ message.sender }</h5>
+                                                            <h5 class="my-1 text-primary">받은사람 : 
+                                                            <a href="message_sender_direct_write?receiver=${ message.receiver }&message_no=${ message.message_No}">${ message.receiver }</a></h5>
                                                             <p class="read-content-email">
                                                                 To:Me,invernessmckenzie@example.com</p>
                                                         </div>
                                                     </div>
                                                     </div>
-                                                    <div class="read-content-body">
-                                                        <h5 class="pt-3"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                        ${ message.message_Content }<br><br><br><br></h5><hr>
-                                                    </div>                                                    
+                                                    <div class="read-content-body" >                                                    
+                                                        <h5 class="pt-3">
+<% String enter2 = "\r\n"; %>
+<c:set var="enter" value="
+" />
+		                								${ fn:replace(message.message_Content, enter, '<br>') }
+                                                        <br><br></h5><hr>                                                      
+                                                    </div>                                                  
                                                     <div class="form-group pt-3">
                                                         <textarea class="w-100" name="write-email" id="write-email" cols="30" rows="5" placeholder="답장"></textarea>
                                                     </div>
