@@ -60,9 +60,13 @@
                                       <a href="javascript:void()" class="list-group-item"><i
                                               class="fa fa-star font-18 align-middle mr-2"></i>메세지 보관함
                                       </a>
-                                      <a href="javascript:void()" class="list-group-item"><i
-                                              class="fa fa-trash font-18 align-middle mr-2"></i>삭제된 메세지</a>
-                                  </div>                                   
+                                      <a href="message_receive_delete_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="list-group-item"><i
+                                              class="fa fa-trash font-18 align-middle mr-2"></i> 받은메세지 휴지통 <span
+                                              class="badge badge-primary badge-sm float-right"></span></a>                                              
+                                      <a href="message_send_delete_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="list-group-item"><i
+                                              class="fa fa-trash font-18 align-middle mr-2"></i> 보낸메세지 휴지통 <span
+                                              class="badge badge-primary badge-sm float-right"></span></a>
+                                  </div>                                        
                                 </div>
                                 <div class="email-right-box ml-0 ml-sm-4 ml-sm-0">                                    
                                     <div class="compose-content">
@@ -140,16 +144,32 @@
 				}			
 			});
 		 });		
-		$(function() {
-			$('#send').on('click',function(event) { 
-				event.preventDefault();				
-				var ok = confirm('메세지를 전송할까요?');
-				if (ok) {					
-					$('#messagewriteform').submit();
+// 		$(function() {
+// 			$('#send').on('click',function(event) { 
+// 				event.preventDefault();				
+// 				var ok = confirm('메세지를 전송할까요?');
+// 				if (ok) {					
+// 					$('#messagewriteform').submit();
 					
-				}			
-			});
-		 });		
+// 				}			
+// 			});
+// 		 });		
+		var sendBtn = document.querySelector('#send');
+		sendBtn.addEventListener('click', function (event) {
+		event.preventDefault();
+		
+			var receiver = document.querySelector('#receiver');
+			if(!receiver.value) {
+				alert('로그인하세요');
+				return false;
+			} else {
+				confirm('메세지를 전송할까요?');
+				var writeForm = document.querySelector('#messagewriteform');
+				writeForm.submit();
+			}
+			
+		});
+		
 		$(function() {
 			$('#cancel').on('click',function(event) { 
 				event.preventDefault();

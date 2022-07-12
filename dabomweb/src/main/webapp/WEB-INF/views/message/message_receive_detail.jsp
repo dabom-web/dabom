@@ -61,9 +61,13 @@
                                               class="fa fa-star font-18 align-middle mr-2"></i>메세지 보관함 <span
                                               class="badge badge-primary badge-sm float-right"></span>
                                       </a>
-                                      <a href="javascript:void()" class="list-group-item"><i
-                                              class="fa fa-trash font-18 align-middle mr-2"></i>삭제된 메세지</a>
-                                  </div>                                    
+                                      <a href="message_receive_delete_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="list-group-item"><i
+                                              class="fa fa-trash font-18 align-middle mr-2"></i> 받은메세지 휴지통 <span
+                                              class="badge badge-primary badge-sm float-right"></span></a>                                              
+                                      <a href="message_send_delete_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="list-group-item"><i
+                                              class="fa fa-trash font-18 align-middle mr-2"></i> 보낸메세지 휴지통 <span
+                                              class="badge badge-primary badge-sm float-right"></span></a>
+                                  </div>                                         
                               </div>
                                 <div class="email-right-box ml-0 ml-sm-4 ml-sm-0">
                                     <div class="row">
@@ -80,7 +84,7 @@
                                                         <a href="javascript:void()" class="text-muted ml-3"><i
                                                                 class="fa fa-long-arrow-right"></i> </a>
                                                         <a href="javascript:void()" class="text-muted ml-3"><i
-                                                                class="fa fa-trash"></i></a>
+                                                                id="delelte-btn" class="fa fa-trash"></i></a>
                                                     </div><hr>
                                                         <div class="media-body"><span class="pull-right">${ message.send_Date }</span>
                                                             
@@ -122,9 +126,21 @@
 <!--********************************** Content body end ***********************************-->
 
 
-
-
 	<jsp:include page="/WEB-INF/views/modules/css/bottom.jsp" />
+	
+	
+	<script type="text/javascript">		
+		var deleteBtn = document.querySelector('#delelte-btn');
+		deleteBtn.addEventListener('click', function (event) {
+		event.preventDefault();		
+		var ok = confirm('메세지를 삭제하시겠습니까?');				
+		if (ok) {					
+			location.href = 'delete?message_no=${ message.message_No}';
+			location.href = 'message_receive_delete_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }'				
+		}			
+	});
+	
+	</script>
 
 </body>
 </html>

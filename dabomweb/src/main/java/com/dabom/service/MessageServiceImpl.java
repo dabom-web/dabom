@@ -15,8 +15,7 @@ public class MessageServiceImpl implements MessageService {
 	private MessageMapper messageMapper;
 	
 	@Override
-	public List<Message> findAllMessage(String receiver) {
-		
+	public List<Message> findAllMessage(String receiver) {		
 		List<Message> messageList = messageMapper.selectAllReceiveMessage(receiver);
 		return messageList;
 	}
@@ -43,6 +42,20 @@ public class MessageServiceImpl implements MessageService {
 	}
 	
 	@Override
+	public List<Message> findSDeleteReceiveMessage(String receiver) {
+		List<Message> messageList3 = messageMapper.selectReceiveMessageDelete(receiver);
+		return messageList3;
+	}
+	
+	@Override
+	public List<Message> findSDeleteSendMessage(String sender) {
+		
+		List<Message> messageList4 = messageMapper.selectSendMessageDelete(sender);
+		return messageList4;
+	}
+
+	
+	@Override
 	public int findMessageReceiveCount(String receiver) {
 		int receiveCount = messageMapper.selectMessageReceiveCount(receiver);
 		return receiveCount;
@@ -54,6 +67,18 @@ public class MessageServiceImpl implements MessageService {
 		int sendCount = messageMapper.selectMessageSendCount(sender);
 		return sendCount;
 		
+	}
+	@Override
+	public int findMessageDeleteReceiveCount(String receiver) {
+		int deleteReceiveCount = messageMapper.selectReceiveMessageDeleteCount(receiver);
+		return deleteReceiveCount;
+	}
+	
+	@Override
+	public int findMessageDeleteSendCount(String sender) {
+				
+		int deleteSendCount = messageMapper.selectSendMessageDeleteCount(sender);
+		return deleteSendCount;
 	}
 	
 	@Override
@@ -82,6 +107,12 @@ public class MessageServiceImpl implements MessageService {
 		Message message = messageMapper.selectByMessageNo(messageNo);
 		
 		return message;
+	}
+
+	@Override
+	public void delete(int messageNo) {
+		
+		messageMapper.deleteByMessageNo(messageNo);
 	}
 
 }
