@@ -20,10 +20,14 @@ public interface MessageMapper {
 	List<Message> selectAllReceiveMessage(String receiver);
 	List<Message> selectAllSendMessage(String sender);
 //	List<Message> selectAllSendMessage(HashMap<String, Object> params);	
+	List<Message> selectReceiveMessageDelete(String receiver);
+	List<Message> selectSendMessageDelete(String sender);
 
 //	@Select("SELECT COUNT(*) FROM message")
 	int selectMessageReceiveCount(String receiver);
 	int selectMessageSendCount(String sender);
+	int selectReceiveMessageDeleteCount(String receiver);
+	int selectSendMessageDeleteCount(String sender);
 	
 //	@SelectKey(statement = "SELECT LAST_INSERT_ID()",
 //			   resultType = Integer.class,
@@ -39,6 +43,16 @@ public interface MessageMapper {
 	List<Member> selectReceiver();
 	
 	Message selectByMessageNo(int messageNo);
+	
+	void deleteByMessageNo(int messageNo);
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 
