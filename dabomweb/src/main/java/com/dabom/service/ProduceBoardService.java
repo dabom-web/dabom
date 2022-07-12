@@ -20,6 +20,10 @@ public interface ProduceBoardService {
 
 	Member findMemberInfor(String writer);
 
+	List<ProduceBoard> findProduceList();
+
+	void updateAcceptPost(int boardNo, int ok);
+
 //	Member findUserName();
 	
 }
