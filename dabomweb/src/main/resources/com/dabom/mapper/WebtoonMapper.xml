@@ -31,6 +31,13 @@
 		ORDER BY boardno DESC
 		LIMIT #{from}, #{count}
 	</select>
+	
+		<select id="selectBoardAttachByBoardNo" parameterType="int"
+											resultType="WebtoonBoardAttach">
+		SELECT attachno, boardno, userfilename, savedfilename
+		FROM webtoon_boardattach
+		WHERE boardno = #{boardNo}
+	</select>
   	
   	<select id="selectBoardCount" resultType="int">
 		SELECT COUNT(*) FROM webtoon_board

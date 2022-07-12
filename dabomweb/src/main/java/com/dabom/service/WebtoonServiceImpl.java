@@ -16,6 +16,8 @@ public class WebtoonServiceImpl implements WebtoonService {
 	
 	public void writeWebtoonBoard(WebtoonBoard webtoonBoard) {
 		
+		//데이터 입력
+		
 		webtoonMapper.insertWebtoonBoard(webtoonBoard);
 		
 		if(webtoonBoard.getFiles() != null) {
@@ -27,6 +29,7 @@ public class WebtoonServiceImpl implements WebtoonService {
 		
 	};
 	
+	// 첨부파일 제외 데이터 불러오기
 	
 	public List<WebtoonBoard> findAll(){
 		
@@ -34,6 +37,8 @@ public class WebtoonServiceImpl implements WebtoonService {
 		return boardList;
 		
 	}
+	
+	
 	
 	public List<WebtoonBoard> findByPage(int pageNo, int pageSize){
 		
@@ -45,7 +50,10 @@ public class WebtoonServiceImpl implements WebtoonService {
 		params.put("count", count);
 		
 		List<WebtoonBoard> boardList = webtoonMapper.selectByRange(params);
-		
+		for (WebtoonBoard board : boardList) {
+			List<WebtoonBoardAttach> files = webtoonMapper.selectBoardAttachByBoardNo(board.getBoardNo());
+			board.setFiles(files);
+		}
 		return boardList;
 		
 	};
@@ -55,6 +63,7 @@ public class WebtoonServiceImpl implements WebtoonService {
 		int count = webtoonMapper.selectBoardCount();
 		return count;
 		
-		
 	};
+	
+	
 }

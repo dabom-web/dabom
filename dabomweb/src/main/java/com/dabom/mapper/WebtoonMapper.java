@@ -18,4 +18,5 @@ public interface WebtoonMapper {
 
 	int selectBoardCount();
 	
+	List<WebtoonBoardAttach> selectBoardAttachByBoardNo(int boardNo);
 }

@@ -36,13 +36,13 @@
                     <div class="col-xl-4 col-xxl-6 col-lg-6 col-sm-6">
                         <div class="card mb-3">
                            <a href="">
-                            <img class="card-img-top img-fluid" src="/dabomweb/resources/images/1.jpg" alt="Card image cap">
+                            <img class="card-img-top img-fluid" src="/dabomweb/resources/upload-files/${board.files[0].savedFileName}" alt="Card image cap">
                            </a>
                             <div class="card-header">
                                 <h5 class="card-title">${ board.title }</h5>
                             </div>
                             <div class="card-body">
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                              
                             </div>
                         </div>
                     </div>  
