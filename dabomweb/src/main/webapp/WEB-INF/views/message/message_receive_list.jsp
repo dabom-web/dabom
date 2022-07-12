@@ -49,7 +49,7 @@
                                   <div class="p-0">
 	                                  <c:choose>
 	                                    <c:when test="${ empty loginuser.memberId }">   
-	                                    	<a href="/dabomweb/account/login"></a>
+	                                    	<a href="/dabomweb/account/login" class="btn btn-primary btn-block">새 메세지 작성</a>
                                       	</c:when>
                                       	<c:otherwise>
                                       		<a href="message_write?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="btn btn-primary btn-block">새 메세지 작성</a>

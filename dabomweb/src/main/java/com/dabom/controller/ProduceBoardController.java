@@ -91,7 +91,8 @@ public class ProduceBoardController {
 	@PostMapping(path = { "/writeActorInfor" })
 	public String writeActorInfor(ProduceBoard produceBoard,
 								  MultipartFile[] producerAttach,
-								  HttpServletRequest req) {
+								  HttpServletRequest req,
+								  Model model) {
 		
 		String uploadDir = req.getServletContext().getRealPath("/resources/upload-files");
 		ArrayList<ProducerAttach> files = new ArrayList<>();
@@ -112,7 +113,12 @@ public class ProduceBoardController {
 			}
 		}
 		produceBoard.setFiles(files);
-		produceBoardService.writeInfor(produceBoard);
+		try {
+			produceBoardService.writeInfor(produceBoard);
+		} catch (Exception ex) {
+			model.addAttribute("error", "파일형식오류");
+			return "produceBoard/writeActorInfor";
+		}
 		return "redirect:/produceBoard/actor";
 		
 	}
@@ -138,7 +144,7 @@ public class ProduceBoardController {
 		model.addAttribute("producerAttach", producerAttach);
 		model.addAttribute("member", member);
 		
-		return "/produceBoard/directorDetail";
+		return "produceBoard/directorDetail";
 	}
 	
 	@GetMapping(path = { "/actorDetail" })
@@ -162,7 +168,7 @@ public class ProduceBoardController {
 		model.addAttribute("producerAttach", producerAttach);
 		model.addAttribute("member", member);
 		
-		return "/produceBoard/actorDetail";
+		return "produceBoard/actorDetail";
 	}
 	
 	

@@ -56,12 +56,17 @@ public class ProduceBoardServiceImpl implements ProduceBoardService {
 		return member;
 	}
 
-//	@Override
-//	public Member findUserName() {
-//		Member member = produceBoardMapper.selectMemberByUserName();
-//		return member;
-//	}
-	
+	@Override
+	public List<ProduceBoard> findProduceList() {
+		List<ProduceBoard> produceList = produceBoardMapper.selectProuceList();
+		return produceList;
+	}
+
+	@Override
+	public void updateAcceptPost(int boardNo, int ok) {
+		produceBoardMapper.updateAcceptPost(boardNo, ok);
+	}
+
 
 	
 }

@@ -36,7 +36,7 @@
                   </div>
                   <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="messagelist">받은메세지</a></li>
+                            <li class="breadcrumb-item"><a href="#">보낸메세지</a></li>
                       </ol>
                   </div>
               </div>
@@ -47,7 +47,14 @@
                           <div class="card-body">
                               <div class="email-left-box px-0 mb-5">
                                   <div class="p-0">
-                                      <a href="message_write?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="btn btn-primary btn-block">새 메세지 작성</a>
+                                      <c:choose>
+	                                    <c:when test="${ empty loginuser.memberId }">   
+	                                    	<a href="/dabomweb/account/login" class="btn btn-primary btn-block">새 메세지 작성</a>
+                                      	</c:when>
+                                      	<c:otherwise>
+                                      		<a href="message_write?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="btn btn-primary btn-block">새 메세지 작성</a>
+                                      	</c:otherwise>
+                                   	</c:choose>	
                                   </div>
                                   <div class="mail-list mt-4">
                                       <a href="message_receive_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="list-group-item"><i
