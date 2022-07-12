@@ -19,7 +19,6 @@ import com.dabom.dto.Message;
 import com.dabom.service.AccountService;
 import com.dabom.service.MessageService;
 
-import oracle.jdbc.util.Login;
 
 @Controller
 @RequestMapping(path = { "/message" })
