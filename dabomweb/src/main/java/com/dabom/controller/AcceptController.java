@@ -63,7 +63,6 @@ public class AcceptController {
 	@ResponseBody
 	public String acceptPost(@RequestParam(name="boardno", defaultValue = "-1")int boardNo, int ok) {
 		
-		
 		produceBoardService.updateAcceptPost(boardNo, ok);
 		return "success";
 	}

@@ -37,7 +37,12 @@
 	<import resource="root-context-message.xml" />
 	<import resource="root-context-mychannel.xml" />
 	<import resource="root-context-produceBoard.xml" />
+
+	<import resource="root-context-webtoon.xml"/>
+
+
 	<import resource="root-context-videoUpload.xml" />
+
 
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>

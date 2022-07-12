@@ -2,8 +2,11 @@ package com.dabom.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.dabom.dto.Member;
 import com.dabom.dto.ProduceBoard;
+import com.dabom.dto.ProduceSupport;
 import com.dabom.dto.ProducerAttach;
 import com.dabom.mapper.ProduceBoardMapper;
 
@@ -65,6 +68,24 @@ public class ProduceBoardServiceImpl implements ProduceBoardService {
 	@Override
 	public void updateAcceptPost(int boardNo, int ok) {
 		produceBoardMapper.updateAcceptPost(boardNo, ok);
+	}
+
+	@Override
+	public void supportProducer(int produceBoardNo, String memberId, int support) {
+		produceBoardMapper.updateSupportProducer(produceBoardNo, memberId, support);
+		
+	}
+
+	@Override
+	public void insertProducerSupport(int produceBoardNo, String memberId) {
+		produceBoardMapper.insertProducerSupport(produceBoardNo, memberId);
+		
+	}
+
+	@Override
+	public ProduceSupport findProduceSupportByMemberIdAndProduceBoardNo(String memberId, int produceBoardNo) {
+		ProduceSupport produceSupport = produceBoardMapper.selectProduceSupportByMemberIdAndProductBoardNo(memberId, produceBoardNo);
+		return produceSupport;
 	}
 
 
