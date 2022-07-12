@@ -59,15 +59,15 @@ img {
 											</div>
 											<div class="col-xl-4 col-sm-4 border-right-1 prf-col">
 												<div class="profile-email">
-													<a id="support-btn" href="javascript:" class="btn btn-dark"
+													<a id="support-btn" href="javascript:" class="btn btn-outline-danger"
 														style='display: ${ not empty produceSupport and produceSupport.support == 1 ? "none" : "" }'>
-														응원하기<span class="btn-icon-right"><i
-															class="fa fa-heart"></i></span>
-													</a> <a id="support-btn2" href="javascript:"
-														class="btn btn-danger"
+														감독 응원하기 🖤<span><i style="font-size: 5pt; font-style: normal;">&nbsp;${ produceBoard.supportCnt }</i></span>
+													</a> 
+													
+													<a id="support-btn2" href="javascript:" class="btn btn-danger"
 														style='display: ${ not empty produceSupport and produceSupport.support == 1 ? "" : "none" }'>
-														응원하는 배우🤍<span><i></i></span>
-													</a><br>
+														응원하는 감독 🤍<span><i style="font-size: 5pt; font-style: normal;">&nbsp;${ produceBoard.supportCnt }</i></span>
+													</a> <br>
 													<c:set var="contact" value="${ produceBoard.contact }"/>
 													<p><c:if test="${ empty contact }"> 
 														연락처 비공개

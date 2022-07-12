@@ -160,7 +160,7 @@ public class ProduceBoardController {
 		
 		
 		if (boardNo == -1) {
-			return "redirect:/produceBoard/director";
+			return "redirect:/produceBoard/actor";
 		}
 				
 		ProduceBoard produceBoard = produceBoardService.findByBoardNo(boardNo);
@@ -168,6 +168,7 @@ public class ProduceBoardController {
 		ProducerAttach producerAttach = produceBoardService.findByProducerByBoardNo(boardNo);
 		Member loginUser = (Member)session.getAttribute("loginuser");
 		ProduceSupport produceSupport = produceBoardService.findProduceSupportByMemberIdAndProduceBoardNo(loginUser.getMemberId(), boardNo);
+		
 		
 		if (produceBoard == null) {
 			return "redirect:/produceBoard/actor";		
@@ -179,6 +180,7 @@ public class ProduceBoardController {
 		model.addAttribute("member", member);
 		model.addAttribute("produceSupport", produceSupport);
 		
+		
 		return "produceBoard/actorDetail";
 	}
 	
@@ -186,10 +188,16 @@ public class ProduceBoardController {
 	@ResponseBody
 	public String supportProducer(int produceBoardNo, String memberId, int support, Boolean isNew) {
 		
+		//int count = produceBoardService.findAllSuppourtCount(produceBoardNo);
+		
 		if (isNew == true) {
+			//count++;
+			//produceBoardService.updateProducerSupportCount(produceBoardNo, count);
 			produceBoardService.insertProducerSupport(produceBoardNo, memberId);
 		}
 		else {
+			//count--;
+			//produceBoardService.updateProducerSupportCount(produceBoardNo, count);
 			produceBoardService.supportProducer(produceBoardNo, memberId, support);
 		}
 		return "success";
