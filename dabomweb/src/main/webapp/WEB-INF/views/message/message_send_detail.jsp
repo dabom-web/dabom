@@ -37,7 +37,7 @@
                     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="message_send_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }">보낸메세지</a></li>
-                            <li class="breadcrumb-item active"><a href="#">메세지읽기</a></li>
+                            <li class="breadcrumb-item active">메세지읽기</li>
                         </ol>
                     </div>
                 </div>
@@ -74,7 +74,7 @@
                                                     <div class="media pt-3">
                                                         <img class="mr-4 rounded-circle" alt="image" src="/dabomweb/resources/images/avatar/2.png">
                                                         <div class="media-body">
-                                                            <h5 class="text-primary">제목 : ${ message.message_Title }</h5>
+                                                            <h5 class="text-primary">${ message.message_Title }</h5>
                                                         </div>
                                                         <a href="javascript:void()" class="text-muted "><i
                                                                 class="fa fa-reply"></i> </a>
@@ -84,28 +84,32 @@
                                                                 class="fa fa-trash"></i></a>
                                                     </div><hr>
                                                         <div class="media-body"><span class="pull-right">${ message.send_Date }</span>
-                                                            <h5 class="my-1 text-primary">받은사람 : 
-                                                            <a href="message_sender_direct_write?receiver=${ message.receiver }&message_no=${ message.message_No}">${ message.receiver }</a></h5>
-                                                            <p class="read-content-email">
-                                                                To:Me,invernessmckenzie@example.com</p>
-                                                        </div>
-                                                    </div>
-                                                    </div>
+                                                            
+                                                            <h5 class="my-1 text-primary">받은사람 :&nbsp; 
+                                                            <div class="dropdown custom-dropdown">
+					                                            <button type="button" 
+					                                            		class="btn btn-sm btn-outline-primary" data-toggle="dropdown">&nbsp;
+					                                            		${ message.sender }
+					                                                <i class="fa fa-angle-down ml-3"></i>
+					                                            </button>
+					                                            <div class="dropdown-menu dropdown-menu-right">
+					                                                <a class="dropdown-item" href="#">채널방문</a>
+					                                                <a class="dropdown-item" 
+					                                                   href="message_direct_write?receiver=${ message.sender }&message_no=${ message.message_No}">
+					                                                   메세지 보내기</a>					                                                
+					                                            </div>
+					                                        </div>
+					                                     </div>  
+					                                     
                                                     <div class="read-content-body" >                                                    
                                                         <h5 class="pt-3">
 <% String enter2 = "\r\n"; %>
 <c:set var="enter" value="
 " />
 		                								${ fn:replace(message.message_Content, enter, '<br>') }
-                                                        <br><br></h5><hr>                                                      
-                                                    </div>                                                  
-                                                    <div class="form-group pt-3">
-                                                        <textarea class="w-100" name="write-email" id="write-email" cols="30" rows="5" placeholder="답장"></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="text-right">
-                                                    <button class="btn btn-primary btn-sl-sm mb-5" type="button">Send</button>
-                                                </div>
+                                                        <br><br><br><br><br><br><br><br><br><br></h5><hr>                                                      
+                                                    </div>                                                   
+                                                </div>                                               
                                             </div>
                                         </div>
                                     </div>

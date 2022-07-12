@@ -41,8 +41,8 @@
                             <!-- 추수은 -->
                             
                             <!-- 강효준 -->
-                            <li><a href="video/uploadList">영상업로드</a></li>
-                            <li><a href="video/liveStream">라이브방송</a></li>
+                            <li><a href="/dabomweb/video/list">영상업로드</a></li>
+                            <li><a href="/dabomweb/video/liveStream">라이브방송</a></li>
                             <!-- 강효준 -->
                             
                         </ul>
