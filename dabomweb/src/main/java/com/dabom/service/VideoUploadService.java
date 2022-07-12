@@ -6,9 +6,9 @@ import com.dabom.dto.VideoUpload;
 
 public interface VideoUploadService {
 
-	void uploadMovie(VideoUpload vUpload);
+	void uploadVideo(VideoUpload vUpload);
 	List<VideoUpload> findAll();
-	VideoUpload findByMovieNo(int movieNo);
-	void delete(int movieNo);
+	VideoUpload findByVideoNo(int videoNo);
+	void delete(int videoNo);
 	void update(VideoUpload vUpload);
 }
