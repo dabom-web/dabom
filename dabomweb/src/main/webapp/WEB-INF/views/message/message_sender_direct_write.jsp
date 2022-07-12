@@ -69,7 +69,7 @@
                                 </div>
                                 <div class="email-right-box ml-0 ml-sm-4 ml-sm-0">                                    
                                     <div class="compose-content">
-                                        <form id="messagewriteform" action="message_write" 
+                                        <form id="messagewriteform" action="message_sender_direct_write" 
 									          method="post"	enctype="multipart/form-data">
 									        <div class="form-group">
                                                 <input type="text"
@@ -77,22 +77,15 @@
                                                 	   name="message_Title"                                                	                                               	   
                                                 	   class="form-control bg-transparent"                                                	   
                                                 	   placeholder="제목을 입력해주세요"></div>  
-                                            <div class="form-group">
-                                                <input type="text"
+                                            <div class="form-group">                                            
+                                                <input type="hidden"
                                                 	   id="receiver"
-                                                	   name="receiver"
-                                                	   list="seachreceiver"                                                 	   
-                                                	   class="form-control bg-transparent" 
-                                               		   placeholder="받는사람">
-                                               	 <datalist id="seachreceiver">
-                                               	  <c:forEach var="member" items="${ memberList }">
-								                     <option value="${ member.memberId }"></option>
-				                        		  </c:forEach>
-						                         </datalist>
+                                                	   name="receiver"                                                	      
+                                                	   value="${ message.receiver }">                                              	 
                                             </div>                                            
                                             <div class="form-group">
-                                            	<input type="hidden"
-							 						   name="sender" id="sender" value="${ loginuser.memberId }">			                        
+                                                <input type="hidden"
+							 						   name="sender" id="sender" value="${ loginuser.memberId }">                                             	     						                        
                                             </div>
                                             <div class="form-group">
                                                 <textarea name="message_Content" id="message_Content" 
@@ -149,16 +142,17 @@
 					location.href = 'message_receive_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }';
 				}			
 			});
-		 });
+		 });		
 		$(function() {
 			$('#send').on('click',function(event) { 
-				event.preventDefault();
+				event.preventDefault();				
 				var ok = confirm('메세지를 전송할까요?');
-				if (ok) {
+				if (ok) {					
 					$('#messagewriteform').submit();
+					
 				}			
 			});
-		 });
+		 });		
 		$(function() {
 			$('#cancel').on('click',function(event) { 
 				event.preventDefault();

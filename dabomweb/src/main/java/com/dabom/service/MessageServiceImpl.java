@@ -1,5 +1,6 @@
 package com.dabom.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.dabom.dto.Member;
@@ -16,12 +17,27 @@ public class MessageServiceImpl implements MessageService {
 	@Override
 	public List<Message> findAllMessage(String receiver) {
 		
-		List<Message> messageList = messageMapper.selectAllMessage(receiver);
+		List<Message> messageList = messageMapper.selectAllReceiveMessage(receiver);
 		return messageList;
 	}
 	
-	public List<Message> findAllSendMessage(String sender) {
-		
+//	@Override
+//	public List<Message> findAllSendMessage(String sender, int pageNo, int pageSize) {
+//		
+//		int from = (pageNo - 1) * pageSize;
+//		int sendCount = pageSize;
+//		
+//		HashMap<String, Object> params = new HashMap<>();
+//		params.put("sender", sender);
+//		params.put("from", from);
+//		params.put("sendCount", sendCount);
+//		
+//		List<Message> messageList2 = messageMapper.selectAllSendMessage(params);
+//		return messageList2;
+//	}
+	
+	@Override
+	public List<Message> findAllSendMessage(String sender) {		
 		List<Message> messageList2 = messageMapper.selectAllSendMessage(sender);
 		return messageList2;
 	}
@@ -45,6 +61,12 @@ public class MessageServiceImpl implements MessageService {
 		
 		messageMapper.insertMessage(message);
 				
+	}
+	
+	@Override
+	public void DirectwriteMessage(Message message) {
+		
+		messageMapper.insertDirectMessage(message);
 	}
 	
 	@Override

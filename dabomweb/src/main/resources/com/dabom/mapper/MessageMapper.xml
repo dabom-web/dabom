@@ -4,10 +4,10 @@
 				 
 <mapper namespace="com.dabom.mapper.MessageMapper">
 	
-	<select id="selectAllMessage" parameterType="String" resultType="Message">
+	<select id="selectAllReceiveMessage" parameterType="String" resultType="Message">
 		SELECT message_no, message_title, message_content, send_date, sender, receiver, message_delete 
 		FROM message 
-		where receiver = #{receiver}
+		WHERE receiver = #{receiver}
 		ORDER BY send_date DESC
 	</select>	
 	
@@ -18,7 +18,17 @@
 		ORDER BY send_date DESC
 	</select>
 	
-	<select id="selectMessageReceiveCount" parameterType="String" resultType="int">
+	<!-- 
+	<select id="selectAllSendMessage" parameterType="hashMap" resultType="Message">
+		SELECT message_no, message_title, message_content, send_date, sender, receiver, message_delete 
+		FROM message 
+		WHERE sender = #{sender}
+		ORDER BY message_no DESC
+		LIMIT #{from} , #{count}
+	</select>	
+	 -->
+ 
+ 	<select id="selectMessageReceiveCount" parameterType="String" resultType="int">
 		SELECT COUNT(*) 
 		FROM message 
 		where receiver = #{receiver}
@@ -36,10 +46,16 @@
 		</selectKey>		
 		INSERT INTO message (message_title, receiver, sender, message_content)
 		VALUES ( #{message_Title}, #{receiver}, #{sender}, #{message_Content} )
-		<!-- VALUES ('dd', 'dd', 'fffffffffffffffffffff') -->	 
-		
-	</insert>	
+	</insert>
 	
+	<insert id="insertDirectMessage" parameterType="Message">
+		<selectKey keyProperty="message_No" resultType="int" order="AFTER">
+			SELECT LAST_INSERT_ID()		
+		</selectKey>		
+		INSERT INTO message (message_title, receiver, sender, message_content)
+		VALUES ( #{message_Title}, #{receiver}, #{sender}, #{message_Content} )
+	</insert>
+		
 	<select id="selectReceiver" resultType="Member">
 		SELECT memberid	FROM member		
 	</select>
