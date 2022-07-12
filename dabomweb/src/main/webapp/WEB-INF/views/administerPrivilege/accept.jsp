@@ -52,13 +52,17 @@
 											<th style="width: 100px;">승인신청</th>
 										</tr>
 									</thead>
-									<c:forEach var="board" items="${ directorList }">								
+									<c:forEach var="board" items="${ produceList }">								
 									<tbody>								
-										<tr style="height: 70px;">
-											<td style="width: 1000px;"><a href="directorDetail?boardno=${ board.boardNo }">${ board.member.userName }</a></td>											
+										<tr data-boardno="${board.boardNo}" style="height: 70px;">
+											<td style="width: 1000px;"><a href="acceptDetail?boardno=${ board.boardNo }">${ board.member.userName }</a></td>											
 											<td style="width: 470px;">${ board.writedate }</td>										
 											<td style="width: 100px;">
-											<a id="accept-link" href="javascript:" class="badge badge-rounded badge-dark">승인</a>
+											<form id="accept-form-${board.boardNo}">
+											<input type="hidden" name='boardno' value="${ board.boardNo }">
+											<input type="hidden" name='ok' value="${ board.ok ? 0 : 1 }">
+											<a data-boardno="${board.boardNo}" href="javascript:" class="badge badge-rounded badge-dark accept-link">승인</a>
+                                            </form>
                                             </td>											
 										</tr>										
 									</tbody>
@@ -85,20 +89,28 @@
 <jsp:include page="/WEB-INF/views/modules/css/bottom.jsp" />
 <script type="text/javascript">
 	$(function() {
-		$('#accept-link').on('click', function(event) {
+		$('.accept-link').on('click', function(event) {
+			
+			var boardNo = $(this).attr('data-boardno'); // 현재 클릭된 <a 의 data-boardno 속성 값 읽기
+			
+			var formData = $('#accept-form-' + boardNo).serialize();
 			$.ajax({
-				// url, method, async, dataTyp, .... 구성
-				
+				"url" : "accept-post",
+				"method" : "post",
+				"async" : true,
+				"data" : formData,
+				"dataType" : "text",
 				"success": function(result, status, xhr) {
 					if (result === "success") {
 						alert('승인되었습니다.');
 						// button의 속성 변경
+						$('tr[data-boardno=' + boardNo +']').remove();
 					} else {
 						alert('승인 실패');
 					}
 				},
 				"error": function(xhr, status, err) {
-					alert('승인 실패');
+					alert('승인 실패2');
 				}
 				
 			})

@@ -138,7 +138,7 @@ public class ProduceBoardController {
 		model.addAttribute("producerAttach", producerAttach);
 		model.addAttribute("member", member);
 		
-		return "/produceBoard/directorDetail";
+		return "produceBoard/directorDetail";
 	}
 	
 	@GetMapping(path = { "/actorDetail" })
@@ -162,7 +162,7 @@ public class ProduceBoardController {
 		model.addAttribute("producerAttach", producerAttach);
 		model.addAttribute("member", member);
 		
-		return "/produceBoard/actorDetail";
+		return "produceBoard/actorDetail";
 	}
 	
 	
