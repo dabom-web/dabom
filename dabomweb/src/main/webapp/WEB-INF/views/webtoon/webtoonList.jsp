@@ -13,6 +13,8 @@
     <link href="/dabomweb/resources/vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet">
     <link href="/dabomweb/resources/css/style.css" rel="stylesheet">
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 </head>
 <body>
 	
@@ -30,104 +32,33 @@
 				
 				   <div class="row page-titles mx-0">
 				
+				<c:forEach var="board" items="${ requestScope.boardList}">
                     <div class="col-xl-4 col-xxl-6 col-lg-6 col-sm-6">
                         <div class="card mb-3">
-                            <img class="card-img-top img-fluid" src="/dabomweb/resources/images/dabom.jpg" alt="Card image cap">
+                           <a href="">
+                            <img class="card-img-top img-fluid" src="/dabomweb/resources/images/1.jpg" alt="Card image cap">
+                           </a>
                             <div class="card-header">
-                                <h5 class="card-title">Card title</h5>
+                                <h5 class="card-title">${ board.title }</h5>
                             </div>
                             <div class="card-body">
                                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <p class="card-text text-dark">Last updated 3 mins ago</p>
                             </div>
                         </div>
                     </div>  
                     
-                      <div class="col-xl-4 col-xxl-6 col-lg-6 col-sm-6">
-                        <div class="card mb-3">
-                            <img class="card-img-top img-fluid" src="/dabomweb/resources/images/dabom.jpg" alt="Card image cap">
-                            <div class="card-header">
-                                <h5 class="card-title">Card title</h5>
-                            </div>
-                            <div class="card-body">
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <p class="card-text text-dark">Last updated 3 mins ago</p>
-                            </div>
-                        </div>
-                    </div>
-
-					         <div class="col-xl-4 col-xxl-6 col-lg-6 col-sm-6">
-                        <div class="card mb-3">
-                            <img class="card-img-top img-fluid" src="/dabomweb/resources/images/dabom.jpg" alt="Card image cap">
-                            <div class="card-header">
-                                <h5 class="card-title">Card title</h5>
-                            </div>
-                            <div class="card-body">
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <p class="card-text text-dark">Last updated 3 mins ago</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    	         <div class="col-xl-4 col-xxl-6 col-lg-6 col-sm-6">
-                        <div class="card mb-3">
-                            <img class="card-img-top img-fluid" src="/dabomweb/resources/images/dabom.jpg" alt="Card image cap">
-                            <div class="card-header">
-                                <h5 class="card-title">Card title</h5>
-                            </div>
-                            <div class="card-body">
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <p class="card-text text-dark">Last updated 3 mins ago</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                           <div class="col-xl-4 col-xxl-6 col-lg-6 col-sm-6">
-                        <div class="card mb-3">
-                            <img class="card-img-top img-fluid" src="/dabomweb/resources/images/dabom.jpg" alt="Card image cap">
-                            <div class="card-header">
-                                <h5 class="card-title">Card title</h5>
-                            </div>
-                            <div class="card-body">
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <p class="card-text text-dark">Last updated 3 mins ago</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                           <div class="col-xl-4 col-xxl-6 col-lg-6 col-sm-6">
-                        <div class="card mb-3">
-                            <img class="card-img-top img-fluid" src="/dabomweb/resources/images/dabom.jpg" alt="Card image cap">
-                            <div class="card-header">
-                                <h5 class="card-title">Card title</h5>
-                            </div>
-                            <div class="card-body">
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <p class="card-text text-dark">Last updated 3 mins ago</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                           <div class="col-xl-4 col-xxl-6 col-lg-6 col-sm-6">
-                        <div class="card mb-3">
-                            <img class="card-img-top img-fluid" src="/dabomweb/resources/images/dabom.jpg" alt="Card image cap">
-                            <div class="card-header">
-                                <h5 class="card-title">Card title</h5>
-                            </div>
-                            <div class="card-body">
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <p class="card-text text-dark">Last updated 3 mins ago</p>
-                            </div>
-                        </div>
-                    </div>
-               
+                    </c:forEach>
 				
 				</div>
 				
 				<div align="center">
 					<a href="/dabomweb/webtoon/webtoonRegister"> 웹툰 등록 </a>
 				</div>
-				
+				<br><br>
+				<div align="center">
+				${ pager} 
+				</div>
+				<br><br>
 			</div>
 		</div>
 

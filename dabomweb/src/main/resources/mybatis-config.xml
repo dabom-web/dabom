@@ -9,11 +9,14 @@
 		<typeAlias type="com.dabom.dto.Member" alias="Member"/>
 		<typeAlias type="com.dabom.dto.Message" alias="Message" />
 		<typeAlias type="com.dabom.dto.MyChannel" alias="MyChannel" />
+		<typeAlias type="com.dabom.dto.WebtoonBoard" alias="WebtoonBoard"/>
+		<typeAlias type="com.dabom.dto.WebtoonBoardAttach" alias="WebtoonBoardAttach"/>
 	</typeAliases>
 
 	<mappers>	
 		<mapper resource="com/dabom/mapper/MemberMapper.xml"/>
 		<mapper resource="com/dabom/mapper/MessageMapper.xml" />
 		<mapper resource="com/dabom/mapper/MyChannelMapper.xml" />
+		<mapper resource="com/dabom/mapper/WebtoonMapper.xml"/>
 	</mappers>
 </configuration>
