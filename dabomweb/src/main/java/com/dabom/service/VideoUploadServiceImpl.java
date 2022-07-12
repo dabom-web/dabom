@@ -3,12 +3,23 @@ package com.dabom.service;
 import java.util.List;
 
 import com.dabom.dto.VideoUpload;
+import com.dabom.mapper.VideoUploadMapper;
+
+import lombok.Setter;
 
 public class VideoUploadServiceImpl implements VideoUploadService {
 
+	@Setter
+	private VideoUploadMapper videoUploadMapper;
+	
 	@Override
-	public void uploadMovie(VideoUpload vUpload) {
-		// TODO Auto-generated method stub
+	public void uploadVideo(VideoUpload vUpload) {
+		// 게시물 데이터를 DB에 저장
+		// c1. 이 위치에서 movieNo : 없음
+		videoUploadMapper.insertVideo(vUpload);	// c1. c2. 를 반영해서 insertVideo에서 movieNo를 조회하도록 구현
+		// c2. 이 위치에서 boardNo : 데이터베이스에 있음... 위에 작업 실행함과 동시에 DB 생성 ( 데이터베이스의 movieNo를 조회할 필요 O )
+		
+		// 첨부파일 데이터를 DB에 저장
 		
 	}
 
@@ -19,13 +30,13 @@ public class VideoUploadServiceImpl implements VideoUploadService {
 	}
 
 	@Override
-	public VideoUpload findByMovieNo(int movieNo) {
+	public VideoUpload findByVideoNo(int videoNo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void delete(int movieNo) {
+	public void delete(int videoNo) {
 		// TODO Auto-generated method stub
 		
 	}

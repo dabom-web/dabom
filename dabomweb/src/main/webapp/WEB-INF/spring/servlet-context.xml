@@ -23,6 +23,10 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"><!-- 대소문자 맞춰라 -->
+		<beans:property name="maxUploadSize" value="10485760" /><!-- 10MB -->
+	</beans:bean>
+	
 	<context:component-scan base-package="com.dabom.controller" />
 	
 	
