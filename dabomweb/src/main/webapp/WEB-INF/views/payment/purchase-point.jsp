@@ -68,7 +68,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">구매포인트수량</label>
                                             <div class="col-sm-10">
-                                                <input type="text" name="amount" value="${loginuser.amount}" class="form-control" placeholder="구매할 포인트 수량">
+                                                <input type="text" name="amount"  class="form-control" placeholder="구매할 포인트 수량">
                                             </div>
                                         </div>
                                         <div class="form-group row">
