@@ -89,8 +89,8 @@ public class ProduceBoardServiceImpl implements ProduceBoardService {
 	}
 
 	@Override
-	public int findAllSuppourtCount(int produceBoardNo) {
-		int count = produceBoardMapper.selectSupportCountByProduceBoardNo(produceBoardNo); 
+	public int findAllSuppourtCount(int boardNo) {
+		int count = produceBoardMapper.selectSupportCountByProduceBoardNo(boardNo); 
 		return count;
 		
 	}
@@ -101,11 +101,11 @@ public class ProduceBoardServiceImpl implements ProduceBoardService {
 		return count;
 	}
 
-//	@Override
-//	public void updateProducerSupportCount(int produceBoardNo, int count) {
-//		produceBoardMapper.updateSupportCountByProduceBoardNo(produceBoardNo, count);
-//		
-//	}
+	@Override
+	public void updateProducerSupportCount(int produceBoardNo, int count) {
+		produceBoardMapper.updateSupportCountByProduceBoardNo(produceBoardNo, count);
+		
+	}
 
 
 	

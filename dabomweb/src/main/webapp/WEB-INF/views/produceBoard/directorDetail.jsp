@@ -61,12 +61,12 @@ img {
 												<div class="profile-email">
 													<a id="support-btn" href="javascript:" class="btn btn-outline-danger"
 														style='display: ${ not empty produceSupport and produceSupport.support == 1 ? "none" : "" }'>
-														감독 응원하기 🖤<span><i style="font-size: 5pt; font-style: normal;">&nbsp;${ produceBoard.supportCnt }</i></span>
+														감독 응원하기 🖤<span>&nbsp;<i style="font-size: 5pt; font-style: normal;">${ produceBoard.supportCnt }</i></span>
 													</a> 
 													
 													<a id="support-btn2" href="javascript:" class="btn btn-danger"
 														style='display: ${ not empty produceSupport and produceSupport.support == 1 ? "" : "none" }'>
-														응원하는 감독 🤍<span><i style="font-size: 5pt; font-style: normal;">&nbsp;${ produceBoard.supportCnt }</i></span>
+														응원하는 감독 🤍<span>&nbsp;<i style="font-size: 5pt; font-style: normal;">${ produceBoard.supportCnt }</i></span>
 													</a> <br>
 													<c:set var="contact" value="${ produceBoard.contact }"/>
 													<p><c:if test="${ empty contact }"> 
@@ -163,17 +163,18 @@ img {
 				"method" : "post",
 				"async" : true,
 				"data" : "produceBoardNo=${produceBoard.boardNo}&memberId=${loginuser.memberId}&support=1&isNew=${ empty produceSupport }",
-				"dataType" : "text",
-				"success" : function(result, status, xhr) {
-					if (result === "success"){
+				"dataType" : "json",
+				"success" : function(resp, status, xhr) {
+					if (resp.result === "success"){
 						//alert('응원하기 성공');							
 						$('#support-btn').hide();
-						$('#support-btn2').show();
+						$('#support-btn2').show().find("i").text(resp.count);
+						
 					} else {
 						alert('실패');
 					}
 				},
-				"errer" : function(xhr, status, err) {
+				"error" : function(xhr, status, err) {
 					alert('다시 시도해 주세요.');
 				}
 			});
@@ -186,23 +187,23 @@ img {
 				"method" : "post",
 				"async" : true,
 				"data" : "produceBoardNo=${produceBoard.boardNo}&memberId=${loginuser.memberId}&support=0&isNew=false",
-				"dataType" : "text",
-				"success" : function(result, status, xhr) {
-					if (result === "success"){
+				"dataType" : "json",
+				"success" : function(resp, status, xhr) {
+					if (resp.result === "success"){
 						//alert('응원 취소 성공');							
-						$('#support-btn').show();
+						$('#support-btn').show().find("i").text(resp.count);
 						$('#support-btn2').hide();						
 					} else {
 						alert('실패');
 					}
 				},
-				"errer" : function(xhr, status, err) {
+				"error" : function(xhr, status, err) {
 					alert('다시 시도해 주세요.');
 				}
 			});
 		});
 	});
-	
+		
 	</script>
 
 </body>
