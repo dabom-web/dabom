@@ -110,7 +110,7 @@
 	                                class="icon icon-single-04"></i><span class="nav-text">결제하기</span></a>
 	                        <ul aria-expanded="false">
 	                        
-	                            <li><a href="/dabomweb/payment/payment">결제하기</a></li>
+	                            <li><a href="/dabomweb/payment/purchase-point">결제하기</a></li>
 	                 	                            
 	                        </ul>
 	                    </li>
