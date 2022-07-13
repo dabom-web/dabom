@@ -102,7 +102,7 @@
                                   <!-- panel -->
                                   <div class="row mt-4 m-4 mx-sm-4">
                                       <div class="col-7">
-                                          <div class="text-left"> ${ pageSize * pageNo - 9 } - ${ pageSize * pageNo } </div>
+                                          <div class="text-left"> ${ pageSize * pageNo - 9 } - ${ pageSize * pageNo } / ${ receiveCount }</div>
                                       </div>
                                       <div class="col-5">
                                           <div class="btn-group float-right">

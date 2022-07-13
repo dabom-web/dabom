@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.dabom.dto.WebtoonBoard;
 import com.dabom.dto.WebtoonBoardAttach;
+import com.dabom.dto.WebtoonListByTitle;
+import com.dabom.dto.WebtoonListByTitleAttach;
 
 public interface WebtoonMapper {
 
@@ -19,4 +21,10 @@ public interface WebtoonMapper {
 	int selectBoardCount();
 	
 	List<WebtoonBoardAttach> selectBoardAttachByBoardNo(int boardNo);
+
+	WebtoonBoard selectByBoardNo(int boardNo);
+
+	void insertWebtoonBoardByTitle(WebtoonListByTitle webtoonListByTitle);
+
+	void insertWebtoonBoardbyTitleAttach(WebtoonListByTitleAttach file);
 }

@@ -32,10 +32,10 @@
 	</resultMap>
 
 	<select id="loginUser" parameterType="Member" resultMap="memberResultMap">
-		
-		SELECT member.memberid, nickname, birth, email, phone, passwd, grade, active, username
-		FROM member
-		right OUTER JOIN user
+	
+		SELECT user.memberid, nickname, birth, email, phone, passwd, grade, active, username
+		FROM user
+		LEFT OUTER JOIN member
 		ON user.memberid = member.memberid
 		WHERE user.memberid = #{memberId} AND user.passwd = #{passwd}
 		
