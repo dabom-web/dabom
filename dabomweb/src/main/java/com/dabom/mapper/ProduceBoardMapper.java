@@ -94,7 +94,7 @@ public interface ProduceBoardMapper {
 	List<ProduceBoard> selectProuceList();
 	
 	
-	@Select("select boardno, infor, writedate, modifydate, type, ok, deleted, writer, contact, sns, support_cnt "
+	@Select("select boardno, infor, writedate, modifydate, type, ok, deleted, writer, contact, sns, support_cnt supportCnt "
 		+ "from  produceboard "
 		+ "where boardno = #{ boardNo } ")
 	ProduceBoard selectByBoardNo(@Param("boardNo") int boardNo);
@@ -132,9 +132,9 @@ public interface ProduceBoardMapper {
 	
 	@Select("select support_cnt from produceboard "
 			+ " where boardno = #{ boardNo }")
-	int selectSupportCountByProduceBoardNo(@Param("produceBoardNo")int boardNo);
+	int selectSupportCountByProduceBoardNo(@Param("boardNo")int boardNo);
 
-	@Update("update produceboard set support_cnt = #{ supportCnt } where boardno = #{ boardNo }")
+	@Update("update produceboard set support_cnt = support_cnt + #{ supportCnt } where boardno = #{ boardNo }")
 	void updateSupportCountByProduceBoardNo(@Param("boardNo")int boardNo, @Param("supportCnt")int count);
 
 	@Select("select count(*) from produceboard where ok = 0 and deleted = 0")

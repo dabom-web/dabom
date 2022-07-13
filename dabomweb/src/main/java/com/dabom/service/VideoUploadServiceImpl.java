@@ -25,8 +25,8 @@ public class VideoUploadServiceImpl implements VideoUploadService {
 
 	@Override
 	public List<VideoUpload> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		List<VideoUpload> vUploadList = videoUploadMapper.selectAll();
+		return vUploadList;
 	}
 
 	@Override
@@ -45,6 +45,12 @@ public class VideoUploadServiceImpl implements VideoUploadService {
 	public void update(VideoUpload vUpload) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public List<VideoUpload> viewerFindAll() {
+		List<VideoUpload> vList = videoUploadMapper.viewerSelectAll();
+		return vList;
 	}
 
 	

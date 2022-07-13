@@ -57,7 +57,7 @@
                                    	</c:choose>	
                                   </div>
                                   <div class="mail-list mt-4">
-                                      <a href="message_receive_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="list-group-item active"><i
+                                      <a href="message_receive_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }$messege_delete=${ message.message_delete}" class="list-group-item active"><i
                                               class="fa fa-inbox font-18 align-middle mr-2"></i> 받은메세지 <span
                                               class="badge badge-danger text-white badge-sm float-right">${ receiveCount }</span></a>
                                       <a href="message_send_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="list-group-item"><i
@@ -65,7 +65,7 @@
                                               class="badge badge-primary badge-sm float-right">${ sendCount }</span></a> 
                                       <a href="javascript:void()" class="list-group-item"><i
                                               class="fa fa-star font-18 align-middle mr-2"></i>메세지 보관함 <span
-                                              class="badge badge-primary badge-sm float-right">?</span>
+                                              class="badge badge-primary badge-sm float-right"></span>
                                       </a>
                                       <a href="message_receive_delete_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="list-group-item"><i
                                               class="fa fa-trash font-18 align-middle mr-2"></i> 받은메세지 휴지통 <span
@@ -102,16 +102,11 @@
                                   <!-- panel -->
                                   <div class="row mt-4 m-4 mx-sm-4">
                                       <div class="col-7">
-                                          <div class="text-left">전체글 수 > ${ receiveCount }</div>
+                                          <div class="text-left"> ${ pageSize * pageNo - 9 } - ${ pageSize * pageNo } / ${ receiveCount }</div>
                                       </div>
                                       <div class="col-5">
                                           <div class="btn-group float-right">
-                                              <button class="btn btn-dark" type="button"><i
-                                                      class="fa fa-angle-left"></i>
-                                              </button>
-                                              <button class="btn btn-dark" type="button"><i
-                                                      class="fa fa-angle-right"></i>
-                                              </button>
+                                               ${ messagePager }
                                           </div>
                                       </div>
                                   </div>

@@ -93,7 +93,7 @@
                                                             <div class="dropdown custom-dropdown">
 					                                            <button type="button" 
 					                                            		class="btn btn-sm btn-outline-primary" data-toggle="dropdown">&nbsp;
-					                                            		${ message.sender }
+					                                            		${ message.receiver }
 					                                                <i class="fa fa-angle-down ml-3"></i>
 					                                            </button>
 					                                            <div class="dropdown-menu dropdown-menu-right">
