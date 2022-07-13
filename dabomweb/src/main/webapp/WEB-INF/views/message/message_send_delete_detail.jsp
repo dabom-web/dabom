@@ -11,7 +11,7 @@
  <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
- 	<title>MESSAGEDETAIL(${ sendCount })</title>
+ 	<title>MESSAGEDETAIL</title>
     <link rel="icon" type="image/png" sizes="16x16" href="resources/images/dabom.jpg">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.theme.default.min.css">
@@ -30,14 +30,14 @@
                 <div class="row page-titles mx-0">
                     <div class="col-sm-6 p-md-0">
                         <div class="welcome-text">
-                            <h4>보낸 메세지 읽기!</h4>
+                            <h4>메세지 읽기!</h4>
                             <span class="ml-1">MESSAGE</span>
                         </div>
                     </div>
                     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="message_send_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }">보낸메세지</a></li>
-                            <li class="breadcrumb-item active">메세지읽기</li>
+                            <li class="breadcrumb-item"><a href="message_receive_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }">받은메세지</a></li>
+                            <li class="breadcrumb-item active"><a href="#">메세지읽기</a></li>
                         </ol>
                     </div>
                 </div>
@@ -48,15 +48,15 @@
                             <div class="card-body">
                                 <div class="email-left-box generic-width px-0 mb-5">
                                     <div class="p-0">
-                                      <a href="message_write?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="btn btn-primary btn-block">새 메세지 작성</a>
+                                     <a href="message_write?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="btn btn-primary btn-block">새 메세지 작성</a>
                                   </div>
                                   <div class="mail-list mt-4">
                                       <a href="message_receive_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="list-group-item"><i
                                               class="fa fa-inbox font-18 align-middle mr-2"></i> 받은메세지 <span
                                               class="badge badge-primary badge-sm float-right"></span></a>
-                                      <a href="message_send_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="list-group-item active"><i
+                                      <a href="message_send_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="list-group-item"><i
                                               class="fa fa-paper-plane font-18 align-middle mr-2"></i>보낸메세지<span
-                                              class="badge badge-danger text-white badge-sm float-right">${ sendCount }</span></a> 
+                                              class="badge badge-primary badge-sm float-right"></span></a> 
                                       <a href="javascript:void()" class="list-group-item"><i
                                               class="fa fa-star font-18 align-middle mr-2"></i>메세지 보관함 <span
                                               class="badge badge-primary badge-sm float-right"></span>
@@ -64,32 +64,26 @@
                                       <a href="message_receive_delete_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="list-group-item"><i
                                               class="fa fa-trash font-18 align-middle mr-2"></i> 받은메세지 휴지통 <span
                                               class="badge badge-primary badge-sm float-right"></span></a>                                              
-                                      <a href="message_send_delete_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="list-group-item"><i
+                                      <a href="message_send_delete_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="list-group-item active"><i
                                               class="fa fa-trash font-18 align-middle mr-2"></i> 보낸메세지 휴지통 <span
-                                              class="badge badge-primary badge-sm float-right"></span></a>
-                                  </div>                                    
+                                              class="badge badge-danger text-white badge-sm float-right">${ deleteSendCount }</span></a>
+                                  </div>                                       
                               </div>
                                 <div class="email-right-box ml-0 ml-sm-4 ml-sm-0">
                                     <div class="row">
                                         <div class="col-12">
-                                            <div class="right-box-padding">
-                                               
+                                            <div class="right-box-padding">                                               
                                                 <div class="read-content">
                                                     <div class="media pt-3">
                                                         <img class="mr-4 rounded-circle" alt="image" src="/dabomweb/resources/images/avatar/2.png">
                                                         <div class="media-body">
                                                             <h5 class="text-primary">${ message.message_Title }</h5>
                                                         </div>
-                                                        <a href="javascript:void()" class="text-muted "><i
-                                                                class="fa fa-reply"></i> </a>
-                                                        <a href="javascript:void()" class="text-muted ml-3"><i
-                                                                class="fa fa-long-arrow-right"></i> </a>
-                                                        <a href="javascript:void()" class="text-muted ml-3"><i
-                                                                id="delelte-btn" class="fa fa-trash"></i></a>
+                                                        
                                                     </div><hr>
                                                         <div class="media-body"><span class="pull-right">${ message.send_Date }</span>
                                                             
-                                                            <h5 class="my-1 text-primary">받은사람 :&nbsp; 
+                                                            <h5 class="my-1 text-primary">받은 사람 :&nbsp; 
                                                             <div class="dropdown custom-dropdown">
 					                                            <button type="button" 
 					                                            		class="btn btn-sm btn-outline-primary" data-toggle="dropdown">&nbsp;
@@ -103,10 +97,10 @@
 					                                                   메세지 보내기</a>					                                                
 					                                            </div>
 					                                        </div>
-					                                     </div>  
-					                                     
+					                                     </div>    
+					                                                                                  
                                                     <div class="read-content-body" >                                                    
-                                                        <h5 class="pt-3">
+                                                        <h5 class="pt-3"><br>
 <% String enter2 = "\r\n"; %>
 <c:set var="enter" value="
 " />
@@ -135,16 +129,12 @@
 		deleteBtn.addEventListener('click', function (event) {
 		event.preventDefault();		
 		var ok = confirm('메세지를 삭제하시겠습니까?');				
-		if (ok) {								
-			location.href = 'delete?message_no=${ message.message_No}';
-			location.href = 'message_send_delete_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }'
+		if (ok) {					
+			location.href = 'delete?message_no=${ message.message_No}';					
 		}			
 	});
 	
 	</script>
-	
-	
-	
 
 </body>
 </html>

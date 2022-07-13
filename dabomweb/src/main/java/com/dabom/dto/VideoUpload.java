@@ -14,9 +14,9 @@ public class VideoUpload {
 	private Date uploadTime;
 	private Date updateTime;
 	private String series;
-	private int videoType;	// 동영상 분류(movie or dance or song)
+	private String videoType;	// 동영상 분류(movie or dance or song)
 	private boolean deleted;
-	private int open;
+	private String open;
 	private int readCount;
 	private boolean block;
 	private String link;

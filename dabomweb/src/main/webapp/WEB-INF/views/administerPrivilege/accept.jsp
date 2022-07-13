@@ -109,7 +109,7 @@
 					}
 				},
 				"error": function(xhr, status, err) {
-					alert('승인 실패2');
+					alert('승인 실패하였습니다.');
 				}
 				
 			})

@@ -15,11 +15,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.dabom.common.Util;
 import com.dabom.dto.Member;
 import com.dabom.dto.ProduceBoard;
+import com.dabom.dto.ProduceSupport;
 import com.dabom.dto.ProducerAttach;
 import com.dabom.service.AccountService;
 import com.dabom.service.ProduceBoardService;
@@ -124,8 +126,9 @@ public class ProduceBoardController {
 	}
 	
 	@GetMapping(path = { "/directorDetail" })
-	public String produceDirectorDetailForm(Model model,
-									@RequestParam(name="boardno", defaultValue = "-1")int boardNo) {
+	public String produceDirectorDetailForm(@RequestParam(name="boardno", defaultValue = "-1")int boardNo,
+											 HttpSession session,
+											 Model model) {
 		
 		if (boardNo == -1) {
 			return "redirect:/produceBoard/director";
@@ -134,6 +137,8 @@ public class ProduceBoardController {
 		ProduceBoard produceBoard = produceBoardService.findByBoardNo(boardNo);
 		Member member = produceBoardService.findMemberInfor(produceBoard.getWriter());
 		ProducerAttach producerAttach = produceBoardService.findByProducerByBoardNo(boardNo);
+		Member loginUser = (Member)session.getAttribute("loginuser");
+		ProduceSupport produceSupport = produceBoardService.findProduceSupportByMemberIdAndProduceBoardNo(loginUser.getMemberId(), boardNo);
 		
 		if (produceBoard == null) {
 			return "redirect:/produceBoard/director";		
@@ -143,21 +148,27 @@ public class ProduceBoardController {
 		model.addAttribute("produceBoard", produceBoard);
 		model.addAttribute("producerAttach", producerAttach);
 		model.addAttribute("member", member);
+		model.addAttribute("produceSupport", produceSupport);
 		
 		return "produceBoard/directorDetail";
 	}
 	
 	@GetMapping(path = { "/actorDetail" })
-	public String produceActorDetailForm(Model model,
-									@RequestParam(name="boardno", defaultValue = "-1")int boardNo) {
+	public String produceActorDetailForm(@RequestParam(name="boardno", defaultValue = "-1")int boardNo,
+										 HttpSession session,
+										 Model model) {
+		
 		
 		if (boardNo == -1) {
-			return "redirect:/produceBoard/director";
+			return "redirect:/produceBoard/actor";
 		}
 				
 		ProduceBoard produceBoard = produceBoardService.findByBoardNo(boardNo);
 		Member member = produceBoardService.findMemberInfor(produceBoard.getWriter());
 		ProducerAttach producerAttach = produceBoardService.findByProducerByBoardNo(boardNo);
+		Member loginUser = (Member)session.getAttribute("loginuser");
+		ProduceSupport produceSupport = produceBoardService.findProduceSupportByMemberIdAndProduceBoardNo(loginUser.getMemberId(), boardNo);
+		
 		
 		if (produceBoard == null) {
 			return "redirect:/produceBoard/actor";		
@@ -167,9 +178,30 @@ public class ProduceBoardController {
 		model.addAttribute("produceBoard", produceBoard);
 		model.addAttribute("producerAttach", producerAttach);
 		model.addAttribute("member", member);
+		model.addAttribute("produceSupport", produceSupport);
+		
 		
 		return "produceBoard/actorDetail";
 	}
+	
+	@PostMapping(path = { "/support-producer" })
+	@ResponseBody
+	public String supportProducer(int produceBoardNo, String memberId, int support, Boolean isNew) {
+		
+		//int count = produceBoardService.findAllSuppourtCount(produceBoardNo);
+		
+		if (isNew == true) {
+			//count++;
+			//produceBoardService.updateProducerSupportCount(produceBoardNo, count);
+			produceBoardService.insertProducerSupport(produceBoardNo, memberId);
+		}
+		else {
+			//count--;
+			//produceBoardService.updateProducerSupportCount(produceBoardNo, count);
+			produceBoardService.supportProducer(produceBoardNo, memberId, support);
+		}
+		return "success";
+	}	
 	
 	
 }

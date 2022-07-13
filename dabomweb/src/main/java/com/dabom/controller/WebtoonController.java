@@ -3,28 +3,52 @@ package com.dabom.controller;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.dabom.common.Util;
 import com.dabom.dto.WebtoonBoard;
 import com.dabom.dto.WebtoonBoardAttach;
+import com.dabom.service.WebtoonService;
+import com.dabom.ui.ThePager;
 
 
 @Controller
 @RequestMapping(path= {"webtoon"})
 public class WebtoonController {
-
 	
+	@Autowired
+	@Qualifier("webtoonService")
+	WebtoonService webtoonservice;
 	
 	@GetMapping(path= {"/webtoonList"})
-	public String webtoonList() {
+	public String webtoonList(@RequestParam(defaultValue ="1")int pageNo ,Model model) {
+		
+		int pageSize = 9; 
+		int pagerSize = 3;
+		int count = 0; // 전체 데이터 개수
+		
+		//List<WebtoonBoard> boardList = webtoonservice.findAll();
+		
+		  List<WebtoonBoard> boardList = webtoonservice.findByPage(pageNo, pageSize); 
+		  count = webtoonservice.findBoardCount(); // 데이터베이스에 전체 개시물 개수 조회
+		  
+		  ThePager pager = new ThePager(count, pageNo, pageSize, pagerSize, "list");
+		 
+		model.addAttribute("boardList", boardList);
+		model.addAttribute("pager", pager);
+		model.addAttribute("pageNo", pageNo);
 		
 		return "webtoon/webtoonList";
 		
@@ -61,6 +85,7 @@ public class WebtoonController {
 			}
 		}
 		webtoonBoard.setFiles(files);
+		webtoonservice.writeWebtoonBoard(webtoonBoard);
 		
 		return "redirect:webtoonList";
 	}

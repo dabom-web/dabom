@@ -39,13 +39,17 @@
                 <div class="email-right-box col-lg-12"><!-- 이걸 right를 지워 말어... right 해서 left에다가 영상 미리보기를 집어넣을까? -->
                                     <div class="toolbar mb-4" role="toolbar">
                                         <div class="form-group col-lg-2">
+                                        <label>공개</label>
+                                                <select id="inputState" class="form-control" name="open">
+                                                    <option value="일반공개" selected>일반공개</option>
+                                                    <option value="유료공개">유료공개</option>
+                                                    <option value="비공개">비공개</option>
+                                                </select>
 						                   <label>분류</label>
-                                                <select id="inputState" class="form-control">
-                                                    <option selected>무비</option>
-                                                    <option>창작댄스</option>
-                                                    <option>창작송</option>
-                                                    <option>커버댄스</option>
-                                                    <option>커버송</option>
+                                                <select id="inputState" class="form-control" name="videoType">
+                                                    <option value="MOVIE" selected>MOVIE</option>
+                                                    <option value="DANCE">DANCE</option>
+                                                    <option value="SONG">SONG</option>
                                                 </select>
 						                  <label>시리즈</label>
 						                  <select id="inputState" class="form-control">
@@ -104,9 +108,23 @@
 		$(function(){
 			$('#cancel-btn').on('click', function(event){
 				event.preventDefault();
-				location.href='list';
+				location.href='uploadList';
 			});
 		});
+		
+		function setThumbnail(event) {
+	        var reader = new FileReader();
+
+	        reader.onload = function(event) {
+	          var img = document.createElement("img");
+	          img.setAttribute("src", event.target.result);
+	          document.querySelector("div#image_container").appendChild(img);
+	        };
+
+	        reader.readAsDataURL(event.target.files[0]);
+	      }
+	
+		
 	</script>
 
 </body>
