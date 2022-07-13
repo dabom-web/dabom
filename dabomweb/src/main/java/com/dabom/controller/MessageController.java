@@ -2,7 +2,6 @@ package com.dabom.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +17,7 @@ import com.dabom.dto.Member;
 import com.dabom.dto.Message;
 import com.dabom.service.AccountService;
 import com.dabom.service.MessageService;
+import com.dabom.ui.TheMessagePager;
 
 
 @Controller
@@ -30,24 +30,36 @@ public class MessageController {
 	
 	@Qualifier("accountService")
 	private AccountService accountService;
-		
+	
 	@GetMapping(path = { "/message_receive_list" })
-	public String messageReceiveList(String receiver, String sender, Model model) {
+	public String messageReceiveList(@RequestParam(defaultValue = "1")int pageNo,
+									 String receiver, String sender, Model model) {
 				
+		int pageSize = 10;
+		int pagerSize = 1;
+		
 		int receiveCount = 0;
 		receiveCount = messageService.findMessageReceiveCount(receiver);
 		model.addAttribute("receiveCount",receiveCount);
 		int sendCount = 0;
 		sendCount = messageService.findMessageSendCount(sender);
-		model.addAttribute("sendCount",sendCount);
+		model.addAttribute("sendCount",sendCount);		
 				
-		List<Message> messageList = messageService.findAllMessage(receiver);		
+		List<Message> messageList = messageService.findByPageReceiveMessage(receiver, pageNo, pageSize);
+		TheMessagePager messagePager = new TheMessagePager(sendCount, pageNo, pageSize, pagerSize, sender, "message_receive_list");
 		model.addAttribute("messageList", messageList);
+		model.addAttribute("messagePager" ,messagePager);	
+		model.addAttribute("pageSize" ,pageSize);
+		model.addAttribute("pageNo", pageNo);		
 		return "message/message_receive_list";			
 	}
 	
 	@GetMapping(path = { "/message_send_list" })
-	public String messageSendList(String receiver, String sender, Model model) {
+	public String messageSendList(@RequestParam(defaultValue = "1")int pageNo, 
+								  String receiver, String sender, Model model) {
+		
+		int pageSize = 10;
+		int pagerSize = 1;
 		
 		int receiveCount = 0;
 		receiveCount = messageService.findMessageReceiveCount(receiver);
@@ -55,10 +67,13 @@ public class MessageController {
 		int sendCount = 0;
 		sendCount = messageService.findMessageSendCount(sender);
 		model.addAttribute("sendCount",sendCount);
-			
-		List<Message> messageList2 = messageService.findAllSendMessage(sender);
 		
-		model.addAttribute("messageList2", messageList2);
+		List<Message> messageList2 = messageService.findByPageSendMessage(sender, pageNo, pageSize);
+		TheMessagePager messagePager = new TheMessagePager(sendCount, pageNo, pageSize, pagerSize, sender, "message_send_list");
+		model.addAttribute("messageList2" , messageList2);	
+		model.addAttribute("messagePager" ,messagePager);	
+		model.addAttribute("pageSize" ,pageSize);
+		model.addAttribute("pageNo", pageNo);
 		return "message/message_send_list";
 	}
 	
@@ -99,28 +114,6 @@ public class MessageController {
 		model.addAttribute("messageList4", messageList4);
 		return "message/message_send_delete_list";
 	}
-	
-//	@GetMapping(path = { "/message_send_list" })
-//	public String messageSendList( @RequestParam(defaultValue = "1")int pageNo, 
-//								  String receiver, String sender, Model model) {
-//		
-//		int pageSize = 10;
-//		int pagerSize = 1;
-//		int receiveCount = 0;
-//		receiveCount = messageService.findMessageReceiveCount(receiver);
-//		model.addAttribute("receiveCount",receiveCount);
-//		int sendCount = 0;
-//		sendCount = messageService.findMessageSendCount(sender);
-//		model.addAttribute("sendCount",sendCount);
-//		
-//		List<Message> messageList2 = messageService.findAllSendMessage(sender, pageNo, pageSize);		
-//		TheMessagePager messagePager = new TheMessagePager(sendCount, pageNo, pageSize, pagerSize, sender, "message_send_list");
-//		model.addAttribute("messageList2" , messageList2);	
-//		model.addAttribute("messagePager" ,messagePager);
-//		model.addAttribute("pageSize" ,pageSize);
-//		model.addAttribute("pageNo", pageNo);
-//		return "message/message_send_list";
-//	}
 	
 	@GetMapping(path = { "/message_write" })
 	public String messagewriteForm(String receiver, String sender, Model model) {

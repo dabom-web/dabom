@@ -37,11 +37,12 @@
                         <ul aria-expanded="false">
                         
                         	<!-- 추수은 -->
-                            <li><a href="mychannel/mychannellist">개인채널</a></li>
+                            <li><a href="/dabomweb/mychannel/mychannellist">개인채널</a></li>
                             <!-- 추수은 -->
                             
                             <!-- 강효준 -->
-                            <li><a href="/dabomweb/video/list">영상업로드</a></li>
+                            <li><a href="/dabomweb/video/uploadList">영상업로드</a></li>
+                            <li><a href="/dabomweb/video/list">채널 영상</a></li>
                             <li><a href="/dabomweb/video/liveStream">라이브방송</a></li>
                             <!-- 강효준 -->
                             
@@ -109,7 +110,7 @@
 	                                class="icon icon-single-04"></i><span class="nav-text">결제하기</span></a>
 	                        <ul aria-expanded="false">
 	                        
-	                            <li><a href="/dabomweb/payment/payment">결제하기</a></li>
+	                            <li><a href="/dabomweb/payment/purchase-point">결제하기</a></li>
 	                 	                            
 	                        </ul>
 	                    </li>

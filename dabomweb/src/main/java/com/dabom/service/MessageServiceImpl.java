@@ -1,7 +1,9 @@
 package com.dabom.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 import com.dabom.dto.Member;
 import com.dabom.dto.Message;
@@ -9,35 +11,39 @@ import com.dabom.mapper.MessageMapper;
 
 import lombok.Setter;
 
+
 public class MessageServiceImpl implements MessageService {
 
 	@Setter
 	private MessageMapper messageMapper;
 	
 	@Override
-	public List<Message> findAllMessage(String receiver) {		
-		List<Message> messageList = messageMapper.selectAllReceiveMessage(receiver);
+	public List<Message> findByPageReceiveMessage(String receiver, int pageNo, int pageSize) {		
+		
+		int from = (pageNo - 1) * pageSize;
+		int sendCount = pageSize;
+				
+		HashMap<String, Object> params = new HashMap<>();		
+		params.put("receiver", receiver);
+		params.put("from", from);
+		params.put("sendCount",sendCount);
+		
+		List<Message> messageList = messageMapper.selectAllReceiveMessage(params);
 		return messageList;
-	}
-	
-//	@Override
-//	public List<Message> findAllSendMessage(String sender, int pageNo, int pageSize) {
-//		
-//		int from = (pageNo - 1) * pageSize;
-//		int sendCount = pageSize;
-//		
-//		HashMap<String, Object> params = new HashMap<>();
-//		params.put("sender", sender);
-//		params.put("from", from);
-//		params.put("sendCount", sendCount);
-//		
-//		List<Message> messageList2 = messageMapper.selectAllSendMessage(params);
-//		return messageList2;
-//	}
-	
+}
+
 	@Override
-	public List<Message> findAllSendMessage(String sender) {		
-		List<Message> messageList2 = messageMapper.selectAllSendMessage(sender);
+	public List<Message> findByPageSendMessage(String sender, int pageNo, int pageSize) {
+		
+		int from = (pageNo - 1) * pageSize;
+		int sendCount = pageSize;
+				
+		HashMap<String, Object> params = new HashMap<>();		
+		params.put("sender", sender);
+		params.put("from", from);
+		params.put("sendCount",sendCount);
+				
+		List<Message> messageList2 = messageMapper.selectAllSendMessage(params);
 		return messageList2;
 	}
 	

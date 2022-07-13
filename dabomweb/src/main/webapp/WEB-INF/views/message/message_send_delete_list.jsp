@@ -65,7 +65,7 @@
                                               class="badge badge-primary badge-sm float-right">${ sendCount }</span></a> 
                                       <a href="javascript:void()" class="list-group-item"><i
                                               class="fa fa-star font-18 align-middle mr-2"></i>메세지 보관함 <span
-                                              class="badge badge-primary badge-sm float-right">?</span>
+                                              class="badge badge-primary badge-sm float-right"></span>
                                       </a>
                                       <a href="message_receive_delete_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="list-group-item"><i
                                               class="fa fa-trash font-18 align-middle mr-2"></i> 받은메세지 휴지통 <span
