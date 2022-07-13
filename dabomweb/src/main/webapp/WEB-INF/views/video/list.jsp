@@ -1,12 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@page import="com.dabom.dto.VideoUpload"%>
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
  <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
- 	<title>DABOM | µøøµªÛ æ˜∑ŒµÂ</title>
+ 	<title>DABOM | (Ï±ÑÎÑêÎ™Ö)</title>
     <link rel="icon" type="image/png" sizes="16x16" href="resources/images/dabom.jpg">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.theme.default.min.css">
@@ -23,39 +26,48 @@
                 <div class="row page-titles mx-0">
                     <div class="col-sm-6 p-md-0">
                         <div class="welcome-text">
-                            <h4>µøøµªÛ æ˜∑ŒµÂ</h4>
-                            <span class="ml-1">π´∫Ò, ƒøπˆ, √¢¿€ µÓ ø©∑Ø∫–¿« ¿€«∞¿ª ¿⁄¿Ø∑”∞‘ ø√∑¡¡÷ººø‰</span>
+                            <h4>(Ï±ÑÎÑêÎ™Ö)</h4>
+                            <span class="ml-1">(Ï±ÑÎÑê ÏÜåÍ∞ú)</span>
                         </div>
                     </div>
                     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Channel</a></li>
-                            <li class="breadcrumb-item active"><a href="javascript:void(0)">øµªÛæ˜∑ŒµÂ</a></li>
+                            <li class="breadcrumb-item active"><a href="javascript:void(0)">(Ï±ÑÎÑêÎ™Ö)</a></li>
                         </ol>
                     </div>
                 </div>
                 <!-- row -->
-                <div class="email-right-box ml-0 ml-sm-4 ml-sm-0">
-                                    <div role="toolbar" class="toolbar ml-4 ml-sm-0">
-                                        <div class="p-0">
-                                        <a href="/dabomweb/video/upload" class="btn btn-primary float-right">ªı µøøµªÛ æ˜∑ŒµÂ</a>
-                                    	</div>
-                                    </div>
-                                   <thead style="text-align:center">
-                    <tr>
-                    <th style="width:50px">π¯»£</th>
-<!--                     <th style="width:80px">∫–∑˘</th> -->
-					<th style="width:300px">¡¶∏Ò</th>
-					<th style="width:120px">¿€º∫¿⁄</th>
-					<th style="width:80px">¿€º∫¿œ</th>
-					<th style="width:70px">¡∂»∏ºˆ</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                   
-                    </tr>
-                  </tbody>
+                <div class="email-box col-lg-12">
+                                   
+                    
+                  <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title"><b>ÏóÖÎ°úÎìúÌïú ÎèôÏòÅÏÉÅ</b></h4>
+                            </div>
+                             
+                            <div class="container-fluid">
+                            <div class="row page-titles mx-0">
+                            <c:forEach var="vUpload" items="${ vList }">
+                                <div class="col-xl-4 col-xxl-6 col-lg-6 col-sm-6">
+                        <div class="card mb-3">
+                            <img src='/dabomweb/resources/upload-files/${ vUpload.thumbnailSavedName }'>
+                            <div class="card-header">
+                            
+                                <h4 class="card-title">${ vUpload.videoType } ${ vUpload.videoTitle }</h4>
+                                <h5 class="card-writer">${ vUpload.memberId }</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">${ vUpload.content }</p>
+                                <p class="card-text text-dark">${ vUpload.uploadTime }</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    </c:forEach>
+                    </div>
+                            </div>
+                        </div>
                                     <!-- panel -->
                                     <div class="row mt-4 m-4 mx-sm-4">
                                         <div class="col-7">
@@ -63,11 +75,9 @@
                                         </div>
                                         <div class="col-5">
                                             <div class="btn-group float-right">
-                                                <button class="btn btn-dark" type="button"><i
-                                                        class="fa fa-angle-left"></i>
+                                                <button class="btn btn-dark" type="button"><i class="fa fa-angle-left"></i>
                                                 </button>
-                                                <button class="btn btn-dark" type="button"><i
-                                                        class="fa fa-angle-right"></i>
+                                                <button class="btn btn-dark" type="button"><i class="fa fa-angle-right"></i>
                                                 </button>
                                             </div>
                                         </div>
@@ -79,6 +89,8 @@
 
 
 	<jsp:include page="/WEB-INF/views/modules/css/bottom.jsp" />
+	
+	
 
 </body>
 </html>

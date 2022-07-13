@@ -4,9 +4,35 @@
 				 
 <mapper namespace="com.dabom.mapper.VideoUploadMapper">
 
+	<!-- <insert id="insertVideo" parameterType="com.dabom.dto.VideoUpload">
+		INSERT INTO upload_video (open, video_title, member_id, content, video_file_name, video_saved_name, thumbnail_file_name, thumbnail_saved_name)
+		VALUES (#{open}, #{videoTitle}, #{memberId}, #{content}, #{videoFileName}, #{videoSavedName}, #{thumbnailFileName}, #{thumbnailSavedName})
+	</insert> -->
 	<insert id="insertVideo" parameterType="com.dabom.dto.VideoUpload">
-		INSERT INTO upload_video (video_title, member_id, content, video_file_name, video_saved_name, thumbnail_file_name, thumbnail_saved_name)
-		VALUES (#{videoTitle}, #{memberId}, #{content}, #{videoFileName}, #{videoSavedName}, #{thumbnailFileName}, #{thumbnailSavedName})
+		INSERT INTO upload_video (open, video_type, video_title, member_id, content, video_file_name, video_saved_name, thumbnail_file_name, thumbnail_saved_name)
+		VALUES (#{open}, #{videoType}, #{videoTitle}, #{memberId}, #{content}, #{videoFileName}, #{videoSavedName}, #{thumbnailFileName}, #{thumbnailSavedName})
 	</insert>
+
+	<select id="selectAll" resultType="com.dabom.dto.VideoUpload">
+		SELECT open open, video_type videoType, thumbnail_file_name thumbnailFileName, thumbnail_saved_name thumbnailSavedName, video_title videoTitle, upload_time uploadTime, update_time updateTime
+		FROM upload_video
+		ORDER BY video_no DESC
+	</select>
+	<!-- <select id="selectAll" resultType="com.dabom.dto.VideoUpload">
+		SELECT open open, video_type videoType, thumbnail_file_name thumbnailFileName, thumbnail_saved_name thumbnailSavedName, video_title videoTitle, upload_time uploadTime, update_time updateTime
+		FROM upload_video
+		ORDER BY video_no DESC
+	</select> -->
+	
+	<!-- <select id="viewerSelectAll" resultType="com.dabom.dto.VideoUpload">
+		SELECT thumbnail_file_name thumbnailFileName, thumbnail_saved_name thumbnailSavedName, video_title videoTitle, member_id memberId, content content, upload_time uploadTime
+		FROM upload_video
+		ORDER BY video_no DESC
+	</select> -->
+	<select id="viewerSelectAll" resultType="com.dabom.dto.VideoUpload">
+		SELECT thumbnail_file_name thumbnailFileName, thumbnail_saved_name thumbnailSavedName, video_type videoType, video_title videoTitle, member_id memberId, content content, upload_time uploadTime
+		FROM upload_video
+		ORDER BY video_no DESC
+	</select>
 
 </mapper>
