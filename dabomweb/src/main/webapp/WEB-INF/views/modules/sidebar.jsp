@@ -58,11 +58,11 @@
                                 class="icon icon-single-04"></i><span class="nav-text">Management</span></a>
                         <ul aria-expanded="false">
                         
-                        	<li><a href="/dabomweb/inquiry/inquiry">문의메세지</a></li>
+                        	<li><a href="/dabomweb/contact-message/contactMessage">문의메세지</a></li>
                             <li><a href="resources/index.html">회원계정관리</a></li>                           
                             <li><a href="resources/index2.html">채널관리</a></li>
                             <li><a href="resources/index2.html">게시글&댓글관리</a></li>
-                            <li><a href="/dabomweb/administerPrivilege/accept">업로드승인 new(${ count })</a></li>                        
+                            <li><a href="/dabomweb/administerPrivilege/accept">업로드승인 new(<span id="accept-request-count">${ count }</span>)</a></li>                        
                        
                             
                         </ul>
@@ -137,6 +137,21 @@
 	                </c:choose>
                 </ul>
             </div>
+            
+            <script type="text/javascript">
+            window.addEventListener("load", function(event) {
+            	$.ajax({
+            		"url": "/dabomweb/sidebar/accept-request-count",
+            		"method": "get",
+            		"success": function(result, status, xhr) {
+            			$("#accept-request-count").text(result);
+            		},
+            		"error": function(xhr, status, err) {
+            			consloe.log("accept request count error");
+            		}
+            	});
+            });
+            </script>
 
 
         </div>

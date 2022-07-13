@@ -169,6 +169,8 @@ public class ProduceBoardController {
 		Member loginUser = (Member)session.getAttribute("loginuser");
 		ProduceSupport produceSupport = produceBoardService.findProduceSupportByMemberIdAndProduceBoardNo(loginUser.getMemberId(), boardNo);
 		
+	
+		
 		
 		if (produceBoard == null) {
 			return "redirect:/produceBoard/actor";		
@@ -179,28 +181,25 @@ public class ProduceBoardController {
 		model.addAttribute("producerAttach", producerAttach);
 		model.addAttribute("member", member);
 		model.addAttribute("produceSupport", produceSupport);
-		
+	
 		
 		return "produceBoard/actorDetail";
 	}
 	
-	@PostMapping(path = { "/support-producer" })
+	@PostMapping(path = { "/support-producer" }, produces = {"application/json;charset=utf-8"})
 	@ResponseBody
 	public String supportProducer(int produceBoardNo, String memberId, int support, Boolean isNew) {
-		
-		//int count = produceBoardService.findAllSuppourtCount(produceBoardNo);
-		
-		if (isNew == true) {
-			//count++;
-			//produceBoardService.updateProducerSupportCount(produceBoardNo, count);
+						
+		if (isNew == true) {			
 			produceBoardService.insertProducerSupport(produceBoardNo, memberId);
 		}
-		else {
-			//count--;
-			//produceBoardService.updateProducerSupportCount(produceBoardNo, count);
+		else {			
 			produceBoardService.supportProducer(produceBoardNo, memberId, support);
 		}
-		return "success";
+		produceBoardService.updateProducerSupportCount(produceBoardNo, support == 1 ? 1 : -1);
+		int count = produceBoardService.findAllSuppourtCount(produceBoardNo);
+		
+		return String.format("{ \"result\" : \"success\", \"count\" : %d }", count);
 	}	
 	
 	
