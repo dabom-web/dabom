@@ -4,18 +4,20 @@
 
 <mapper namespace="com.dabom.mapper.MessageMapper">
 	
-	<select id="selectAllReceiveMessage" parameterType="String" resultType="Message">
+	<select id="selectAllReceiveMessage" parameterType="hashMap" resultType="Message">
 		SELECT message_no, message_title, message_content, send_date, sender, receiver, message_delete 
 		FROM message 
 		WHERE receiver = #{receiver} AND message_delete = FALSE
 		ORDER BY send_date DESC
+		LIMIT #{from} , #{sendCount}
 	</select>	
 		
-	<select id="selectAllSendMessage" parameterType="String" resultType="Message">
+	<select id="selectAllSendMessage" parameterType="hashMap" resultType="Message">
 		SELECT message_no, message_title, message_content, send_date, sender, receiver, message_delete 
 		FROM message 
 		WHERE sender = #{sender} AND message_delete = FALSE
-		ORDER BY send_date DESC
+		ORDER BY message_no DESC
+		LIMIT #{from} , #{sendCount}
 	</select>	
 		
 	<select id="selectReceiveMessageDelete" parameterType="String" resultType="Message">
@@ -30,17 +32,7 @@
 		WHERE sender = #{sender} AND message_delete = true
 		ORDER BY send_date DESC
 	</select>		
-		
-	<!-- 
-	<select id="selectAllSendMessage" parameterType="hashMap" resultType="Message">
-		SELECT message_no, message_title, message_content, send_date, sender, receiver, message_delete 
-		FROM message 
-		WHERE sender = #{sender}
-		ORDER BY message_no DESC
-		LIMIT #{from} , #{count}
-	</select>	
-	 -->
- 
+			
  	<select id="selectMessageReceiveCount" parameterType="String" resultType="int">
 		SELECT COUNT(*) 
 		FROM message 
