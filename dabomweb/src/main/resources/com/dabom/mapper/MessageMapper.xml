@@ -36,13 +36,13 @@
  	<select id="selectMessageReceiveCount" parameterType="String" resultType="int">
 		SELECT COUNT(*) 
 		FROM message 
-		where receiver = #{receiver}
+		where receiver = #{receiver} AND message_delete = FALSE
 	</select>
 	
 	<select id="selectMessageSendCount" parameterType="String" resultType="int">
 		SELECT COUNT(*) 
 		FROM message 
-		where sender = #{sender}
+		where sender = #{sender} AND message_delete = FALSE
 	</select>
 	
 	<select id="selectReceiveMessageDeleteCount" parameterType="String" resultType="int">
