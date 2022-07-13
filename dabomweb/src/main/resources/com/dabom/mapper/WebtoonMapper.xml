@@ -43,5 +43,23 @@
 		SELECT COUNT(*) FROM webtoon_board
 	</select>
   	
+  	<select id="selectByBoardNo" parameterType="int" resultType="WebtoonBoard">
+		SELECT boardno boardNo, title, memberid, readcount, regdate
+		FROM webtoon_board
+		WHERE boardno = #{boardNo} AND deleted = FALSE
+	</select>
+	
+	<insert id="insertWebtoonBoardByTitle" parameterType="WebtoonListByTitle">
+		<selectKey keyProperty="number" resultType="int" order="AFTER"> SELECT LAST_INSERT_ID()</selectKey>
+	  	INSERT INTO webtoonlistbytitle (boardno, title, memberid)
+	  	VALUES(#{boardNo}, #{title}, #{memberId})
+	</insert>
+	
+	<insert id="insertWebtoonBoardbyTitleAttach" parameterType="WebtoonListByTitleAttach">
+  		<selectKey keyProperty="attachNo" resultType="int" order="AFTER">SELECT LAST_INSERT_ID()</selectKey>
+  		INSERT webtoonlistbytitleattach (boardno, userfilename, savedfilename)
+  		VALUES (#{boardNo}, #{userFileName}, #{savedFileName})
+  	</insert>
+  	
   
   </mapper>
