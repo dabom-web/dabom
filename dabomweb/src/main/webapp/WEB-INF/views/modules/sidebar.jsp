@@ -41,7 +41,8 @@
                             <!-- 추수은 -->
                             
                             <!-- 강효준 -->
-                            <li><a href="/dabomweb/video/list">영상업로드</a></li>
+                            <li><a href="/dabomweb/video/uploadList">영상업로드</a></li>
+                            <li><a href="/dabomweb/video/list">채널 영상</a></li>
                             <li><a href="/dabomweb/video/liveStream">라이브방송</a></li>
                             <!-- 강효준 -->
                             
@@ -58,11 +59,11 @@
                                 class="icon icon-single-04"></i><span class="nav-text">Management</span></a>
                         <ul aria-expanded="false">
                         
-                        	<li><a href="resources/index2.html">문의메세지</a></li>
+                        	<li><a href="/dabomweb/inquiry/inquiry">문의메세지</a></li>
                             <li><a href="resources/index.html">회원계정관리</a></li>                           
                             <li><a href="resources/index2.html">채널관리</a></li>
                             <li><a href="resources/index2.html">게시글&댓글관리</a></li>
-                            <li><a href="/dabomweb/administerPrivilege/accept">업로드승인</a></li>                        
+                            <li><a href="/dabomweb/administerPrivilege/accept">업로드승인 new(${ count })</a></li>                        
                        
                             
                         </ul>
@@ -109,7 +110,7 @@
 	                                class="icon icon-single-04"></i><span class="nav-text">결제하기</span></a>
 	                        <ul aria-expanded="false">
 	                        
-	                            <li><a href="/dabomweb/payment/payment">결제하기</a></li>
+	                            <li><a href="/dabomweb/payment/purchase-point">결제하기</a></li>
 	                 	                            
 	                        </ul>
 	                    </li>

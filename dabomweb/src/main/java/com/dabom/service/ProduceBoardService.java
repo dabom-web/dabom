@@ -31,6 +31,12 @@ public interface ProduceBoardService {
 	
 	ProduceSupport findProduceSupportByMemberIdAndProduceBoardNo(String memberId, int produceBoardNo);
 
+	int findAllSuppourtCount(int produceBoardNo);
+
+	int findAcceptRequestCount();
+
+//void updateProducerSupportCount(int produceBoardNo, int count);
+
 //	Member findUserName();
 	
 }

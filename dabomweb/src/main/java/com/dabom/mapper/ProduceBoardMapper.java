@@ -124,10 +124,21 @@ public interface ProduceBoardMapper {
 	@Update("update produce_support "
 			+ "set support = #{ support } "
 			+ "where member_id = #{ memberId } and produceboardno = #{ produceBoardNo }")
-	void updateSupportProducer(@Param("produceBoardNo")int BoardNo, @Param("memberId")String memberId, @Param("support")int support);
+	void updateSupportProducer(@Param("produceBoardNo")int boardNo, @Param("memberId")String memberId, @Param("support")int support);
 	
 	@Select("select * from produce_support where member_id = #{ memberId } and produceboardno = #{ produceBoardNo }")
 	ProduceSupport selectProduceSupportByMemberIdAndProductBoardNo(@Param("memberId")String memberId, @Param("produceBoardNo")int produceBoardNo);
+
+	
+	@Select("select support_cnt from produceboard "
+			+ " where boardno = #{ boardNo }")
+	int selectSupportCountByProduceBoardNo(@Param("produceBoardNo")int boardNo);
+
+	@Update("update produceboard set support_cnt = #{ supportCnt } where boardno = #{ boardNo }")
+	void updateSupportCountByProduceBoardNo(@Param("boardNo")int boardNo, @Param("supportCnt")int count);
+
+	@Select("select count(*) from produceboard where ok = 0 and deleted = 0")
+	int selectAcceptRequestCount();
 
 
 	

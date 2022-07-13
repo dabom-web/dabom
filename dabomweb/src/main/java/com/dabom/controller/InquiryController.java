@@ -5,11 +5,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping(path = { "/payment" })
-public class PaymentController {
+@RequestMapping(path = { "/inquiry" })
+public class InquiryController {
 
-	@GetMapping(path = { "/payment" })
-	public String paymentForm() {
-		return "payment/payment";
+	@GetMapping(path = { "/inquiry " })
+	public String inquiryListForm() {
+		
+		return "inquiry/inquiry";
 	}
+	
 }

@@ -88,6 +88,25 @@ public class ProduceBoardServiceImpl implements ProduceBoardService {
 		return produceSupport;
 	}
 
+	@Override
+	public int findAllSuppourtCount(int produceBoardNo) {
+		int count = produceBoardMapper.selectSupportCountByProduceBoardNo(produceBoardNo); 
+		return count;
+		
+	}
+
+	@Override
+	public int findAcceptRequestCount() {
+		int count = produceBoardMapper.selectAcceptRequestCount();
+		return count;
+	}
+
+//	@Override
+//	public void updateProducerSupportCount(int produceBoardNo, int count) {
+//		produceBoardMapper.updateSupportCountByProduceBoardNo(produceBoardNo, count);
+//		
+//	}
+
 
 	
 }

@@ -11,4 +11,5 @@ public interface VideoUploadService {
 	VideoUpload findByVideoNo(int videoNo);
 	void delete(int videoNo);
 	void update(VideoUpload vUpload);
+	List<VideoUpload> viewerFindAll();
 }
