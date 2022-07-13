@@ -77,8 +77,8 @@ public class ProduceBoardServiceImpl implements ProduceBoardService {
 	}
 
 	@Override
-	public void insertProducerSupport(int produceBoardNo, String memberId) {
-		produceBoardMapper.insertProducerSupport(produceBoardNo, memberId);
+	public void insertProducerSupport(int produceBoardNo, String memberId, int support) {
+		produceBoardMapper.insertProducerSupport(produceBoardNo, memberId, support);
 		
 	}
 

@@ -22,10 +22,30 @@ public class ContactServiceImpl implements ContactService {
 	}
 
 	@Override
+	public void sendContactUser(ContactMessage contactMessage) {
+		contactMapper.insertContactUser(contactMessage);
+		
+	}
+	
+	@Override
 	public List<Member> findUserMemberList() {
 		List<Member> memberList = contactMapper.selectUserMemberId();
 		return memberList;
 	}
+
+	@Override
+	public List<ContactMessage> findAllContactList() {
+		 List<ContactMessage> contactList = contactMapper.selectAllContactList();
+		return contactList;
+	}
+
+	@Override
+	public ContactMessage findByContactNo(int contactNo) {
+		ContactMessage contactMessage = contactMapper.selectByContactNo(contactNo);
+		return contactMessage;
+	}
+
+	
 	
 	
 }
