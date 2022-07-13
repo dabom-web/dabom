@@ -44,22 +44,19 @@
                                     <div class="toolbar mb-4" role="toolbar">
                                     
                                     </div>
+                                    <form id="registerForm" action="webtoonRegister" method="post" enctype="multipart/form-data">
                                     <div class="compose-content">
-                                        <form id="regiterForm" action="webtoonRegister" method="post" enctype="multipart/form-data">
                                             <div class="form-group">
 	                                                <input type="text" name="title" class="form-control bg-transparent" placeholder=" 제목:">
 	                                            </div>
-	                                            <div class="form-group">
-	                                                <input type="text" name="regdate" class="form-control bg-transparent" placeholder=" 등록일:">
-	                                            </div>
 	                                          	 <div class="form-group">
-	                                                <input type="text" name="memberid" class="form-control bg-transparent" placeholder=" 작성자:">
+	                                                <input type="text" name="memberid" class="form-control bg-transparent" value=${ loginuser.memberId} readonly>
 	                                            </div>
 	                                     
 		                                        <h5 class="mb-4"><i class="fa fa-paperclip"></i> 썸네일</h5>
 		                                        <div class="d-flex flex-column align-items-center justify-content-center">
 		                                            <div class="fallback w-100">
-		                                                <input type="file" class="dropify" data-default-file="" />
+		                                                <input name="attach" type="file" class="dropify" data-default-file="" />
 		                                            </div>
 		                                        </div>
 	                                          
@@ -88,11 +85,19 @@
 
 	<jsp:include page="/WEB-INF/views/modules/css/bottom.jsp" />
 
+	
 	<script type="text/javascript">
+	
+	$(function(){
+		
 		$('#register').on('click',function(event){ //on : jquery의 이벤트 연결 함수 (addEventListener)
 			event.preventDefault();
 			$('#registerForm').submit();
+		
 		});
+	})
+	
+		
 	</script>
 
 </body>

@@ -15,6 +15,7 @@ import org.apache.ibatis.annotations.Update;
 
 import com.dabom.dto.Member;
 import com.dabom.dto.ProduceBoard;
+import com.dabom.dto.ProduceSupport;
 import com.dabom.dto.ProducerAttach;
 
 public interface ProduceBoardMapper {		
@@ -32,7 +33,7 @@ public interface ProduceBoardMapper {
 	@Options(useGeneratedKeys = true, keyColumn = "attachno", keyProperty = "attachNo")
 	void insertProducerAttach(ProducerAttach produceAttach);
 
-	@Select("select  boardno, infor, writedate, modifydate, type, ok, deleted, writer, contact, sns "
+	@Select("select  boardno, infor, writedate, modifydate, type, ok, deleted, writer, contact, sns, support_cnt "
 			+ "from produceboard where type = 'actor' and deleted = 0 and ok = 1 "
 			+ "order by boardno desc")
 	@Results({
@@ -45,6 +46,7 @@ public interface ProduceBoardMapper {
 		@Result(column = "deleted", property = "deleted"),
 		@Result(column = "contact", property = "contact"),
 		@Result(column = "sns", property = "sns"),
+		@Result(column = "support_cnt", property = "supportCnt"),
 		@Result(column = "writer", property = "member",
 				one = @One(select="selectMemberInfor"))
 	})
@@ -53,7 +55,7 @@ public interface ProduceBoardMapper {
 	
 	
 
-	@Select("select  boardno, infor, writedate, modifydate, type, ok, deleted, writer, contact, sns "
+	@Select("select  boardno, infor, writedate, modifydate, type, ok, deleted, writer, contact, sns, support_cnt "
 			+ "from produceboard where type = 'director' and deleted = 0 and ok = 1 "
 			+ "order by boardno desc")
 	@Results({
@@ -66,12 +68,13 @@ public interface ProduceBoardMapper {
 		@Result(column = "deleted", property = "deleted"),
 		@Result(column = "contact", property = "contact"),
 		@Result(column = "sns", property = "sns"),
+		@Result(column = "support_cnt", property = "supportCnt"),
 		@Result(column = "writer", property = "member",
 				one = @One(select="selectMemberInfor"))
 	})
 	List<ProduceBoard> selectDirector();
 
-	@Select("select  boardno, infor, writedate, modifydate, type, ok, deleted, writer, contact, sns "
+	@Select("select  boardno, infor, writedate, modifydate, type, ok, deleted, writer, contact, sns, support_cnt "
 			+ "from produceboard where ok = 0 and deleted = 0 "
 			+ "order by boardno desc")
 	@Results({
@@ -84,15 +87,16 @@ public interface ProduceBoardMapper {
 		@Result(column = "deleted", property = "deleted"),
 		@Result(column = "contact", property = "contact"),
 		@Result(column = "sns", property = "sns"),
+		@Result(column = "support_cnt", property = "supportCnt"),
 		@Result(column = "writer", property = "member",
 				one = @One(select="selectMemberInfor"))
 	})
 	List<ProduceBoard> selectProuceList();
 	
 	
-	@Select("select boardno, infor, writedate, modifydate, type, ok, deleted, writer, contact, sns "
+	@Select("select boardno, infor, writedate, modifydate, type, ok, deleted, writer, contact, sns, support_cnt "
 		+ "from  produceboard "
-		+ "where boardno = #{ boardNo } and ok = 1")
+		+ "where boardno = #{ boardNo } ")
 	ProduceBoard selectByBoardNo(@Param("boardNo") int boardNo);
 	
 	@Select("select attachno, produceboardno, userfilename, savedfilename "
@@ -109,9 +113,32 @@ public interface ProduceBoardMapper {
 	@Update("update produceboard "
 			+ "set ok = #{ ok } "
 			+ "where boardno = #{ boardNo }")
-	void updateAcceptPost(@Param("boardNo") int boardNo, @Param("ok") int ok); 
+	void updateAcceptPost(@Param("boardNo") int boardNo, @Param("ok") int ok);
+
 	
 
+	@Insert("insert into produce_support (produceboardno, member_id) "
+			+ "values (#{ produceBoardNo }, #{ memberId })")
+	void insertProducerSupport(@Param("produceBoardNo")int boardNo, @Param("memberId")String memberId); 
+	
+	@Update("update produce_support "
+			+ "set support = #{ support } "
+			+ "where member_id = #{ memberId } and produceboardno = #{ produceBoardNo }")
+	void updateSupportProducer(@Param("produceBoardNo")int boardNo, @Param("memberId")String memberId, @Param("support")int support);
+	
+	@Select("select * from produce_support where member_id = #{ memberId } and produceboardno = #{ produceBoardNo }")
+	ProduceSupport selectProduceSupportByMemberIdAndProductBoardNo(@Param("memberId")String memberId, @Param("produceBoardNo")int produceBoardNo);
+
+	
+	@Select("select support_cnt from produceboard "
+			+ " where boardno = #{ boardNo }")
+	int selectSupportCountByProduceBoardNo(@Param("produceBoardNo")int boardNo);
+
+	@Update("update produceboard set support_cnt = #{ supportCnt } where boardno = #{ boardNo }")
+	void updateSupportCountByProduceBoardNo(@Param("boardNo")int boardNo, @Param("supportCnt")int count);
+
+	@Select("select count(*) from produceboard where ok = 0 and deleted = 0")
+	int selectAcceptRequestCount();
 
 
 	

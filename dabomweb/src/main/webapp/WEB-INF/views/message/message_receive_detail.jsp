@@ -61,9 +61,13 @@
                                               class="fa fa-star font-18 align-middle mr-2"></i>메세지 보관함 <span
                                               class="badge badge-primary badge-sm float-right"></span>
                                       </a>
-                                      <a href="javascript:void()" class="list-group-item"><i
-                                              class="fa fa-trash font-18 align-middle mr-2"></i>삭제된 메세지</a>
-                                  </div>                                    
+                                      <a href="message_receive_delete_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="list-group-item"><i
+                                              class="fa fa-trash font-18 align-middle mr-2"></i> 받은메세지 휴지통 <span
+                                              class="badge badge-primary badge-sm float-right"></span></a>                                              
+                                      <a href="message_send_delete_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="list-group-item"><i
+                                              class="fa fa-trash font-18 align-middle mr-2"></i> 보낸메세지 휴지통 <span
+                                              class="badge badge-primary badge-sm float-right"></span></a>
+                                  </div>                                         
                               </div>
                                 <div class="email-right-box ml-0 ml-sm-4 ml-sm-0">
                                     <div class="row">
@@ -80,31 +84,35 @@
                                                         <a href="javascript:void()" class="text-muted ml-3"><i
                                                                 class="fa fa-long-arrow-right"></i> </a>
                                                         <a href="javascript:void()" class="text-muted ml-3"><i
-                                                                class="fa fa-trash"></i></a>
+                                                                id="delelte-btn" class="fa fa-trash"></i></a>
                                                     </div><hr>
                                                         <div class="media-body"><span class="pull-right">${ message.send_Date }</span>
-                                                            <h5 class="my-1 text-primary">보낸사람 : 
-                                                            <a href="message_receiver_direct_write?receiver=${ message.sender }&message_no=${ message.message_No}">${ message.sender }</a></h5>
-                                                            <p class="read-content-email">
-                                                                To:Me,invernessmckenzie@example.com</p>
-                                                        </div>
-                                                    </div>
-                                                    </div>
+                                                            
+                                                            <h5 class="my-1 text-primary">보낸사람 :&nbsp; 
+                                                            <div class="dropdown custom-dropdown">
+					                                            <button type="button" 
+					                                            		class="btn btn-sm btn-outline-primary" data-toggle="dropdown">&nbsp;
+					                                            		${ message.sender }
+					                                                <i class="fa fa-angle-down ml-3"></i>
+					                                            </button>
+					                                            <div class="dropdown-menu dropdown-menu-right">
+					                                                <a class="dropdown-item" href="#">채널방문</a>
+					                                                <a class="dropdown-item" 
+					                                                   href="message_direct_write?receiver=${ message.sender }&message_no=${ message.message_No}">
+					                                                   메세지 보내기</a>					                                                
+					                                            </div>
+					                                        </div>
+					                                     </div>    
+					                                                                                  
                                                     <div class="read-content-body" >                                                    
-                                                        <h5 class="pt-3">
+                                                        <h5 class="pt-3"><br>
 <% String enter2 = "\r\n"; %>
 <c:set var="enter" value="
 " />
 		                								${ fn:replace(message.message_Content, enter, '<br>') }
-                                                        <br><br></h5><hr>                                                      
-                                                    </div>  
-                                                    <div class="form-group pt-3">
-                                                        <textarea class="w-100" name="write-email" id="write-email" cols="30" rows="5" placeholder="It's really an amazing.I want to know more about it..!"></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="text-right">
-                                                    <button class="btn btn-primary btn-sl-sm mb-5" type="button">Send</button>
-                                                </div>
+                                                        <br><br><br><br><br><br><br><br><br><br></h5><hr>                                                      
+                                                    </div>                                                   
+                                                </div>                                               
                                             </div>
                                         </div>
                                     </div>
@@ -118,9 +126,21 @@
 <!--********************************** Content body end ***********************************-->
 
 
-
-
 	<jsp:include page="/WEB-INF/views/modules/css/bottom.jsp" />
+	
+	
+	<script type="text/javascript">		
+		var deleteBtn = document.querySelector('#delelte-btn');
+		deleteBtn.addEventListener('click', function (event) {
+		event.preventDefault();		
+		var ok = confirm('메세지를 삭제하시겠습니까?');				
+		if (ok) {					
+			location.href = 'delete?message_no=${ message.message_No}';
+			location.href = 'message_receive_delete_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }'				
+		}			
+	});
+	
+	</script>
 
 </body>
 </html>

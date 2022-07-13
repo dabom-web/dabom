@@ -8,14 +8,17 @@ import com.dabom.dto.Message;
 public interface MessageService {
 	
 	List<Message> findAllMessage(String receiver);
-	
-	List<Message> findAllSendMessage(String sender);
+	List<Message> findAllSendMessage(String sender);	
 	
 //	List<Message> findAllSendMessage(String sender, int pageNo, int pageSize);
 
-	int findMessageReceiveCount(String receiver);
+	List<Message> findSDeleteReceiveMessage(String receiver);
+	List<Message> findSDeleteSendMessage(String sender);
 	
+	int findMessageReceiveCount(String receiver);	
 	int findMessageSendCount(String sender);
+	int findMessageDeleteReceiveCount(String receiver);
+	int findMessageDeleteSendCount(String sender);
 
 	void writeMessage(Message message);
 	
@@ -24,6 +27,17 @@ public interface MessageService {
 	List<Member> findMemberid();
 
 	Message findByMessageNo(int messageNo);
+
+	void delete(int messageNo);
+	
+	
+
+
+	
+
+	
+
+	
 
 	
 

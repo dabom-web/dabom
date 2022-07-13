@@ -105,7 +105,7 @@ img {
 														<div class="tab-content" id="nav-tabContent">
 															<div class="tab-pane fade show active" id="list-home">
 																<h4 class="mb-4">Channel</h4>
-																<p>운영하는 채널</p>
+																<p>운영하는 채널 or 출연한 채널</p>
 															</div>
 															<div class="tab-pane fade" id="list-profile"
 																role="tabpanel">
@@ -120,7 +120,7 @@ img {
 																<c:if test="${ empty sns }"> 
 																	SNS 정보가 없습니다.
 																</c:if>
-																<p>${ produceBoard.sns }</p>
+																	<p><a href="${ produceBoard.sns }" target="_blank">${ produceBoard.sns }</a></p>
 															</div>
 															<div class="tab-pane fade" id="list-settings">
 																<h4 class="mb-4">Information</h4>
