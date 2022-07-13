@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dabom.dto.Member;
 import com.dabom.service.ProduceBoardService;
@@ -18,15 +19,18 @@ public class SidebarController {
 	@Qualifier("produceBoardService")
 	private ProduceBoardService produceBoardService;
 	
-	@GetMapping(path = { "/modules/sidebar" })
+	@GetMapping(path = { "/sidebar/accept-request-count" })
+	@ResponseBody
 	public String acceptRequestCount(Model model, HttpSession session) {
+		
 		Member loginUser = (Member)session.getAttribute("loginuser");
-		int count = 0;
-		if ( loginUser != null) {
-		count = produceBoardService.findAcceptRequestCount();
-		model.addAttribute("count", count);
+		
+		int count = 0;	
+		if( loginUser != null ) {
+			count = produceBoardService.findAcceptRequestCount();			
 		}
-		return "modules/sidebar";
+		
+		return String.valueOf(count);
 	}
 }
  

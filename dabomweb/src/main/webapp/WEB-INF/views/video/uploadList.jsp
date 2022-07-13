@@ -70,7 +70,7 @@
                                             <tr>
                                             	<td style="text-align:center"><input type="checkbox" /></td>
                                             	<td style="text-align:center">${ vUpload.open }</td>
-                                            	<td>${ vUpload.videoType }</td>
+                                            	<td style="text-align:center">${ vUpload.videoType }</td>
                                             	<td style="text-align:center"><img src='/dabomweb/resources/upload-files/${ vUpload.thumbnailSavedName }' width="100" height="50"></td>
                                             	<td>${ vUpload.videoTitle }</td>
                                             	<td style="text-align:center">${ vUpload.uploadTime }</td>
@@ -101,7 +101,7 @@
                                     </div>
                                 </div>
 											<div class="p-0">
-                                        <a href="/dabomweb/video/detail" class="btn btn-primary float-right">상세정보 작업중</a>
+                                        <a href="/dabomweb/video/detail" class="btn btn-primary float-right">상세정보 (작업중/미완성/추후 게시판에 적용 예정)</a>
                                     	</div>
             </div>
         </div>
