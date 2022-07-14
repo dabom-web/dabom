@@ -2,7 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 				 
-<mapper namespace="com.dabom.mapper.myChannelMapper">
+<mapper namespace="com.dabom.mapper.MyChannelMapper">
 
+	<insert id="insertMyChannel" parameterType="MyChannel">		
+		INSERT INTO channel (member_id, channel_name)
+		VALUES ("${memberId}", "${channel_Name}")
+	</insert>
 
 </mapper>

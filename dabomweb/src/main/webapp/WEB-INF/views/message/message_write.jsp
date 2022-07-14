@@ -151,15 +151,7 @@
 				}			
 			});
 		 });
-		$(function() {
-			$('#send').on('click',function(event) { 
-				event.preventDefault();
-				var ok = confirm('메세지를 전송할까요?');
-				if (ok) {
-					$('#messagewriteform').submit();
-				}			
-			});
-		 });
+		
 		$(function() {
 			$('#cancel').on('click',function(event) { 
 				event.preventDefault();
@@ -170,6 +162,42 @@
 			});
 		 });
 
+		
+		$('#send').on('click',function(event) { 
+			event.preventDefault();
+			if (!check()) {
+				return;
+			}					
+			var ok = confirm('메세지를 전송할까요?');
+			if (ok) {
+				$('#messagewriteform').submit();
+			}					
+		})
+		 
+		function check(){
+			var sender = document.getElementById("sender");
+			var title = document.getElementById("message_Title");
+			var receiver = document.getElementById("receiver");
+			var content = document.getElementById("message_Content");			
+			var memberList = document.getElementById("${ member.memberId }");
+			
+			if(sender.value==""){
+				alert("로그인 하세요")
+				location.href = '/dabomweb/account/login';
+				return false;		
+			}else if(title.value==""){
+				alert("제목을 입력하세요")
+				return false;
+			}else if(receiver.value==""){
+				alert("받는사람을 입력하세요")
+				return false;
+			}else if(content.value==""){
+				alert("메세지 내용을 입력하세요")
+				return false;
+			}	
+			return true;
+		}
+		
 	</script>	
 	
 </body>
