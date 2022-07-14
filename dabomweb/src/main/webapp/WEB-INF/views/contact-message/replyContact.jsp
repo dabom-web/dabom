@@ -65,8 +65,8 @@
 							<div class="email-right-box ml-0 ml-sm-4 ml-sm-0"></div>
 							<div class="toolbar mb-4" role="toolbar">	
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a class="btn btn-outline-dark"
-								id="cancel-btn" href="javascript:" style="width: 100px;"> <span
-								class="mr-2"><i class="fa fa-trash"></i></span> Cancel
+								id="back-btn" href="javascript:" style="width: 100px;"> <span
+								class="mr-2"><i class="fa fa-reply"></i></span> Back
 							</a></div>
 							<div class="email-right-box ml-0 ml-sm-4 ml-sm-0">
 								<div class="compose-content">
@@ -143,6 +143,15 @@
 				location.href = "/dabomweb/contact-message/contactMessage";	
 			}
 		});
+		
+		$('#back-btn').click(function (event) {
+			event.preventDefault();
+			var ok = confirm("작성 중인 내용이 취소됩니다. 뒤로 돌아 가겠습니까?");
+			if (ok) {
+				history.back();	
+			}
+		});
+		
 		
 	});	
 

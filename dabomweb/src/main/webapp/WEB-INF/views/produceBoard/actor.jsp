@@ -57,8 +57,17 @@
 											<tr style="height: 70px;">
 												<td style="width: 1000px;"><a href="actorDetail?boardno=${ board.boardNo }">${ board.member.userName }</a></td>
 												<td style="width: 470px;">${ board.writedate }</td>
-												<td style="width: 100px;"><a href="#"
-													class="badge badge-rounded badge-dark">신청</a></td>
+													
+													<c:set var="writer" value="${ board.writer }"/>
+													<c:if test="${ writer eq loginuser.memberId }">
+													<td style="width: 100px;">
+														<a href="#"	class="badge badge-rounded badge-danger">신청</a>	
+													</td>	
+													</c:if>
+													<td style="width: 100px;">
+														<a class="badge badge-rounded badge-dark">제한</a>
+													</td>											
+																			 
 											</tr>
 										</tbody>
 									</c:forEach>

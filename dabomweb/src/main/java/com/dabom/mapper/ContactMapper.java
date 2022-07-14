@@ -63,6 +63,11 @@ public interface ContactMapper {
 	   before = false)	
 	void insertReplyContact(ContactMessage contactMessage);
 
+	
+	@Select("select count(*) from contact_message "
+		  + "where deleted = 'false' and read_contact = 'false' and writertype = 'user'")
+	int selectReceivedContactCount();
+
 
 
 	

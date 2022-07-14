@@ -27,4 +27,6 @@ public interface ContactService {
 
 	void sendReplyContact(ContactMessage contactMessage);
 
+	int findReceivedContactMessageCount();
+
 }

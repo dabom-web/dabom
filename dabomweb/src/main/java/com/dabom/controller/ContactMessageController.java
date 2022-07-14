@@ -33,8 +33,13 @@ public class ContactMessageController {
 	
 	@GetMapping(path = { "/contactMessage" })
 	public String contactMessageList(Model model) {
-		List<ContactMessage> contactList = contactService.findContactListToAdmin();
+		
+		int count = contactService.findReceivedContactMessageCount();
+		List<ContactMessage> contactList = contactService.findContactListToAdmin();		
+		
 		model.addAttribute("contactList", contactList);
+		model.addAttribute(count);
+		
 		return "contact-message/contactMessage";
 	}
 	

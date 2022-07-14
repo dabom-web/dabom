@@ -75,6 +75,12 @@ public class ContactServiceImpl implements ContactService {
 		
 	}
 
+	@Override
+	public int findReceivedContactMessageCount() {
+		int count = contactMapper.selectReceivedContactCount();
+		return count;
+	}
+
 	
 
 	
