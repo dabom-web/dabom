@@ -32,7 +32,7 @@
 		LIMIT #{from}, #{count}
 	</select>
 	
-		<select id="selectBoardAttachByBoardNo" parameterType="int"
+	<select id="selectBoardAttachByBoardNo" parameterType="int"
 											resultType="WebtoonBoardAttach">
 		SELECT attachno, boardno, userfilename, savedfilename
 		FROM webtoon_boardattach
@@ -57,9 +57,26 @@
 	
 	<insert id="insertWebtoonBoardbyTitleAttach" parameterType="WebtoonListByTitleAttach">
   		<selectKey keyProperty="attachNo" resultType="int" order="AFTER">SELECT LAST_INSERT_ID()</selectKey>
-  		INSERT webtoonlistbytitleattach (boardno, userfilename, savedfilename)
-  		VALUES (#{boardNo}, #{userFileName}, #{savedFileName})
+  		INSERT webtoonlistbytitleattach (boardno, userfilename, savedfilename, number)
+  		VALUES (#{boardNo}, #{userFileName}, #{savedFileName}, #{number})
   	</insert>
   	
+  	<select id="webtoonListByTitleSelectAll" resultType="WebtoonListByTitle" parameterType="int">
+  		SELECT number, boardno, title, memberid, readcount, regdate, deleted
+  		FROM webtoonlistbytitle
+  		WHERE boardno = #{ boardNo }
+  		ORDER BY number DESC
+  	</select>
+  	
+  	<select id="findByNumber" parameterType="int" resultType="WebtoonListByTitle">
+  		SELECT number, boardno, title, memberid, readcount, regdate, deleted
+  		FROM webtoonlistbytitle
+  		WHERE number = #{ number }
+  	</select>
   
+  	<select id="webtoonListByTitleSelectByNumber" parameterType="hashmap" resultType="WebtoonListByTitleAttach">
+  		SELECT attachno, boardno, userfilename, savedfilename
+		FROM webtoonlistbytitleattach
+		WHERE boardno = #{boardNo} AND number= #{number}
+  	</select>
   </mapper>

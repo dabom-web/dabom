@@ -95,7 +95,6 @@ public class WebtoonController {
 	@GetMapping(path= {"/webtoonListByTitle"})
 	public String webtoonListbyTitle (@RequestParam(name="boardno", defaultValue="-1")int boardNo,
 									  @RequestParam(name="pageNo", defaultValue="-1")int pageNo,
-									  @RequestParam(defaultValue ="1")int pageNo2,
 									  Model model) {
 		
 		if(boardNo == -1 || pageNo == -1) {
@@ -107,23 +106,12 @@ public class WebtoonController {
 			return"redirect:webtoonList";
 		}
 		
-		int pageSize = 10; 
-		int pagerSize = 3;
-		int count = 0; // 전체 데이터 개수
+		List<WebtoonListByTitle> webtoonListByTitle = webtoonservice.webtoonByTitlefindAll(boardNo);
 		
-		//List<WebtoonBoard> boardList = webtoonservice.findAll();
-		
-		  List<WebtoonBoard> boardList = webtoonservice.findByPage(pageNo2, pageSize); 
-		  count = webtoonservice.findBoardCount(); // 데이터베이스에 전체 개시물 개수 조회
-		  
-		  ThePager pager2 = new ThePager(count, pageNo2, pageSize, pagerSize, "list");
-		 
-		model.addAttribute("boardList", boardList);
-		model.addAttribute("pager", pager2);
-		model.addAttribute("pageNo2", pageNo2);
 		
 		model.addAttribute("webtoonBoard", webtoonBoard);
 		model.addAttribute("pageNo", pageNo);
+		model.addAttribute("webtoonListByTitle",webtoonListByTitle);
 		
 		return "webtoon/webtoonListByTitle";
 		
@@ -168,6 +156,21 @@ public class WebtoonController {
 		webtoonservice.writeWebtoonBoardByTitle(webtoonListByTitle);
 		
 		return String.format("redirect:webtoonListByTitle?boardno=%d&pageNo=%d", webtoonListByTitle.getBoardNo(), pageNo);
+		
+	}
+	
+	@GetMapping(path= {"/detail"})
+	public String detail(@RequestParam(name="boardno", defaultValue="-1")int boardNo,
+						@RequestParam(name="pageNo", defaultValue="-1")int pageNo, int number, Model model) {
+		
+		WebtoonListByTitle webtoonListByTitle = webtoonservice.findByNumber(number);
+		
+		List<WebtoonListByTitle> webtoonListByTitleattach = webtoonservice.webtoonByTitlefindAll(boardNo);
+
+		model.addAttribute("webtoonListByTitle", webtoonListByTitle);
+		model.addAttribute("webtoonListByTitleattach",webtoonListByTitleattach);
+		
+		return "webtoon/detail";
 		
 	}
 	

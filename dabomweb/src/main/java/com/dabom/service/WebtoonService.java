@@ -19,6 +19,10 @@ public interface WebtoonService {
 	public WebtoonBoard findByBoardNo(int boardNo);
 
 	public void writeWebtoonBoardByTitle(WebtoonListByTitle webtoonListByTitle);
+
+	public List<WebtoonListByTitle> webtoonByTitlefindAll(int boardNo);
+
+	public WebtoonListByTitle findByNumber(int number);
 	
 	
 }
