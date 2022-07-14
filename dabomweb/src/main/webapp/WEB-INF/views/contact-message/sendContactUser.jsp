@@ -25,7 +25,7 @@
 			<div class="row page-titles mx-0">
 				<div class="col-sm-6 p-md-0">
 					<div class="welcome-text">
-						<h4>문의 메시지함 📬</h4>
+						<h4>${ loginuser.memberId }님의 문의 메세지함</h4>
 						<span class="ml-1">Inquiry Message</span>
 					</div>
 				</div>
@@ -38,7 +38,7 @@
 						<div class="card-body">
 							<div class="email-left-box px-0 mb-5">
 								<div class="p-0">
-									<a href="/dabomweb/contact-message/contactMessage"
+									<a href="/dabomweb/contact-message/sendContactListByUser?memberId=${ loginuser.memberId }"
 										class="btn btn-primary btn-block">Message</a>
 								</div>
 								<div class="mail-list mt-4">
@@ -48,27 +48,16 @@
 										<span class="badge badge-primary badge-sm float-right"></span>
 									</a>
 									
-									 <a href="#" class="list-group-item"> 
+									 <a href="/dabomweb/contact-message/sendContactListByUser?memberId=${ loginuser.memberId }" class="list-group-item"> 
 										 <i class="fa fa-paper-plane font-18 align-middle mr-2"></i>
 										  보낸 메세지함
 									 </a> 
-									
-									<a href="#"class="list-group-item">
+									 
+									<a href="/dabomweb/contact-message/contactMessageToUser?memberId=${ loginuser.memberId }"class="list-group-item">
 										<i class="fa fa-star font-18 align-middle mr-2"></i>
-										문의 메세지함 
+										관리자의 메세지
 										<span class="badge badge-danger text-white badge-sm float-right">47</span>
-									</a> 
-									
-									<a href="#" class="list-group-item">
-										<i class="mdi mdi-file-document-box font-18 align-middle mr-2"></i>
-										읽은메세지함
-									</a> 
-									
-									<a href="#" class="list-group-item">
-										<i class="fa fa-trash font-18 align-middle mr-2"></i>
-										삭제한 메세지
-									</a>
-
+									</a> 									
 								</div>
 
 							</div>
@@ -82,9 +71,9 @@
 									<form id="write-form" method="post" action="sendContactUser">
 										<input type="hidden" name="memberId" value="${ loginuser.memberId }">
 										<input type="hidden" name="adminId" value="admin">
-										<input type="hidden" name="type" value="user">
+										<input type="hidden" name="writertype" value="user">
 										<div class="form-group">																					
-										</div>
+								</div>
 										
 										<div class="form-group">
 											<input type="text" class="form-control bg-transparent"

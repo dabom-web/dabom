@@ -2,6 +2,8 @@ package com.dabom.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -30,36 +32,55 @@ public class ContactMessageController {
 	private AccountService accountService;
 	
 	@GetMapping(path = { "/contactMessage" })
-	public String contactMessageList() {
+	public String contactMessageList(Model model) {
+		List<ContactMessage> contactList = contactService.findContactListToAdmin();
+		model.addAttribute("contactList", contactList);
+		return "contact-message/contactMessage";
+	}
+	
+	@GetMapping(path = { "/contactMessageToUser" })
+	public String contactMessageListToUser(Model model, String memberId) {
 		
-		return "/contact-message/contactMessage";
+		List<ContactMessage> contactList = contactService.findContactListToUser(memberId);
+		model.addAttribute("contactList", contactList);
+		return "contact-message/contactMessageToUser";
 	}
 	
 	@GetMapping(path = { "/sendContact" })
 	public String sendContactForm(Model model) {
 		List<Member> memberList = contactService.findUserMemberList();
 		model.addAttribute("memberList", memberList);
-		return "/contact-message/sendContact";
+		return "contact-message/sendContact";
 	}
 	
 	@GetMapping(path = { "/sendContactUser" })
 	public String sendContactUserForm() {	
-		return "/contact-message/sendContactUser";
+		return "contact-message/sendContactUser";
 	}
 	
 	@GetMapping(path = { "/sendContactList" })
 	public String sendContactList(Model model) {		
 		List<ContactMessage> contactList = contactService.findAllContactList();
 		model.addAttribute("contactList", contactList);
-		return "/contact-message/sendContactList";
+		return "contact-message/sendContactList";
 	}
+	
+	@GetMapping(path = { "/sendContactListByUser" })
+	public String sendContactByUserToAdmin(Model model, String memberId) {
+		
+		List<ContactMessage> contactList = contactService.findSendContactListByUser(memberId);
+		model.addAttribute("contactList", contactList);
+		
+		return "contact-message/sendContactListByUser";
+	}
+	
 	
 	@PostMapping(path = { "/sendContactAdmin" })
 	public String sendContactAdmin(ContactMessage contactMessage) {	
 		
 		contactService.sendContactAdmin(contactMessage);
 		
-		return "redirect:/contact-message/sendContactList";
+		return "redirect:sendContactList";
 	}
 	
 	@PostMapping(path = { "/sendContactUser" })
@@ -67,11 +88,11 @@ public class ContactMessageController {
 		
 		contactService.sendContactUser(contactMessage);
 		
-		return "redirect:/contact-message/sendContactUser";
+		return "redirect:sendContactUser";
 	}
 	
 	@GetMapping(path = { "/sendContactAdminDetail" })
-	public String sendContactDetailForm(Model model,
+	public String sendContactDetailByAdmin(Model model,
 										@RequestParam(defaultValue = "-1" )int contactNo) {
 		
 		ContactMessage contactMessage = contactService.findByContactNo(contactNo);
@@ -85,6 +106,76 @@ public class ContactMessageController {
 		model.addAttribute("contact",contactMessage);
 		return "contact-message/sendContactAdminDetail";
 	}
+	
+	@GetMapping(path = { "/sendContactUserDetail" })
+	public String sendContactDetailByUser(Model model,
+										@RequestParam(defaultValue = "-1" )int contactNo) {
+		
+		ContactMessage contactMessage = contactService.findByContactNo(contactNo);
+		
+		if(contactNo == -1) {
+			return "redirect:/contact-message/sendContactListByUser";
+		}		
+		if (contactMessage == null) {
+			return "redirect:/contact-message/sendContactListByUser";
+		}
+		model.addAttribute("contact",contactMessage);
+		return "contact-message/sendContactUserDetail";
+	}
+	
+	@GetMapping(path = { "/receivedContactUserDetail" })
+	public String receivedContactDetailToUser(Model model,
+											  @RequestParam(defaultValue = "-1" )int contactNo) {
+		
+		ContactMessage contactMessage = contactService.findByContactNo(contactNo);
+		
+		if(contactNo == -1) {
+			return "redirect:/contact-message/sendContactList";
+		}		
+		if (contactMessage == null) {
+			return "redirect:/contact-message/sendContactList";
+		}
+		model.addAttribute("contact",contactMessage);
+		return "contact-message/receivedContactUserDetail";
+	}
+	
+	@GetMapping(path = { "/userReceivedContactDetail" })
+	public String userReceivedContactDetail(Model model, String memberId,
+											@RequestParam(defaultValue = "-1" )int contactNo) {
+		
+		ContactMessage contactMessage = contactService.findByContactNoAndMemberId(contactNo, memberId);
+		
+		if(contactNo == -1) {
+			return "redirect:/contact-message/contactMessageToUser";
+		}		
+		if (contactMessage == null) {
+			return "redirect:/contact-message/contactMessageToUser";
+		}
+		model.addAttribute("contact",contactMessage);
+		return "contact-message/userReceivedContactDetail";
+	}
+	
+	@GetMapping(path = { "/replyContact" })
+	public String replyContactForm(String memberId, Model model) {
+		
+		String memberId2 = memberId;
+		model.addAttribute("memberId", memberId2);
+		
+		return "contact-message/replyContact";
+	};
+	
+	
+	@PostMapping(path = { "/replyContact" })
+	public String sendReplyContact(ContactMessage contactMessage) {
+		
+		contactService.sendReplyContact(contactMessage);
+		
+		return "redirect:sendContactList";
+	}
+	
+	
+	
+	
 	
 	
 }

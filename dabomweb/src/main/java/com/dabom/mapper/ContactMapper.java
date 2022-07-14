@@ -12,16 +12,16 @@ import com.dabom.dto.Member;
 
 public interface ContactMapper {
 
-	@Insert("insert into contact_message (title, member_id, content, admin_id, type) "
-			+ "values (#{title}, #{memberId}, #{content}, #{adminId}, #{type}) ")
+	@Insert("insert into contact_message (title, member_id, content, admin_id, writertype) "
+			+ "values (#{title}, #{memberId}, #{content}, #{adminId}, #{writertype}) ")
 	@SelectKey(statement = "select last_insert_id()",
 	   resultType = Integer.class,
 	   keyProperty = "contactNo",
 	   before = false)	
 	void insertContactAdmin(ContactMessage contactMessage);
 	
-	@Insert("insert into contact_message (title, member_id, content, admin_id, type) "
-			+ "values (#{title}, #{memberId}, #{content}, #{adminId}, #{type}) ")
+	@Insert("insert into contact_message (title, member_id, content, admin_id, writertype) "
+			+ "values (#{title}, #{memberId}, #{content}, #{adminId}, #{writertype}) ")
 	@SelectKey(statement = "select last_insert_id()",
 	   resultType = Integer.class,
 	   keyProperty = "contactNo",
@@ -31,13 +31,44 @@ public interface ContactMapper {
 	@Select("select memberid from member")
 	List<Member> selectUserMemberId();
 
-	@Select("select contact_no contactNo, title, content, send_date sendDate, member_id memberId, admin_id adminId, read_contact readContact, deleted, type "
-			+ "from contact_message where type = 'admin' order by contact_no desc")
+	@Select("select contact_no contactNo, title, content, send_date sendDate, member_id memberId, admin_id adminId, read_contact readContact, deleted, writertype "
+			+ "from contact_message where writertype = 'admin' order by contact_no desc")
 	List<ContactMessage> selectAllContactList();
-
-	@Select("select contact_no contactNo, title, content, send_date sendDate, member_id memberId, admin_id adminId, read_contact readContact, deleted, type "
+	
+	@Select("select contact_no contactNo, title, content, send_date sendDate, member_id memberId, admin_id adminId, read_contact readContact, deleted, writertype "
+			+ "from contact_message where writertype = 'user' and member_id = #{ memberId } order by contact_no desc")
+	List<ContactMessage> selectSendContactListByUser(@Param("memberId")String memberId);
+	
+	@Select("select contact_no contactNo, title, content, send_date sendDate, member_id memberId, admin_id adminId, read_contact readContact, deleted, writertype "
+			+ "from contact_message where writertype = 'user' order by contact_no desc")
+	List<ContactMessage> selectContactListToAdmin();
+	
+	@Select("select contact_no contactNo, title, content, send_date sendDate, member_id memberId, admin_id adminId, read_contact readContact, deleted, writertype "
+			+ "from contact_message where writertype = 'admin' and member_id = #{ memberId } order by contact_no desc")
+	List<ContactMessage> selectContactListToUser(String memberId);
+	
+	@Select("select contact_no contactNo, title, content, send_date sendDate, member_id memberId, admin_id adminId, read_contact readContact, deleted, writertype "
 			+ "from contact_message where contact_no = #{ contactNo }")
 	ContactMessage selectByContactNo(@Param("contactNo")int contactNo);
+
+	@Select("select contact_no contactNo, title, content, send_date sendDate, member_id memberId, admin_id adminId, read_contact readContact, deleted, writertype "
+			+ "from contact_message where contact_no = #{ contactNo } and member_id = #{ memberId } and writertype = 'admin' ")	
+	ContactMessage selectByContactNoAndMemberId(@Param("contactNo")int contactNo,@Param("memberId")String memberId);
+
+	@Insert("insert into contact_message (title, member_id, content, admin_id, writertype) "
+			+ "values (#{title}, #{memberId}, #{content}, #{adminId}, #{writertype}) ")
+	@SelectKey(statement = "select last_insert_id()",
+	   resultType = Integer.class,
+	   keyProperty = "contactNo",
+	   before = false)	
+	void insertReplyContact(ContactMessage contactMessage);
+
+
+
+	
+	
+
+	
 
 	
 }

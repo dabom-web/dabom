@@ -22,7 +22,7 @@
 	
 	}
 	
-	a:link { color:pink; }
+	a:link { color:black; }
 	a:visited { color:black; }
 	a:hover { color:lightgray; }
 	

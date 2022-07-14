@@ -73,10 +73,10 @@
 							<div class="email-right-box ml-0 ml-sm-4 ml-sm-0">
 								<div role="toolbar" class="toolbar ml-4 ml-sm-0">
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-									<a class="btn btn-dark"
-										id="remove-btn" href="javascript:"> 
-										Remove<span class="btn-icon-right">
-										<i class="fa fa-trash"></i></span>
+									<a class="btn btn-outline-dark" id="remove-btn"
+										href="javascript:" style="width: 100px;"> 
+										<span class="mr-2"><i class="fa fa-trash"></i></span> 
+										Remove
 									</a>
 								</div>
 								<c:forEach var="contact" items="${ contactList }">
