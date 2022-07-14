@@ -53,10 +53,10 @@
                                     </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table student-data-table m-t-20">
+                                    <table class="table student-data-table table-hover m-t-20">
                                         <thead style="text-align:center">
                                             <tr>
-                                                <th><input type="checkbox" id="checkAll"></th>
+                                                <th><input type="checkbox" name="checkAll" id="checkAll"></th>
                                                 <th>공개</th>
                                                 <th>분류</th>
                                                 <th>썸네일</th>
@@ -68,19 +68,20 @@
                                         <tbody>
                                             <c:forEach var="vUpload" items="${ vUploadList }">
                                             <tr>
-                                            	<td style="text-align:center"><input type="checkbox" /></td>
+                                            	<td style="text-align:center"><input type="checkbox" name="checkBox" value="${ vUpload.videoNo }" /></td>
                                             	<td style="text-align:center">${ vUpload.open }</td>
                                             	<td style="text-align:center">${ vUpload.videoType }</td>
-                                            	<td style="text-align:center"><img src='/dabomweb/resources/upload-files/${ vUpload.thumbnailSavedName }' width="100" height="50"></td>
-                                            	<td>${ vUpload.videoTitle }</td>
+                                            	<td style="text-align:center"><a href="/dabomweb/video/update?videoNo=${ vUpload.videoNo }"><img src='/dabomweb/resources/upload-files/${ vUpload.thumbnailSavedName }' width="100" height="50"></a></td>
+                                            	<td><a href="/dabomweb/video/update?videoNo=${ vUpload.videoNo }">${ vUpload.videoTitle }</a></td>
                                             	<td style="text-align:center">${ vUpload.uploadTime }</td>
                                             	<td style="text-align:center">${ vUpload.updateTime }</td>
                                             </tr>
                                             </c:forEach>
+                                             
                                         </tbody>
                                     </table>
                                     <div class="p-0">
-                                        <a href="" class="btn btn-primary ">선택한 동영상 삭제</a>
+                                        <button type="button" id="to-delete-list-btn" class="btn btn-primary">선택한 동영상 삭제</button>
                                     	</div>
                                 </div>
                             </div>
@@ -100,23 +101,42 @@
                                         </div>
                                     </div>
                                 </div>
-											<div class="p-0">
-                                        <a href="/dabomweb/video/detail" class="btn btn-primary float-right">상세정보 (작업중/미완성/추후 게시판에 적용 예정)</a>
-                                    	</div>
+											
             </div>
         </div>
 
 
 	<jsp:include page="/WEB-INF/views/modules/css/bottom.jsp" />
 	
+	
 	$("#checkAll").change(function(){
 
-  if (! $('input:checkbox').is('checked')) {
-      $('input:checkbox').prop('checked',true);
-  } else {
-      $('input:checkbox').prop('checked', false);
-  }       
-});
-
+		  if (! $('input:checkbox').is('checked')) {
+		      $('input:checkbox').prop('checked',true);
+		  } else {
+		      $('input:checkbox').prop('checked', false);
+		  }       
+		});
+	<script type="text/javascript">
+	$('#to-delete-list-btn').click(function(event){
+		event.preventDefault();
+		var ok = confirm('삭제한 영상은 복구가 불가능합니다. 정말 선택된 영상들을 삭제하시겠습니까?');
+		if (ok){
+			location.href = 'delete.action?videoNo=${vUpload.videoNo}';
+		}
+		});
+	
+	$("input:checkbox[name='checkAll']").bind('click',function(){
+		if($(this).is(":checked") == true){
+			$("input:checkbox[name='checkBox']").each(function(){
+				$(this).attr("checked", true);
+			});
+		} else {
+			$("input:checkbox[name='checkBox']").each(function(){
+				$(this).attr("checked", false);
+			});
+		}
+	});
+	</script>
 </body>
 </html>

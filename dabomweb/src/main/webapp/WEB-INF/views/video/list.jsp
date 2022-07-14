@@ -16,6 +16,27 @@
     <link href="/dabomweb/resources/vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet">
     <link href="/dabomweb/resources/css/style.css" rel="stylesheet">
 
+<style type="text/css">
+
+	img {
+		 object-fit: cover;
+ 		 overflow: hidden;
+	}
+	
+	.box {
+		width: 100%;
+		height: 300px;
+	}
+	
+	.text-box {
+			  overflow: hidden;
+			  text-overflow: ellipsis;
+			  white-space: nowrap;
+			  width: 100%;
+			  
+			}
+	
+</style>
 </head>
 <body>
 	
@@ -48,23 +69,33 @@
                              
                             <div class="container-fluid">
                             <div class="row page-titles mx-0">
+                            
                             <c:forEach var="vUpload" items="${ vList }">
                                 <div class="col-xl-4 col-xxl-6 col-lg-6 col-sm-6">
+                                <c:choose>
+                            <c:when test="${ vUpload.open }">
+                            	
+                            </c:when>
+                            <c:otherwise>
+                                <a href="/dabomweb/video/detail?videoNo=${ vUpload.videoNo }">
                         <div class="card mb-3">
-                            <img src='/dabomweb/resources/upload-files/${ vUpload.thumbnailSavedName }'>
+                            <img class="box" src='/dabomweb/resources/upload-files/${ vUpload.thumbnailSavedName }'>
                             <div class="card-header">
-                            
-                                <h4 class="card-title">${ vUpload.videoType } ${ vUpload.videoTitle }</h4>
+                                <h4 class="card-title">[${ vUpload.videoType }] ${ vUpload.videoTitle }</h4>
                                 <h5 class="card-writer">${ vUpload.memberId }</h5>
                             </div>
                             <div class="card-body">
-                                <p class="card-text">${ vUpload.content }</p>
+                                <p class="card-text text-box">${ vUpload.content }</p>
                                 <p class="card-text text-dark">${ vUpload.uploadTime }</p>
                             </div>
                         </div>
-                        
+                         </a>
+                         </c:otherwise>
+                         </c:choose>
                     </div>
+                    
                     </c:forEach>
+                   
                     </div>
                             </div>
                         </div>

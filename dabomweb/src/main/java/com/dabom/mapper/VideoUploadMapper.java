@@ -12,4 +12,10 @@ public interface VideoUploadMapper {
 
 	List<VideoUpload> viewerSelectAll();
 
+	VideoUpload selectByVideoNo(int videoNo);
+
+	void update(VideoUpload vUpload);
+
+	void delete(int videoNo);
+
 }

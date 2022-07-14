@@ -31,20 +31,22 @@ public class VideoUploadServiceImpl implements VideoUploadService {
 
 	@Override
 	public VideoUpload findByVideoNo(int videoNo) {
-		// TODO Auto-generated method stub
-		return null;
+		VideoUpload vUpload = videoUploadMapper.selectByVideoNo(videoNo);
+		return vUpload;
+		
 	}
 
 	@Override
 	public void delete(int videoNo) {
-		// TODO Auto-generated method stub
+
+		videoUploadMapper.delete(videoNo);
 		
 	}
 
 	@Override
 	public void update(VideoUpload vUpload) {
-		// TODO Auto-generated method stub
 		
+		videoUploadMapper.update(vUpload);
 	}
 
 	@Override

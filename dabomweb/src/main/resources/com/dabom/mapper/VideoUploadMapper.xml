@@ -4,35 +4,43 @@
 				 
 <mapper namespace="com.dabom.mapper.VideoUploadMapper">
 
-	<!-- <insert id="insertVideo" parameterType="com.dabom.dto.VideoUpload">
-		INSERT INTO upload_video (open, video_title, member_id, content, video_file_name, video_saved_name, thumbnail_file_name, thumbnail_saved_name)
-		VALUES (#{open}, #{videoTitle}, #{memberId}, #{content}, #{videoFileName}, #{videoSavedName}, #{thumbnailFileName}, #{thumbnailSavedName})
-	</insert> -->
+	
 	<insert id="insertVideo" parameterType="com.dabom.dto.VideoUpload">
 		INSERT INTO upload_video (open, video_type, video_title, member_id, content, video_file_name, video_saved_name, thumbnail_file_name, thumbnail_saved_name)
 		VALUES (#{open}, #{videoType}, #{videoTitle}, #{memberId}, #{content}, #{videoFileName}, #{videoSavedName}, #{thumbnailFileName}, #{thumbnailSavedName})
 	</insert>
 
 	<select id="selectAll" resultType="com.dabom.dto.VideoUpload">
-		SELECT open open, video_type videoType, thumbnail_file_name thumbnailFileName, thumbnail_saved_name thumbnailSavedName, video_title videoTitle, upload_time uploadTime, update_time updateTime
+		SELECT open open, video_no videoNo, video_type videoType, thumbnail_file_name thumbnailFileName, thumbnail_saved_name thumbnailSavedName, video_title videoTitle, upload_time uploadTime, update_time updateTime
 		FROM upload_video
 		ORDER BY video_no DESC
 	</select>
-	<!-- <select id="selectAll" resultType="com.dabom.dto.VideoUpload">
-		SELECT open open, video_type videoType, thumbnail_file_name thumbnailFileName, thumbnail_saved_name thumbnailSavedName, video_title videoTitle, upload_time uploadTime, update_time updateTime
-		FROM upload_video
-		ORDER BY video_no DESC
-	</select> -->
 	
-	<!-- <select id="viewerSelectAll" resultType="com.dabom.dto.VideoUpload">
-		SELECT thumbnail_file_name thumbnailFileName, thumbnail_saved_name thumbnailSavedName, video_title videoTitle, member_id memberId, content content, upload_time uploadTime
-		FROM upload_video
-		ORDER BY video_no DESC
-	</select> -->
 	<select id="viewerSelectAll" resultType="com.dabom.dto.VideoUpload">
-		SELECT thumbnail_file_name thumbnailFileName, thumbnail_saved_name thumbnailSavedName, video_type videoType, video_title videoTitle, member_id memberId, content content, upload_time uploadTime
+	<![CDATA[
+		SELECT video_no videoNo, thumbnail_file_name thumbnailFileName, thumbnail_saved_name thumbnailSavedName, video_type videoType, video_title videoTitle, member_id memberId, content content, upload_time uploadTime
 		FROM upload_video
+		WHERE open <> '비공개'
 		ORDER BY video_no DESC
+	]]>
+	</select><!-- <![CDATA[]]> 특수문자 무시하고 읽게 하는 기능 -->
+	
+	<select id="selectByVideoNo" parameterType="int" resultType="com.dabom.dto.VideoUpload">
+		SELECT video_no videoNo, video_file_name videoFileName, video_saved_name videoSavedName, thumbnail_file_name thumbnailFileName, thumbnail_saved_name thumbnailSavedName, video_type videoType, video_title videoTitle, content content, upload_time uploadTime
+		FROM upload_video
+		WHERE video_no = #{videoNo}
+	</select>
+	
+	<select id="update" parameterType="com.dabom.dto.VideoUpload">
+		UPDATE upload_video
+		SET open = #{open}, video_type = #{videoType}, video_title = #{videoTitle}, content = #{content}, video_file_name = #{videoFileName}, video_saved_name = #{videoSavedName}, thumbnail_file_name = #{thumbnailFileName}, thumbnail_saved_name = #{thumbnailSavedName}
+		WHERE video_no = #{videoNo}
+	</select>
+	
+	<select id="delete" parameterType="int">
+		DELETE 
+		FROM upload_video
+		WHERE video_no = #{videoNo}
 	</select>
 
 </mapper>
