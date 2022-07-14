@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" 
+		 contentType="text/html; charset=utf-8"
+    	 pageEncoding="utf-8"%>  
+    	 
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
  	<title>MESSAGE</title>
-    <link rel="icon" type="image/png" sizes="16x16" href="resources/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/dabomweb/resources/images/dabom.jpg">
     <link rel="stylesheet" href="resources/vendor/owl-carousel/css/owl.carousel.min.css">
     <link rel="stylesheet" href="resources/vendor/owl-carousel/css/owl.theme.default.min.css">
     <link href="resources/vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet">

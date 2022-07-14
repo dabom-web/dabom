@@ -22,10 +22,67 @@ public class ContactServiceImpl implements ContactService {
 	}
 
 	@Override
+	public void sendContactUser(ContactMessage contactMessage) {
+		contactMapper.insertContactUser(contactMessage);
+		
+	}
+	
+	@Override
 	public List<Member> findUserMemberList() {
 		List<Member> memberList = contactMapper.selectUserMemberId();
 		return memberList;
 	}
+
+	@Override
+	public List<ContactMessage> findAllContactList() {
+		 List<ContactMessage> contactList = contactMapper.selectAllContactList();
+		return contactList;
+	}
+
+	@Override
+	public List<ContactMessage> findSendContactListByUser(String memberId) {
+		 List<ContactMessage> contactList = contactMapper.selectSendContactListByUser(memberId);
+		return contactList;
+	}
+	
+	@Override
+	public List<ContactMessage> findContactListToAdmin() {
+		 List<ContactMessage> contactList = contactMapper.selectContactListToAdmin();
+		return contactList;
+	}
+	
+	@Override
+	public List<ContactMessage> findContactListToUser(String memberId) {
+		 List<ContactMessage> contactList = contactMapper.selectContactListToUser(memberId);
+		return contactList;
+	}
+	
+	@Override
+	public ContactMessage findByContactNo(int contactNo) {
+		ContactMessage contactMessage = contactMapper.selectByContactNo(contactNo);
+		return contactMessage;
+	}
+
+	@Override
+	public ContactMessage findByContactNoAndMemberId(int contactNo, String memberId) {
+		ContactMessage contactMessage = contactMapper.selectByContactNoAndMemberId(contactNo, memberId);
+		return contactMessage;
+	}
+
+	@Override
+	public void sendReplyContact(ContactMessage contactMessage) {
+		contactMapper.insertReplyContact(contactMessage);
+		
+	}
+
+	
+
+	
+	
+
+
+
+	
 	
 	
 }

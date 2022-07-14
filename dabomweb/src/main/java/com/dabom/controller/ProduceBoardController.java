@@ -191,7 +191,7 @@ public class ProduceBoardController {
 	public String supportProducer(int produceBoardNo, String memberId, int support, Boolean isNew) {
 						
 		if (isNew == true) {			
-			produceBoardService.insertProducerSupport(produceBoardNo, memberId);
+			produceBoardService.insertProducerSupport(produceBoardNo, memberId, support);
 		}
 		else {			
 			produceBoardService.supportProducer(produceBoardNo, memberId, support);

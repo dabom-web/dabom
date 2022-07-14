@@ -53,6 +53,10 @@ public class MessageController {
 		model.addAttribute("pageNo", pageNo);		
 		return "message/message_receive_list";			
 	}
+	@PostMapping(path = { "/message_receive_list" })
+	public String messageReceiveList2() {
+		return "message/message_receive_list";	
+	}
 	
 	@GetMapping(path = { "/message_send_list" })
 	public String messageSendList(@RequestParam(defaultValue = "1")int pageNo, 
@@ -78,7 +82,11 @@ public class MessageController {
 	}
 	
 	@GetMapping(path = { "/message_receive_delete_list" })
-	public String messageReceiveDeleteList(String receiver, String sender, Model model) {
+	public String messageReceiveDeleteList(@RequestParam(defaultValue = "1")int pageNo,
+										   String receiver, String sender, Model model) {
+		
+		int pageSize = 10;
+		int pagerSize = 1;
 		
 		int receiveCount = 0;
 		receiveCount = messageService.findMessageReceiveCount(receiver);
@@ -90,14 +98,21 @@ public class MessageController {
 		deleteReceiveCount = messageService.findMessageDeleteReceiveCount(receiver);
 		model.addAttribute("deleteReceiveCount",deleteReceiveCount);
 			
-		List<Message> messageList3 = messageService.findSDeleteReceiveMessage(receiver);
-		
-		model.addAttribute("messageList3", messageList3);
+		List<Message> messageList3 = messageService.findSDeleteReceiveMessage(receiver, pageNo, pageSize);
+		TheMessagePager messagePager = new TheMessagePager(deleteReceiveCount, pageNo, pageSize, pagerSize, sender, "message_receive_delete_list");
+		model.addAttribute("messageList3" , messageList3);	
+		model.addAttribute("messagePager" ,messagePager);	
+		model.addAttribute("pageSize" ,pageSize);
+		model.addAttribute("pageNo", pageNo);
 		return "message/message_receive_delete_list";
 	}
 	
 	@GetMapping(path = { "/message_send_delete_list" })
-	public String messageSendDeleteList(String receiver, String sender, Model model) {
+	public String messageSendDeleteList(@RequestParam(defaultValue = "1")int pageNo,
+										String receiver, String sender, Model model) {
+		
+		int pageSize = 10;
+		int pagerSize = 1;
 		
 		int receiveCount = 0;
 		receiveCount = messageService.findMessageReceiveCount(receiver);
@@ -109,9 +124,12 @@ public class MessageController {
 		deleteSendCount = messageService.findMessageDeleteSendCount(sender);
 		model.addAttribute("deleteSendCount",deleteSendCount);
 			
-		List<Message> messageList4 = messageService.findSDeleteSendMessage(sender);
-		
-		model.addAttribute("messageList4", messageList4);
+		List<Message> messageList4 = messageService.findSDeleteSendMessage(sender, pageNo, pageSize);
+		TheMessagePager messagePager = new TheMessagePager(deleteSendCount, pageNo, pageSize, pagerSize, sender, "message_send_delete_list");
+		model.addAttribute("messageList4", messageList4);	
+		model.addAttribute("messagePager" ,messagePager);	
+		model.addAttribute("pageSize" ,pageSize);
+		model.addAttribute("pageNo", pageNo);		
 		return "message/message_send_delete_list";
 	}
 	

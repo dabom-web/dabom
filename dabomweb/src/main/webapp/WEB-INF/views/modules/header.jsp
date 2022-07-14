@@ -42,14 +42,12 @@
                             </div>
                         </div>
 
-                        <ul class="navbar-nav header-right">                        	
+                        <ul class="navbar-nav header-right">                        	                       	
                             <li class="nav-item dropdown notification_dropdown">                             	                        
-                                <a class="nav-link" href="#" role="button" data-toggle="dropdown">                             
-                                    <i class="mdi mdi-bell"></i>
-                                    <div class="pulse-css"></div>
+                                <a style="font-size: 6pt;" href="/dabomweb/contact-message/sendContactUser">                             
+                                    관리자에게 문의하기                                   
                                 </a>                                
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    
+                                <div class="dropdown-menu dropdown-menu-right">                                    
                                 </div>
                             </li>
                             <li class="nav-item dropdown header-profile">
@@ -64,7 +62,7 @@
                                     
                                     <c:choose>
                                     <c:when test="${ !empty loginuser.memberId }">                                    
-                                    <a href="/dabomweb/message/message_receive_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId}&pageNo=${pageNo}" class="dropdown-item">
+                                    <a href="/dabomweb/message/message_receive_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId}" class="dropdown-item">
                                         <i class="icon-envelope-open"></i>
                                         <span class="ml-2">Message </span>
                                     </a>

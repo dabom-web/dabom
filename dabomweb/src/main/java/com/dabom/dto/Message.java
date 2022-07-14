@@ -11,7 +11,8 @@ public class Message {
 	private String send_Date;
 	private boolean message_Delete;
 	private String sender;
-	private String receiver;	
+	private String receiver;
+	private boolean message_Save;
 	
 		
 }	

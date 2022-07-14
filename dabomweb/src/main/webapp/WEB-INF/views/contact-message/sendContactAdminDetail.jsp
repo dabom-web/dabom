@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    pageEncoding="UTF-8"%>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
  <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
- 	<title>문의메시지</title>
+ 	<title>보낸메세지</title>
     <link rel="icon" type="image/png" sizes="16x16" href="resources/images/dabom.jpg">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.theme.default.min.css">
@@ -69,35 +69,33 @@
 									</a>
 
 								</div>
-
 							</div>
-							<div class="email-right-box ml-0 ml-sm-4 ml-sm-0">
-								<div role="toolbar" class="toolbar ml-4 ml-sm-0">
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-									<a class="btn btn-outline-dark" id="remove-btn"
-										href="javascript:" style="width: 100px;"> 
-										<span class="mr-2"><i class="fa fa-trash"></i></span> 
-										Remove
-									</a>
-								</div>
-								<c:forEach var="contact" items="${ contactList }">
-									<div class="email-list mt-4">
-										<div class="message">
-											<div>
-												<div class="d-flex message-single">
-													<div class="custom-control custom-checkbox pl-4">
-														<input type="checkbox">
-													</div>
-												</div>
-												<a href="receivedContactUserDetail?contactNo=${ contact.contactNo }"
-													class="col-mail col-mail-2">
-													<div>${ contact.title }</div>												
-												</a>
+							<div class="email-right-box ml-0 ml-sm-4 ml-sm-0"></div>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<a class="btn btn-outline-dark" id="remove-btn"
+								href="javascript:" style="width: 100px;"> 
+								<span class="mr-2"><i class="fa fa-trash"></i></span> 
+								Remove
+							</a>
+							<div class="col-lg-12">
 
-											</div>
+								<div class="card">
+
+									<div class="card-header d-block">
+										제목
+										<h4 class="card-title" style="font-weight: bold;">${ contact.title }</h4>
+										<p class="mb-0 subtitle">전송일&nbsp;&nbsp; ${ contact.sendDate }</p>
+									</div>
+									<div class="col-xl-6">
+										<div class="alert alert-dark notification">
+											<p class="notificaiton-title">
+												<strong>${ contact.adminId }관리자님이</strong> ${ contact.memberId }회원님에게
+												보낸 메세지입니다.
+											</p><br>
+											<strong>${ contact.content }</strong>
 										</div>
 									</div>
-								</c:forEach>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -106,11 +104,7 @@
 		</div>
 	</div>
 
-
-
-
-
 	<jsp:include page="/WEB-INF/views/modules/css/bottom.jsp" />
-
+	
 </body>
 </html>
