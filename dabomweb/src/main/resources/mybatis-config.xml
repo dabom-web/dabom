@@ -11,6 +11,8 @@
 		<typeAlias type="com.dabom.dto.MyChannel" alias="MyChannel" />
 		<typeAlias type="com.dabom.dto.WebtoonBoard" alias="WebtoonBoard"/>
 		<typeAlias type="com.dabom.dto.WebtoonBoardAttach" alias="WebtoonBoardAttach"/>
+		<typeAlias type="com.dabom.dto.WebtoonListByTitle" alias="WebtoonListByTitle"/>
+		<typeAlias type="com.dabom.dto.WebtoonListByTitleAttach" alias="WebtoonListByTitleAttach"/>
 	</typeAliases>
 
 	<mappers>	

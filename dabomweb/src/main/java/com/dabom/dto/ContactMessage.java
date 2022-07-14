@@ -15,6 +15,7 @@ public class ContactMessage {
 	private String adminId;
 	private Boolean readContact;
 	private Boolean deleted;
+	private String writertype;
 	
 	private Member member;
 }

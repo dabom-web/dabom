@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
  	<title>MESSAGEWRITE</title>
-    <link rel="icon" type="image/png" sizes="16x16" href="resources/images/dabom.jpg">
+    <link rel="icon" type="image/png" sizes="16x16" href="/dabomweb/resources/images/dabom.jpg">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.theme.default.min.css">
     <link href="/dabomweb/resources/vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet">
@@ -151,15 +151,7 @@
 				}			
 			});
 		 });
-		$(function() {
-			$('#send').on('click',function(event) { 
-				event.preventDefault();
-				var ok = confirm('메세지를 전송할까요?');
-				if (ok) {
-					$('#messagewriteform').submit();
-				}			
-			});
-		 });
+		
 		$(function() {
 			$('#cancel').on('click',function(event) { 
 				event.preventDefault();
@@ -170,6 +162,42 @@
 			});
 		 });
 
+		
+		$('#send').on('click',function(event) { 
+			event.preventDefault();
+			if (!check()) {
+				return;
+			}					
+			var ok = confirm('메세지를 전송할까요?');
+			if (ok) {
+				$('#messagewriteform').submit();
+			}					
+		})
+		 
+		function check(){
+			var sender = document.getElementById("sender");
+			var title = document.getElementById("message_Title");
+			var receiver = document.getElementById("receiver");
+			var content = document.getElementById("message_Content");			
+			var memberList = document.getElementById("${ member.memberId }");
+			
+			if(sender.value==""){
+				alert("로그인 하세요")
+				location.href = '/dabomweb/account/login';
+				return false;		
+			}else if(title.value==""){
+				alert("제목을 입력하세요")
+				return false;
+			}else if(receiver.value==""){
+				alert("받는사람을 입력하세요")
+				return false;
+			}else if(content.value==""){
+				alert("메세지 내용을 입력하세요")
+				return false;
+			}	
+			return true;
+		}
+		
 	</script>	
 	
 </body>

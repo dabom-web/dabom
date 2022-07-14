@@ -132,7 +132,7 @@
 												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 												 <a id="write" href="javascript:">
 												 <button class="btn btn-primary">Submit</button></a>
-												  <a id="cancel" href="#">
+												  <a id="cancel" href="javascript:history.back();">
 												  <button class="btn btn-primary">Cancel</button></a>
 												 
 											</div>

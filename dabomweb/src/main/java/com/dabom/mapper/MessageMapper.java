@@ -8,6 +8,8 @@ import org.apache.ibatis.annotations.Mapper;
 import com.dabom.dto.Member;
 import com.dabom.dto.Message;
 
+import lombok.Setter;
+
 @Mapper
 public interface MessageMapper {	
 	
@@ -24,8 +26,8 @@ public interface MessageMapper {
 //			+ "ORDER BY send_date DESC ")
 //	List<Message> selectAllSendMessage(String sender);
 	List<Message> selectAllSendMessage(HashMap<String, Object> params);	
-	List<Message> selectReceiveMessageDelete(String receiver);
-	List<Message> selectSendMessageDelete(String sender);
+	List<Message> selectReceiveMessageDelete(HashMap<String, Object> params);	
+	List<Message> selectSendMessageDelete(HashMap<String, Object> params);	
 
 //	@Select("SELECT COUNT(*) FROM message")
 	int selectMessageReceiveCount(String receiver);

@@ -29,8 +29,23 @@
 	
 	<context:component-scan base-package="com.dabom.controller" />
 	
-	
-	
+	<interceptors>
+		<interceptor>
+			<mapping path="/administerPrivilege/**"/>
+			<mapping path="/collect/**"/> 
+			<mapping path="/contact-message/**"/> 
+			<mapping path="/message/**"/> 
+			<mapping path="/modules/**"/> 
+			<mapping path="/mychannel/**"/> 
+			<mapping path="/payment/**"/> 
+			<mapping path="/produceBoard/**"/>  
+			<mapping path="/video/**"/>
+			<mapping path="/webtoon/**"/>	
+			<mapping path="/home"/>
+			<mapping path="/"/>			 	
+			<beans:bean class="com.dabom.interceptor.AuthInterceptor"></beans:bean>
+		</interceptor>
+	</interceptors>	
 	
 	
 	

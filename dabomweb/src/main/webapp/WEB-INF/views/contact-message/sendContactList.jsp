@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,62 +67,36 @@
 										<i class="fa fa-trash font-18 align-middle mr-2"></i>
 										삭제한 메세지
 									</a>
-								</div>
 
+								</div>
 							</div>
 							<div class="email-right-box ml-0 ml-sm-4 ml-sm-0">
 								<div role="toolbar" class="toolbar ml-4 ml-sm-0">
-
-									<div class="btn-group mb-4">
-										<button aria-expanded="false" data-toggle="dropdown"
-											class="btn btn-dark dropdown-toggle" type="button">
-											More <span class="caret"></span>
-										</button>
-										<div class="dropdown-menu">
-											<a href="javascript: void(0);" class="dropdown-item">Mark
-												as Unread</a> <a href="javascript: void(0);"
-												class="dropdown-item">Add to Tasks</a> <a
-												href="javascript: void(0);" class="dropdown-item">Add
-												Star</a> <a href="javascript: void(0);" class="dropdown-item">Mute</a>
-										</div>
-									</div>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+									<a class="btn btn-outline-dark" id="remove-btn"
+										href="javascript:" style="width: 100px;"> 
+										<span class="mr-2"><i class="fa fa-trash"></i></span> 
+										Remove
+									</a>
 								</div>
-								<div class="email-list mt-4">
-									<div class="message">
-										<div>
-											<div class="d-flex message-single">
-												<div class="custom-control custom-checkbox pl-4">
-													<input type="checkbox">
+								<c:forEach var="contact" items="${ contactList }">
+									<div class="email-list mt-4">
+										<div class="message">
+											<div>
+												<div class="d-flex message-single">
+													<div class="custom-control custom-checkbox pl-4">
+														<input type="checkbox">
+													</div>
 												</div>
-												<div class="ml-2">
-													<button class="border-0 bg-transparent align-middle p-0">
-														<i class="fa fa-star" aria-hidden="true"></i>
-													</button>
-												</div>
-											</div>
-											<a href="email-read.html" class="col-mail col-mail-2">
-												<div class="subject">Ingredia Nutrisha, A collection
-													of textile samples lay spread out on the table - Samsa was
-													a travelling salesman - and above it there hung a picture</div>
-												<div class="date">11:49 am</div>
-											</a>
-										</div>
-									</div>
+												<a href="sendContactAdminDetail?contactNo=${ contact.contactNo }"
+													class="col-mail col-mail-2">
+													<div>${ contact.title }</div>												
+												</a>
 
-
-									<div class="row mt-4 m-4 mx-sm-4">
-										<div class="col-5">
-											<div class="btn-group float-right">
-												<button class="btn btn-dark" type="button">
-													<i class="fa fa-angle-left"></i>
-												</button>
-												<button class="btn btn-dark" type="button">
-													<i class="fa fa-angle-right"></i>
-												</button>
 											</div>
 										</div>
 									</div>
-								</div>
+								</c:forEach>
 							</div>
 						</div>
 					</div>

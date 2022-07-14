@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping(path = { "/collect" })
-public class CollectController {
-
+public class CollectController {	
+	
 	@GetMapping(path = { "/chart" })
 	public String chartList() {
 		return "collect/chart";

@@ -58,7 +58,10 @@
 											<td style="width: 1000px;"><a href="directorDetail?boardno=${ board.boardNo }">${ board.member.userName }</a></td>											
 											<td style="width: 470px;">${ board.writedate }</td>										
 											<td style="width: 100px;">
-											<a href="#" class="badge badge-rounded badge-dark">신청</a>
+											<c:if test="${ loginuser.memberId eq board.writer }">
+												<a href="#"	class="badge badge-rounded badge-danger">신청</a>
+												</c:if>
+												<a class="badge badge-rounded badge-dark">제한</a>												
                                             </td>											
 										</tr>										
 									</tbody>

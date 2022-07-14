@@ -74,49 +74,44 @@
 							</div>
 							<div class="email-right-box ml-0 ml-sm-4 ml-sm-0">
 								<div class="toolbar mb-4" role="toolbar">	
-									<div class="btn-group mb-1">
-										<input type="hidden" name="adminId" value="${ loginuser.memberId }">
+									<div class="btn-group mb-1">										
 										<a class="btn btn-rounded btn-outline-dark">
 											관리자 : ${ loginuser.memberId } 											
 										</a>									
 									</div>
 								</div>
 								<div class="compose-content">
-									<form id="write-form"
-										  method="post"
-										  action="sendContactAdmin">										  
+									<form id="write-form" method="post" action="sendContactAdmin">
+									 <input type="hidden" name="adminId" value="${ loginuser.memberId }">
+									 <input type="hidden" name="writertype" value="admin">
 										<div class="form-group">
-                                                <input type="text"
-                                                	   name="meberId"
-                                                	   list="seach-member"                                                 	   
-                                                	   class="form-control bg-transparent" 
-                                               		   placeholder="받는사람 : ">
-                                               	 <datalist id="seach-member">
-                                               	  <c:forEach var="member" items="${ memberList }">
-								                     <option value="${ member.memberId }"></option>
-				                        		  </c:forEach>
-						                         </datalist>
-                                            </div> 
+											<label>받는사람 :</label>
+											 <select class="form-control" id="sel1" name="memberId">
+												<c:forEach var="user" items="${ memberList }">
+													<option>${ user.memberId }</option>
+												</c:forEach>
+											</select>
+										</div>
+										
 										<div class="form-group">
 											<input type="text" class="form-control bg-transparent"
-												   name="title" placeholder=" 제 목 :">
+												name="title" id="title" placeholder=" 제 목 :">
 										</div>
 										<div class="form-group">
-											<textarea id="email-compose-editor" name="content"
+											<textarea id="content" name="content"
 												class="textarea_editor form-control bg-transparent"
-												rows="15" placeholder="내용 입력..">
-											</textarea>
+												rows="15" placeholder="내용 입력.."></textarea>
 										</div>
 									</form>
-																	
+
 								</div>
 								<div class="text-left">
-									<a class="btn btn-rounded btn-outline-dark"
+									<a class="btn btn-outline-dark"
 									   id="send-btn" href="javascript:" >
 										<span class="mr-2"><i class="fa fa-paper-plane"></i></span>
 										Send
 									</a>
-									<a class="btn btn-rounded btn-outline-dark" >
+									<a class="btn btn-outline-dark" id="cancel-btn" href="javascript:">
 										<span class="mr-2"><i class="fa fa-times" aria-hidden="true"></i></span>
 										Cancel
 									</a>
@@ -135,9 +130,45 @@
 	$(function () {
 		$('#send-btn').on('click', function (event) {
 			event.preventDefault();
-			$('#write-form').submit();			
-		});		
+			
+			var title = document.querySelector('#title');
+			var content = document.querySelector('#content');
+			
+			if (!title.value) {
+				alert('메세지 제목을 입력하세요.');
+				return false;
+			} else if (!content.value) {
+				alert('메세지 내용을 입력하세요.');
+				return false;
+			} else {
+				var ok = confirm("메세지를 전송하시겠습니까?");
+				if (ok) {
+					$('#write-form').submit();			
+				} else {
+					location.href = "/dabomweb/contact-message/sendContact";
+				}			
+			}
+			
+	
+				
+		});	
+		
+		
+		
+		$('#cancel-btn').click(function (event) {
+			event.preventDefault();
+			var ok = confirm("정말 취소하시겠습니까?");
+			if (ok) {
+				location.href = "/dabomweb/contact-message/sendContact";	
+			}
+		});
+		
 	});
+	
+
+	
+	
+	
 
 	</script>
 

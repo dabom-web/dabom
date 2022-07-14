@@ -1,16 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html class="h-100">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Insert title here</title>
+<title>회원가입</title>
 
 <link rel="icon" type="image/png" sizes="16x16" href="/dabomweb/resources/images/favicon.png">
 <link href="/dabomweb/resources/css/style.css" rel="stylesheet">
+<style type="text/css">
 
+	body {
+			background-color: #050a23;
+			opacity: 0.9;
+		  }
+
+</style>
 </head>
 <body class="h-100">
     <div class="authincation h-100">

@@ -3,8 +3,12 @@ package com.dabom.mapper;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.dabom.dto.WebtoonBoard;
 import com.dabom.dto.WebtoonBoardAttach;
+import com.dabom.dto.WebtoonListByTitle;
+import com.dabom.dto.WebtoonListByTitleAttach;
 
 public interface WebtoonMapper {
 
@@ -19,4 +23,16 @@ public interface WebtoonMapper {
 	int selectBoardCount();
 	
 	List<WebtoonBoardAttach> selectBoardAttachByBoardNo(int boardNo);
+
+	WebtoonBoard selectByBoardNo(int boardNo);
+
+	void insertWebtoonBoardByTitle(WebtoonListByTitle webtoonListByTitle);
+
+	void insertWebtoonBoardbyTitleAttach(WebtoonListByTitleAttach file);
+
+	List<WebtoonListByTitle> webtoonListByTitleSelectAll(int boardNo);
+
+	WebtoonListByTitle findByNumber(int number);
+
+	List<WebtoonListByTitleAttach> webtoonListByTitleSelectByNumber(@Param("boardNo") int boardNo,@Param("number") int number);
 }

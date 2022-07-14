@@ -12,8 +12,8 @@
                 
                 <!-- 홈 -->
                 <li class="nav-label first">DA!BOM Home</li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-world-2"></i><span class="nav-text">Collect</span></a>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <span class="nav-text">🚀 Collect</span></a>
                         <ul aria-expanded="false">                        
                       		
                       		<li><a href="/dabomweb/collect/chart">채널차트</a></li>
@@ -32,12 +32,21 @@
                  <!-- / 채널영역 -->
                  
                     <li class="nav-label first">채널영역</li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-single-04"></i><span class="nav-text">Channel</span></a>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <span class="nav-text">📺 Channel</span></a>
                         <ul aria-expanded="false">
                         
                         	<!-- 추수은 -->
-                            <li><a href="/dabomweb/mychannel/mychannellist">개인채널</a></li>
+                        	<c:choose>
+                            <c:when test="${ !empty loginuser.memberId }">                         	
+	                        	<li><a href="/dabomweb/mychannel/mychannel_create">채널만들기</a></li>
+	                            <li><a href="/dabomweb/mychannel/mychannel_main">내 채널</a></li>
+                            </c:when>
+                            <c:otherwise>
+                            	<li><a href="/dabomweb/account/login">채널만들기</a></li>
+	                            <li><a href="/dabomweb/account/login">내 채널</a></li>
+	                        </c:otherwise>
+                            </c:choose>     
                             <!-- 추수은 -->
                             
                             <!-- 강효준 -->
@@ -52,30 +61,33 @@
                     <!-- / 채널영역 -->
                     
                     
-                     <!-- / 관리자 페이지  -->
-                 
-                    <li class="nav-label first">사이트 관리</li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-single-04"></i><span class="nav-text">Management</span></a>
-                        <ul aria-expanded="false">
-                        
-                        	<li><a href="/dabomweb/contact-message/contactMessage">문의메세지</a></li>
-                            <li><a href="resources/index.html">회원계정관리</a></li>                           
-                            <li><a href="resources/index2.html">채널관리</a></li>
-                            <li><a href="resources/index2.html">게시글&댓글관리</a></li>
-                            <li><a href="/dabomweb/administerPrivilege/accept">업로드승인 new(<span id="accept-request-count">${ count }</span>)</a></li>                        
-                       
-                            
-                        </ul>
-                    </li>
+                     
+                 <c:choose>
+	                 <c:when test="${ loginuser.type eq 'admin' }">
+	                 <!-- / 관리자 페이지  -->
+	                 <li class="nav-label first">사이트 관리</li>
+	                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
+	                    <span class="nav-text">🥞 Management</span></a>
+	                        <ul aria-expanded="false">                        
+	                        	<li><a href="/dabomweb/contact-message/contactMessage">문의메세지</a></li>
+	                            <li><a href="resources/index.html">회원계정관리</a></li>                           
+	                            <li><a href="resources/index2.html">채널관리</a></li>
+	                            <li><a href="resources/index2.html">게시글&댓글관리</a></li>
+	                            <li><a href="/dabomweb/administerPrivilege/accept">업로드승인 new(<span id="accept-request-count">${ count }</span>)</a></li>                        
+	                        </ul>
+	                    </li>
+	                    <!-- / 관리자 페이지 -->
+	                 </c:when>                 
+					 <c:otherwise>                    
+	                 </c:otherwise>
+                 </c:choose>
                     
-                    <!-- / 관리자 페이지 -->
                     
                  <!-- / 웹툰 -->
                  
                     <li class="nav-label first">웹툰영역</li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-single-04"></i><span class="nav-text">Webtoon</span></a>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <span class="nav-text">👻 Webtoon</span></a>
                         <ul aria-expanded="false">
                         
                             <li><a href="/dabomweb/webtoon/webtoonList">웹툰 보기</a></li>
@@ -89,8 +101,8 @@
 	                 <!-- / 영상팀소개 -->
 	                 
 	                    <li class="nav-label first">영상팀 정보</li>
-	                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-	                                class="icon icon-single-04"></i><span class="nav-text">Porducer</span></a>
+	                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
+	                       ‍👩‍👧‍👦 Porducer</span></a>
 	                        <ul aria-expanded="false">
 	                        
 	                            <li><a href="/dabomweb/produceBoard/director">감독</a></li>
@@ -106,8 +118,8 @@
 	                    <!-- / 결제 -->
 	                 
 	                    <li class="nav-label first">결제하기</li>
-	                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-	                                class="icon icon-single-04"></i><span class="nav-text">결제하기</span></a>
+	                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
+	                    💸 결제하기</span></a>
 	                        <ul aria-expanded="false">
 	                        
 	                            <li><a href="/dabomweb/payment/purchase-point">결제하기</a></li>
@@ -136,7 +148,13 @@
 	                    <span class="nav-text">로그아웃</span></a>
 	                 </c:otherwise>
 	                </c:choose>
+                
+                 		<a href="/dabomweb/nonMembersHome" aria-expanded="false">
+	                    <span class="nav-text">비회원화면나중에지울거</span></a>
+                
                 </ul>
+            
+            
             </div>
             
             <script type="text/javascript">

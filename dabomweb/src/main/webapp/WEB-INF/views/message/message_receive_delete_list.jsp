@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
  	<title>TRASH(${ deleteReceiveCount })</title>
-    <link rel="icon" type="image/png" sizes="16x16" href="resources/images/dabom.jpg">
+    <link rel="icon" type="image/png" sizes="16x16" href="/dabomweb/resources/images/dabom.jpg">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.theme.default.min.css">
     <link href="/dabomweb/resources/vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet">
@@ -75,18 +75,16 @@
                                              class="badge badge-primary badge-sm float-right"></span></a>
                                   </div>                                  
                               </div>
-                              <div class="email-right-box ml-0 ml-sm-4 ml-sm-0">                                  
+                              <div class="email-right-box ml-0 ml-sm-4 ml-sm-0"> 
                                 <c:forEach var="message" items="${ messageList3 }">                            
 	                              <div class="email-list">
 	                                  <div class="message">
-	                                      <div>	                                            
+	                                      <div>                                                                                        
 	                                          <div class="d-flex message-single">
 	                                              <div class="custom-control custom-checkbox pl-4">
 	                                                  <input type="checkbox">
-	                                              </div>
-	                                              <div class="ml-2">
-	                                                  <button class="border-0 bg-transparent align-middle p-0"><i
-	                                                          class="fa fa-star" aria-hidden="true"></i></button>
+	                                              </div>	                                              
+	                                              <div class="ml-2">	                                                  
 	                                              </div>	                                                  	                                                                                         
 	                                          <a href="message_receive_delete_detail?message_no=${ message.message_No }&receiver=${ loginuser.memberId }" class="col-mail col-mail-3">  
 	                                              <div class="sender">${ message.sender }</div>
@@ -102,16 +100,11 @@
                                   <!-- panel -->
                                   <div class="row mt-4 m-4 mx-sm-4">
                                       <div class="col-7">
-                                          <div class="text-left">전체글 수 > ${ deleteReceiveCount }</div>
+                                          <div class="text-left"> ${ pageSize * pageNo - 9 } - ${ pageSize * pageNo }  / ${ deleteReceiveCount }</div>
                                       </div>
                                       <div class="col-5">
                                           <div class="btn-group float-right">
-                                              <button class="btn btn-dark" type="button"><i
-                                                      class="fa fa-angle-left"></i>
-                                              </button>
-                                              <button class="btn btn-dark" type="button"><i
-                                                      class="fa fa-angle-right"></i>
-                                              </button>
+                                              ${ messagePager }
                                           </div>
                                       </div>
                                   </div>
