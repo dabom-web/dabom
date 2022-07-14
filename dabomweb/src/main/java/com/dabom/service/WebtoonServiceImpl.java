@@ -84,10 +84,32 @@ public class WebtoonServiceImpl implements WebtoonService {
 		if(webtoonListByTitle.getFiles() != null) {
 			for(WebtoonListByTitleAttach file : webtoonListByTitle.getFiles()) {
 				file.setBoardNo(webtoonListByTitle.getBoardNo());
+				file.setNumber(webtoonListByTitle.getNumber());
 				webtoonMapper.insertWebtoonBoardbyTitleAttach(file);
 			}
 		}
 		
 	};
+	
+	public List<WebtoonListByTitle> webtoonByTitlefindAll(int boardNo) {
+		
+		List<WebtoonListByTitle> webtoonListByTitle = webtoonMapper.webtoonListByTitleSelectAll(boardNo);
+		
+		for(WebtoonListByTitle board : webtoonListByTitle) {
+			List<WebtoonListByTitleAttach> files = webtoonMapper.webtoonListByTitleSelectByNumber(boardNo, board.getNumber());
+			board.setFiles(files);
+		}
+		
+		return webtoonListByTitle;
+	};
+	
+	public WebtoonListByTitle findByNumber(int number) {
+		
+		WebtoonListByTitle webtoonListByTitle = webtoonMapper.findByNumber(number);
+		
+		return webtoonListByTitle;
+		
+	};
+
 	
 }
