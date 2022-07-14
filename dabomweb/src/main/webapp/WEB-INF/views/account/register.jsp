@@ -10,7 +10,14 @@
 
 <link rel="icon" type="image/png" sizes="16x16" href="/dabomweb/resources/images/favicon.png">
 <link href="/dabomweb/resources/css/style.css" rel="stylesheet">
+<style type="text/css">
 
+	body {
+			background-color: #050a23;
+			opacity: 0.9;
+		  }
+
+</style>
 </head>
 <body class="h-100">
     <div class="authincation h-100">

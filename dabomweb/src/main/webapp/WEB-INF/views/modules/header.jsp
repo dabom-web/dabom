@@ -43,20 +43,37 @@
                         </div>
 
                         <ul class="navbar-nav header-right">                        	                       	
+                            <c:choose>
+                            <c:when test="${ loginuser.type eq 'admin' }">
+                            	 <li class="nav-item dropdown notification_dropdown">                             
+                            	  <a style="font-size: 9pt; font-weight: bolder; color: black;">관리자계정으로 로그인되었습니다.</a>
+                            	 </li>
+                            </c:when>
+                            <c:otherwise>
                             <li class="nav-item dropdown notification_dropdown">                             	                        
-                                <a style="font-size: 6pt;" href="/dabomweb/contact-message/sendContactUser">                             
+                                <a style="font-size: 6pt; font-weight: bolder; color: black;" href="/dabomweb/contact-message/sendContactUser">                             
                                     관리자에게 문의하기                                   
-                                </a>                                
-                                <div class="dropdown-menu dropdown-menu-right">                                    
-                                </div>
-                            </li>
+                                </a>&nbsp;💬
+                           </li>
+                            </c:otherwise>
+                            </c:choose>                           
+                           
+                           
+                           <c:choose>
+                           <c:when test="${ loginuser.type eq 'admin' }">
+                           
+                           </c:when>
+                           
+                           <c:otherwise>   
+                           
                             <li class="nav-item dropdown header-profile">
-                                <a class="nav-link" href="#" role="button" data-toggle="dropdown">
+                                <a class="nav-link" role="button" data-toggle="dropdown">
                                     <i class="mdi mdi-account"></i>
                                 </a>
+                                <a style="font-size:9pt; font-weight: bolder; color: black;">${ loginuser.nickName }님 환영합니다 !!</a>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a href="resources/app-profile.html" class="dropdown-item">
-                                        <i class="icon-user"></i>
+                                        <i class="icon-user"></i>                                        
                                         <span class="ml-2">Profile </span>
                                     </a>
                                     
@@ -81,6 +98,9 @@
                                     </a>
                                 </div>
                             </li>
+                            
+                               </c:otherwise>
+                           </c:choose>
                         </ul>
                     </div>
                 </nav>

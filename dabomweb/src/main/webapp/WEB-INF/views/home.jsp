@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="resources/vendor/owl-carousel/css/owl.theme.default.min.css">
     <link href="resources/vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet">
     <link href="resources/css/style.css" rel="stylesheet">
-
 </head>
 <body>
     

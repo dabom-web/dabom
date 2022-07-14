@@ -33,7 +33,7 @@
 
 	<select id="loginUser" parameterType="Member" resultMap="memberResultMap">
 	
-		SELECT user.memberid, nickname, birth, email, phone, passwd, grade, active, username
+		SELECT user.memberid, nickname, birth, email, phone, passwd, grade, active, username, type
 		FROM user
 		LEFT OUTER JOIN member
 		ON user.memberid = member.memberid

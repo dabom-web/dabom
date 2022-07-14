@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>    
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<% pageContext.setAttribute("replaceChar", "\n"); %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -92,7 +94,7 @@
 												<strong>${ contact.adminId }관리자님이</strong> ${ contact.memberId }회원님에게
 												보낸 메세지입니다.
 											</p><br>
-											<strong>${ contact.content }</strong>
+											<strong>${fn:replace(contact.content, replaceChar, "<br/>")}</strong>
 										</div>
 									</div>
 								</div>
