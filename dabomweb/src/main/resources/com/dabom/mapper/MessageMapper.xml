@@ -5,32 +5,33 @@
 <mapper namespace="com.dabom.mapper.MessageMapper">
 	
 	<select id="selectAllReceiveMessage" parameterType="hashMap" resultType="Message">
-		SELECT message_no, message_title, message_content, send_date, sender, receiver, message_delete 
+		SELECT message_no, message_title, message_content, send_date, sender, receiver, message_delete, message_save 
 		FROM message 
 		WHERE receiver = #{receiver} AND message_delete = FALSE
 		ORDER BY send_date DESC
-		LIMIT #{from} , #{sendCount}
-	</select>	
-		
+		LIMIT #{from} , #{receiveCount}
+	</select>			
 	<select id="selectAllSendMessage" parameterType="hashMap" resultType="Message">
-		SELECT message_no, message_title, message_content, send_date, sender, receiver, message_delete 
+		SELECT message_no, message_title, message_content, send_date, sender, receiver, message_delete, message_save  
 		FROM message 
 		WHERE sender = #{sender} AND message_delete = FALSE
-		ORDER BY message_no DESC
+		ORDER BY send_date DESC
 		LIMIT #{from} , #{sendCount}
 	</select>	
 		
-	<select id="selectReceiveMessageDelete" parameterType="String" resultType="Message">
-		SELECT message_no, message_title, message_content, send_date, sender, receiver, message_delete 
+	<select id="selectReceiveMessageDelete" parameterType="hashMap" resultType="Message">
+		SELECT message_no, message_title, message_content, send_date, sender, receiver, message_delete, message_save  
 		FROM message 
-		WHERE receiver = #{receiver} AND message_delete = true
+		WHERE receiver = #{receiver} AND message_delete = TRUE
 		ORDER BY send_date DESC
+		LIMIT #{from} , #{deleteReceiveCount}
 	</select>
-	<select id="selectSendMessageDelete" parameterType="String" resultType="Message">
-		SELECT message_no, message_title, message_content, send_date, sender, receiver, message_delete 
+	<select id="selectSendMessageDelete" parameterType="hashMap" resultType="Message">
+		SELECT message_no, message_title, message_content, send_date, sender, receiver, message_delete, message_save  
 		FROM message 
-		WHERE sender = #{sender} AND message_delete = true
+		WHERE sender = #{sender} AND message_delete = TRUE
 		ORDER BY send_date DESC
+		LIMIT #{from} , #{deleteSendCount}
 	</select>		
 			
  	<select id="selectMessageReceiveCount" parameterType="String" resultType="int">
@@ -78,7 +79,7 @@
 	</select>
 	
 	<select id="selectByMessageNo" parameterType="int" resultType="Message">
-		SELECT message_no, message_title, message_content, send_date, sender, receiver, message_delete 
+		SELECT message_no, message_title, message_content, send_date, sender, receiver, message_delete, message_save  
 		FROM message 
 		WHERE message_no = #{message_No}
 	</select>

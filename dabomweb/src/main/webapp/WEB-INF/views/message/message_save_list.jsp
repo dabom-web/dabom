@@ -11,8 +11,8 @@
  <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
- 	<title>TRASH(${ deleteSendCount })</title>
-    <link rel="icon" type="image/png" sizes="16x16" href="/dabomweb/resources/images/dabom.jpg">
+ 	<title>MESSAGELIST(${ receiveCount })</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="resources/images/dabom.jpg">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.theme.default.min.css">
     <link href="/dabomweb/resources/vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet">
@@ -30,13 +30,13 @@
               <div class="row page-titles mx-0">
                   <div class="col-sm-6 p-md-0">
                       <div class="welcome-text">
-                          <h4>보낸 메세지 휴지통</h4>
+                          <h4>받은 메세지함</h4>
                           <span class="ml-1">MESSAGE</span>
                       </div>
                   </div>
                   <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">보낸 메세지 휴지통</a></li>
+                            <li class="breadcrumb-item"><a href="#">받은메세지</a></li>
                       </ol>
                   </div>
               </div>
@@ -57,9 +57,9 @@
                                    	</c:choose>	
                                   </div>
                                   <div class="mail-list mt-4">
-                                      <a href="message_receive_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="list-group-item"><i
+                                      <a href="message_receive_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }$messege_delete=${ message.message_delete}" class="list-group-item active"><i
                                               class="fa fa-inbox font-18 align-middle mr-2"></i> 받은메세지 <span
-                                              class="badge badge-primary badge-sm float-right">${ receiveCount }</span></a>
+                                              class="badge badge-danger text-white badge-sm float-right">${ receiveCount }</span></a>
                                       <a href="message_send_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="list-group-item"><i
                                               class="fa fa-paper-plane font-18 align-middle mr-2"></i>보낸메세지<span
                                               class="badge badge-primary badge-sm float-right">${ sendCount }</span></a> 
@@ -69,14 +69,14 @@
                                       </a>
                                       <a href="message_receive_delete_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="list-group-item"><i
                                               class="fa fa-trash font-18 align-middle mr-2"></i> 받은메세지 휴지통 <span
-                                               class="badge badge-primary badge-sm float-right"></span></a>                                              
-                                      <a href="message_send_delete_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="list-group-item active"><i
+                                              class="badge badge-primary badge-sm float-right"></span></a>                                              
+                                      <a href="message_send_delete_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="list-group-item"><i
                                               class="fa fa-trash font-18 align-middle mr-2"></i> 보낸메세지 휴지통 <span
-                                              class="badge badge-danger text-white badge-sm float-right">${ deleteSendCount }</span></a> 
-                                  </div>                                   
+                                              class="badge badge-primary badge-sm float-right"></span></a>
+                                  </div>                                  
                               </div>
                               <div class="email-right-box ml-0 ml-sm-4 ml-sm-0">                                  
-                                <c:forEach var="message" items="${ messageList4 }">                            
+                                <c:forEach var="message" items="${ messageList }">                            
 	                              <div class="email-list">
 	                                  <div class="message">
 	                                      <div>	                                            
@@ -86,9 +86,12 @@
 	                                              </div>
 	                                              <div class="ml-2">
 	                                                  <button class="border-0 bg-transparent align-middle p-0"><i
-	                                                          class="fa fa-star" aria-hidden="true"></i></button>
+	                                                          class="fa fa-star" 
+	                                                          id="message_Save"
+	                                                          name="message_Save"	                                                          
+	                                                          aria-hidden="true"></i></button>
 	                                              </div>	                                                  	                                                                                         
-	                                          <a href="message_send_delete_detail?message_no=${ message.message_No }&sender=${ loginuser.memberId }" class="col-mail col-mail-3">  
+	                                          <a href="message_receive_detail?message_no=${ message.message_No }&receiver=${ loginuser.memberId }" class="col-mail col-mail-3">  
 	                                              <div class="sender">${ message.sender }</div>
 	                                              <div class="subject">${ message.message_Title }</div>
 	                                         	  <div class="date">${ message.send_Date }</div>                                              
@@ -102,11 +105,11 @@
                                   <!-- panel -->
                                   <div class="row mt-4 m-4 mx-sm-4">
                                       <div class="col-7">
-                                          <div class="text-left">${ pageSize * pageNo - 9 } - ${ pageSize * pageNo } / ${ deleteSendCount }</div>
+                                          <div class="text-left"> ${ pageSize * pageNo - 9 } - ${ pageSize * pageNo } / ${ receiveCount }</div>
                                       </div>
                                       <div class="col-5">
                                           <div class="btn-group float-right">
-                                              ${ messagePager }
+                                               ${ messagePager }
                                           </div>
                                       </div>
                                   </div>

@@ -10,8 +10,8 @@ public interface MessageService {
 	List<Message> findByPageReceiveMessage(String receiver, int pageNo, int pageSize);
 	List<Message> findByPageSendMessage(String sender, int pageNo, int pageSize);
 	
-	List<Message> findSDeleteReceiveMessage(String receiver);
-	List<Message> findSDeleteSendMessage(String sender);
+	List<Message> findSDeleteReceiveMessage(String receiver, int pageNo, int pageSize);
+	List<Message> findSDeleteSendMessage(String sender, int pageNo, int pageSize);
 	
 	int findMessageReceiveCount(String receiver);	
 	int findMessageSendCount(String sender);

@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
  	<title>MESSAGELIST(${ receiveCount })</title>
-    <link rel="icon" type="image/png" sizes="16x16" href="resources/images/dabom.jpg">
+    <link rel="icon" type="image/png" sizes="16x16" href="/dabomweb/resources/images/dabom.jpg">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.theme.default.min.css">
     <link href="/dabomweb/resources/vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet">
@@ -74,8 +74,16 @@
                                               class="fa fa-trash font-18 align-middle mr-2"></i> 보낸메세지 휴지통 <span
                                               class="badge badge-primary badge-sm float-right"></span></a>
                                   </div>                                  
-                              </div>
-                              <div class="email-right-box ml-0 ml-sm-4 ml-sm-0">                                  
+                              </div>                              
+                              <div class="email-right-box ml-0 ml-sm-4 ml-sm-0">  
+                              <div class="media pt-2"  style="float: right;" >
+	                              <a href="javascript:void()" class="text-muted "><i
+                                           class="fa fa-reply"></i> </a>
+                                  <a href="javascript:void()" class="text-muted ml-3"><i
+                                          class="fa fa-long-arrow-right"></i> </a>
+                                  <a href="javascript:void()" class="text-muted ml-3"><i
+                                           id="delelte-btn" class="fa fa-trash"></i></a>
+                                  </div><br><hr>                                 
                                 <c:forEach var="message" items="${ messageList }">                            
 	                              <div class="email-list">
 	                                  <div class="message">
@@ -86,7 +94,10 @@
 	                                              </div>
 	                                              <div class="ml-2">
 	                                                  <button class="border-0 bg-transparent align-middle p-0"><i
-	                                                          class="fa fa-star" aria-hidden="true"></i></button>
+	                                                          class="fa fa-star" 
+	                                                          id="message_Save"
+	                                                          name="message_Save"	                                                          
+	                                                          aria-hidden="true"></i></button>
 	                                              </div>	                                                  	                                                                                         
 	                                          <a href="message_receive_detail?message_no=${ message.message_No }&receiver=${ loginuser.memberId }" class="col-mail col-mail-3">  
 	                                              <div class="sender">${ message.sender }</div>
@@ -97,7 +108,7 @@
 	                                      </div>	                                     
 	                                  </div>
 	                              </div>
-                            	</c:forEach> 
+                            	</c:forEach><hr> 
                             	
                                   <!-- panel -->
                                   <div class="row mt-4 m-4 mx-sm-4">

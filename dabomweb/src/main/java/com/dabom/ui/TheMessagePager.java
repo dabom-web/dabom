@@ -14,7 +14,7 @@ public class TheMessagePager {
 	private String sender;
 	
 	public TheMessagePager(int dataCount, int currentPage, 
-		int pageSize, int pagerSize, String linkUrl, String sender) {
+		int pageSize, int pagerSize, String sender, String linkUrl) {
 		
 		this.linkUrl = linkUrl;
 		
@@ -31,7 +31,7 @@ public class TheMessagePager {
 		
 		//1. 처음, 이전 항목 만들기		
 		if (currentPage > 1) {
-			linkString.append(String.format("<a href='message_send_list?sender=%s&receiver=%s&pageNo=%d'><button class='btn btn-dark' type='button'><i class='fa fa-angle-left'></i></button></a>", linkUrl, linkUrl, currentPage - 1));
+			linkString.append(String.format("<a href='%s?sender=%s&receiver=%s&pageNo=%d'><button class='btn btn-dark' type='button'><i class='fa fa-angle-left'></i></button></a>", linkUrl, sender, sender ,currentPage - 1));
 		} else {
 			linkString.append("<button class='btn btn-dark' type='button'><i class='fa fa-angle-left'></i></button>");
 		}
@@ -56,7 +56,7 @@ public class TheMessagePager {
 		//3. 다음, 마지막 항목 만들기
 		linkString.append("&nbsp;");
 		if (currentPage < pageCount) {
-			linkString.append(String.format("<a href='message_send_list?sender=%s&receiver=%s&pageNo=%d'><button class='btn btn-dark' type='button'><i class='fa fa-angle-right'></i></button></a>",linkUrl, linkUrl, currentPage + 1));
+			linkString.append(String.format("<a href='%s?sender=%s&receiver=%s&pageNo=%d'><button class='btn btn-dark' type='button'><i class='fa fa-angle-right'></i></button></a>",linkUrl, sender, sender , currentPage + 1));
 		} else {
 			linkString.append("<button class='btn btn-dark' type='button'><i class='fa fa-angle-right'></i></button>");
 		}
