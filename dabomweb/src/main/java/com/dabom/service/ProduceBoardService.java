@@ -27,7 +27,7 @@ public interface ProduceBoardService {
 
 	void supportProducer(int produceBoardNo, String memberId, int support);
 
-	void insertProducerSupport(int produceBoardNo, String memberId);
+	void insertProducerSupport(int produceBoardNo, String memberId, int support);
 	
 	ProduceSupport findProduceSupportByMemberIdAndProduceBoardNo(String memberId, int produceBoardNo);
 

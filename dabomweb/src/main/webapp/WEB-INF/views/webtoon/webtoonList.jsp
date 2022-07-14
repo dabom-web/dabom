@@ -35,7 +35,7 @@
 				<c:forEach var="board" items="${ requestScope.boardList}">
                     <div class="col-xl-4 col-xxl-6 col-lg-6 col-sm-6">
                         <div class="card mb-3">
-                           <a href="">
+                           <a href="/dabomweb/webtoon/webtoonListByTitle?boardno=${board.boardNo}&pageNo=${pageNo}">
                             <img class="card-img-top img-fluid" src="/dabomweb/resources/upload-files/${board.files[0].savedFileName}" alt="Card image cap">
                            </a>
                             <div class="card-header">

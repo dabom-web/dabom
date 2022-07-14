@@ -117,9 +117,9 @@ public interface ProduceBoardMapper {
 
 	
 
-	@Insert("insert into produce_support (produceboardno, member_id) "
-			+ "values (#{ produceBoardNo }, #{ memberId })")
-	void insertProducerSupport(@Param("produceBoardNo")int boardNo, @Param("memberId")String memberId); 
+	@Insert("insert into produce_support (produceboardno, member_id, support) "
+			+ "values (#{ produceBoardNo }, #{ memberId }, #{ support })")
+	void insertProducerSupport(@Param("produceBoardNo")int boardNo, @Param("memberId")String memberId, @Param("support")int support); 
 	
 	@Update("update produce_support "
 			+ "set support = #{ support } "
@@ -130,8 +130,7 @@ public interface ProduceBoardMapper {
 	ProduceSupport selectProduceSupportByMemberIdAndProductBoardNo(@Param("memberId")String memberId, @Param("produceBoardNo")int produceBoardNo);
 
 	
-	@Select("select support_cnt from produceboard "
-			+ " where boardno = #{ boardNo }")
+	@Select("select support_cnt from produceboard where boardno = #{ boardNo }")
 	int selectSupportCountByProduceBoardNo(@Param("boardNo")int boardNo);
 
 	@Update("update produceboard set support_cnt = support_cnt + #{ supportCnt } where boardno = #{ boardNo }")

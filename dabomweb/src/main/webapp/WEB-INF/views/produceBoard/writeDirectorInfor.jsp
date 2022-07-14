@@ -130,9 +130,9 @@
 											<h3 style="text-align: center;">입력하신 정보는 관리자가 승인하면 업데이트 됩니다.</h3>
 											<div class="col-lg-8 ml-auto"><br><br><br>
 												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-												 <a id="write" href="javascript:">
+												  <a id="write" href="javascript:">
 												 <button class="btn btn-primary">Submit</button></a>
-												  <a id="cancel" href="#">
+												  <a id="cancel" href="javascript:history.back();">
 												  <button class="btn btn-primary">Cancel</button></a>
 												 
 											</div>
