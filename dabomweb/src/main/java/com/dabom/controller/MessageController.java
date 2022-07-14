@@ -143,6 +143,7 @@ public class MessageController {
 		sendCount = messageService.findMessageSendCount(sender);
 		model.addAttribute("sendCount",sendCount);
 		
+		// 메세지 받을 사람 받아오기
 		List<Member> memberList = messageService.findMemberid();		
 		model.addAttribute("memberList", memberList);		
 		return "message/message_write";

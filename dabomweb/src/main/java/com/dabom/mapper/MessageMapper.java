@@ -8,6 +8,8 @@ import org.apache.ibatis.annotations.Mapper;
 import com.dabom.dto.Member;
 import com.dabom.dto.Message;
 
+import lombok.Setter;
+
 @Mapper
 public interface MessageMapper {	
 	
