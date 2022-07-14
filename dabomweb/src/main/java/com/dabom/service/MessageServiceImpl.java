@@ -1,10 +1,7 @@
 package com.dabom.service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
-
 import com.dabom.dto.Member;
 import com.dabom.dto.Message;
 import com.dabom.mapper.MessageMapper;
@@ -21,12 +18,12 @@ public class MessageServiceImpl implements MessageService {
 	public List<Message> findByPageReceiveMessage(String receiver, int pageNo, int pageSize) {		
 		
 		int from = (pageNo - 1) * pageSize;
-		int sendCount = pageSize;
+		int receiveCount = pageSize;
 				
 		HashMap<String, Object> params = new HashMap<>();		
 		params.put("receiver", receiver);
 		params.put("from", from);
-		params.put("sendCount",sendCount);
+		params.put("receiveCount",receiveCount);
 		
 		List<Message> messageList = messageMapper.selectAllReceiveMessage(params);
 		return messageList;
@@ -48,15 +45,32 @@ public class MessageServiceImpl implements MessageService {
 	}
 	
 	@Override
-	public List<Message> findSDeleteReceiveMessage(String receiver) {
-		List<Message> messageList3 = messageMapper.selectReceiveMessageDelete(receiver);
+	public List<Message> findSDeleteReceiveMessage(String receiver, int pageNo, int pageSize) {
+		
+		int from = (pageNo - 1) * pageSize;
+		int deleteReceiveCount = pageSize;
+				
+		HashMap<String, Object> params = new HashMap<>();		
+		params.put("receiver", receiver);
+		params.put("from", from);
+		params.put("deleteReceiveCount",deleteReceiveCount);
+		
+		List<Message> messageList3 = messageMapper.selectReceiveMessageDelete(params);
 		return messageList3;
 	}
 	
 	@Override
-	public List<Message> findSDeleteSendMessage(String sender) {
+	public List<Message> findSDeleteSendMessage(String sender, int pageNo, int pageSize) {
 		
-		List<Message> messageList4 = messageMapper.selectSendMessageDelete(sender);
+		int from = (pageNo - 1) * pageSize;
+		int deleteSendCount = pageSize;
+				
+		HashMap<String, Object> params = new HashMap<>();		
+		params.put("sender", sender);
+		params.put("from", from);
+		params.put("deleteSendCount",deleteSendCount);
+		
+		List<Message> messageList4 = messageMapper.selectSendMessageDelete(params);
 		return messageList4;
 	}
 

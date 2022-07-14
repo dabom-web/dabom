@@ -37,7 +37,16 @@
                         <ul aria-expanded="false">
                         
                         	<!-- 추수은 -->
-                            <li><a href="/dabomweb/mychannel/mychannellist">개인채널</a></li>
+                        	<c:choose>
+                            <c:when test="${ !empty loginuser.memberId }">                         	
+	                        	<li><a href="/dabomweb/mychannel/mychannel_create">채널만들기</a></li>
+	                            <li><a href="/dabomweb/mychannel/mychannel_main">내 채널</a></li>
+                            </c:when>
+                            <c:otherwise>
+                            	<li><a href="/dabomweb/account/login">채널만들기</a></li>
+	                            <li><a href="/dabomweb/account/login">내 채널</a></li>
+	                        </c:otherwise>
+                            </c:choose>     
                             <!-- 추수은 -->
                             
                             <!-- 강효준 -->

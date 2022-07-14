@@ -1,35 +1,16 @@
 package com.dabom.dto;
 
+import lombok.Data;
+
+@Data
 public class MyChannel {
 
-	private String memberId;
-	private String channelName;
-	private String uploadMessage;
-	private String uploadUrl;
-	
-	public String getMemberId() {
-		return memberId;
-	}
-	public void setMemberId(String memberId) {
-		this.memberId = memberId;
-	}
-	public String getChannelName() {
-		return channelName;
-	}
-	public void setChannelName(String channelName) {
-		this.channelName = channelName;
-	}
-	public String getUploadMessage() {
-		return uploadMessage;
-	}
-	public void setUploadMessage(String uploadMessage) {
-		this.uploadMessage = uploadMessage;
-	}
-	public String getUploadUrl() {
-		return uploadUrl;
-	}
-	public void setUploadUrl(String uploadUrl) {
-		this.uploadUrl = uploadUrl;
-	}
+	private String member_Id;
+	private String channel_Name;
+	private String upload_Message;
+	private String upload_Url;
+	private String channel_Create_day;
+	private String channel_Info;
+	private String channel_Post;
 	
 }

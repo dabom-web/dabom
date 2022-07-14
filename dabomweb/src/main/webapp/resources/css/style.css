@@ -5078,6 +5078,9 @@ button.bg-dark:focus {
 .rounded-circle {
   border-radius: 50% !important; }
 
+.rounded-big-circle {
+  border-radius: 100% !important; }  
+
 .rounded-pill {
   border-radius: 50rem !important; }
 
@@ -12757,7 +12760,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
       .email-list .message .col-mail-3 .date {
         position: absolute;
         top: 0;
-        left: 40rem;        
+        right: 5rem;        
         right: 0; }   
 
 .email-checkbox {
