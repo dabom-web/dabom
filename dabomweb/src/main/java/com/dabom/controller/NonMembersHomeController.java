@@ -8,7 +8,7 @@ public class NonMembersHomeController {
 
 	@GetMapping(path = { "/nonMembersHome" })
 	public String nonMembersHome() {
-		return "/nonMembersHome";
+		return "nonMembersHome";
 	}
 	
 }

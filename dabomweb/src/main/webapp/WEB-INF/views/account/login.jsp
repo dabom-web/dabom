@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html class="h-100">
 <head>
   <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,11 +13,12 @@
 
 </head>
 <body>
+<div class="h-100">
     <div class="authincation h-100">
-        <div class="container-fluid h-100">
+        <div class="container-fluid h-100">        
             <div class="row justify-content-center h-100 align-items-center">
                 <div class="col-md-6">
-                    <div class="authincation-content">
+                    <div class="authincation-content">                    
                         <div class="row no-gutters">
                             <div class="col-xl-12">
                                 <div class="auth-form">
@@ -57,8 +58,7 @@
             </div>
         </div>
     </div>
-
-
+</div>
     <!--**********************************
         Scripts
     ***********************************-->
