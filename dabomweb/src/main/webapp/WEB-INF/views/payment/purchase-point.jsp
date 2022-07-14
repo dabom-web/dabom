@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +13,7 @@
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.theme.default.min.css">
     <link href="/dabomweb/resources/vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet">
     <link href="/dabomweb/resources/css/style.css" rel="stylesheet">
-
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
 	
@@ -31,171 +32,110 @@
 			</div>
 			<!-- row -->
 			<!-- row -->
-			<div class="row">
-				<div class="d-flex" style="padding: 0 20px;">
-					<!-- <div class="card">
-						<div class="card-header">
-							<h4 class="card-title">포인트충전</h4>		
-							<h5 button="point"> 얼마를 충전하시겠습니까</h5>					
-						</div>
-						<div class="card-body">
-						
-						내용채우기
-						
-							<div class="basic-list-group" style="text-align:  center;">
-								<button type="button" class="btn btn-rounded btn-primary" ><span
-                                        class="btn-icon-left text-primary"><i class="fa fa-plus"></i>
-                                    </span>구매</button>
-                                    
-							</div>
-						</div>
-					</div> -->
-					
-					
-                        <div class="card" style="width: 580px; margin-right: 40px;">
-                            <div class="card-header">
-                                <h4 class="card-title">Vertical Form</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="basic-form">
-                                    <form action="purchase-point" method="post">
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">구매자아이디</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" name="memberId" value="${ loginuser.memberId }" class="form-control" placeholder="구매자 아이디">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">구매포인트수량</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" name="amount" value="${loginuser.amount}" class="form-control" placeholder="구매할 포인트 수량">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">가격</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" name="price" value="10000" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <div class="col-sm-10">
-                                                <button type="submit" class="btn btn-primary">구매하기</button>
-                                                <button class="btn btn-primary">취소</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        
-                       
-                        
-                        
-                        
-                        <div class="card" style="width: 580px;">
-                            <div class="card-header">
-                                <h4 class="card-title">구매내역</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table >
-                                        <thead>
+			           <div class="row">
+              <div class="d-flex" style="padding: 0 20px;">
+                          <form action="purchase-point" method="post">
+                              <div class="flex-col border-2 rounded-md">
+                                    <div class="bg-neutral-50 p-2 border-b">
+                                        <h3 class="text-lg">포인트 구매</h3>
+                                    </div>
+                                    <div class="flex p-2 items-center justify-center items-center">
+                                        <p class="text-md text-neutral-800 w-44">구매자 아이디</p>
+                                        <input type="text" name="memberId" value="${ loginuser.memberId }" class="transition-all bg-gray-50 border-2 border-gray-200 text-gray-900 text-sm rounded-lg focus:bg-gray-150 focus:border-blue-200 block p-2.5 w-full" placeholder="구매자 아이디" required />
+                                    </div>
+                                    <div class="flex p-2 justify-center items-center">
+                                        <p class="text-neutral-800 w-44">포인트 구매옵션</p>
+                                        <select id="point-box" class="transition-all bg-gray-50 border-2 border-gray-200 text-gray-900 text-sm rounded-lg focus:bg-gray-150 focus:border-blue-200 block w-full p-2.5">
+                                            <option name="purchase-option" selected value="1000" data-price="1000" data-point="100">100 point 구매(1,000원)</option>
+                                            <option name="purchase-option" value="1300"  data-price="10000" data-point="1300">1,300 point 구매(10,000원)</option>
+                                            <option name="purchase-option" value="4800" data-price="30000" data-point="4800">4,800 point 구매(30,000원)</option>
+                                         </select>
+                                         <input type="hidden" id="price" name="price" value="1000" class="form-control">
+                                          <input type="hidden" id="amount" name="amount" value="100" class="form-control">
+                                    </div>
+                                  <div class="flex p-2 justify-end">
+                                    <button type="submit" class="transition-all text-slate-50 bg-neutral-800 focus:outline-none hover:bg-neutral-600 font-medium rounded-md text-sm px-3 py-1.5 mr-2 mb-2">구매하기</button>
+                                    <button type="button" class="transition-all text-slate-50 bg-neutral-800 focus:outline-none hover:bg-neutral-600 font-medium rounded-md text-sm px-3 py-1.5 mr-2 mb-2">취소</button>
+                                  </div>
+                              </div>
+                          </form>
+                          <div>
+                            <div class="flex-col border-2 rounded-md">
+                                  <div class="bg-neutral-50 mb-4 p-2 border-b">
+                                      <h3 class="text-lg">${ loginuser.memberId }" 님의 구매내역</h3>
+                                  </div>
+                                  <div class="flex items-center justify-center items-center p-2">
+                                    <table class="w-full text-sm text-left text-gray-500">
+                                        <thead class="text-md text-white bg-violet-400">
                                             <tr>
-                                                <th> </th>
-                                                <th>Name</th>
-                                                <th>Product</th>
-                                                <th>quantity</th>
-                                                <th>Status</th>
+                                                <th scope="col" class="py-3 px-6">
+                                                    구매 포인트
+                                                </th>
+                                                <th scope="col" class="py-3 px-6">
+                                                    가격
+                                                </th>
+                                                <th scope="col" class="py-3 px-6">
+                                                    결제일자
+                                                </th>
+                                                <th scope="col" class="py-3 px-6">
+                                                    취소일자
+                                                </th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>
-                                                    <div class="round-img">
-                                                        <a href=""><img width="35" src="./images/avatar/1.png" alt=""></a>
-                                                    </div>
-                                                </td>
-                                                <td>Lew Shawon</td>
-                                                <td><span>Dell-985</span></td>
-                                                <td><span>456 pcs</span></td>
-                                                <td><span class="badge badge-success">Done</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="round-img">
-                                                        <a href=""><img width="35" src="./images/avatar/1.png" alt=""></a>
-                                                    </div>
-                                                </td>
-                                                <td>Lew Shawon</td>
-                                                <td><span>Asus-565</span></td>
-                                                <td><span>456 pcs</span></td>
-                                                <td><span class="badge badge-warning">Pending</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="round-img">
-                                                        <a href=""><img width="35" src="./images/avatar/1.png" alt=""></a>
-                                                    </div>
-                                                </td>
-                                                <td>lew Shawon</td>
-                                                <td><span>Dell-985</span></td>
-                                                <td><span>456 pcs</span></td>
-                                                <td><span class="badge badge-success">Done</span></td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>
-                                                    <div class="round-img">
-                                                        <a href=""><img width="35" src="./images/avatar/1.png" alt=""></a>
-                                                    </div>
-                                                </td>
-                                                <td>Lew Shawon</td>
-                                                <td><span>Asus-565</span></td>
-                                                <td><span>456 pcs</span></td>
-                                                <td><span class="badge badge-warning">Pending</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="round-img">
-                                                        <a href=""><img width="35" src="./images/avatar/1.png" alt=""></a>
-                                                    </div>
-                                                </td>
-                                                <td>lew Shawon</td>
-                                                <td><span>Dell-985</span></td>
-                                                <td><span>456 pcs</span></td>
-                                                <td><span class="badge badge-success">Done</span></td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>
-                                                    <div class="round-img">
-                                                        <a href=""><img width="35" src="./images/avatar/1.png" alt=""></a>
-                                                    </div>
-                                                </td>
-                                                <td>Lew Shawon</td>
-                                                <td><span>Asus-565</span></td>
-                                                <td><span>456 pcs</span></td>
-                                                <td><span class="badge badge-warning">Pending</span></td>
-                                            </tr>
+                                            <c:forEach var="pointPurchase" items="${ pointPurchaseList }">
+                                                <tr>
+                                                    <td scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
+                                                        ${ pointPurchase.price }
+                                                    </td>
+                                                    <td class="py-4 px-6">
+                                                        ${ pointPurchase.amount }
+                                                    </td>
+                                                    <td class="py-4 px-6">
+                                                        ${ pointPurchase.purchaseDate }
+                                                    </td>
+                                                    <td class="py-4 px-6">
+                                                        ${ pointPurchase.cancelDate }
+                                                    </td>
+                                                </tr>
+                                              </c:forEach>
                                         </tbody>
                                     </table>
-                                </div>
+                                  </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                      </div>
+                  </div>
                         
 				</div>
 				
 			</div>
 		</div>
 	</div>
-
-
-
-
-
+	
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	<jsp:include page="/WEB-INF/views/modules/css/bottom.jsp" />
-
+	
+	<script type="text/javascript">
+	$(function() {
+		$("input[name=purchase-option]").on('click', function(event) {
+			$('#price').val($(this).attr('data-price'));
+			$('#amount').val($(this).attr('data-point'));
+		});
+	});
+	</script>
+	<script type="text/javascript">
+	    const pointBox = document.getElementById('point-box');
+	    const priceInput = document.getElementById('price');
+	    const pointAmountInput = document.getElementById('amount');
+	
+	    pointBox.addEventListener('change', () => {
+	        const selectedIndex = pointBox.selectedIndex;
+	        const selectedOption = pointBox.children[selectedIndex];
+	
+	        priceInput.value = selectedOption.dataset.price;
+	        pointAmountInput.value = selectedOption.dataset.point;
+	    })
+	</script>
 </body>
 </html>
