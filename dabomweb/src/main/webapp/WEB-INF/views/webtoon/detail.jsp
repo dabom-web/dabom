@@ -41,6 +41,9 @@
                                                             <br>
                                                             <br>
                                                     	</div>
+                                                    <%-- 	<div>
+                                                    	<img src="/dabomweb/resources/upload-files/${ webtoonListByTitleattach.files[1].savedFileName }"/>
+                                                    	</div> --%>
                                                     
                                                         <p>작가의 말</p>
                                                         <button class="btn btn-primary mr-3"><span class="mr-3"><i

@@ -165,7 +165,10 @@ public class WebtoonController {
 		
 		WebtoonListByTitle webtoonListByTitle = webtoonservice.findByNumber(number);
 		
+		List<WebtoonListByTitle> webtoonListByTitleattach = webtoonservice.webtoonByTitlefindAll(boardNo);
+
 		model.addAttribute("webtoonListByTitle", webtoonListByTitle);
+		model.addAttribute("webtoonListByTitleattach",webtoonListByTitleattach);
 		
 		return "webtoon/detail";
 		

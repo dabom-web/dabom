@@ -52,7 +52,8 @@ img {
                             <div class="profile-head">
                                 <div class="photo-content">
                                     <div class="cover-photo">
-                                    	<img src="/dabomweb/resources/images/webtoon.png">
+                                    	<img src="/dabomweb/resources/images/webtoon2.jpg"
+                                    	style="min-height: 100px; width: 100%">
                                     </div>                                   
                                     <div class="profile-photo">
                                       
