@@ -119,6 +119,11 @@ public class ProduceBoardServiceImpl implements ProduceBoardService {
 		
 	}
 
+	@Override
+	public void deletedInforByBoardNo(int boardNo) {
+		produceBoardMapper.updateInforDeletedByBoardNo(boardNo);
+		
+	}
 
 	
 }

@@ -62,6 +62,11 @@ public class ContactServiceImpl implements ContactService {
 		ContactMessage contactMessage = contactMapper.selectByContactNo(contactNo);
 		return contactMessage;
 	}
+	
+	@Override
+	public void udateReadContactNo(int contactNo) {
+		contactMapper.selectByReadContactNo(contactNo);
+	}
 
 	@Override
 	public ContactMessage findByContactNoAndMemberId(int contactNo, String memberId) {
@@ -76,17 +81,46 @@ public class ContactServiceImpl implements ContactService {
 	}
 
 	@Override
+	public void deletedContact(int checkNo) {
+		contactMapper.updateDeletedcontact(checkNo);		
+	}
+	
+	@Override
+	public void deletedDetailContact(int contactNo) {
+		contactMapper.updateDeletedDetail(contactNo);
+	}
+
+	@Override
+	public List<ContactMessage> deletedContactList(ContactMessage contactMessage) {
+		List<ContactMessage> deletedList = contactMapper.deletedContactList(contactMessage);
+		return deletedList;
+	}
+
+	
+
+	@Override
+	public List<ContactMessage> findReadContactListToAdmin() {
+		List<ContactMessage> readList = contactMapper.selectReadList();
+		return readList;
+	}
+
+	@Override
 	public int findReceivedContactMessageCount() {
 		int count = contactMapper.selectReceivedContactCount();
 		return count;
 	}
 
 	@Override
-	public void deletedContact(int checkNo) {
-		contactMapper.updateDeletedcontact(checkNo);		
+	public int findReceivedContactMessageCountToUser() {
+		int count = contactMapper.selectReceivedContactCountToUser();
+		return count;
 	}
 
-	
+	@Override
+	public int newReceivedMessage(String memberId) {
+		int count = contactMapper.selectNewMessage(memberId);
+		return count;
+	}
 
 	
 	

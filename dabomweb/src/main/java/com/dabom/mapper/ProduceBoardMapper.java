@@ -53,8 +53,6 @@ public interface ProduceBoardMapper {
 	})
 	List<ProduceBoard> selectActor();
 	
-	
-	
 
 	@Select("select  boardno, infor, writedate, modifydate, type, ok, deleted, writer, contact, sns, support_cnt "
 			+ "from produceboard where type = 'director' and deleted = 0 and ok = 1 "
@@ -166,6 +164,9 @@ public interface ProduceBoardMapper {
 			+ "sns = #{ sns }, infor = #{ infor }, contact = #{ contact }, modifydate = now() "
 			+ "where boardno = #{ boardNo } ")
 	void updateInfor(@Param("boardNo")int boardNo, @Param("sns")String sns, @Param("infor")String infor, @Param("contact")String contact);
+
+	@Update("update produceboard set deleted = true where boardno = #{ boardNo }")
+	void updateInforDeletedByBoardNo(@Param("boardNo")int boardNo);
 
 
 	

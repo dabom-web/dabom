@@ -39,7 +39,7 @@
 						<div class="card-body">
 							<div class="email-left-box px-0 mb-5">
 								<div class="p-0">
-									<a href="/dabomweb/contact-message/contactMessage"
+									<a href="/dabomweb/contact-message/sendContactListByUser?memberId=${ loginuser.memberId }"
 										class="btn btn-primary btn-block">Message</a>
 								</div>							
 									<div class="mail-list mt-4">
@@ -57,7 +57,7 @@
 									<a href="/dabomweb/contact-message/contactMessageToUser?memberId=${ loginuser.memberId }"class="list-group-item">
 										<i class="fa fa-star font-18 align-middle mr-2"></i>
 										관리자의 메세지
-										<span class="badge badge-danger text-white badge-sm float-right">47</span>
+										<span class="badge badge-danger text-white badge-sm float-right"></span>
 									</a> 
 																		
 								</div>
@@ -97,6 +97,21 @@
 	</div>
 
 	<jsp:include page="/WEB-INF/views/modules/css/bottom.jsp" />
+	<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+	<script type="text/javascript">
 	
+	$(function() {
+		
+		$('#remove-btn').on('click', function(event) {
+			event.preventDefault();
+			
+			var ok = confirm('휴지통으로 이동합니다.');
+			if( ok ) {
+				location.href = 'removeContactUser?memberId=${ loginuser.memberId }&contactNo=' + ${ contact.contactNo };
+			} 
+		});
+		
+	});	
+	</script>
 </body>
 </html>

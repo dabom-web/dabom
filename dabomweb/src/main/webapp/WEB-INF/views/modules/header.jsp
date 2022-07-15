@@ -50,11 +50,33 @@
                             	 </li>
                             </c:when>
                             <c:otherwise>
-                            <li class="nav-item dropdown notification_dropdown">                             	                        
-                                <a style="font-size: 6pt; font-weight: bolder; color: black;" href="/dabomweb/contact-message/sendContactUser">                             
-                                    관리자에게 문의하기                                   
-                                </a>&nbsp;💬
-                           </li>
+	                            <c:choose>
+	                            <c:when test="${ !empty count }">
+	                            	 <li class="nav-item dropdown notification_dropdown">                             	                        
+		                                <a style="font-size: 6pt; font-weight: bolder; color: black;" href="/dabomweb/contact-message/sendContactUser">                             
+		                                    관리자에게 문의하기                                  
+		                                </a>&nbsp;
+		                                 <a class="nav-link" href="/dabomweb/contact-message/sendContactUser">
+		                                    <i></i>💬
+		                                    <div class="pulse-css"></div>
+		                                </a>
+		                            </li>
+	                            </c:when>
+	                            <c:otherwise>
+	                            	 <li class="nav-item dropdown notification_dropdown">                             	                        
+		                                <a style="font-size: 6pt; font-weight: bolder; color: black;" href="/dabomweb/contact-message/sendContactUser">                             
+		                                    관리자에게 문의하기                          
+		                                </a>&nbsp;
+		                                 <a class="nav-link" href="/dabomweb/contact-message/sendContactUser">
+		                                    <i></i>💬
+		                                    <div class=""></div>
+		                                </a>
+		                            </li>
+	                            
+	                            </c:otherwise>
+	                            </c:choose>
+		                           
+		                            
                             </c:otherwise>
                             </c:choose>                           
                            

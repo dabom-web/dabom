@@ -41,6 +41,8 @@ public interface ProduceBoardService {
 
 	void updateInfor(int boardNo, String sns, String infor, String contact);
 
+	void deletedInforByBoardNo(int boardNo);
+
 
 	
 }

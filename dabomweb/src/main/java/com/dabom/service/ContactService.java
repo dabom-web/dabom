@@ -20,6 +20,8 @@ public interface ContactService {
 	List<ContactMessage> findContactListToUser(String memberId);
 
 	ContactMessage findByContactNo(int contactNo);
+	
+	void udateReadContactNo(int contactNo);
 
 	List<ContactMessage> findSendContactListByUser(String memberId);
 
@@ -27,8 +29,19 @@ public interface ContactService {
 
 	void sendReplyContact(ContactMessage contactMessage);
 
-	int findReceivedContactMessageCount();
 
 	void deletedContact(int checkNo);
+
+	void deletedDetailContact(int contactNo);
+
+	List<ContactMessage> deletedContactList(ContactMessage contactMessage);
+
+	List<ContactMessage> findReadContactListToAdmin();
+	
+	int findReceivedContactMessageCount();
+	
+	int findReceivedContactMessageCountToUser();
+
+	int newReceivedMessage(String memberId);
 
 }

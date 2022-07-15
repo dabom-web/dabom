@@ -88,31 +88,36 @@
 	
 <jsp:include page="/WEB-INF/views/modules/css/bottom.jsp" />
 <script type="text/javascript">
+	
 	$(function() {
 		$('.accept-link').on('click', function(event) {
-			
-			var boardNo = $(this).attr('data-boardno'); // 현재 클릭된 <a 의 data-boardno 속성 값 읽기
-			
-			var formData = $('#accept-form-' + boardNo).serialize();
-			$.ajax({
-				"url" : "accept-post",
-				"method" : "post",
-				"async" : true,
-				"data" : formData,
-				"dataType" : "text",
-				"success": function(result, status, xhr) {
-					if (result === "success") {
-						alert('승인되었습니다.');						
-						$('tr[data-boardno=' + boardNo +']').remove();
-					} else {
-						alert('승인 실패');
+
+			var ok = confirm('승인하시겠습니까?');
+			if (ok) {
+
+				var boardNo = $(this).attr('data-boardno'); // 현재 클릭된 <a 의 data-boardno 속성 값 읽기
+
+				var formData = $('#accept-form-' + boardNo).serialize();
+				$.ajax({
+					"url" : "accept-post",
+					"method" : "post",
+					"async" : true,
+					"data" : formData,
+					"dataType" : "text",
+					"success" : function(result, status, xhr) {
+						if (result === "success") {
+							alert('승인되었습니다.');
+							$('tr[data-boardno=' + boardNo + ']').remove();
+						} else {
+							alert('승인 실패');
+						}
+					},
+					"error" : function(xhr, status, err) {
+						alert('승인 실패하였습니다.');
 					}
-				},
-				"error": function(xhr, status, err) {
-					alert('승인 실패하였습니다.');
-				}
-				
-			})
+
+				})
+			}
 		});
 	});
 </script>

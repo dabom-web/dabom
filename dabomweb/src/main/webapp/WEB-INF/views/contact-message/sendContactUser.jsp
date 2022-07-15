@@ -56,7 +56,7 @@
 									<a href="/dabomweb/contact-message/contactMessageToUser?memberId=${ loginuser.memberId }"class="list-group-item">
 										<i class="fa fa-star font-18 align-middle mr-2"></i>
 										관리자의 메세지
-										<span class="badge badge-danger text-white badge-sm float-right">47</span>
+										<span class="badge badge-danger text-white badge-sm float-right"></span>
 									</a> 									
 								</div>
 
@@ -126,7 +126,7 @@
 				if (ok) {
 					$('#write-form').submit();			
 				} else {
-					location.href = "/dabomweb/contact-message/sendContactUser";
+					location.href = "/dabomweb/contact-message/sendContactUser?memberId=${ loginuser.memberId }";
 				}			
 			}
 			
@@ -140,7 +140,7 @@
 			event.preventDefault();
 			var ok = confirm("정말 취소하시겠습니까?");
 			if (ok) {
-				location.href = "/dabomweb/contact-message/sendContactUser";	
+				location.href = "/dabomweb/contact-message/sendContactUser?memberId=${ loginuser.memberId }";	
 			}
 		});
 		
