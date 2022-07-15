@@ -49,7 +49,7 @@
                                         </div>
                                     </form>
                                     <div class="new-account mt-3">
-                                        <p>Don't have an account? <a class="text-primary" href="resources/page-register.html">Sign up</a></p>
+                                        <p>Don't have an account? <a class="text-primary" href="/dabomweb/account/register">Sign up</a></p>
                                     </div>
                                 </div>
                             </div>

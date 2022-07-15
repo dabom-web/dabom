@@ -85,7 +85,7 @@
 											<div>
 												<div class="d-flex message-single">
 													<div class="custom-control custom-checkbox pl-4">
-														<input type="checkbox">
+														<input type="checkbox" name="checkbox" value="${ contact.contactNo }">
 													</div>
 												</div>
 												<a href="sendContactAdminDetail?contactNo=${ contact.contactNo }"
@@ -109,6 +109,38 @@
 
 
 	<jsp:include page="/WEB-INF/views/modules/css/bottom.jsp" />
+	
+	<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+	<script type="text/javascript">
+	
+	$(function() {
+		$('#remove-btn').on('click', function(event) {
+			event.preventDefault();
+			
+			var checkboxNo = '';
+			$('input[name="checkbox"]:checked').each(function(idx, checkBox) { 
+				checkboxNo += $(checkBox).val() + ',';
+			});
+			
+			checkboxNo = checkboxNo.substring(0, checkboxNo.lastIndexOf(','));
+			
+			if( checkboxNo == ''){
+				alert('삭제 할 메세지를 선택하세요.');
+				return false;
+			}
+			
+			var ok = confirm('선택한 항목을 휴지통으로 이동합니다.');
+			if ( ok ) {
+				location.href = 'removeChecked?checkNos=' + checkboxNo;
+			}
+		
+		});	
+	
+	
+	});
+	
+	
+	</script>
 
 </body>
 </html>

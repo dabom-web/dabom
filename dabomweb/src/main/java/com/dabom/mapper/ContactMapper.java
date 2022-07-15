@@ -33,7 +33,7 @@ public interface ContactMapper {
 	List<Member> selectUserMemberId();
 
 	@Select("select contact_no contactNo, title, content, send_date sendDate, member_id memberId, admin_id adminId, read_contact readContact, deleted, writertype "
-			+ "from contact_message where writertype = 'admin' order by contact_no desc")
+			+ "from contact_message where writertype = 'admin' and deleted = false order by contact_no desc")
 	List<ContactMessage> selectAllContactList();
 	
 	@Select("select contact_no contactNo, title, content, send_date sendDate, member_id memberId, admin_id adminId, read_contact readContact, deleted, writertype "
