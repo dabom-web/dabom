@@ -40,12 +40,6 @@
                                                     		<br>
                                                             <h5 class="text-primary">[${ vUpload.videoType }] ${ vUpload.videoTitle }</h5>
                                                             <p class="mb-0">${ vUpload.uploadTime }</p>
-                                                            <a href="javascript:void()" class="text-muted "><i
-                                                                class="fa fa-reply"></i> </a>
-                                                        <a href="javascript:void()" class="text-muted ml-3"><i
-                                                                class="fa fa-long-arrow-right"></i> </a>
-                                                        <a href="javascript:void()" class="text-muted ml-3"><i
-                                                                class="fa fa-trash"></i></a>
                                                         </div>
                                                     <hr>
                                                     <div class="media mb-4 mt-5">
@@ -86,6 +80,16 @@
 	<jsp:include page="/WEB-INF/views/modules/css/bottom.jsp" />
 
 	<script type="text/javascript">
+	
+		$('#to-list-btn').on('click',function(event){
+			event.preventDefault();
+			location.href='list';
+		});
+		
+		$('#to-uploadList-btn').on('click',function(event){
+			event.preventDefault();
+			location.href='uploadList';
+		});
 	
 		$('#to-delete-btn').click(function(event){
 		event.preventDefault();

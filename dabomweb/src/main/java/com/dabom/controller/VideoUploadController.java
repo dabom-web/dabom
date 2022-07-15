@@ -133,11 +133,12 @@ public class VideoUploadController {
 
 	}
 	
-	@GetMapping(path = {})
-	public String checkDelete(@RequestParam(name = "videoNo", defaultValue = "-1") int[] videoNos) {
-		
-		for (int videoNo : videoNos) {	// videoNo = 0; videoNo<=videoNos; videoNo++ 기억하지? 그냥 모든 게시글 번호라고 생각해 그렇게 반복문 돌려야지
-			videoUploadService.delete(videoNo);
+	@GetMapping(path = {"/deleteChecked"})
+	public String checkDelete(@RequestParam(name = "videoNos", defaultValue = "-1") String videoNos) {
+		//int[]도 안돼... 자료형 리스트로 바꿔도 안돼... form 태그는 tbody에 들어가지도 않아... 내가 대체 널 어쩌면 좋겠니
+		String[] videoNoList = videoNos.split(",");
+		for (String videoNo : videoNoList) {	// videoNo = 0; videoNo<=videoNos; videoNo++ 기억하지? 그냥 모든 게시글 번호라고 생각해 그렇게 반복문 돌려야지
+			videoUploadService.delete(Integer.parseInt(videoNo));
 		}
 		
 		return "redirect:uploadList";
@@ -165,56 +166,65 @@ public class VideoUploadController {
 	@PostMapping(path = { "/update" })
 	public String edit(VideoUpload vUpload, MultipartFile video, MultipartFile thumbnail, HttpServletRequest req) {
 		
-		int videoNo = vUpload.getVideoNo();
-		//videoNo로 UploadVideo 조회 -> videoSavedName, thumbnailSavedName 읽기
-		    	
-		String path = req.getServletContext().getRealPath("/dabomweb/resources/upload-files/" + videoNo + "video_file_name");
-		File vFile = new File(path);
-        
-    	if( vFile.exists() ){
-    		vFile.delete();
-    	}
-    	path = req.getServletContext().getRealPath("/dabomweb/resources/upload-files/" + videoNo + "thumbnail_file_name");
-    	File tFile = new File(path);
-        
-    	if( tFile.exists() ){
-    		if(tFile.delete())tFile.delete();
-    	}     	
-    	////////////////////////////////////
-			
+		int videoNo = vUpload.getVideoNo();	// 전체를 다 불러와라?\
+//		String originalVideoFile = vUpload.getVideoFileName();	// 이런식으로 불러오는건 아닌거같은데...
 		
-		
-		
-		String uploadDir = req.getServletContext().getRealPath("resources/upload-files");
-		
+		VideoUpload vUploadCurrent = videoUploadService.findByVideoNo(videoNo);	// 여기에 힌트가 있다고 했지...
+		if(vUploadCurrent == null) {				// 일단 이 구문은 아예 필요없고
+			return "redirect:list";			// 이것도 필요없고...
+		}
+
+		String uploadDir = req.getServletContext().getRealPath("/resources/upload-files");
 		String videoFileName = video.getOriginalFilename(); // 파일 이름 가져와
 		String thumbnailFileName = thumbnail.getOriginalFilename();
 		
-		if (videoFileName != null && videoFileName.length() > 0 && thumbnailFileName != null
-				&& thumbnailFileName.length() > 0) {
-			
-			String videoSavedName = Util.makeUniqueFileName(videoFileName);	// 고유 파일 이름을 만드는 메서드(common/Util에서
-																			// makeUniqueFileName 참조)에 videoFileName를
-																			// 대입한 결과물은 savedFileName
+		
+		//videoNo로 UploadVideo 조회 -> videoSavedName, thumbnailSavedName 읽기
+		   
+		
+		if (videoFileName != null && videoFileName.length() > 0) {
+			File vFile = new File(uploadDir, vUploadCurrent.getVideoSavedName());        
+	    	if( vFile.exists() ){
+	    		vFile.delete();
+	    	}
+	    	String videoSavedName = Util.makeUniqueFileName(videoFileName);	// 고유 파일 이름을 만드는 메서드(common/Util에서
+			// makeUniqueFileName 참조)에 videoFileName를
+			// 대입한 결과물은 savedFileName
 			vUpload.setVideoFileName(videoFileName);
 			vUpload.setVideoSavedName(videoSavedName);
-			
-			String thumbnailSavedName = Util.makeUniqueFileName(thumbnailFileName); // 고유 파일 이름을 만드는 메서드(common/Util에서
-																					// makeUniqueFileName 참조)에
-																					// videoFileName를 대입한 결과물은
-																					// savedFileName
+			try {
+				File alter = new File(uploadDir, videoSavedName);
+				video.transferTo(alter); // 파일 저장
+			} catch (Exception e) {
+				e.printStackTrace();				
+			}
+		} else {
+			vUpload.setVideoFileName(vUploadCurrent.getVideoFileName());
+			vUpload.setVideoSavedName(vUploadCurrent.getVideoSavedName());
+		}
+		if (thumbnailFileName != null && thumbnailFileName.length() > 0) {
+	    	File tFile = new File(uploadDir, vUploadCurrent.getThumbnailSavedName());        
+	    	if( tFile.exists() ){
+	    		if(tFile.delete())tFile.delete();
+	    	}
+	    	String thumbnailSavedName = Util.makeUniqueFileName(thumbnailFileName); // 고유 파일 이름을 만드는 메서드(common/Util에서
+						// makeUniqueFileName 참조)에
+						// videoFileName를 대입한 결과물은
+						// savedFileName
 			vUpload.setThumbnailFileName(thumbnailFileName);
 			vUpload.setThumbnailSavedName(thumbnailSavedName);
 			
 			try {
-				File alter = new File(uploadDir, videoSavedName);
-				video.transferTo(alter); // 파일 저장
-				alter = new File(uploadDir, thumbnailSavedName);
+				File alter = new File(uploadDir, thumbnailSavedName);
 				thumbnail.transferTo(alter); // 파일 저장
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else {
+			vUpload.setThumbnailFileName(vUploadCurrent.getThumbnailFileName());
+			vUpload.setThumbnailSavedName(vUploadCurrent.getThumbnailSavedName());
 		}
+    	////////////////////////////////////
 		
 		videoUploadService.update(vUpload);
 		
