@@ -210,18 +210,11 @@ public class ProduceBoardController {
 		
 		if ( boardNo == -1 ) {
 			return "redirect:actor";
-		}
-		
+		}		
 		model.addAttribute("produceBoard", produceBoard);
-		return String.format("redirect:actorDetail?boardno=%d", boardNo);
+		return "produceBoard/editActorInfor";
 	}
 	
-	
-	@PostMapping(path = { "/editActorInfor" })
-	public String editActorInfor(int boardNo, String sns, String infor, String contact) {
-		produceBoardService.updateInfor(boardNo, sns, infor, contact);
-		return "redirect:actorDetail";
-	}
 	
 	@GetMapping(path = { "/editDirectorInfor" })
 	public String editDirectorInforForm(Model model, 
@@ -234,6 +227,14 @@ public class ProduceBoardController {
 		
 		model.addAttribute("produceBoard", produceBoard);
 		return "produceBoard/editDirectorInfor";
+	}
+	
+	
+	@PostMapping(path = { "/editActorInfor" })
+	public String editActorInfor(int boardNo, String sns, String infor, String contact) {
+		produceBoardService.updateInfor(boardNo, sns, infor, contact);
+		return String.format("redirect:actorDetail?boardno=%d", boardNo);
+		
 	}
 	
 	
