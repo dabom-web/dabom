@@ -64,9 +64,9 @@
                                         </div>  
                                   
                                  			<select id="single-select" name="type">
-			                                    <option value="AL">일반회원</option>
-			                                    <option value="WY">영상업로더</option>
-			                                    <option value="WY">웹툰업로더2</option>
+			                                    <option value="일반회원">일반회원</option>
+			                                    <option value="영상업로더">영상업로더</option>
+			                                    <option value="웹툰업로더">웹툰업로더</option>
 			                                </select>
                                         
                                         <div class="text-center mt-4">

@@ -51,6 +51,7 @@
                              <div role="toolbar" class="toolbar ml-4 ml-sm-0">
                                         
                                     </div>
+                                    
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table student-data-table table-hover m-t-20">
@@ -65,10 +66,14 @@
                                                 <th>수정된 날짜</th>
                                             </tr>
                                         </thead>
+                                        
                                         <tbody>
+                                        	
                                             <c:forEach var="vUpload" items="${ vUploadList }">
                                             <tr>
-                                            	<td style="text-align:center"><input type="checkbox" name="checkBox" value="${ vUpload.videoNo }" /></td>
+                                            
+                                            	<td style="text-align:center"><input type="checkbox" name="videoCheck" value="${ vUpload.videoNo }" /></td>
+                                            
                                             	<td style="text-align:center">${ vUpload.open }</td>
                                             	<td style="text-align:center">${ vUpload.videoType }</td>
                                             	<td style="text-align:center"><a href="/dabomweb/video/update?videoNo=${ vUpload.videoNo }"><img src='/dabomweb/resources/upload-files/${ vUpload.thumbnailSavedName }' width="100" height="50"></a></td>
@@ -77,14 +82,16 @@
                                             	<td style="text-align:center">${ vUpload.updateTime }</td>
                                             </tr>
                                             </c:forEach>
-                                             
+                                            
                                         </tbody>
+                                        
                                     </table>
                                     <div class="p-0">
                                         <button type="button" id="to-delete-list-btn" class="btn btn-primary">선택한 동영상 삭제</button>
                                     	</div>
                                 </div>
                             </div>
+                            
                         </div>
                                     <!-- panel -->
                                     <div class="row mt-4 m-4 mx-sm-4">
@@ -109,34 +116,35 @@
 	<jsp:include page="/WEB-INF/views/modules/css/bottom.jsp" />
 	
 	
-	$("#checkAll").change(function(){
-
-		  if (! $('input:checkbox').is('checked')) {
-		      $('input:checkbox').prop('checked',true);
-		  } else {
-		      $('input:checkbox').prop('checked', false);
-		  }       
-		});
+	
 	<script type="text/javascript">
-	$('#to-delete-list-btn').click(function(event){
-		event.preventDefault();
-		var ok = confirm('삭제한 영상은 복구가 불가능합니다. 정말 선택된 영상들을 삭제하시겠습니까?');
-		if (ok){
-			location.href = 'delete.action?videoNo=${vUpload.videoNo}';
-		}
+	$(function() {		
+	
+		$('#to-delete-list-btn').click(function(event){
+			event.preventDefault();
+			
+			var videoCheck = "";
+			$("input[name='videoCheck']:checked").each(function(){	// videoCheck라는 이름을 가진 모든 체크박스 일괄 제거
+				videoCheck = videoCheck + $(this).val()+",";
+			});
+			videoCheck = videoCheck.substring(0, videoCheck.lastIndexOf( ","));	// 맨끝 콤마 지우기
+			
+			if(videoCheck == ''){	// 아무것도 선택된게 없을 때
+				alert("삭제할 영상을 선택하세요.");
+				return false;
+			}			
+			
+			var ok = confirm('삭제한 영상은 복구가 불가능합니다. 정말 선택된 영상들을 삭제하시겠습니까?');
+			if (ok){
+				location.href = 'deleteChecked?videoNos=' + videoCheck;
+			}
 		});
 	
-	$("input:checkbox[name='checkAll']").bind('click',function(){
-		if($(this).is(":checked") == true){
-			$("input:checkbox[name='checkBox']").each(function(){
-				$(this).attr("checked", true);
-			});
-		} else {
-			$("input:checkbox[name='checkBox']").each(function(){
-				$(this).attr("checked", false);
-			});
-		}
-	});
+	
+
+});
+
+	
 	</script>
 </body>
 </html>

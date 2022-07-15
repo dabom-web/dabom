@@ -31,6 +31,9 @@ img {
     <link href="/dabomweb/resources/vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet">
     <link href="/dabomweb/resources/css/style.css" rel="stylesheet">
 
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	
+
 </head>
 <body>
 	
@@ -118,9 +121,9 @@ img {
                                             	 </td>
                                                
                                                 <td>
-                                                <a href="/dabomweb/webtoon/detail?boardno=${webtoon.boardNo }&pageNo=${pageNo}&number=${webtoon.number}">
+                                                     <a href="/dabomweb/webtoon/detail?boardno=${webtoon.boardNo }&pageNo=${pageNo}&number=${webtoon.number}">
                                                		${webtoon.title }
-                                                </a>
+                                              		  </a>
                                                 </td>
                                                 <td><span class="badge badge-primary">${webtoon.memberId }</span>
                                                 </td>

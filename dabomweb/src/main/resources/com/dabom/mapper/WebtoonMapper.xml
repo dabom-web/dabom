@@ -79,4 +79,16 @@
 		FROM webtoonlistbytitleattach
 		WHERE boardno = #{boardNo} AND number= #{number}
   	</select>
+  	
+  	<select id="webtoonByTitlefindAttach" parameterType="int" resultType="WebtoonListByTitleAttach">
+  		SELECT attachno, boardno, userfilename, savedfilename
+		FROM webtoonlistbytitleattach
+		WHERE number= #{number}
+  	</select>
+  	
+  	<delete id="delete" parameterType="int">
+  		UPDATE webtoonlistbytitle 
+		SET deleted = TRUE 
+		WHERE number = #{number}
+  	</delete>
   </mapper>
