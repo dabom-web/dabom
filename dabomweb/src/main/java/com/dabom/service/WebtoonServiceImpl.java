@@ -111,5 +111,14 @@ public class WebtoonServiceImpl implements WebtoonService {
 		
 	};
 
+	public List<WebtoonListByTitleAttach> webtoonByTitlefindAttach(int number){
+		
+		List<WebtoonListByTitleAttach> webtoonListByTitleAttach = webtoonMapper.webtoonByTitlefindAttach(number);
+		
+		return webtoonListByTitleAttach;
+		
+	};
+
+	
 	
 }

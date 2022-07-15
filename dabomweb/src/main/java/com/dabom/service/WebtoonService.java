@@ -5,6 +5,7 @@ import java.util.List;
 import com.dabom.dto.WebtoonBoard;
 import com.dabom.dto.WebtoonBoardAttach;
 import com.dabom.dto.WebtoonListByTitle;
+import com.dabom.dto.WebtoonListByTitleAttach;
 
 public interface WebtoonService {
 	
@@ -23,6 +24,10 @@ public interface WebtoonService {
 	public List<WebtoonListByTitle> webtoonByTitlefindAll(int boardNo);
 
 	public WebtoonListByTitle findByNumber(int number);
+
+	public List<WebtoonListByTitleAttach> webtoonByTitlefindAttach(int number);
+
+
 	
 	
 }

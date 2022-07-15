@@ -35,4 +35,6 @@ public interface WebtoonMapper {
 	WebtoonListByTitle findByNumber(int number);
 
 	List<WebtoonListByTitleAttach> webtoonListByTitleSelectByNumber(@Param("boardNo") int boardNo,@Param("number") int number);
+
+	List<WebtoonListByTitleAttach> webtoonByTitlefindAttach(int number);
 }
