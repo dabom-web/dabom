@@ -9,4 +9,6 @@ public interface MyChannelMapper {
 
 	void insertMyChannel(MyChannel myChannel);
 
+	MyChannel selectMyChannel(String member_Id);
+
 }

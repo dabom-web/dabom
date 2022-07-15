@@ -39,11 +39,9 @@
                         	<!-- 추수은 -->
                         	<c:choose>
                             <c:when test="${ !empty loginuser.memberId }">                         	
-	                        	<li><a href="/dabomweb/mychannel/mychannel_create">채널만들기</a></li>
-	                            <li><a href="/dabomweb/mychannel/mychannel_main">내 채널</a></li>
+	                        	<li><a href="/dabomweb/mychannel/mychannel_main?member_Id=${loginuser.memberId}">내 채널</a></li>
                             </c:when>
-                            <c:otherwise>
-                            	<li><a href="/dabomweb/account/login">채널만들기</a></li>
+                            <c:otherwise>                            	
 	                            <li><a href="/dabomweb/account/login">내 채널</a></li>
 	                        </c:otherwise>
                             </c:choose>     

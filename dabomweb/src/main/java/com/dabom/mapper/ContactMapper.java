@@ -65,7 +65,7 @@ public interface ContactMapper {
 
 	
 	@Select("select count(*) from contact_message "
-		  + "where deleted = 'false' and read_contact = 'false' and writertype = 'user'")
+		  + "where deleted = false and read_contact = false and writertype = 'user'")
 	int selectReceivedContactCount();
 
 
