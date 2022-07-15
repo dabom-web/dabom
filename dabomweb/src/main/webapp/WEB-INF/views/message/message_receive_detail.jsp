@@ -99,7 +99,7 @@
 					                                                <a class="dropdown-item" 
 					                                                   href="/dabomweb/mychannel/mychannel_main">채널방문</a>
 					                                                <a class="dropdown-item" 
-					                                                   href="message_direct_write?receiver=${ message.sender }&message_no=${ message.message_No}">
+					                                                   href="message_direct_write?receiver=${ message.sender }&message_no=${ message.message_No }">
 					                                                   메세지 보내기</a>					                                                
 					                                            </div>
 					                                        </div>

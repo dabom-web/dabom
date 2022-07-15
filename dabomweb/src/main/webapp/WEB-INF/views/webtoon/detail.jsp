@@ -13,6 +13,9 @@
     <link href="/dabomweb/resources/vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet">
     <link href="/dabomweb/resources/css/style.css" rel="stylesheet">
 
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	
+	
 </head>
 <body>
 	
@@ -41,30 +44,31 @@
                                                             <br>
                                                             <br>
                                                     	</div>
-                                                    <%-- 	<div>
-                                                    	<img src="/dabomweb/resources/upload-files/${ webtoonListByTitleattach.files[1].savedFileName }"/>
-                                                    	</div> --%>
+                                                    	<div>
+                                        			 
+                                                    	<img src="/dabomweb/resources/upload-files/${ webtoonListByTitleattach[1].savedFileName }"/>
+                                                  
+                                                    	</div> 
                                                     
                                                         <p>작가의 말</p>
                                                         <button class="btn btn-primary mr-3"><span class="mr-3"><i
                                                                     class="fa fa-heart"></i></span>Like</button>
-                                                      
-                                                    </div>
+                                                   
                                               
-                                              
-                                                    <div class="text-center mb-2"><a href="javascript:void()" class="btn btn-primary">댓글 쓰기</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        
-                                            <div id="profile-settings" class="tab-pane fade">
-                                                <div class="pt-3">
-                                                    <div class="settings-form">
-                                                        <h4 class="text-primary">Account Setting</h4>
+                                              				<br><br><br>
+                               								<a id='delete-btn' href="#">삭제하기</a>
+                               								<a href="#">수정하기</a>
+                                                    
+                                                             
+                                    
+                                                     
                                                     
                                                     </div>
                                                 </div>
                                             </div>
+                                      
+                           
+                                          
                                         </div>
                                     </div>
                                 </div>
@@ -75,7 +79,6 @@
 			</div>
 		</div>	
 	<jsp:include page="/WEB-INF/views/modules/css/bottom.jsp" />
-
 
 	
 

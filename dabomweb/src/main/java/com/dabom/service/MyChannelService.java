@@ -6,7 +6,11 @@ import com.dabom.dto.Member;
 import com.dabom.dto.MyChannel;
 
 public interface MyChannelService {
-	
+
 	void createMyChannel(MyChannel myChannel);
+
+	MyChannel findMyChannel(String member_Id);
+	
+	
 
 }

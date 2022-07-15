@@ -79,4 +79,10 @@
 		FROM webtoonlistbytitleattach
 		WHERE boardno = #{boardNo} AND number= #{number}
   	</select>
+  	
+  	<select id="webtoonByTitlefindAttach" parameterType="int" resultType="WebtoonListByTitleAttach">
+  		SELECT attachno, boardno, userfilename, savedfilename
+		FROM webtoonlistbytitleattach
+		WHERE number= #{number}
+  	</select>
   </mapper>

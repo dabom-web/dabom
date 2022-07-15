@@ -160,12 +160,11 @@ public class WebtoonController {
 	}
 	
 	@GetMapping(path= {"/detail"})
-	public String detail(@RequestParam(name="boardno", defaultValue="-1")int boardNo,
-						@RequestParam(name="pageNo", defaultValue="-1")int pageNo, int number, Model model) {
+	public String detail( int number,Model model) {
 		
 		WebtoonListByTitle webtoonListByTitle = webtoonservice.findByNumber(number);
 		
-		List<WebtoonListByTitle> webtoonListByTitleattach = webtoonservice.webtoonByTitlefindAll(boardNo);
+		List<WebtoonListByTitleAttach> webtoonListByTitleattach = webtoonservice.webtoonByTitlefindAttach(number);
 
 		model.addAttribute("webtoonListByTitle", webtoonListByTitle);
 		model.addAttribute("webtoonListByTitleattach",webtoonListByTitleattach);

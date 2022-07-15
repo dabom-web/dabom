@@ -20,6 +20,13 @@ public class MyChannelServiceImpl implements MyChannelService {
 		
 	}
 	
+	@Override
+	public MyChannel findMyChannel(String member_Id) {
+		
+		MyChannel myChannel = myChannelMapper.selectMyChannel(member_Id);
+		
+		return myChannel;
+	}
 	
 	
 	

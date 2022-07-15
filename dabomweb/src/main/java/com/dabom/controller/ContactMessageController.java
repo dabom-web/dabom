@@ -38,7 +38,7 @@ public class ContactMessageController {
 		List<ContactMessage> contactList = contactService.findContactListToAdmin();		
 		
 		model.addAttribute("contactList", contactList);
-		model.addAttribute(count);
+		model.addAttribute("count",count);
 		
 		return "contact-message/contactMessage";
 	}
