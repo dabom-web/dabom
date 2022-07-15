@@ -85,4 +85,10 @@
 		FROM webtoonlistbytitleattach
 		WHERE number= #{number}
   	</select>
+  	
+  	<delete id="delete" parameterType="int">
+  		UPDATE webtoonlistbytitle 
+		SET deleted = TRUE 
+		WHERE number = #{number}
+  	</delete>
   </mapper>

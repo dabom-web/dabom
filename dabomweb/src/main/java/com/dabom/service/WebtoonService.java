@@ -27,6 +27,8 @@ public interface WebtoonService {
 
 	public List<WebtoonListByTitleAttach> webtoonByTitlefindAttach(int number);
 
+	public void delete(int number);
+
 
 	
 	
