@@ -160,7 +160,9 @@ public class WebtoonController {
 	}
 	
 	@GetMapping(path= {"/detail"})
-	public String detail( int number,Model model) {
+	public String detail( int number,
+			 @RequestParam(name="pageNo", defaultValue="-1")int pageNo,
+			Model model) {
 		
 		WebtoonListByTitle webtoonListByTitle = webtoonservice.findByNumber(number);
 		
@@ -170,6 +172,21 @@ public class WebtoonController {
 		model.addAttribute("webtoonListByTitleattach",webtoonListByTitleattach);
 		
 		return "webtoon/detail";
+		
+	}
+	
+	@GetMapping(path= {"/delete"})
+	public String delete(@RequestParam(name="boardno", defaultValue="-1") int boardNo,
+						 @RequestParam(name="number", defaultValue="-1") int number,
+						 @RequestParam(name="pageNo", defaultValue="-1")int pageNo,
+						  Model model) {
+	
+		if(boardNo>0  && number > 0) {
+			webtoonservice.delete(number);
+			return String.format("redirect:webtoonListByTitle?boardno=%d&pageNo=%d", boardNo,pageNo) ;
+		}
+			return "redirect:webtoonListByTitle";
+
 		
 	}
 	

@@ -80,7 +80,17 @@
 		</div>	
 	<jsp:include page="/WEB-INF/views/modules/css/bottom.jsp" />
 
-	
+	<script type="text/javascript">
+	$(function(){
+		$('#delete-btn').click(function(event){
+			event.preventDefault();
+			var ok = confirm('삭제하시겠습니까?');
+			if(ok){
+				location.href='delete?boardno=${webtoonListByTitle.boardNo}&number=${webtoonListByTitle.number}&pageNo=${param.pageNo}'
+			}
+		})	
+	});
+	</script>
 
 </body>
 </html>

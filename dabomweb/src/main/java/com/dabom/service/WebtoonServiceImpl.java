@@ -118,6 +118,10 @@ public class WebtoonServiceImpl implements WebtoonService {
 		return webtoonListByTitleAttach;
 		
 	};
+	
+	public void delete(int number) {
+		webtoonMapper.delete(number);
+	};
 
 	
 	
