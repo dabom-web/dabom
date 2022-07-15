@@ -29,4 +29,6 @@ public interface ContactService {
 
 	int findReceivedContactMessageCount();
 
+	void deletedContact(int checkNo);
+
 }

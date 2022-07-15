@@ -56,18 +56,28 @@
 										<tbody>
 											<tr style="height: 70px;">
 												<td style="width: 1000px;"><a href="actorDetail?boardno=${ board.boardNo }">${ board.member.userName }</a></td>
-												<td style="width: 470px;">${ board.writedate }</td>
-													
-													<c:set var="writer" value="${ board.writer }"/>
-													<c:if test="${ writer eq loginuser.memberId }">
+												
+												<c:choose>
+												<c:when test="${ board.modifydate ne null }">
+													<td style="width: 470px;">${ board.modifydate }에 수정됨</td>
+												</c:when>
+												<c:otherwise>
+													<td style="width: 470px;">${ board.writedate }</td>
+												</c:otherwise>
+												</c:choose>
+											
+												<c:choose>
+												<c:when test="${ loginuser.memberId eq board.writer }">
 													<td style="width: 100px;">
-														<a href="#"	class="badge badge-rounded badge-danger">신청</a>	
+														<a href="editActorInfor?boardno=${ board.boardNo }" class="badge badge-rounded badge-danger">신청</a>	
 													</td>	
-													</c:if>
+												</c:when>
+												<c:otherwise>
 													<td style="width: 100px;">
 														<a class="badge badge-rounded badge-dark">제한</a>
-													</td>											
-																			 
+													</td>
+												</c:otherwise>
+												</c:choose>
 											</tr>
 										</tbody>
 									</c:forEach>

@@ -56,13 +56,27 @@
 									<tbody>								
 										<tr style="height: 70px;">
 											<td style="width: 1000px;"><a href="directorDetail?boardno=${ board.boardNo }">${ board.member.userName }</a></td>											
-											<td style="width: 470px;">${ board.writedate }</td>										
-											<td style="width: 100px;">
-											<c:if test="${ loginuser.memberId eq board.writer }">
-												<a href="#"	class="badge badge-rounded badge-danger">신청</a>
-												</c:if>
-												<a class="badge badge-rounded badge-dark">제한</a>												
-                                            </td>											
+											<c:choose>
+												<c:when test="${ board.modifydate ne null }">
+													<td style="width: 470px;">${ board.modifydate }에 수정됨</td>
+												</c:when>
+												<c:otherwise>
+													<td style="width: 470px;">${ board.writedate }</td>
+												</c:otherwise>
+												</c:choose>
+											
+												<c:choose>
+												<c:when test="${ loginuser.memberId eq board.writer }">
+													<td style="width: 100px;">
+														<a href="editDirectorInfor?boardno=${ board.boardNo }" class="badge badge-rounded badge-danger">신청</a>	
+													</td>	
+												</c:when>
+												<c:otherwise>
+													<td style="width: 100px;">
+														<a class="badge badge-rounded badge-dark">제한</a>
+													</td>
+												</c:otherwise>
+												</c:choose>
 										</tr>										
 									</tbody>
 									</c:forEach>	

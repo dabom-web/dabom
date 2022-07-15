@@ -53,8 +53,11 @@ public class ContactMessageController {
 	
 	@GetMapping(path = { "/sendContact" })
 	public String sendContactForm(Model model) {
+		
+		int count = contactService.findReceivedContactMessageCount();
 		List<Member> memberList = contactService.findUserMemberList();
 		model.addAttribute("memberList", memberList);
+		model.addAttribute("count",count);
 		return "contact-message/sendContact";
 	}
 	
@@ -64,9 +67,11 @@ public class ContactMessageController {
 	}
 	
 	@GetMapping(path = { "/sendContactList" })
-	public String sendContactList(Model model) {		
+	public String sendContactList(Model model) {
+		int count = contactService.findReceivedContactMessageCount();	
 		List<ContactMessage> contactList = contactService.findAllContactList();
 		model.addAttribute("contactList", contactList);
+		model.addAttribute("count",count);
 		return "contact-message/sendContactList";
 	}
 	
@@ -99,7 +104,8 @@ public class ContactMessageController {
 	@GetMapping(path = { "/sendContactAdminDetail" })
 	public String sendContactDetailByAdmin(Model model,
 										@RequestParam(defaultValue = "-1" )int contactNo) {
-		
+		int count = contactService.findReceivedContactMessageCount();	
+		model.addAttribute("count",count);
 		ContactMessage contactMessage = contactService.findByContactNo(contactNo);
 		
 		if(contactNo == -1) {
@@ -132,6 +138,9 @@ public class ContactMessageController {
 	public String receivedContactDetailToUser(Model model,
 											  @RequestParam(defaultValue = "-1" )int contactNo) {
 		
+		int count = contactService.findReceivedContactMessageCount();	
+		model.addAttribute("count",count);
+	
 		ContactMessage contactMessage = contactService.findByContactNo(contactNo);
 		
 		if(contactNo == -1) {
@@ -140,6 +149,7 @@ public class ContactMessageController {
 		if (contactMessage == null) {
 			return "redirect:/contact-message/sendContactList";
 		}
+		
 		model.addAttribute("contact",contactMessage);
 		return "contact-message/receivedContactUserDetail";
 	}
@@ -163,6 +173,9 @@ public class ContactMessageController {
 	@GetMapping(path = { "/replyContact" })
 	public String replyContactForm(String memberId, Model model) {
 		
+		int count = contactService.findReceivedContactMessageCount();	
+		model.addAttribute("count",count);
+		
 		String memberId2 = memberId;
 		model.addAttribute("memberId", memberId2);
 		
@@ -171,16 +184,26 @@ public class ContactMessageController {
 	
 	
 	@PostMapping(path = { "/replyContact" })
-	public String sendReplyContact(ContactMessage contactMessage) {
+	public String sendReplyContact(Model model, ContactMessage contactMessage) {
+		
+		int count = contactService.findReceivedContactMessageCount();	
+		model.addAttribute("count",count);	
 		
 		contactService.sendReplyContact(contactMessage);
 		
 		return "redirect:sendContactList";
 	}
 	
+@GetMapping(path = { "/removeChecked" })
+public String removeCheckNo(@RequestParam(name = "checkNos", defaultValue = "-1")String checkNos){
 	
+	String[] checkList = checkNos.split(",");
+	for (String checkNo : checkList) {
+		contactService.deletedContact(Integer.parseInt(checkNo));
+	}
+	return "redirect:contactMessage";
+}
 	
-	
-	
+
 	
 }

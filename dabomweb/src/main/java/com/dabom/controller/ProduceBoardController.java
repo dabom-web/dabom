@@ -203,4 +203,48 @@ public class ProduceBoardController {
 	}	
 	
 	
+	@GetMapping(path = { "/editActorInfor" })
+	public String editActorInforForm(Model model, 
+									 @RequestParam(name="boardno", defaultValue = "-1") int boardNo) {
+		ProduceBoard produceBoard = produceBoardService.findInforByBoardNo(boardNo);
+		
+		if ( boardNo == -1 ) {
+			return "redirect:actor";
+		}
+		
+		model.addAttribute("produceBoard", produceBoard);
+		return String.format("redirect:actorDetail?boardno=%d", boardNo);
+	}
+	
+	
+	@PostMapping(path = { "/editActorInfor" })
+	public String editActorInfor(int boardNo, String sns, String infor, String contact) {
+		produceBoardService.updateInfor(boardNo, sns, infor, contact);
+		return "redirect:actorDetail";
+	}
+	
+	@GetMapping(path = { "/editDirectorInfor" })
+	public String editDirectorInforForm(Model model, 
+									 @RequestParam(name="boardno", defaultValue = "-1") int boardNo) {
+		ProduceBoard produceBoard = produceBoardService.findInforByBoardNo(boardNo);
+		
+		if ( boardNo == -1 ) {
+			return "redirect:director";
+		}
+		
+		model.addAttribute("produceBoard", produceBoard);
+		return "produceBoard/editDirectorInfor";
+	}
+	
+	
+	@PostMapping(path = { "/editDirectorInfor" })
+	public String editDirectorInfor(int boardNo, String sns, String infor, String contact) {
+		produceBoardService.updateInfor(boardNo, sns, infor, contact);
+		return String.format("redirect:directorDetail?boardno=%d", boardNo);
+	}
+	
+	
+	
+	
+	
 }

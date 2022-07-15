@@ -107,6 +107,18 @@ public class ProduceBoardServiceImpl implements ProduceBoardService {
 		
 	}
 
+	@Override
+	public ProduceBoard findInforByBoardNo(int boardNo) {
+	ProduceBoard produceBoard = produceBoardMapper.selectInforByBoardNo(boardNo);
+		return produceBoard;
+	}
+
+	@Override
+	public void updateInfor(int boardNo, String sns, String infor, String contact) {
+		produceBoardMapper.updateInfor(boardNo, sns, infor, contact);
+		
+	}
+
 
 	
 }

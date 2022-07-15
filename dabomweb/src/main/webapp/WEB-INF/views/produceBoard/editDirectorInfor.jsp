@@ -6,7 +6,7 @@
  <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
- 	<title>Write Director Infor</title>
+ 	<title>Edit Director Infor</title>
     <link rel="icon" type="image/png" sizes="16x16" href="resources/images/dabom.jpg">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.theme.default.min.css">
@@ -36,7 +36,7 @@
 			<div class="row page-titles mx-0">
 				<div class="col-sm-6 p-md-0">
 					<div class="welcome-text">
-						<h4>감독 소개 정보를 입력해주세요</h4>
+						<h4>감독 소개 정보를 수정합니다.</h4>
 						<br>
 					</div>
 				</div>
@@ -56,23 +56,20 @@
 						</div>
 						<div class="card-body">
 							<div class="form-validation">
-								<form id="write-form"
+								<form id="edit-form"
 									class="form-valide" 
-									action="writeDirectorInfor" 
-									method="post"
-									enctype="multipart/form-data">
-																	
-									<input type="hidden" name="type" value="director">
-									<input type="hidden" name="writer" value="${ loginuser.memberId }">
+									action="editDirectorInfor" 
+									method="post">
+									<input type="hidden" name="boardNo" value="${ produceBoard.boardNo }">									
 									<div class="row">
 										<div class="col-xl-6">
 											<div class="form-group row">
-												<label class="col-lg-4 col-form-label">Name <span
+												<label class="col-lg-4 col-form-label">Name<span
 													class="text-danger">*</span>
 												</label>
 												<div class="col-lg-6">
-													<input type="text" class="form-control" id="director-name"
-														name="memberId" value="${ loginuser.userName }" placeholder="${ loginuser.userName }">
+													<input class="form-control" id="director-name"
+														value="${ loginuser.userName }" readonly>
 												</div>
 											</div>
 											<div class="form-group row">
@@ -80,8 +77,9 @@
 													class="text-danger">*</span>
 												</label>
 												<div class="col-lg-6">
-													<input type="text" class="form-control" id="email"
-														name="email" value="${ loginuser.email }" placeholder="${ loginuser.email }">
+													<input class="form-control" id="email"
+														 value="${ loginuser.email }" readonly>
+														<small>이름과 이메일은 회원정보에서 수정 바랍니다.</small>
 												</div>
 											</div>
 											<div class="form-group row">
@@ -90,7 +88,7 @@
 												</label>
 												<div class="col-lg-6">
 													<input type="text" class="form-control" id="sns" name="sns"
-														placeholder="sns주소가 있나요?">
+														 value="${ produceBoard.sns }">
 												</div>
 											</div>
 
@@ -100,7 +98,7 @@
 												</label>
 												<div class="col-lg-6">
 													<textarea class="form-control" id="infor" name="infor"
-														rows="10" placeholder="짧게 소개해 주세요"></textarea>
+														rows="10" >${ produceBoard.infor }</textarea>
 												</div>
 											</div>
 										</div>
@@ -112,26 +110,17 @@
 												</label>
 												<div class="col-lg-6">
 													<input type="text" class="form-control" id="contact"
-														name="contact" placeholder="연락처를 공개 하시려면 입력해주세요.">
+														name="contact" value="${ produceBoard.contact }">
+														<small>공개가 되는 정보이니 연락처는 신중하게 입력해주세요.</small>
 												</div>
 											</div>
-											<div class="basic-form custom_file_input">
-												<div class="input-group mb-3">
-													<div class="input-group-prepend">
-														<span class="input-group-text">Upload</span>
-													</div>
-													<div class="custom-file">
-														<input type="file" name="producerAttach" class="custom-file-input"> <label
-															class="custom-file-label">Choose file</label>
-													</div>
-												</div>
-											</div>
+											
 											<br><br><br><br>
-											<h3 style="text-align: center;">입력하신 정보는 관리자가 승인하면 업데이트 됩니다.</h3>
+											<h3 style="text-align: center;">입력하신 정보는 관리자의 승인없이 바로 수정 됩니다.</h3>
 											<div class="col-lg-8 ml-auto"><br><br><br>
 												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-												  <a id="write" href="javascript:">
-												 <button class="btn btn-primary">Submit</button></a>
+												 <a id="write" href="javascript:">
+												 <button class="btn btn-primary">Update</button></a>
 												  <a id="cancel" href="javascript:history.back();">
 												  <button class="btn btn-primary">Cancel</button></a>
 												 
@@ -156,7 +145,10 @@
 	$(function () {
 		$('#write').on('click', function (event) {
 			event.preventDefault();
-			$('#write-form').submit();			
+			var ok = confirm("수정하시겠습니까?");
+			if (ok) {
+				$('#edit-form').submit();			
+			} 
 		});		
 	});
 

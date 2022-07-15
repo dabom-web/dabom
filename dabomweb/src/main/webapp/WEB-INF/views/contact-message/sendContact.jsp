@@ -56,7 +56,7 @@
 									<a href="/dabomweb/contact-message/contactMessage"class="list-group-item">
 										<i class="fa fa-star font-18 align-middle mr-2"></i>
 										문의 메세지함 
-										<span class="badge badge-danger text-white badge-sm float-right">47</span>
+										<span class="badge badge-danger text-white badge-sm float-right">${ count }</span>
 									</a> 
 									
 									<a href="#" class="list-group-item">

@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
+import org.apache.ibatis.annotations.Update;
 
 import com.dabom.dto.ContactMessage;
 import com.dabom.dto.Member;
@@ -40,7 +41,7 @@ public interface ContactMapper {
 	List<ContactMessage> selectSendContactListByUser(@Param("memberId")String memberId);
 	
 	@Select("select contact_no contactNo, title, content, send_date sendDate, member_id memberId, admin_id adminId, read_contact readContact, deleted, writertype "
-			+ "from contact_message where writertype = 'user' order by contact_no desc")
+			+ "from contact_message where writertype = 'user' and deleted = false order by contact_no desc")
 	List<ContactMessage> selectContactListToAdmin();
 	
 	@Select("select contact_no contactNo, title, content, send_date sendDate, member_id memberId, admin_id adminId, read_contact readContact, deleted, writertype "
@@ -67,6 +68,10 @@ public interface ContactMapper {
 	@Select("select count(*) from contact_message "
 		  + "where deleted = false and read_contact = false and writertype = 'user'")
 	int selectReceivedContactCount();
+
+	
+	@Update("update contact_message set deleted = true where contact_no = #{ checkNo }")
+	void updateDeletedcontact(int checkNo);
 
 
 

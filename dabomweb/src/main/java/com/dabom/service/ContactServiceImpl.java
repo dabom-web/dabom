@@ -81,6 +81,11 @@ public class ContactServiceImpl implements ContactService {
 		return count;
 	}
 
+	@Override
+	public void deletedContact(int checkNo) {
+		contactMapper.updateDeletedcontact(checkNo);		
+	}
+
 	
 
 	

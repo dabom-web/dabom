@@ -117,7 +117,7 @@
 									<div class="profile-tab">
 										<div class="custom-tab-1">
 										<c:choose>
-											<c:when test="${ !empty myChannel.channel_Name }">
+											<c:when test="${ empty myChannel.channel_Name }">
 												<c:choose>
 													<c:when test="${ loginuser.memberId eq myChannel.member_Id }">
 														<ul class="nav nav-tabs">
