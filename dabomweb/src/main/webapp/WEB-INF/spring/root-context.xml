@@ -39,7 +39,7 @@
 	<import resource="root-context-produceBoard.xml" />
 	<import resource="root-context-contactMessage.xml"/>
 	<import resource="root-context-webtoon.xml"/>
-
+	<import resource="root-context-mypage.xml" />
 
 	<import resource="root-context-videoUpload.xml" />
 	

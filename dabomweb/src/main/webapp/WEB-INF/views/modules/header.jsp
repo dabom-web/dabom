@@ -94,7 +94,7 @@
                                 </a>
                                 <a style="font-size:9pt; font-weight: bolder; color: black;">${ loginuser.nickName }님 환영합니다 !!</a>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <a href="resources/app-profile.html" class="dropdown-item">
+                                    <a href="/dabomweb/mypage/profile" class="dropdown-item">
                                         <i class="icon-user"></i>                                        
                                         <span class="ml-2">Profile </span>
                                     </a>
