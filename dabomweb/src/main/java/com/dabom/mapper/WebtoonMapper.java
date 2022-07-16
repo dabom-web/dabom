@@ -39,4 +39,8 @@ public interface WebtoonMapper {
 	List<WebtoonListByTitleAttach> webtoonByTitlefindAttach(int number);
 
 	void delete(int number);
+
+	void deleteAttach(int number);
+
+	void update(WebtoonListByTitle webtoonListByTitle);
 }
