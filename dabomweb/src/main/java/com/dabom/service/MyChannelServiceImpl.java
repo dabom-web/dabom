@@ -28,7 +28,26 @@ public class MyChannelServiceImpl implements MyChannelService {
 		return myChannel;
 	}
 	
+	@Override
+	public void insertChannelSubscribe(String member_Id, String subscriber, int subscribe) {
+		myChannelMapper.insertChannelSubscribe(member_Id, subscriber, subscribe);
+	}
 	
+	@Override
+	public void subscribeChannel(String member_Id, String subscriber, int subscribe) {
+		myChannelMapper.updateChannelSubscribe(member_Id, subscriber, subscribe);
+	}
+	
+	@Override
+	public void updateChannelSubscribeCount(String member_Id, int count) {
+		myChannelMapper.updateChannelSubscribeCount(member_Id, count);
+	}
+
+	@Override
+	public int findAllSubscribeCount(String member_Id) {
+		int count = myChannelMapper.selectSubscribeCount(member_Id);
+		return count;
+	}
 	
 		
 	

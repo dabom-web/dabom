@@ -8,6 +8,7 @@ public class MyChannel {
 	private String member_Id;
 	private String channel_Name;
 	private String channel_Info;
+	private int subscribe;
 	
 	
 }
