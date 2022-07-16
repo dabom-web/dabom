@@ -15,7 +15,7 @@
     <link href="resources/css/style.css" rel="stylesheet">
 </head>
 <body>
-   <jsp:include page="/WEB-INF/views/modules/css/top.jsp" />
+   <jsp:include page="/WEB-INF/views/modules/css/top.jsp" />   
    <jsp:include page="/WEB-INF/views/modules/css/bottom.jsp" />
 </body>
 </html>
