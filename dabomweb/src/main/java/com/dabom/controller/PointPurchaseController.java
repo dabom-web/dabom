@@ -42,7 +42,7 @@ public class PointPurchaseController {
 		// 데이터베이스에 데이터 저장
 		pointPurchaseService.purchasePoint(pointPurchase);
 		
-		return "redirect:/home";
+		return "redirect:purchase-point";
 		
 	}
 }

@@ -20,11 +20,22 @@ public interface PointPurchaseMapper {
 			   before = false)	
 	void insertPointPurchase(PointPurchase pointPurchase);
 	
-	@Select("select memberid, price, amount, purchase_date purchaseDate, cancel_date cancelDate " +
+	@Select("select memberid, price, amount, purchase_date purchaseDate, cancel_date cancelDate, accept, use_point usePoint, use_date useDate " +
 			"from PointPurchase " +
 			"where memberid = #{ memberId } " +
 			"order by purchase_date desc")
 	List<PointPurchase> selectPointPurchaseByMemberId(@Param("memberId") String memberId);
-	
 
+	@Select("select sum(price) from PointPurchase where accept = true and memberid = #{ memberId }")
+	int selectSumPriceByMemberId(@Param("memberId")String memberId);
+	
+	@Select("select sum(amount) from PointPurchase where accept = true and memberid = #{ memberId }")
+	int selectSumAmountByMemberId(@Param("memberId")String memberId);
+	
+	@Select("select sum(use_point) from PointPurchase where accept = true and memberid = #{ memberId }")
+	int selectSumUsePointByMemberId(@Param("memberId")String memberId);
+	
+	
+	
+	
 }

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,6 +22,11 @@
 
 	<div class="content-body">
 		<div class="container-fluid">
+		<a class="btn btn-light btn-xs" id="back-btn"  
+				    href="javascript:history.back();" style="width: 100px;" > 
+					<span class="mr-2"><i class="fa fa-reply"></i></span> 
+					Back
+				</a><br><br>
 			<div class="row page-titles mx-0">
 				<div class="col-sm-6 p-md-0">
 					<div class="welcome-text">

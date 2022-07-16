@@ -15,19 +15,27 @@
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.theme.default.min.css">
     <link href="/dabomweb/resources/vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet">
     <link href="/dabomweb/resources/css/style.css" rel="stylesheet">
-
-<style type="text/css">
-img {
-  object-fit: cover;
-  overflow: hidden;
-}
-.box {
-    width: 150px;
-    height: 150px; 
-    border-radius: 70%;
-    overflow: hidden;
-}
-</style>
+	<jsp:include page="/WEB-INF/views/modules/css/font.jsp" />
+	<style type="text/css">
+		img {
+		  object-fit: cover;
+		  overflow: hidden;
+		}
+		.box {
+		    width: 150px;
+		    height: 150px; 
+		    border-radius: 70%;
+		    overflow: hidden;
+		}
+		a:link { color:black; }
+		a:visited { color:black; }
+		a:hover { color:lightgray; }
+		
+		.b {
+			font-size: 9pt;
+			font-weight: bolder;
+		}
+	</style>
 </head>
 <body>
 
@@ -35,6 +43,11 @@ img {
 
 	<div class="content-body">
 		<div class="container-fluid">
+				<a class="btn btn-light btn-xs" id="back-btn"  
+				    href="javascript:history.back();" style="width: 100px;" > 
+					<span class="mr-2"><i class="fa fa-reply"></i></span> 
+					Back
+				</a><br><br>
 
 			<div class="row">
 				<div class="col-lg-12">
@@ -42,7 +55,7 @@ img {
 						<div class="profile-head">
 							<div class="photo-content">
 								<div style="background-color: black;"><table><tr style=" height: 100px;">
-								<h1 style="color: white; text-align: center;" ><br><br><br>
+								<h1 style="color: white; text-align: center; font-size: 60pt; font-family: 'Lobster', 'Gugi';" ><br>
 								${ member.nickName }<h1></tr></table></div>
 								<div class="profile-photo" >
 									<img src="/dabomweb/resources/upload-files/${ producerAttach.savedFileName }"
@@ -61,19 +74,19 @@ img {
 											</div>
 											<div class="col-xl-4 col-sm-4 border-right-1 prf-col">
 												<div class="profile-email">
-													<a id="support-btn" href="javascript:" class="btn btn-outline-danger"
+													<a id="support-btn" href="javascript:" class="btn btn-outline-danger b"
 														style='display: ${ not empty produceSupport and produceSupport.support == 1 ? "none" : "" }'>
 														감독 응원하기 🖤<span>&nbsp;<i style="font-size: 5pt; font-style: normal;">${ produceBoard.supportCnt }</i></span>
 													</a> 
 													
-													<a id="support-btn2" href="javascript:" class="btn btn-danger"
+													<a id="support-btn2" href="javascript:" class="btn btn-danger b"
 														style='display: ${ not empty produceSupport and produceSupport.support == 1 ? "" : "none" }'>
 														응원하는 감독 🤍<span>&nbsp;<i style="font-size: 5pt; font-style: normal;">${ produceBoard.supportCnt }</i></span>
 													</a> <br>
 													<c:set var="contact" value="${ produceBoard.contact }"/>
-													<p><c:if test="${ empty contact }"> 
-														연락처 비공개
-													</c:if><p>
+													<c:if test="${ empty contact }"> 
+													<p class="small">연락처 비공개 </p>
+													</c:if>
 													<p>${ produceBoard.contact }</p>
 												
 												</div>
@@ -113,7 +126,9 @@ img {
 														<div class="tab-content" id="nav-tabContent">
 															<div class="tab-pane fade show active" id="list-home">
 																<h4 class="mb-4">Channel</h4>
-																<p>운영하는 채널</p>
+																<a href="/dabomweb/mychannel/mychannel_main?member_Id=${ member.memberId }">
+																<p style="font-size: 45pt; font-family: 'Lobster', 'Gugi';">📺 ${ member.nickName } CHNNEL</p>
+																</a>
 															</div>
 															<div class="tab-pane fade" id="list-profile"
 																role="tabpanel">

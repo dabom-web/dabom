@@ -147,9 +147,6 @@
 	                 </c:otherwise>
 	                </c:choose>
                 
-                 		<a href="/dabomweb/nonMembersHome" aria-expanded="false">
-	                    <span class="nav-text">비회원화면나중에지울거</span></a>
-                
                 </ul>
             
             

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -72,7 +73,7 @@
 									<tbody class="th">								
 										<tr data-boardno="${board.boardNo}" style="height: 70px;">
 											<td style="width: 1000px;"><a href="acceptDetail?boardno=${ board.boardNo }">${ board.member.userName }</a></td>											
-											<td style="width: 470px;">${ board.writedate }</td>										
+											<td style="width: 470px;"><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${ board.writedate }"/></td>										
 											<td style="width: 100px;">
 											<form id="accept-form-${board.boardNo}">
 											<input type="hidden" name='boardno' value="${ board.boardNo }">
@@ -95,9 +96,16 @@
 						</div>
 					</div>
 				</div>
-
 			</div>
+				
 		</div>
+		<div style="vertical-align: right;">
+			<a class="btn btn-outline-dark" id="back-btn"  
+			    href="javascript:history.back();" style="width: 100px;" > 
+				<span class="mr-2"><i class="fa fa-reply"></i></span> 
+				Back
+			</a>
+		</div>	
 	</div>
 	
 	

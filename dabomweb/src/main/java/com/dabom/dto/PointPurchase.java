@@ -12,5 +12,8 @@ public class PointPurchase {
 	private int price;
 	private Date purchaseDate;
 	private Date cancelDate;
-	private String memberId;	
+	private Date useDate;
+	private String memberId;
+	private Boolean accept;
+	private int usePoint;
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>    
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,10 +45,13 @@
 							</div>
 							<div class="email-right-box ml-0 ml-sm-4 ml-sm-0"></div>
 							<div class="toolbar mb-4" role="toolbar">	
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a class="btn btn-outline-dark"
-								id="back-btn" href="javascript:" style="width: 100px;"> <span
-								class="mr-2"><i class="fa fa-reply"></i></span> Back
-							</a></div>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								<a class="btn btn-outline-dark" id="back-btn" 
+								    href="javascript:" style="width: 100px;"> 
+									<span class="mr-2"><i class="fa fa-reply"></i></span> 
+									Back
+								</a>
+							</div>
 							<div class="email-right-box ml-0 ml-sm-4 ml-sm-0">
 								<div class="compose-content">
 									<form id="write-form" method="post" action="replyContact">

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,6 +36,11 @@
 
 	<div class="content-body">
 		<div class="container-fluid">
+				<a class="btn btn-light btn-xs" id="back-btn"  
+				    href="javascript:history.back();" style="width: 100px;" > 
+					<span class="mr-2"><i class="fa fa-reply"></i></span> 
+					Back
+				</a><br><br>
 			<div class="row page-titles mx-0">
 				<div class="col-sm-6 p-md-0">
 					<div class="welcome-text tr">
@@ -74,10 +80,10 @@
 											<td style="width: 1000px;"><a href="directorDetail?boardno=${ board.boardNo }">${ board.member.userName }</a></td>											
 												<c:choose>
 												<c:when test="${ board.modifydate ne null }">
-													<td style="width: 470px;">${ board.modifydate }에 수정됨</td>
+													<td style="width: 470px;"><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${ board.modifydate }"/>에 수정</td>
 												</c:when>
 												<c:otherwise>
-													<td style="width: 470px;">${ board.writedate }</td>
+													<td style="width: 470px;"><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${ board.writedate }"/></td>
 												</c:otherwise>
 												</c:choose>
 											

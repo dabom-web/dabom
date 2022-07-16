@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +22,11 @@
 
 	<div class="content-body">
 		<div class="container-fluid">
+			<a class="btn btn-light btn-xs" id="back-btn"  
+				    href="javascript:history.back();" style="width: 100px;" > 
+					<span class="mr-2"><i class="fa fa-reply"></i></span> 
+					Back
+				</a><br><br>
 			<div class="row page-titles mx-0">
 				<div class="col-sm-6 p-md-0">
 					<div class="welcome-text">
@@ -56,18 +62,18 @@
 												<div>
 												<c:choose>
 												<c:when test="${ deleted.writertype eq 'admin' }">
-													관리자${ deleted.adminId }님이 "${ deleted.memberId }"님에게 보낸 메세지입니다.
+													관리자 ${ deleted.adminId }님이 "${ deleted.memberId }"님에게 보낸 메세지입니다.
 												</c:when>
 												<c:otherwise>
-													${ deleted.memberId }님이 관리자에게 보낸 메세지입니다.
+													📲&nbsp;${ deleted.memberId }님이 관리자에게 보낸 메세지입니다.
 												</c:otherwise>
 												</c:choose>	
 												<c:choose>
 												<c:when test="${ deleted.writertype eq 'admin' }">
-													발송일 ${ deleted.sendDate }
+													&nbsp;&nbsp;발송일&nbsp;&nbsp;<fmt:formatDate pattern="yyyy-MM-dd" value="${ deleted.sendDate }"/>&nbsp;📲
 												</c:when>
 												<c:otherwise>
-													수신일 ${ deleted.sendDate }
+													&nbsp;&nbsp;수신일&nbsp;&nbsp; <fmt:formatDate pattern="yyyy-MM-dd" value="${ deleted.sendDate }"/>
 												</c:otherwise>
 												</c:choose>	
 												</div>												

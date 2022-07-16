@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,24 +34,22 @@
 <body>   
     	<jsp:include page="/WEB-INF/views/modules/css/top.jsp" />
 
+
 	<div class="content-body">
 		<div class="container-fluid">
+				<a class="btn btn-light btn-xs" id="back-btn"  
+				    href="javascript:history.back();" style="width: 100px;" > 
+					<span class="mr-2"><i class="fa fa-reply"></i></span> 
+					Back
+				</a><br><br>
 			<div class="row page-titles mx-0">
 				<div class="col-sm-6 p-md-0">
 					<div class="welcome-text tr">
 						<h4>배우 정보</h4>
 					</div>
 				</div>
-				<div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
-					<ol class="breadcrumb small">
-						<li class="breadcrumb-item">
-						<a href="/dabomweb/produceBoard/writeActorInfor">배우 정보 업데이트 신청</a></li>						
-					</ol>
-				</div>
-
 			</div>
-			<!-- row -->
-
+				
 
 			<div class="row">
 				<div class="col-12">
@@ -58,6 +57,7 @@
 						<div class="card-header">
 							<h4 class="card-title tr">배우 정보 보기</h4>
 						</div>
+							
 						<div class="card-body">
 							<div class="table-responsive">
 								<table id="example" class="display" style="min-width: 845px">
@@ -75,10 +75,10 @@
 												
 												<c:choose>
 												<c:when test="${ board.modifydate ne null }">
-													<td style="width: 470px;">${ board.modifydate }에 수정됨</td>
+													<td style="width: 470px;"><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${ board.modifydate }"/>에 수정</td>
 												</c:when>
 												<c:otherwise>
-													<td style="width: 470px;">${ board.writedate }</td>
+													<td style="width: 470px;"><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${ board.writedate }"/></td>
 												</c:otherwise>
 												</c:choose>
 											

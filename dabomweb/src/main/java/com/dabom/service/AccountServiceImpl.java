@@ -37,5 +37,16 @@ public class AccountServiceImpl implements AccountService {
 		
 		return member2;
 	}
+
+
+	@Override
+	public void updateMemberInfor(String memberId, String nickName, int birth, String email, int phone, String userName) {
+		memberMapper.updateMemberInforByMemberId(memberId, nickName, birth, email, phone, userName);
+	}
+
+	@Override
+	public void updateUserType(String memberId, String type) {
+		memberMapper.updateUserTypeByMemberId(memberId, type);
+	}
 	
 }
