@@ -183,10 +183,40 @@ public class WebtoonController {
 	
 		if(boardNo>0  && number > 0) {
 			webtoonservice.delete(number);
+			//webtoonservice.deleteAttach(number);
 			return String.format("redirect:webtoonListByTitle?boardno=%d&pageNo=%d", boardNo,pageNo) ;
 		}
-			return "redirect:webtoonListByTitle";
-
+			return "redirect:webtoonListByTitle";	
+	}
+	@GetMapping(path= {"/edit"})
+	public String editForm(@RequestParam(name="boardno", defaultValue = "-1")int boardNo,
+						   @RequestParam(name="number", defaultValue = "-1")int number,
+						   @RequestParam(name="pageNo", defaultValue = "-1")int pageNo, Model model) {
+		if(number < 1 && pageNo < 1) {
+			return String.format("redirect:webtoonListByTitle?boardno=%d&pageNo=%d", boardNo,pageNo);
+		}
+		
+		WebtoonListByTitle webtoonListByTitle = webtoonservice.findByNumber(number);
+		if(webtoonListByTitle == null) {
+			return String.format("redirect:webtoonListByTitle?boardno=%d&pageNo=%d", boardNo,pageNo);
+		}
+		
+		model.addAttribute("webtoonListByTitle",webtoonListByTitle);
+		
+		 return "webtoon/edit";
+	}
+	
+	@PostMapping(path= {"/edit"})
+	public String edit(WebtoonListByTitle webtoonListByTitle, 
+					   @RequestParam(name="pageNo", defaultValue = "-1")int pageNo,
+					   @RequestParam(name="boardNo", defaultValue = "-1")int boardNo) {
+		if(pageNo < 1) {
+			return String.format("redirect:webtoonListByTitle?boardno=%d&pageNo=%d", boardNo,pageNo);
+		}
+		
+		webtoonservice.update(webtoonListByTitle);
+		
+		return String.format("redirect:webtoonListByTitle?boardno=%d&pageNo=%d", boardNo,pageNo);
 		
 	}
 	
