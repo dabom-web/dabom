@@ -358,9 +358,35 @@
 										                                            <span class="accordion__header--indicator indicator_bordered"></span>
 										                                        </div>
 										                                         <c:forEach var="point" items="${ pointList }">
-										                                        <div id="with-icon_collapseOne" class="collapse accordion__body" data-parent="#accordion-six">
-										                                            
-										                                            <c:choose>
+										                                        <div id="with-icon_collapseOne" class="collapse accordion__body" data-parent="#accordion-six" style="text-align: center;">
+											                                             <c:choose>
+											                                             <c:when test="${ !empty point.price && !empty point.amount && !empty point.purchaseDate }">
+											                                               <div class="accordion__body--text bl">
+											                                               	💳 구매 내역 [ 구매일 | <fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${ point.purchaseDate }"/>
+											                                               	| 구매 금액 | <fmt:formatNumber value="${ point.price }" pattern="#,###" />
+											                                               	| 구매포인트 | <fmt:formatNumber value="${ point.amount }" pattern="#,###" />
+											                                               	| 누적포인트 | <fmt:formatNumber value="${ point.totalPoint }" pattern="#,###" /> ] <a>결제완료</a>
+										                                            		</div>
+											                                             </c:when>
+											                                             <c:otherwise>
+											                                             	<c:if test="${ empty point.amount || empty point.usePoint || empty point.amount }">
+											                                             	</c:if>
+									                                            	 		<div class="accordion__body--text bl" id="use-point-value">
+											                                            	💸 사용 내역 [ 사용일 | <fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${ point.useDate }"/>
+											                                               	| 사용포인트 | <fmt:formatNumber value="${ point.usePoint }" pattern="#,###" />
+											                                               	| 누적포인트 | <fmt:formatNumber value="${ point.totalPoint }" pattern="#,###" /> ]
+										                                               		</div>
+											                                             </c:otherwise>
+											                                             </c:choose>
+											                                             
+											                                             	
+											                                             
+											                                             
+											                                            
+										                                            	 	
+										                                           
+									                     
+										                                         <%--    <c:choose>
 										                                            <c:when test="${ !empty point.purchaseDate && empty point.cancelDate }">
 									                                            		<div class="accordion__body--text bl">
 										                                               	💳 구매 내역 [ 구매일 | <fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${ point.purchaseDate }"/>
@@ -382,7 +408,7 @@
 										                                               	| 누적포인트 | <fmt:formatNumber value="${ point.totalPoint }" pattern="#,###" /> ]
 										                                            	</c:otherwise>
 										                                            </c:otherwise>
-										                                            </c:choose>								                                            								                                            
+										                                            </c:choose>			 --%>					                                            								                                            
 										                                        </div>
 										                                        </c:forEach>
 					                                    					</div>
@@ -420,6 +446,7 @@
 		<script type="text/javascript">
 	
 			$(function () {
+								
 				$('#send-btn').on('click', function (event) {
 						event.preventDefault();
 						var ok = confirm("회원 정보를 수정합니다.");

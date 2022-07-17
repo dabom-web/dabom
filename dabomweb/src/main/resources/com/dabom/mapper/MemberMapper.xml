@@ -43,5 +43,16 @@
 		
 		
 	</select> 
+	
+	<select id="selectByMemberIdAndEmail" parameterType="Member" resultType="Member">
+		SELECT * FROM member
+		WHERE memberid=#{memberId} AND email=#{email}
+	</select>
+	
+	<update id="updatePasswd" parameterType="hashmap">
+		UPDATE user
+		SET passwd=#{passwd}
+		WHERE memberid=#{memberId}
+	</update>
 
 </mapper>

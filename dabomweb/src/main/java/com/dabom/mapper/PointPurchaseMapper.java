@@ -31,9 +31,9 @@ public interface PointPurchaseMapper {
 			"order by purchase_date desc")
 	List<PointPurchase> selectPointPurchaseByMemberId(@Param("memberId")String memberId);
 
-	@Select("select memberid, price, amount, purchase_date purchaseDate, cancel_date cancelDate, accept, use_point usePoint, use_date useDate, total_point totalPoint "
+	@Select("select purchase_no purchaseNo, memberid, price, amount, purchase_date purchaseDate, cancel_date cancelDate, accept, use_point usePoint, use_date useDate, total_point totalPoint "
 			+ "from PointPurchase where memberid = #{ memberId } "
-			+ "order by purchase_date desc")
+			+ "order by purchaseNo desc")
 	List<PointPurchase> selectPointListByMemberId(@Param("memberId")String memberId);
 	
 	@Select("select sum(price) from PointPurchase where accept = true and memberid = #{ memberId }")
@@ -56,7 +56,7 @@ public interface PointPurchaseMapper {
 //	   before = false)
 //	void insertUsePointByMemberId(PointPurchase pointPurchase);
 	
-	@Insert("insert into PointPurchase (memberid, amount, use_date) " 
+	@Insert("insert into PointPurchase (memberid, use_point, use_date) " 
 			+ "values (#{ memberId }, 500, now())")
 	@SelectKey(statement = "select last_insert_id()",
 			   resultType = Integer.class,
