@@ -19,5 +19,7 @@ public interface MemberMapper {
 	
 	@Update("update user set type = #{ type } where memberid = #{ memberId }")
 	void updateUserTypeByMemberId(@Param("memberId")String memberId, @Param("type")String type);
+	Member selectByMemberIdAndEmail(Member member);
+	void updatePasswd(@Param("memberId") String memberId,@Param("passwd") String passwd);
 
 }
