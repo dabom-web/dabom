@@ -28,16 +28,18 @@
 		<result column="passwd" property="passwd"/>
 		<result column="grade" property="grade"/>
 		<result column="active" property="active"/>
+		<result column="point" property="point"/>
+		<result column="leved" property="leved"/>
 		<result column="username" property="userName"/>	
 	</resultMap>
 
 	<select id="loginUser" parameterType="Member" resultMap="memberResultMap">
 	
-		SELECT user.memberid, nickname, birth, email, phone, passwd, grade, active, username, type
+		SELECT user.memberid, nickname, birth, email, phone, passwd, grade, active, username, type, point, leved
 		FROM user
 		LEFT OUTER JOIN member
 		ON user.memberid = member.memberid
-		WHERE user.memberid = #{memberId} AND user.passwd = #{passwd}
+		WHERE user.memberid = #{memberId} AND user.passwd = #{passwd} AND leved = false
 		
 		
 	</select> 

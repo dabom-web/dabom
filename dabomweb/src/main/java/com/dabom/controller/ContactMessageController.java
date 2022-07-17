@@ -28,9 +28,6 @@ public class ContactMessageController {
 	@Qualifier("contactService")
 	private ContactService contactService;
 	
-	@Qualifier("accountService")
-	private AccountService accountService;
-	
 	@GetMapping(path = { "/contactMessage" })
 	public String readContactMessageList(Model model) {
 		

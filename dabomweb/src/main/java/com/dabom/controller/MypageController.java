@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dabom.dto.Member;
 import com.dabom.dto.PointPurchase;
@@ -27,28 +28,42 @@ public class MypageController {
 	@Qualifier("pointPurchaseService")
 	private PointPurchaseService pointPurchaseService;
 	
+	@Autowired
 	@Qualifier("accountService")
 	private AccountService accountService;
 	
+	@Autowired
 	@Qualifier("mypageService")
 	private MypageService mypageService;
-	
+
 	@GetMapping(path = { "/profile" })
 	public String showProfile(HttpSession session, Model model) {
 		
 		//결제 정보
 		Member loginUser = (Member)session.getAttribute("loginuser");
-		List<PointPurchase> pointPurchaseList = pointPurchaseService.findPointPurchaseByMemberId(loginUser.getMemberId());
+		
+		if (loginUser.getPoint() == 0) {
+			
+			List<PointPurchase> pointList = null;
+			int totalPrice = 0;
+			int totalAmount = 0;
+			int totalUsePoint = 0;
+			model.addAttribute("pointList", pointList);
+			model.addAttribute("totalPrice", totalPrice);
+			model.addAttribute("totalAmount", totalAmount);
+			model.addAttribute("totalUsePoint", totalUsePoint);
+
+		} else {
+		
+		List<PointPurchase> pointList = pointPurchaseService.findPointListByMemberId(loginUser.getMemberId());
 		int totalPrice = pointPurchaseService.findTotalPriceByMemberId(loginUser.getMemberId());
 		int totalAmount = pointPurchaseService.findTotalAmountByMemberId(loginUser.getMemberId());
 		int totalUsePoint = pointPurchaseService.findTotalUsePointByMemberId(loginUser.getMemberId());
-		
-		model.addAttribute("pointPurchaseList", pointPurchaseList);
+		model.addAttribute("pointList", pointList);
 		model.addAttribute("totalPrice", totalPrice);
 		model.addAttribute("totalAmount", totalAmount);
 		model.addAttribute("totalUsePoint", totalUsePoint);
-		
-		
+		}
 		return "mypage/profile";
 	}
 	
@@ -62,7 +77,30 @@ public class MypageController {
 									@RequestParam(name="type")String type ) {
 		mypageService.updateMemberInfor(memberId, nickName, birth, email, phone, userName);
 		mypageService.updateUserType(memberId, type);
-	return "redirect:mypage/profile";	
+	return "redirect:profile";	
+	}
+	
+	@PostMapping(path = { "/change-type" })
+	@ResponseBody
+	public String changeUserTypeByMemberId(@RequestParam(name="memberId")String memberId, 
+										   @RequestParam(name="type")String type) {
+		mypageService.changeUserTypeByMemberId(memberId, type);
+		return "success";
+	}
+	
+	
+	@PostMapping(path = { "/delete-account" })
+	@ResponseBody
+	public String deleteAccount(String memberId) {
+		accountService.deleteAccountByMemberId(memberId);
+		return "success";
+	}
+	
+	@PostMapping(path = { "/disabled-account" })
+	@ResponseBody
+	public String disabledAccount(String memberId) {
+		accountService.disabledAccountByMemberId(memberId);
+		return "success";
 	}
 	
 	

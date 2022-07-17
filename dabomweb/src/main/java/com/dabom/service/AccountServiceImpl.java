@@ -40,4 +40,17 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 
+	@Override
+	public void deleteAccountByMemberId(String memberId) {
+		memberMapper.deleteAccountByMemberId(memberId);
+	
+	}
+
+
+	@Override
+	public void disabledAccountByMemberId(String memberId) {
+		memberMapper.updateDisabledAccount(memberId);
+	}
+
+
 }
