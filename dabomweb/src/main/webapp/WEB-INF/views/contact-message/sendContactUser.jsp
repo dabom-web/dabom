@@ -22,11 +22,6 @@
 
 	<div class="content-body">
 		<div class="container-fluid">
-		 <a class="btn btn-light btn-xs" id="back-btn"  
-				    href="javascript:history.back();" style="width: 100px;" > 
-					<span class="mr-2"><i class="fa fa-reply"></i></span> 
-					Back
-				</a><br><br>
 				<a class="btn btn-light btn-xs" id="back-btn"  
 				    href="javascript:history.back();" style="width: 100px;" > 
 					<span class="mr-2"><i class="fa fa-reply"></i></span> 

@@ -41,4 +41,16 @@ public class MypageServiceImpl implements MypageService {
 	@Setter
 	private MypageMapper mypageMapper;
 	
+
+	@Override
+	public void updateMemberInfor(String memberId, String nickName, int birth, String email, int phone, String userName) {
+		mypageMapper.updateMemberInforByMemberId(memberId, nickName, birth, email, phone, userName);
+	}
+
+	@Override
+	public void updateUserType(String memberId, String type) {
+		mypageMapper.updateUserTypeByMemberId(memberId, type);
+	}
+	
+	
 }

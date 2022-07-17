@@ -14,6 +14,7 @@ public class AccountServiceImpl implements AccountService {
 	private MemberMapper memberMapper;
 	
 	
+	@Override
 	public void registerMember(Member member) {
 		
 		String passwd = member.getPasswd();
@@ -39,14 +40,4 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 
-	@Override
-	public void updateMemberInfor(String memberId, String nickName, int birth, String email, int phone, String userName) {
-		memberMapper.updateMemberInforByMemberId(memberId, nickName, birth, email, phone, userName);
-	}
-
-	@Override
-	public void updateUserType(String memberId, String type) {
-		memberMapper.updateUserTypeByMemberId(memberId, type);
-	}
-	
 }
