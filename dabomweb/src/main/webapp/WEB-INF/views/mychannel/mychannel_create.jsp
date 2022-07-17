@@ -47,7 +47,7 @@
 												</label>
 												<div class="col-lg-8">
 													<input type="hidden"
-							 						   	   name="memberId" id="memberId" value="${ loginuser.memberId }"> 
+							 						   	   name="member_Id" id="member_Id" value="${ loginuser.memberId }"> 
 		                                            <p class="text-muted">&nbsp;&nbsp; ${ loginuser.memberId }</p>
 												</div>
 											</div>
@@ -128,7 +128,7 @@
 	})
 	 
 	function check(){
-		var memberId = document.getElementById("memberId");
+		var memberId = document.getElementById("member_Id");
 		var channelName = document.getElementById("channel_Name");
 		
 		if(memberId.value==""){

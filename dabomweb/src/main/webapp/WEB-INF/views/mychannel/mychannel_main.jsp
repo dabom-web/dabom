@@ -48,28 +48,55 @@
 											<div class="col-2"></div>
 											<div class="col-8 border-right-1 prf-col">
 												<c:choose>
-													<c:when test="${ empty myChannel.channel_Name }">
+													<c:when test="${ !empty myChannel.channel_Name }">
 														<div class="profile-name"
 															style="width: 500px; float: left; heigh: 100%">
-															<h3 class="text-primary">${ loginuser.memberId }의
-																채널입니다.</h3>
-															<p>구독자가 없습니다</p>
-														</div>
+															<h3 class="text-primary">${ myChannel.channel_Name }</h3>
+															<p>구독자 : ${ myChannel.subscribe }명</p>
+														</div>														
 													</c:when>
 													<c:otherwise>
 														<div class="profile-name"
 															style="width: 500px; float: left; heigh: 100%">
-															<h3 class="text-primary">${ myChannel.channel_Name }</h3>
-															<p>구독자 : 명</p>
+															<a href="mychannel_create?member_id=${ loginuser.memberId }">
+															<h3 class="text-primary">여기를 클릭해서 채널을 등록해주세요</h3></a>
+															<p>구독자가 없습니다</p>
 														</div>
 													</c:otherwise>
 												</c:choose>
 											</div>
 											<div class="col-2">
-												<br>
-												<div style="width: 170px; float: right; heigh: 100%;">
-													<button class="btn btn-danger" type="button"
-														style="width: 80pt; heigh: 80pt">구독</button>
+												<br>	
+																			
+										<div style="width: 170px; float: right; heigh: 100%;">
+										
+											<c:choose>
+											<c:when test="${ loginuser.memberId eq myChannel.member_Id  }">
+																																	
+											</c:when>
+											<c:otherwise>
+																						
+											<button class="btn btn-danger" 
+												 	type="button" 
+												 	id="subscribe-btn" 
+												 	href="javascript:"
+													style="display: ${ not empty channel_Subscribe and channel_Subscribe.subscribe == 1 ? 'none' : '' }">
+													&nbsp;&nbsp;구독&nbsp;&nbsp;																									
+												<i style="font-style: normal;"></i>
+											</button>
+										
+											<button class="btn btn-outline-danger"
+													type="button"
+													id="subscribe-btn2" 
+													href="javascript:"
+													style="display: ${ not empty channel_Subscribe and channel_Subscribe.subscribe == 1 ? '' : 'none' }">
+													&nbsp;구독중&nbsp;
+												<i style="font-style: normal;"></i>
+											</button>	
+											
+											</c:otherwise>
+											</c:choose>						
+												
 												</div>
 											</div>
 										</div>
@@ -86,8 +113,15 @@
 										<div class="text-center mt-4 border-bottom-1 pb-3">
 											<div class="row">
 												<div class="col">
-													<h3 class="m-b-0">150</h3>
-													<span>팔로워</span>
+													<c:choose>
+													<c:when test="${ empty myChannel.channel_Name }">
+													<h3 class="m-b-0">0</h3>
+													</c:when>
+													<c:otherwise>
+													<h3 class="m-b-0"><i style="font-style: normal;">${ myChannel.subscribe }</i></h3>
+													</c:otherwise>
+													</c:choose>
+													<span>구독자</span>
 												</div>
 												<div class="col">
 													<h3 class="m-b-0">140</h3>
@@ -116,8 +150,7 @@
 								<div class="card-body">
 									<div class="profile-tab">
 										<div class="custom-tab-1">
-										<c:choose>
-											<c:when test="${ empty myChannel.channel_Name }">
+										
 												<c:choose>
 													<c:when test="${ loginuser.memberId eq myChannel.member_Id }">
 														<ul class="nav nav-tabs">
@@ -125,6 +158,8 @@
 																data-toggle="tab" class="nav-link active show">커뮤니티</a></li>
 															<li class="nav-item"><a href="#about-me"
 																data-toggle="tab" class="nav-link">채널정보</a></li>
+															<li class="nav-item"><a href="#subscribe"
+																data-toggle="tab" class="nav-link">구독중인 채널</a></li>	
 															<li class="nav-item"><a href="#profile-settings"
 																data-toggle="tab" class="nav-link">채널정보 수정</a></li>
 														</ul>
@@ -134,26 +169,15 @@
 															<li class="nav-item"><a href="#my-posts"
 																data-toggle="tab" class="nav-link active show">커뮤니티</a></li>
 															<li class="nav-item"><a href="#about-me"
-																data-toggle="tab" class="nav-link">채널정보</a></li>
+																data-toggle="tab" class="nav-link">채널정보</a></li>																	
 															</ul>	
 													</c:otherwise>
-												</c:choose>	
-											</c:when>																								
-											<c:otherwise>																								
-												<ul class="nav nav-tabs">
-													<li class="nav-item"><a href="#my-posts"
-														data-toggle="tab" class="nav-link active show">커뮤니티</a></li>
-													<li class="nav-item"><a href="#about-me"
-														data-toggle="tab" class="nav-link">채널정보</a></li>
-												</ul>																							
-											</c:otherwise>														
-										</c:choose>											
+												</c:choose>												
 											
 											<div class="tab-content">
 												<div id="my-posts" class="tab-pane fade active show">
 													<div class="my-post-content pt-3">
-														<div class="profile-uoloaded-post border-bottom-1 pb-2">
-															<img src="images/profile/8.jpg" alt="" class="img-fluid">
+														<div class="profile-uoloaded-post border-bottom-1 pb-2">															
 															<a class="post-title" href="javascript:void()">
 																<h4>제목</h4>
 															</a>
@@ -204,6 +228,21 @@
 													</div>
 												</div>
 												<div id="about-me" class="tab-pane fade">
+													<div class="profile-about-me">
+														<div class="pt-4 border-bottom-1 pb-4">
+															<h4 class="text-primary">설명</h4>
+															<c:choose>
+																<c:when test="${ empty myChannel.channel_Info }">
+																	<p>정보를 등록해주세요</p>
+																</c:when>
+																<c:otherwise>
+																	<p>${ myChannel.channel_Info }</p>
+																</c:otherwise>
+															</c:choose>
+														</div>
+													</div>
+												</div>
+												<div id="subscribe" class="tab-pane fade">
 													<div class="profile-about-me">
 														<div class="pt-4 border-bottom-1 pb-4">
 															<h4 class="text-primary">설명</h4>
@@ -278,11 +317,7 @@
 																				<div class="form-group row">
 																					<div class="col-lg-7 ml-auto">
 																						<button class="btn btn-primary" id="create"
-																							type="button" href="javascript:">등록</button>
-																						<a href="javascript:history.back()">
-																							<button class="btn btn-primary" id="cancel"
-																								type="button" href="javascript:history.back();">취소</button>
-																						</a>
+																							type="button" href="javascript:">수정</button>																						
 																					</div>
 																				</div>
 																			</div>
@@ -313,6 +348,7 @@
 			<jsp:include page="/WEB-INF/views/modules/css/bottom.jsp" />
 			
 			<script type="text/javascript">
+			
 				$(function() {
 					$('#create').on('click', function(event) {
 						event.preventDefault();
@@ -322,7 +358,75 @@
 						}
 					});
 				});
+				
+				$(function() {
+					$('#subscribe-btn').on('click', function(event) {
+						event.preventDefault();
+						
+						$.ajax({
+							"url" : "mychannel_main",
+							"method" : "post",
+							"async" : true,
+							"data" : "member_Id=${myChannel.member_Id}&subscriber=${loginuser.memberId}&subscribe=1&isNew=${ empty Channel_Subscribe }",
+							"dataType" : "json",
+							"success" : function(resp, status, xhr) {
+								if (resp.result === "success"){
+									//alert('응원하기 성공');							
+									$('#subscribe-btn').hide();
+									$('#subscribe-btn2').show().find("i").text(resp.count);
+									
+								} else {
+									alert('실패');
+								}
+							},
+							"error" : function(xhr, status, err) {
+								alert('다시 시도해 주세요.');
+							}
+						});
+					});
+					$('#subscribe-btn2').on('click', function(event) {
+						event.preventDefault();
+						
+						$.ajax({
+							"url" : "mychannel_main",
+							"method" : "post",
+							"async" : true,
+							"data" : "member_Id=${myChannel.member_Id}}&subscriber=${loginuser.memberId}&subscribe=0&isNew=false",
+							"dataType" : "json",
+							"success" : function(resp, status, xhr) {
+								if (resp.result == "success"){
+									//alert('응원 취소 성공');							
+									$('#subscribe-btn').show().find("i").text(resp.count);
+									$('#subscribe-btn2').hide();						
+								} else {
+									alert('실패');
+								}
+							},
+							"error" : function(xhr, status, err) {
+								alert('다시 시도해 주세요.');
+							}
+						});
+					});
+				});
+									
 			</script>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			
 </body>
