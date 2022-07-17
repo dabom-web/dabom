@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.dabom.dto.Member;
 import com.dabom.dto.PointPurchase;
 import com.dabom.service.AccountService;
+import com.dabom.service.MypageService;
 import com.dabom.service.PointPurchaseService;
 
 @Controller
@@ -28,6 +29,9 @@ public class MypageController {
 	
 	@Qualifier("accountService")
 	private AccountService accountService;
+	
+	@Qualifier("mypageService")
+	private MypageService mypageService;
 	
 	@GetMapping(path = { "/profile" })
 	public String showProfile(HttpSession session, Model model) {
@@ -56,8 +60,8 @@ public class MypageController {
 									@RequestParam(name="phone")int phone,
 									@RequestParam(name="userName")String userName,
 									@RequestParam(name="type")String type ) {
-		accountService.updateMemberInfor(memberId, nickName, birth, email, phone, userName);
-		accountService.updateUserType(memberId, type);
+		mypageService.updateMemberInfor(memberId, nickName, birth, email, phone, userName);
+		mypageService.updateUserType(memberId, type);
 	return "redirect:mypage/profile";	
 	}
 	

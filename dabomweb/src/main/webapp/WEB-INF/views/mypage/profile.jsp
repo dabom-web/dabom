@@ -204,7 +204,7 @@
 		                                                <td>회원타입</td>
 		                                                <td>
 		                                                <div class="bl form-group" value="${ loginuser.type }">
-				                                            <select class="bl form-control" name="type">
+				                                            <select class="bl form-control" name="type" value="${ loginuser.type }">
 				                                                <option>일반회원</option>
 				                                                <option>영상업로더</option>
 				                                                <option>웹툰업로더</option>
@@ -230,7 +230,52 @@
 										</div>
 										<div class="tab-pane fade show" id="list-channel">
 											<h4 class="mb-4">채널</h4>
-											<p class="bl">채널 보여주기 없으면 없습니다.</p>
+											<table class="table table-hover bl">
+			                                        <tbody>
+			                                            <tr>
+			                                                <td width="15%;">📺</td>
+			                                                <td>${ loginuser.userName }회원님의 채널정보</td>
+			                                            </tr>
+			                                             <tr>
+			                                                <td>채널명</td>
+			                                                <td></td>
+			                                            </tr>
+			                                             <tr>
+			                                                <td>닉네임</td>
+			                                                <td></td>
+			                                            </tr>
+			                                             <tr>
+			                                                <td>생일</td>
+			                                                <td></td>
+			                                            </tr>
+			                                             <tr>
+			                                                <td>이메일</td>
+			                                                <td></td>
+			                                            </tr>
+			                                             <tr>
+			                                                <td>연락처</td>
+			                                                <c:choose>
+			                                                <c:when test="${ empty loginuser.phone }">
+			                                                	정보가 없습니다.
+			                                                  </c:when>
+			                                                <c:otherwise>
+			                                                <td>0${ loginuser.phone }</td>
+			                                                 </c:otherwise>
+			                                                </c:choose>
+			                                            </tr>
+			                                             <tr>
+			                                                <td>회원타입</td>
+			                                                <c:choose>
+			                                                <c:when test="${ loginuser.type eq 'AL' }">
+			                                                	업로드회원
+			                                                </c:when>
+			                                                <c:otherwise>
+			                                                	<td>${ loginuser.type }</td>
+			                                                </c:otherwise>
+			                                                </c:choose>
+			                                            </tr>
+			                                        </tbody>
+			                                    </table>
 										</div>
 										<div class="tab-pane fade" id="list-edit-usertype">
 											<h4 class="mb-4">회원 타입 변경하기</h4>

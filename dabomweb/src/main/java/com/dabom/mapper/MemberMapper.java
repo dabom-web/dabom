@@ -11,6 +11,7 @@ public interface MemberMapper {
 	void insertMember(Member member);
 	Member loginUser(Member member);
 	
+
 	@Update("update member set nickname = #{ nickName }, birth = #{ birth }, email = #{ email }, phone = #{ phone }, username = #{ userName } "
 			+ "where memberid = #{ memberId } ")
 	void updateMemberInforByMemberId(@Param("memberId")String memberId, @Param("nickName")String nickName,
@@ -21,5 +22,6 @@ public interface MemberMapper {
 	void updateUserTypeByMemberId(@Param("memberId")String memberId, @Param("type")String type);
 	Member selectByMemberIdAndEmail(Member member);
 	void updatePasswd(@Param("memberId") String memberId,@Param("passwd") String passwd);
+
 
 }

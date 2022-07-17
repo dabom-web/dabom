@@ -18,6 +18,9 @@ public class AccountServiceImpl implements AccountService {
 	@Setter
 	private MemberMapper memberMapper;
 
+	
+	
+
 	public void registerMember(Member member) {
 		
 		String passwd = member.getPasswd();
@@ -41,6 +44,7 @@ public class AccountServiceImpl implements AccountService {
 		
 		return member2;
 	}
+
 
 
 	@Override
@@ -99,4 +103,5 @@ public class AccountServiceImpl implements AccountService {
 	
 	
 	
+
 }
