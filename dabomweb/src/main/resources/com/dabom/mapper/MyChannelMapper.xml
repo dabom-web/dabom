@@ -7,12 +7,6 @@
 	<insert id="insertMyChannel" parameterType="MyChannel">		
 		INSERT INTO channel (member_id, channel_name, channel_info)
 		VALUES ("${member_Id}", "${channel_Name}", "${channel_Info}")
-	</insert>
-	
-	<select id="selectMyChannel" parameterType="String" resultType="MyChannel">
-		SELECT member_id, channel_name, channel_info
-		FROM channel
-		WHERE member_id = "${member_Id}"
-	</select>
+	</insert>	
 
 </mapper>
