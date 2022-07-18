@@ -1,5 +1,6 @@
 package com.dabom.service;
 
+import com.dabom.dto.Member;
 import com.dabom.mapper.MemberMapper;
 import com.dabom.mapper.MypageMapper;
 
@@ -34,6 +35,12 @@ public class MypageServiceImpl implements MypageService {
 	public void changeUserTypeByMemberId(String memberId, String type) {
 		mypageMapper.updateUserTypeByMemberId(memberId, type);
 		
+	}
+
+	@Override
+	public Member selectUpdateByMemberId(String memberId) {
+		Member member2 = mypageMapper.selectUpdateByMemberId(memberId);
+		return member2;
 	}
 	
 	

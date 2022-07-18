@@ -17,6 +17,7 @@ public class PointPurchase {
 	private Boolean accept;
 	private int usePoint;
 	private int totalPoint;
+	private int cumTotalPoint;
 	
 	private Member member;
 }

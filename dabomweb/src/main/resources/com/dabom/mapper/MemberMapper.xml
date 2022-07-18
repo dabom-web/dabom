@@ -40,7 +40,8 @@
 		FROM user
 		LEFT OUTER JOIN member
 		ON user.memberid = member.memberid
-		WHERE user.memberid = #{memberId} AND user.passwd = #{passwd} AND leved = false
+		WHERE user.memberid = #{memberId} AND user.passwd = #{passwd} 
+		AND (type = 'admin' OR leved = false)
 		
 		
 	</select> 

@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping(path = { "/list" })
+@RequestMapping(path = {"/administerPrivilege"})
 public class AdministerPrivilegeController {
 
-	@GetMapping()
+	@GetMapping(path = { "/list" })
 	public String list() {
-		return "AdministerPrivilege/list";
+		return "administerPrivilege/list";
 
 	}
 
@@ -20,4 +20,11 @@ public class AdministerPrivilegeController {
 		return false;
 
 	}
+	
+	@GetMapping(path = { "/site-revenue" })
+	public String siteRevenue() {
+		return "administerPrivilege/site-revenue";
+
+	}
+	
 }
