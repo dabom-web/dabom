@@ -45,7 +45,7 @@
                                                             <br>
                                                     	</div>
                                                     	<div>
-                                        			 
+                                        			 	
                                                     	<img src="/dabomweb/resources/upload-files/${ webtoonListByTitleattach[1].savedFileName }"/>
                                                   
                                                     	</div> 
