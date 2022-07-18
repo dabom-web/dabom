@@ -330,12 +330,12 @@
 						                                        <div class="row">
 						                                            <div class="col">
 						                                                <h3 class="m-b-0">
-						                                                <fmt:formatNumber value="${ totalPrice }" pattern="#,###" />
-						                                               won</h3><span>구매 금액</span>
+						                                                <fmt:formatNumber value="${ totalAmount }" pattern="#,###" />
+						                                               won</h3><span>구매 누적 포인트</span>
 						                                            </div>
 						                                            <div class="col">
 						                                                <h3 class="m-b-0">
-						                                                <fmt:formatNumber value="${ totalAmount }" pattern="#,###" />
+						                                                <fmt:formatNumber value="${ totalPoint }" pattern="#,###" />
 						                                                P</h3><span>보유 포인트</span>
 						                                            </div>
 						                                            <div class="col">
@@ -365,7 +365,7 @@
 											                                               	💳 구매 내역 [ 구매일 | <fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${ point.purchaseDate }"/>
 											                                               	| 구매 금액 | <fmt:formatNumber value="${ point.price }" pattern="#,###" />
 											                                               	| 구매포인트 | <fmt:formatNumber value="${ point.amount }" pattern="#,###" />
-											                                               	| 누적포인트 | <fmt:formatNumber value="${ point.totalPoint }" pattern="#,###" /> ] <a>결제완료</a>
+											                                               	| 누적포인트 | <fmt:formatNumber value="${ point.cumTotalPoint }" pattern="#,###" /> ] <a>결제완료</a>
 										                                            		</div>
 											                                             </c:when>
 											                                             <c:otherwise>
@@ -374,41 +374,10 @@
 									                                            	 		<div class="accordion__body--text bl" id="use-point-value">
 											                                            	💸 사용 내역 [ 사용일 | <fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${ point.useDate }"/>
 											                                               	| 사용포인트 | <fmt:formatNumber value="${ point.usePoint }" pattern="#,###" />
-											                                               	| 누적포인트 | <fmt:formatNumber value="${ point.totalPoint }" pattern="#,###" /> ]
+											                                               	| 누적포인트 | <fmt:formatNumber value="${ point.cumTotalPoint }" pattern="#,###" /> ]
 										                                               		</div>
 											                                             </c:otherwise>
 											                                             </c:choose>
-											                                             
-											                                             	
-											                                             
-											                                             
-											                                            
-										                                            	 	
-										                                           
-									                     
-										                                         <%--    <c:choose>
-										                                            <c:when test="${ !empty point.purchaseDate && empty point.cancelDate }">
-									                                            		<div class="accordion__body--text bl">
-										                                               	💳 구매 내역 [ 구매일 | <fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${ point.purchaseDate }"/>
-										                                               	| 구매 금액 | <fmt:formatNumber value="${ point.price }" pattern="#,###" />
-										                                               	| 구매포인트 | <fmt:formatNumber value="${ point.amount }" pattern="#,###" />
-										                                               	| 누적포인트 | <fmt:formatNumber value="${ point.totalPoint }" pattern="#,###" /> ] <a>결제완료</a>
-										                                            	</div>
-										                                            </c:when>
-										                                            <c:otherwise>
-										                                            	<c:when test="${ !empty point.cancelDate }">
-										                                            	✔️ 취소 내역 [ 취소일 | <fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${ point.cancelDate }"/>
-										                                               	| 취소 금액 | <fmt:formatNumber value="${ point.price }" pattern="#,###" />
-										                                               	| 취소포인트 | <fmt:formatNumber value="${ point.amount }" pattern="#,###" />
-										                                               	| 누적포인트 | <fmt:formatNumber value="${ point.totalPoint }" pattern="#,###" /> ]
-										                                            	</c:when>
-										                                            	<c:otherwise>
-										                                            	💸 사용 내역 [ 사용일 | <fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${ point.useDate }"/>
-										                                               	| 사용포인트 | <fmt:formatNumber value="${ point.point }" pattern="#,###" />
-										                                               	| 누적포인트 | <fmt:formatNumber value="${ point.totalPoint }" pattern="#,###" /> ]
-										                                            	</c:otherwise>
-										                                            </c:otherwise>
-										                                            </c:choose>			 --%>					                                            								                                            
 										                                        </div>
 										                                        </c:forEach>
 					                                    					</div>
@@ -497,7 +466,7 @@
 								"method" : "post",
 								"async" : true,
 								"data" : "memberId=${loginuser.memberId}",
-								"dataType" : "json",
+								// "dataType" : "json",
 								"success" : function(result, status, xhr) {
 									if(result === "success"){
 										alert('계정 삭제 성공');
@@ -520,11 +489,11 @@
 								"method" : "post",
 								"async" : true,
 								"data" : "memberId=${loginuser.memberId}",
-								"dataType" : "json",
+								// "dataType" : "json",
 								"success" : function(result, status, xhr) {
 									if(result === "success") {
 										alert('비활성화 성공');
-										location.href = "/dabomweb/account/logout";	
+										location.href = "/dabomweb/disabledMemberHome";	
 									}
 								},
 								"error" :function(xhr, status, err) {

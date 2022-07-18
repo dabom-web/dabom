@@ -45,22 +45,23 @@ public class MypageController {
 		if (loginUser.getPoint() == 0) {
 			
 			List<PointPurchase> pointList = null;
-			int totalPrice = 0;
+			int totalPoint = 0;
 			int totalAmount = 0;
 			int totalUsePoint = 0;
 			model.addAttribute("pointList", pointList);
-			model.addAttribute("totalPrice", totalPrice);
+			model.addAttribute("totalPoint", totalPoint);
 			model.addAttribute("totalAmount", totalAmount);
 			model.addAttribute("totalUsePoint", totalUsePoint);
 
 		} else {
 		
-		List<PointPurchase> pointList = pointPurchaseService.findPointListByMemberId(loginUser.getMemberId());
-		int totalPrice = pointPurchaseService.findTotalPriceByMemberId(loginUser.getMemberId());
+		//List<PointPurchase> pointList = pointPurchaseService.findPointListByMemberId(loginUser.getMemberId());
+		List<PointPurchase> pointList = pointPurchaseService.findPointList(loginUser.getMemberId());
+		int totalPoint = pointPurchaseService.findTotalPriceByMemberId(loginUser.getMemberId());
 		int totalAmount = pointPurchaseService.findTotalAmountByMemberId(loginUser.getMemberId());
 		int totalUsePoint = pointPurchaseService.findTotalUsePointByMemberId(loginUser.getMemberId());
 		model.addAttribute("pointList", pointList);
-		model.addAttribute("totalPrice", totalPrice);
+		model.addAttribute("totalPoint", totalPoint);
 		model.addAttribute("totalAmount", totalAmount);
 		model.addAttribute("totalUsePoint", totalUsePoint);
 		}
@@ -74,10 +75,24 @@ public class MypageController {
 									@RequestParam(name="email")String email,
 									@RequestParam(name="phone")int phone,
 									@RequestParam(name="userName")String userName,
-									@RequestParam(name="type")String type ) {
+									@RequestParam(name="type")String type, 
+									HttpSession session) {
 		mypageService.updateMemberInfor(memberId, nickName, birth, email, phone, userName);
 		mypageService.updateUserType(memberId, type);
-	return "redirect:profile";	
+		
+		//1. 
+//		Member member2 = null;
+//		// memberId를 사용해서 데이터베이스에서 Member 정보 조회
+//		// 조회된 데이터로 세션 수정
+//		session.setAttribute("loginuser", member2);
+		
+		//2. 
+		Member loginUser = (Member)session.getAttribute("loginuser");
+		loginUser.setNickName(nickName);
+		loginUser.setBirth(birth);
+		// ....
+		
+		return "redirect:profile";	
 	}
 	
 	@PostMapping(path = { "/change-type" })

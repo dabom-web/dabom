@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dabom.dto.Member;
@@ -55,7 +56,7 @@ public class PointPurchaseController {
 		return "payment/use-point";
 	}
 	
-	@PostMapping(path = { "/use-point" }, produces = {"application/json; charset=utf-8"})
+	@PostMapping(path = { "/use-point" })
 	@ResponseBody
 	public String usePoint(HttpSession session) {
 		Member loginUser = (Member)session.getAttribute("loginuser");
@@ -64,12 +65,15 @@ public class PointPurchaseController {
 		return "success";
 	}
 	
-//	@PostMapping(path = { "/use-point" })
-//	public String usePoint(PointPurchase pointPurchase, String memberId) {
-//		pointPurchaseService.usePointByMemberIdInsert(pointPurchase);
-//		pointPurchaseService.usePointByMemberId(memberId);
-//		return "success";
-//	}
+	@PostMapping(path = { "/use-point-dropdown" })
+	@ResponseBody
+	public String usePointDropdown(HttpSession session, 
+								   @RequestParam(name = "usePoint")int usePoint) {
+		Member loginUser = (Member)session.getAttribute("loginuser");
+		pointPurchaseService.dropdownUsePointByMemberIdInsert(loginUser.getMemberId(), usePoint);
+		pointPurchaseService.dropdonwUsePointByMemberId(loginUser.getMemberId(), usePoint);
+		return "success";
+	}
 	
 
 	
