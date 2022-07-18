@@ -22,5 +22,5 @@ public class Member {
 	private String type;
 	private Boolean leved;
 	
-	
+	private Member member;
 }

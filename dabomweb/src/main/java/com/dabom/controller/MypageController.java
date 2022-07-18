@@ -81,16 +81,18 @@ public class MypageController {
 		mypageService.updateUserType(memberId, type);
 		
 		//1. 
-//		Member member2 = null;
-//		// memberId를 사용해서 데이터베이스에서 Member 정보 조회
-//		// 조회된 데이터로 세션 수정
-//		session.setAttribute("loginuser", member2);
 		
-		//2. 
-		Member loginUser = (Member)session.getAttribute("loginuser");
-		loginUser.setNickName(nickName);
-		loginUser.setBirth(birth);
-		// ....
+		Member member2 = mypageService.selectUpdateByMemberId(memberId);		
+		// memberId를 사용해서 데이터베이스에서 Member 정보 조회
+		// 조회된 데이터로 세션 수정
+		session.setAttribute("loginuser", member2);
+		
+		
+//		//2. 
+//		Member loginUser = (Member)session.getAttribute("loginuser");
+//		loginUser.setNickName(nickName);
+//		loginUser.setBirth(birth);
+//		// ....
 		
 		return "redirect:profile";	
 	}
