@@ -94,7 +94,7 @@
 													<a id="use-point-btn" href="javascript:" class="btn btn-outline-danger b">
 													결제하기</a> 
 													<p class="small">500 point</p>
-													<p class="small" id="have-point" value="${ loginuser.point }">보유하신 포인트는 ${ loginuser.point } point입니다.</p>
+													<p class="small" id="have-point" data-point="${ loginuser.point }">보유하신 포인트는 ${ loginuser.point } point입니다.</p>
 												</div> 
 											</div>
 										</div>
@@ -152,12 +152,13 @@
 				$('#use-point-dropdown-btn').on('click', function (event) {
 					event.preventDefault();
 					var selectedPointAmount = $('#point-box').val();
-					var havePoint = $('#have-point');
+					var havePoint = $('#have-point').attr('data-point');
 					var formData = $('#usePointForm').serialize();
 					
 					if (havePoint < selectedPointAmount ) {
-						alret('보유포인트가 부족합니다.')
+						alert('보유포인트가 부족합니다.');
 						location.href = "/dabomweb/payment/purchase-point";
+						return;
 					}
 					
 					$.ajax({
@@ -182,10 +183,11 @@
 				
 				$('#use-point-btn').on('click', function (event) {
 						event.preventDefault();
-						var havePoint = $('#have-point');
+						var havePoint = $('#have-point').attr('data-point');
 						if (havePoint < 500) {
 							alret('보유포인트가 부족합니다.')
 							location.href = "/dabomweb/payment/purchase-point";
+							return;
 						}
 						
 						$.ajax({

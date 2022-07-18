@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dabom.dto.Member;
+import com.dabom.dto.MyChannel;
 import com.dabom.dto.PointPurchase;
+import com.dabom.dto.WebtoonBoard;
 import com.dabom.service.AccountService;
 import com.dabom.service.MypageService;
 import com.dabom.service.PointPurchaseService;
@@ -38,9 +40,16 @@ public class MypageController {
 
 	@GetMapping(path = { "/profile" })
 	public String showProfile(HttpSession session, Model model) {
-		
-		//결제 정보
+	
 		Member loginUser = (Member)session.getAttribute("loginuser");
+		
+		MyChannel myChannel = mypageService.findMyChannelByLoginUserMemberId(loginUser.getMemberId());
+		WebtoonBoard webtoon = mypageService.findWebtoonBoardByLoginUserByMemberId(loginUser.getMemberId());
+		
+		model.addAttribute("myChannel", myChannel);
+		model.addAttribute("webtoon",webtoon);
+		
+		
 		
 		if (loginUser.getPoint() == 0) {
 			
@@ -79,14 +88,9 @@ public class MypageController {
 									HttpSession session) {
 		mypageService.updateMemberInfor(memberId, nickName, birth, email, phone, userName);
 		mypageService.updateUserType(memberId, type);
-		
-		//1. 
-		
+
 		Member member2 = mypageService.selectUpdateByMemberId(memberId);		
-		// memberId를 사용해서 데이터베이스에서 Member 정보 조회
-		// 조회된 데이터로 세션 수정
 		session.setAttribute("loginuser", member2);
-		
 		
 //		//2. 
 //		Member loginUser = (Member)session.getAttribute("loginuser");
@@ -100,8 +104,11 @@ public class MypageController {
 	@PostMapping(path = { "/change-type" })
 	@ResponseBody
 	public String changeUserTypeByMemberId(@RequestParam(name="memberId")String memberId, 
-										   @RequestParam(name="type")String type) {
+										   @RequestParam(name="type")String type,
+										   HttpSession session) {
 		mypageService.changeUserTypeByMemberId(memberId, type);
+		Member member2 = mypageService.selectUpdateByMemberId(memberId);		
+		session.setAttribute("loginuser", member2);
 		return "success";
 	}
 	

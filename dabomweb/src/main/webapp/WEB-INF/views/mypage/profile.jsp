@@ -248,11 +248,13 @@
 											</div> 
 		                                    
 										</div>
-										<c:choose>
+								<c:choose>
 										<c:when test="${ loginuser.type eq '영상업로더' }">
 												<div class="tab-pane fade show" id="list-channel">
 													<h4 class="mb-4">채널</h4>
-													<table class="table table-hover bl">
+													<c:choose>
+													<c:when test="${ !empty myChannel }">
+														<table class="table table-hover bl">
 				                                        <tbody>
 				                                            <tr>
 				                                                <td width="15%;">📺</td>
@@ -260,27 +262,31 @@
 				                                            </tr>
 				                                             <tr>
 				                                                <td>채널명</td>
-				                                                <td>채널명 받아오기</td>
+				                                                <td>${ myChannel.channel_Name }</td>
+				                                            </tr>
+				                                            <tr>
+				                                                <td>채널 소개</td>
+				                                                <td>${ myChannel.channel_Info }</td>
 				                                            </tr>
 				                                             <tr>
 				                                                <td>채널개설일</td>
-				                                                <td>개설일자 받아오기</td>
+				                                                <td><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${ myChannel.reg_Date }"/></td>
 				                                            </tr>
 				                                             <tr>
 				                                                <td>구독자수</td>
-				                                                <td>구독자 카운트 받아오기</td>
+				                                                <td>${ myChannel.subscribe }</td>
 				                                             </tr>
 				                                             <tr>
 				                                                <td>채널 광고수익(당월)</td>
-				                                                <td>광고 수익</td>
+				                                                <td><fmt:formatNumber value="${ point.usePoint }" pattern="#,###" />광고 수익</td>
 				                                             </tr>
 				                                             <tr>
 				                                                <td>채널 영상수익(당월)</td>
-				                                                <td>결제 금액</td>
+				                                                <td><fmt:formatNumber value="${ point.usePoint }" pattern="#,###" />결제 금액</td>
 				                                             </tr>
 				                                             <tr>
 				                                                <td>당월 입금 예정금액</td>
-				                                                <td>1,000,000 원</td>
+				                                                <td><fmt:formatNumber value="${ point.usePoint }" pattern="#,###" />1,000,000 원</td>
 				                                             </tr>
 				                                        </tbody>
 				                                    </table>
@@ -293,58 +299,67 @@
 														    href="#" > 
 															채널삭제
 														</a>
-														</div>
-														
+													  </div>
+													</c:when>
+													<c:otherwise>
 														<!-- 채널 없을때 보여줄 화면 -->
 														<h4 class="mb-4 bl">${ loginuser.userName }회원님!! 채널이 없습니다.</h4>
-				                                      <div>
-				                                    	<a class="btn btn-light btn-xs bl"  
-														    href="/dabomweb/mychannel/mychannel?member_Id=${loginuser.memberId}" > 
-															채널생성 📺
-														</a>
-													  </div>
+				                                      	<div>
+					                                    	<a class="btn btn-light btn-xs bl"  
+															    href="/dabomweb/mychannel/mychannel?member_Id=${loginuser.memberId}" > 
+																채널생성 📺
+															</a>
+													  	</div>
+													</c:otherwise>
+													</c:choose>
 												</div>
-										</c:when>
+												
+										</c:when>																	
 										<c:otherwise>
-												<div class="tab-pane fade show" id="list-channel">
+										 <div class="tab-pane fade show" id="list-channel">
 													<h4 class="mb-4">웹툰 연재</h4>
-													<table class="table table-hover bl">
-				                                        <tbody>
-				                                            <tr>
-				                                                <td width="15%;">🎨</td>
-				                                                <td>${ loginuser.userName }회원님의 연재정보</td>
-				                                            </tr>
-				                                             <tr>
-				                                                <td>연재 작품 수</td>
-				                                                <td>2 작품</td>
-				                                            </tr>
-				                                             <tr>
-				                                                <td>연재 작품</td>
-				                                                <td>재혼 황후</td>
-				                                            </tr>
-				                                             <tr>
-				                                                <td>완결 작수</td>
-				                                                <td>1 작품</td>
-				                                             </tr>
-				                                             <tr>
-				                                                <td>완결 작품</td>
-				                                                <td>연애혁명</td>
-				                                             </tr>
-				                                             <tr>
-				                                                <td>웹툰 수익(당월)</td>
-				                                                <td>결제 금액</td>
-				                                             </tr>
-				                                             <tr>
-				                                                <td>당월 입금 예정금액</td>
-				                                                <td>1,000,000 원</td>
-				                                             </tr>
-				                                        </tbody>
-				                                    </table>
-												</div>
-										</c:otherwise>										
-										</c:choose>
-										
-										
+	 			                                        <h5 class="bl">🎨 ${ loginuser.userName }회원님의 연재정보</h5> 
+						                                    <table class="table table-hover bl">
+						                                        <tbody>
+						                                             <tr>
+						                                                <td>제 목</td>
+						                                                <td>연재 회차</td>
+						                                                <td>조회수</td>
+						                                                <td>연재 시작일</td>
+						                                            </tr>
+						                                             <tr>
+						                                                <td>${ webtoon.title }</td>
+						                                                <td>${ webtoon.content }</td>
+						                                            	<td>${ webtoon.readCount }</td>
+						                                                <td><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${ webtoon.regdate }"/></td>
+						                                             </tr>
+						                                        </tbody>
+						                                    </table>
+						                                      <h5 class="bl">🎨 작품 구독료 정보</h5>
+						                                         <table class="table table-hover bl">
+						                                       		 <tbody>    
+						                                             <tr>
+						                                                <td style="width: 30%;">웹툰 수익(당월)</td>
+						                                                <td>결제 금액</td>
+						                                             </tr>
+						                                             <tr>
+						                                                <td>당월 입금 예정금액</td>
+						                                                <td>1,000,000 원</td>
+						                                             </tr>
+						                                        </tbody>
+						                                    </table>
+					                                   		 <h4 class="mb-4 bl">✔️ 새로운 작품을 등록하세요</h4>
+						                                      	<div>
+							                                    	<a class="btn btn-outline-dark btn-xs bl"  
+																	    href="/dabomweb/webtoon/webtoonRegister" > 
+																	    🗨️ new WEBTOON
+																	</a>
+															  	</div>
+															</div>
+											
+										</c:otherwise>
+								       </c:choose>
+									
 										
 										
 										
@@ -525,6 +540,7 @@
 							"success" : function(result, status, xhr) {
 								if (result === "success") {
 									alert('변경되었습니다..');
+									location.href = "/dabomweb/mypage/profile?memberId=${ loginuser.memberId }";
 								} else {
 									alert('변경 실패');
 								}

@@ -65,11 +65,6 @@ public class PointPurchaseServiceImpl implements PointPurchaseService {
 		return totalUsePoint;
 	}
 
-	@Override
-	public int searchHavePointByLoginUser(String memberId) {
-		int havePoint = pointPurchaseMapper.selectHavePointByMemberId(memberId);
-		return havePoint;
-	}
 
 	@Override
 	public void usePointByMemberId(String memberId) {

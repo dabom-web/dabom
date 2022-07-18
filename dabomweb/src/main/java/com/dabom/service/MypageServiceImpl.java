@@ -1,6 +1,8 @@
 package com.dabom.service;
 
 import com.dabom.dto.Member;
+import com.dabom.dto.MyChannel;
+import com.dabom.dto.WebtoonBoard;
 import com.dabom.mapper.MemberMapper;
 import com.dabom.mapper.MypageMapper;
 
@@ -41,6 +43,18 @@ public class MypageServiceImpl implements MypageService {
 	public Member selectUpdateByMemberId(String memberId) {
 		Member member2 = mypageMapper.selectUpdateByMemberId(memberId);
 		return member2;
+	}
+
+	@Override
+	public MyChannel findMyChannelByLoginUserMemberId(String memberId) {
+		MyChannel myChannel = mypageMapper.selectMyChannelByMemberId(memberId);
+		return myChannel;
+	}
+
+	@Override
+	public WebtoonBoard findWebtoonBoardByLoginUserByMemberId(String memberId) {
+		WebtoonBoard webtoon = mypageMapper.selectWebtoonByMemberId(memberId);
+		return webtoon;
 	}
 	
 	

@@ -55,9 +55,7 @@ public interface PointPurchaseMapper {
 	@Select("select sum(use_point) from PointPurchase where accept = true and memberid = #{ memberId }")
 	int selectSumUsePointByMemberId(@Param("memberId")String memberId);
 	
-	@Select("select sum(amount) from PointPurchase where accept = true and memberid = #{ memberId }")
-	int selectHavePointByMemberId(String memberId);
-	
+		
 	@Insert("insert into PointPurchase (memberid, use_point, use_date) " 
 			+ "values (#{ memberId }, 500, now())")	
 	void inserUsePointPurchase(String memberId);

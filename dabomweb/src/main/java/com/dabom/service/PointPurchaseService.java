@@ -22,8 +22,6 @@ public interface PointPurchaseService {
 
 	public int findTotalUsePointByMemberId(String memberId);
 
-	public int searchHavePointByLoginUser(String memberId);
-
 	public void usePointByMemberId(String memberId);
 
 	public void usePointByMemberIdInsert(String memberId);

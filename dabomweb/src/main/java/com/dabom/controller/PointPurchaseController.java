@@ -49,10 +49,8 @@ public class PointPurchaseController {
 	}
 	
 	@GetMapping(path = { "/use-point" })
-	public String usePointform(HttpSession session, Model model) {
-		Member loginUser = (Member)session.getAttribute("loginuser");
-		int havePoint = pointPurchaseService.searchHavePointByLoginUser(loginUser.getMemberId());
-		model.addAttribute("havePoint", havePoint);
+	public String usePointform() {
+	
 		return "payment/use-point";
 	}
 	
@@ -60,6 +58,10 @@ public class PointPurchaseController {
 	@ResponseBody
 	public String usePoint(HttpSession session) {
 		Member loginUser = (Member)session.getAttribute("loginuser");
+		if (loginUser.getPoint() == 0) {
+			return "redirect:purchase-point";
+		}
+		
 		pointPurchaseService.usePointByMemberIdInsert(loginUser.getMemberId());
 		pointPurchaseService.usePointByMemberId(loginUser.getMemberId());
 		return "success";
@@ -70,6 +72,9 @@ public class PointPurchaseController {
 	public String usePointDropdown(HttpSession session, 
 								   @RequestParam(name = "usePoint")int usePoint) {
 		Member loginUser = (Member)session.getAttribute("loginuser");
+		if (loginUser.getPoint() == 0) {
+			return "redirect:purchase-point";
+		}
 		pointPurchaseService.dropdownUsePointByMemberIdInsert(loginUser.getMemberId(), usePoint);
 		pointPurchaseService.dropdonwUsePointByMemberId(loginUser.getMemberId(), usePoint);
 		return "success";

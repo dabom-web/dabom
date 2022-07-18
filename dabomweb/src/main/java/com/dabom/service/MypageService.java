@@ -1,6 +1,8 @@
 package com.dabom.service;
 
 import com.dabom.dto.Member;
+import com.dabom.dto.MyChannel;
+import com.dabom.dto.WebtoonBoard;
 
 public interface MypageService {
 
@@ -13,5 +15,9 @@ public interface MypageService {
 	void changeUserTypeByMemberId(String memberId, String type);
 
 	Member selectUpdateByMemberId(String memberId);
+
+	MyChannel findMyChannelByLoginUserMemberId(String memberId);
+
+	WebtoonBoard findWebtoonBoardByLoginUserByMemberId(String memberId);
 	
 }

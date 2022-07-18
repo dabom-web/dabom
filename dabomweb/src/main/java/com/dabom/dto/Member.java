@@ -23,4 +23,5 @@ public class Member {
 	private Boolean leved;
 	
 	private Member member;
+	private MyChannel myChannel;
 }

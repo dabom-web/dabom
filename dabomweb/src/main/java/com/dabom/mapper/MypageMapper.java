@@ -9,6 +9,8 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.dabom.dto.Member;
+import com.dabom.dto.MyChannel;
+import com.dabom.dto.WebtoonBoard;
 
 public interface MypageMapper {
 
@@ -45,6 +47,15 @@ public interface MypageMapper {
 		@Result(column="leved", property="leved")
 	})
 	Member selectUpdateByMemberId(String memberId);
+	
+	
+	@Select("select channel_name channel_Name, channel_info channel_Info, subscribe, reg_date reg_Date "
+			+ "from channel where member_id = #{ memberId }")
+	MyChannel selectMyChannelByMemberId(@Param("memberId")String memberId);
+	
+	@Select("select boardno, title, content, regdate, readcount, memberid "
+			+ "from webtoon_board where memberid = #{ memberId }")
+	WebtoonBoard selectWebtoonByMemberId(String memberId);
 	
 	
 	
