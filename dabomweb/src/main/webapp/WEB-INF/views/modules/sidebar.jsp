@@ -39,7 +39,7 @@
                         	<!-- 추수은 -->
                         	<c:choose>
                             <c:when test="${ !empty loginuser.memberId }">                         	
-	                        	<li><a href="/dabomweb/mychannel/mychannel_main?member_Id=${loginuser.memberId}">내 채널</a></li>
+	                        	<li><a href="/dabomweb/mychannel/mychannel?member_Id=${loginuser.memberId}">내 채널</a></li>
                             </c:when>
                             <c:otherwise>                            	
 	                            <li><a href="/dabomweb/account/login">내 채널</a></li>
