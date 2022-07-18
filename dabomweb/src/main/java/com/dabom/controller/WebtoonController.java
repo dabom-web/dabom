@@ -15,11 +15,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.dabom.common.Util;
 import com.dabom.dto.WebtoonBoard;
 import com.dabom.dto.WebtoonBoardAttach;
+import com.dabom.dto.WebtoonListByTitleComment;
 import com.dabom.dto.WebtoonListByTitle;
 import com.dabom.dto.WebtoonListByTitleAttach;
 import com.dabom.service.WebtoonService;
@@ -255,6 +257,29 @@ public class WebtoonController {
 		
 		
 		return String.format("redirect:webtoonListByTitle?boardno=%d&pageNo=%d", boardNo,pageNo);
+		
+	}
+	
+	////////////////////////////////////////////
+	
+	@PostMapping(path = { "/comment-write" }, produces = { "text/plain;charset=utf-8" })
+	@ResponseBody
+	public String writeComment(WebtoonListByTitleComment webtoonComment) {
+		
+		webtoonservice.writeWebtoonComment(webtoonComment);
+		
+		return "success";
+		
+	}
+	
+	@GetMapping(path = { "/comment-list" })
+	public String listComment(@RequestParam(name="number") int number, Model model) {
+		
+		List<WebtoonListByTitleComment> comments = webtoonservice.findCommentsByNumber(number);
+		
+		model.addAttribute("comments", comments);
+		
+		return "board/comments";
 		
 	}
 	

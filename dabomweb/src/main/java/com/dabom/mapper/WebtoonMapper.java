@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.dabom.dto.WebtoonBoard;
 import com.dabom.dto.WebtoonBoardAttach;
+import com.dabom.dto.WebtoonListByTitleComment;
 import com.dabom.dto.WebtoonListByTitle;
 import com.dabom.dto.WebtoonListByTitleAttach;
 
@@ -48,6 +49,13 @@ public interface WebtoonMapper {
 	void updateReadCount(int number);
 
 	void updateWebtoonBoardByTitle(WebtoonListByTitleAttach file);
+
+	//////////////////// 댓글
+	
+	void insertWebtoonComment(WebtoonListByTitleComment webtoonComment);
+
+	List<WebtoonListByTitleComment> selectCommentsByNumber(int number);
+
 
 	
 }

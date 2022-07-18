@@ -115,4 +115,18 @@
   		WHERE attachno = #{attachNo}
   	</update>
   	
+  	<!-- 댓글 -->
+  	
+  	  	<insert id="insertWebtoonComment" parameterType="WebtoonListByTitleComment"
+				useGeneratedKeys="true" keyColumn="commentno" keyProperty="commentNo">
+			INSERT INTO webtoonlistbytitlecomment (number, writer, content)
+			VALUES (#{number}, #{writer}, #{content})
+		</insert> 
+		
+		<select id="selectCommentsByNumber" parameterType="int" resultType="WebtoonListByTitleComment">
+			SELECT commentno, number, writer, content, regdate
+			FROM webtoonlistbytitlecomment
+			WHERE number = #{number}
+		</select>	
+  	
   </mapper>
