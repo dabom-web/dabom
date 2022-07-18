@@ -11,8 +11,8 @@
  <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
- 	<title>메세지쓰기</title>
-    <link rel="icon" type="image/png" sizes="16x16" href="resources/images/dabom.jpg">
+ 	<title>MESSAGEWRITE</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="/dabomweb/resources/images/dabom.jpg">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.theme.default.min.css">
     <link href="/dabomweb/resources/vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet">
@@ -53,23 +53,24 @@
                                            class="btn btn-primary btn-block">새 메세지 작성</a>
                                     </div>
                                     <div class="mail-list mt-4">
-                                      <a href="message_receive_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="list-group-item active"><i
-                                              class="fa fa-inbox font-18 align-middle mr-2"></i> 받은메세지 <span
-                                              class="badge badge-danger text-white badge-sm float-right">${ receiveCount }</span></a>
+                                      <a href="message_receive_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="list-group-item"><i
+                                              class="fa fa-inbox font-18 align-middle mr-2"></i> 받은메세지 </a>
                                       <a href="message_send_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="list-group-item"><i
-                                              class="fa fa-paper-plane font-18 align-middle mr-2"></i>보낸메세지<span
-                                              class="badge badge-primary badge-sm float-right">${ sendCount }</span></a> 
+                                              class="fa fa-paper-plane font-18 align-middle mr-2"></i>보낸메세지</a> 
                                       <a href="javascript:void()" class="list-group-item"><i
-                                              class="fa fa-star font-18 align-middle mr-2"></i>메세지 보관함 <span
-                                              class="badge badge-primary badge-sm float-right">?</span>
+                                              class="fa fa-star font-18 align-middle mr-2"></i>메세지 보관함
                                       </a>
-                                      <a href="javascript:void()" class="list-group-item"><i
-                                              class="fa fa-trash font-18 align-middle mr-2"></i>삭제된 메세지</a>
-                                  </div>                                   
+                                      <a href="message_receive_delete_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="list-group-item"><i
+                                              class="fa fa-trash font-18 align-middle mr-2"></i> 받은메세지 휴지통 <span
+                                              class="badge badge-primary badge-sm float-right"></span></a>                                              
+                                      <a href="message_send_delete_list?receiver=${ loginuser.memberId }&sender=${ loginuser.memberId }" class="list-group-item"><i
+                                              class="fa fa-trash font-18 align-middle mr-2"></i> 보낸메세지 휴지통 <span
+                                              class="badge badge-primary badge-sm float-right"></span></a>
+                                  </div>                                        
                                 </div>
                                 <div class="email-right-box ml-0 ml-sm-4 ml-sm-0">                                    
-                                    <div class="compose-content">
-                                        <form id="messagewriteform" action="message_sender_direct_write" 
+                                    <div class="compose-content">                                   
+                                        <form id="messagewriteform" action="message_direct" 
 									          method="post"	enctype="multipart/form-data">
 									        <div class="form-group">
                                                 <input type="text"
@@ -81,7 +82,7 @@
                                                 <input type="hidden"
                                                 	   id="receiver"
                                                 	   name="receiver"                                                	      
-                                                	   value="${ message.receiver }">                                              	 
+                                                	   value="${ myChannel.member_Id }">                                              	 
                                             </div>                                            
                                             <div class="form-group">
                                                 <input type="hidden"
@@ -143,16 +144,17 @@
 				}			
 			});
 		 });		
-		$(function() {
-			$('#send').on('click',function(event) { 
-				event.preventDefault();				
-				var ok = confirm('메세지를 전송할까요?');
-				if (ok) {					
-					$('#messagewriteform').submit();
+// 		$(function() {
+// 			$('#send').on('click',function(event) { 
+// 				event.preventDefault();				
+// 				var ok = confirm('메세지를 전송할까요?');
+// 				if (ok) {					
+// 					$('#messagewriteform').submit();
 					
-				}			
-			});
-		 });		
+// 				}			
+// 			});
+// 		 });		
+		
 		$(function() {
 			$('#cancel').on('click',function(event) { 
 				event.preventDefault();
@@ -162,6 +164,41 @@
 				}			
 			});
 		 });
+		
+		$('#send').on('click',function(event) { 
+			event.preventDefault();
+			if (!check()) {
+				return;
+			}					
+			var ok = confirm('메세지를 전송할까요?');
+			if (ok) {
+				$('#messagewriteform').submit();
+			}					
+		})
+		
+		function check(){
+			var sender = document.getElementById("sender");
+			var title = document.getElementById("message_Title");
+			var receiver = document.getElementById("receiver");
+			var content = document.getElementById("message_Content");			
+			var memberList = document.getElementById("${ member.memberId }");
+			
+			if(sender.value==""){
+				alert("로그인 하세요")
+				location.href = '/dabomweb/account/login';
+				return false;		
+			}else if(title.value==""){
+				alert("제목을 입력하세요")
+				return false;
+			}else if(receiver.value==""){
+				alert("받는사람을 입력하세요")
+				return false;
+			}else if(content.value==""){
+				alert("메세지 내용을 입력하세요")
+				return false;
+			}	
+			return true;
+		}
 
 	</script>	
 	

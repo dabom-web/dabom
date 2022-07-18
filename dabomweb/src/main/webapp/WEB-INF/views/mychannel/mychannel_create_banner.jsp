@@ -37,7 +37,7 @@
 						</div>
 						<div class="card-body justify-content-center">
 							<div class="form-validation">
-								<form id="mychannelcreate" action="mychannel_create" 
+								<form id="mychannelupdate-banner" action="mychannel_create_banner" 
 									  method="post" enctype="multipart/form-data">
 									<div class="row">
 										<div class="col-xl-9" style="float: none; margin: 0 auto;">
@@ -56,34 +56,25 @@
 													채널이름<span class="text-danger">*</span>
 												</label>
 												<div class="col-lg-8">
-													<input type="text" class="form-control" 
-														   id="channel_Name" name="channel_Name">
+													<p class="text-muted">&nbsp;&nbsp;${myChannel.channel_Name }</p>														  
 												</div>
 											</div>
 											<div class="form-group row justify-content-center">
 												<label class="col-lg-2 col-form-label text-muted"
 													   for="val-confirm-password">
-													프로필 사진 <i class="fa fa-paperclip"></i></label>													
+													배너 사진 <i class="fa fa-paperclip"></i></label>													
 												<div class="col-lg-8">													
 			                                        <div class="d-flex flex-column align-items-center justify-content-center">
 			                                            <div class="fallback w-100">
-			                                                <input name="attach" id="attach" type="file" class="dropify" data-default-file="" />
+			                                                <input name="attach" type="file" class="dropify" data-default-file="" />
 			                                            </div>
 			                                        </div>													
-												</div>
-											</div>											
-											<div class="form-group row justify-content-center">
-												<label class="col-lg-2 col-form-label text-muted" for="val-suggestions">
-													채널소개</label>
-												<div class="col-lg-8">
-													<textarea class="form-control" id="channel_Info"
-														name="channel_Info" rows="5"></textarea>
 												</div>
 											</div>
 											<div class="form-group row">
 												<div class="col-lg-7 ml-auto">
 													<button class="btn btn-primary"
-															id="create" type="button"
+															id="updatebanner" type="button"
 															href="javascript:">등록</button>
 													<a href="javascript:history.back()">
 													<button class="btn btn-primary" 
@@ -108,36 +99,14 @@
 	
 	<script type="text/javascript">
 		
-	$('#create').on('click',function(event) { 
-		event.preventDefault();
-		if (!check()) {
-			return;
-		}			
-		var ok = confirm('채널이 생성되었습니다!');
+	$('#updatebanner').on('click',function(event) { 
+		event.preventDefault();		
+		var ok = confirm('배너사진이 등록 되었습니다!');
 		if (ok) {
-			$('#mychannelcreate').submit();			
+			$('#mychannelupdate-banner').submit();				
 		}					
-		
 	})
-	 
-	function check(){
-		var memberId = document.getElementById("member_Id");
-		var channelName = document.getElementById("channel_Name");
-		var attachCheck = document.getElementById("attach");
-		if(memberId.value==""){
-			alert("로그인 하세요")	
-			location.href = '/dabomweb/account/login';	
-		}else if(channelName.value==""){
-			alert("채널이름을 입력하세요")
-			$("#channel_Name").focus();
-			return false;
-		}else if(attachCheck.val==""){
-			alert("프로필 사진을 등록하세요")
-			$("#attach").focus();
-			return false;
-		}
-		return true;
-	}
+	
 	 
 	</script>
 

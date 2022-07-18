@@ -9,7 +9,7 @@
  <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
- 	<title>채널만들기</title>
+ 	<title>채널정보수정</title>
     <link rel="icon" type="image/png" sizes="16x16" href="/dabomweb/resources/images/dabom.jpg">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.theme.default.min.css">
@@ -37,7 +37,7 @@
 						</div>
 						<div class="card-body justify-content-center">
 							<div class="form-validation">
-								<form id="mychannelcreate" action="mychannel_create" 
+								<form id="mychannelupdate" action="mychannel_update" 
 									  method="post" enctype="multipart/form-data">
 									<div class="row">
 										<div class="col-xl-9" style="float: none; margin: 0 auto;">
@@ -57,7 +57,8 @@
 												</label>
 												<div class="col-lg-8">
 													<input type="text" class="form-control" 
-														   id="channel_Name" name="channel_Name">
+														   id="channel_Name" name="channel_Name"
+														   value="${myChannel.channel_Name }">
 												</div>
 											</div>
 											<div class="form-group row justify-content-center">
@@ -67,7 +68,7 @@
 												<div class="col-lg-8">													
 			                                        <div class="d-flex flex-column align-items-center justify-content-center">
 			                                            <div class="fallback w-100">
-			                                                <input name="attach" id="attach" type="file" class="dropify" data-default-file="" />
+			                                                <input name="attach" type="file" class="dropify" data-default-file="" />
 			                                            </div>
 			                                        </div>													
 												</div>
@@ -77,14 +78,14 @@
 													채널소개</label>
 												<div class="col-lg-8">
 													<textarea class="form-control" id="channel_Info"
-														name="channel_Info" rows="5"></textarea>
+														name="channel_Info" rows="5">${myChannel.channel_Info}</textarea>
 												</div>
 											</div>
 											<div class="form-group row">
 												<div class="col-lg-7 ml-auto">
 													<button class="btn btn-primary"
-															id="create" type="button"
-															href="javascript:">등록</button>
+															id="update" type="button"
+															href="javascript:">수정</button>
 													<a href="javascript:history.back()">
 													<button class="btn btn-primary" 
 															id="cancel" type="button"
@@ -108,32 +109,27 @@
 	
 	<script type="text/javascript">
 		
-	$('#create').on('click',function(event) { 
+	$('#update').on('click',function(event) { 
 		event.preventDefault();
 		if (!check()) {
 			return;
-		}			
-		var ok = confirm('채널이 생성되었습니다!');
-		if (ok) {
-			$('#mychannelcreate').submit();			
-		}					
+		}	
 		
+		var ok = confirm('채널정보가 수정 되었습니다!');
+		if (ok) {
+			$('#mychannelupdate').submit();				
+		}					
 	})
 	 
 	function check(){
 		var memberId = document.getElementById("member_Id");
 		var channelName = document.getElementById("channel_Name");
-		var attachCheck = document.getElementById("attach");
+		
 		if(memberId.value==""){
 			alert("로그인 하세요")	
 			location.href = '/dabomweb/account/login';	
 		}else if(channelName.value==""){
 			alert("채널이름을 입력하세요")
-			$("#channel_Name").focus();
-			return false;
-		}else if(attachCheck.val==""){
-			alert("프로필 사진을 등록하세요")
-			$("#attach").focus();
 			return false;
 		}
 		return true;
