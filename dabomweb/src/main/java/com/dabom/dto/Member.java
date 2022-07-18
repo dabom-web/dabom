@@ -20,6 +20,7 @@ public class Member {
 	private int accountno;
 	private String passwd;
 	private String type;
+	private Boolean leved;
 	
 	
 }

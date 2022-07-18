@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>     
      <!--**********************************
             Nav header start
         ***********************************-->
@@ -46,15 +47,37 @@
                             <c:choose>
                             <c:when test="${ loginuser.type eq 'admin' }">
                             	 <li class="nav-item dropdown notification_dropdown">                             
-                            	  <a style="font-size: 9pt; font-weight: bolder; color: black;">관리자계정으로 로그인되었습니다.</a>
+                            	  <a style="font-size: 9pt; font-weight: bolder; color: black;">👑 관리자계정으로 로그인되었습니다.</a>
                             	 </li>
                             </c:when>
                             <c:otherwise>
-                            <li class="nav-item dropdown notification_dropdown">                             	                        
-                                <a style="font-size: 6pt; font-weight: bolder; color: black;" href="/dabomweb/contact-message/sendContactUser">                             
-                                    관리자에게 문의하기                                   
-                                </a>&nbsp;💬
-                           </li>
+	                            <c:choose>
+	                            <c:when test="${ !empty count }">
+	                            	 <li class="nav-item dropdown notification_dropdown">                             	                        
+		                                <a style="font-size: 6pt; font-weight: bolder; color: black;" href="/dabomweb/contact-message/sendContactUser">                             
+		                                    관리자에게 문의하기                                  
+		                                </a>&nbsp;
+		                                 <a class="nav-link" href="/dabomweb/contact-message/sendContactUser">
+		                                    <i></i>💬
+		                                    <div class="pulse-css"></div>
+		                                </a>
+		                            </li>
+	                            </c:when>
+	                            <c:otherwise>
+	                            	 <li class="nav-item dropdown notification_dropdown">                             	                        
+		                                <a style="font-size: 6pt; font-weight: bolder; color: black;" href="/dabomweb/contact-message/sendContactUser">                             
+		                                    관리자에게 문의하기                          
+		                                </a>&nbsp;
+		                                 <a class="nav-link" href="/dabomweb/contact-message/sendContactUser">
+		                                    <i></i>💬
+		                                    <div class=""></div>
+		                                </a>
+		                            </li>
+	                            
+	                            </c:otherwise>
+	                            </c:choose>
+		                           
+		                            
                             </c:otherwise>
                             </c:choose>                           
                            
@@ -70,9 +93,11 @@
                                 <a class="nav-link" role="button" data-toggle="dropdown">
                                     <i class="mdi mdi-account"></i>
                                 </a>
-                                <a style="font-size:9pt; font-weight: bolder; color: black;">${ loginuser.nickName }님 환영합니다 !!</a>
+                                <a style="font-size:9pt; font-weight: bolder; color: black; text-align: right;">
+                                ${ loginuser.nickName }님으로 로그인</a>
+                               
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <a href="resources/app-profile.html" class="dropdown-item">
+                                    <a href="/dabomweb/mypage/profile" class="dropdown-item">
                                         <i class="icon-user"></i>                                        
                                         <span class="ml-2">Profile </span>
                                     </a>
@@ -92,9 +117,14 @@
                                     </c:otherwise>
                                     </c:choose>   
                                     
-                                    <a href="resources/page-login.html" class="dropdown-item">
+                                    <a href="/dabomweb/account/logout" class="dropdown-item">
                                         <i class="icon-key"></i>
                                         <span class="ml-2">Logout </span>
+                                    </a>
+                                     <a href="/dabomweb/payment/purchase-point" class="dropdown-item">
+                                        <span class="ml-2">
+                                     	 <fmt:formatNumber value="${ loginuser.point }" pattern="#,###" />
+                                       point 보유 </span>
                                     </a>
                                 </div>
                             </li>

@@ -57,7 +57,7 @@
                                               
                                               				<br><br><br>
                                								<a id='delete-btn' href="#">삭제하기</a>
-                               								<a href="#">수정하기</a>
+                               								<a id="edit-btn" href="#">수정하기</a>
                                                     
                                                              
                                     
@@ -90,6 +90,17 @@
 			}
 		})	
 	});
+	
+	$(function(){
+		$('#edit-btn').click(function(event){
+			event.preventDefault();
+			var ok = confirm('수정하시겠습니까?')
+			if(ok){
+				location.href='edit?boardno=${webtoonListByTitle.boardNo}&pageNo=${param.pageNo}&number=${webtoonListByTitle.number}'
+			}
+		})
+	})
+	
 	</script>
 
 </body>

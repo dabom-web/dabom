@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,57 +15,7 @@
     <link href="resources/css/style.css" rel="stylesheet">
 </head>
 <body>
-    
-    <div id="preloader">
-        <div class="sk-three-bounce">
-            <div class="sk-child sk-bounce1"></div>
-            <div class="sk-child sk-bounce2"></div>
-            <div class="sk-child sk-bounce3"></div>
-        </div>
-    </div>
- 
-    <div id="main-wrapper">
-      <jsp:include page="/WEB-INF/views/modules/header.jsp"></jsp:include>
-      <jsp:include page="/WEB-INF/views/modules/sidebar.jsp"></jsp:include>
-    </div>
-  
-
-
-
-
-
-
-    <!-- Required vendors -->
-    <script src="/dabomweb/resources/vendor/global/global.min.js"></script>
-    <script src="/dabomweb/resources/js/quixnav-init.js"></script>
-    <script src="/dabomweb/resources/js/custom.min.js"></script>
-
-
-    <!-- Vectormap -->
-    <script src="/dabomweb/resources/vendor/raphael/raphael.min.js"></script>
-    <script src="/dabomweb/resources/vendor/morris/morris.min.js"></script>
-
-
-    <script src="/dabomweb/resources/vendor/circle-progress/circle-progress.min.js"></script>
-    <script src="/dabomweb/resources/vendor/chart.js/Chart.bundle.min.js"></script>
-
-    <script src="/dabomweb/resources/vendor/gaugeJS/dist/gauge.min.js"></script>
-
-    <!--  flot-chart js -->
-    <script src="/dabomweb/resources/vendor/flot/jquery.flot.js"></script>
-    <script src="/dabomweb/resources/vendor/flot/jquery.flot.resize.js"></script>
-
-    <!-- Owl Carousel -->
-    <script src="/dabomweb/resources/vendor/owl-carousel/js/owl.carousel.min.js"></script>
-
-    <!-- Counter Up -->
-    <script src="/dabomweb/resources/vendor/jqvmap/js/jquery.vmap.min.js"></script>
-    <script src="/dabomweb/resources/vendor/jqvmap/js/jquery.vmap.usa.js"></script>
-    <script src="/dabomweb/resources/vendor/jquery.counterup/jquery.counterup.min.js"></script>
-
-
-    <script src="/dabomweb/resources/js/dashboard/dashboard-1.js"></script>
-
-
+   <jsp:include page="/WEB-INF/views/modules/css/top.jsp" />   
+   <jsp:include page="/WEB-INF/views/modules/css/bottom.jsp" />
 </body>
 </html>

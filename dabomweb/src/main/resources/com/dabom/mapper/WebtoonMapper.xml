@@ -87,8 +87,20 @@
   	</select>
   	
   	<delete id="delete" parameterType="int">
-  		UPDATE webtoonlistbytitle 
-		SET deleted = TRUE 
+  		DELETE FROM webtoonlistbytitle
 		WHERE number = #{number}
   	</delete>
+  	
+  	
+  	<delete id="deleteAttach" parameterType="int">
+  	 DELETE FROM webtoonlistbytitleattach
+  	 WHERE number = #{number}
+  	</delete>
+  	
+  	<update id="update" parameterType="webtoonListByTitle">
+  		UPDATE webtoonlistbytitle
+  		SET title = #{title}
+  		WHERE number = #{number}
+  	</update>
+  	
   </mapper>

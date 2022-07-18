@@ -29,6 +29,10 @@ public interface WebtoonService {
 
 	public void delete(int number);
 
+	public void deleteAttach(int number);
+
+	public void update(WebtoonListByTitle webtoonListByTitle);
+
 
 	
 	

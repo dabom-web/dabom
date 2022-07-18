@@ -123,6 +123,12 @@ public class WebtoonServiceImpl implements WebtoonService {
 		webtoonMapper.delete(number);
 	};
 
+	public void deleteAttach(int number) {
+		webtoonMapper.deleteAttach(number);
+	};
 	
+	public void update(WebtoonListByTitle webtoonListByTitle) {
+		webtoonMapper.update(webtoonListByTitle);
+	};
 	
 }

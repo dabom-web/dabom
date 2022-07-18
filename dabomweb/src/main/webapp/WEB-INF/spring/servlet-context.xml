@@ -36,7 +36,8 @@
 			<mapping path="/contact-message/**"/> 
 			<mapping path="/message/**"/> 
 			<mapping path="/modules/**"/> 
-			<mapping path="/mychannel/**"/> 
+			<mapping path="/mychannel/**"/>
+			<mapping path="/mypage/**"/>  
 			<mapping path="/payment/**"/> 
 			<mapping path="/produceBoard/**"/>  
 			<mapping path="/video/**"/>

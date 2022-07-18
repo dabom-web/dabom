@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,6 +22,11 @@
 
 	<div class="content-body">
 		<div class="container-fluid">
+				<a class="btn btn-light btn-xs" id="back-btn"  
+				    href="javascript:history.back();" style="width: 100px;" > 
+					<span class="mr-2"><i class="fa fa-reply"></i></span> 
+					Back
+				</a><br><br>
 			<div class="row page-titles mx-0">
 				<div class="col-sm-6 p-md-0">
 					<div class="welcome-text">
@@ -56,7 +61,7 @@
 									<a href="/dabomweb/contact-message/contactMessageToUser?memberId=${ loginuser.memberId }"class="list-group-item">
 										<i class="fa fa-star font-18 align-middle mr-2"></i>
 										관리자의 메세지
-										<span class="badge badge-danger text-white badge-sm float-right">47</span>
+										<span class="badge badge-danger text-white badge-sm float-right"></span>
 									</a> 									
 								</div>
 
@@ -126,7 +131,7 @@
 				if (ok) {
 					$('#write-form').submit();			
 				} else {
-					location.href = "/dabomweb/contact-message/sendContactUser";
+					location.href = "/dabomweb/contact-message/sendContactUser?memberId=${ loginuser.memberId }";
 				}			
 			}
 			
@@ -140,7 +145,7 @@
 			event.preventDefault();
 			var ok = confirm("정말 취소하시겠습니까?");
 			if (ok) {
-				location.href = "/dabomweb/contact-message/sendContactUser";	
+				location.href = "/dabomweb/contact-message/sendContactUser?memberId=${ loginuser.memberId }";	
 			}
 		});
 		

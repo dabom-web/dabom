@@ -11,7 +11,7 @@
  <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
- 	<title>TRASH(${ deleteSendCount })</title>
+ 	<title>휴지통(${ deleteSendCount })</title>
     <link rel="icon" type="image/png" sizes="16x16" href="/dabomweb/resources/images/dabom.jpg">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.theme.default.min.css">
@@ -89,7 +89,7 @@
 	                                                          class="fa fa-star" aria-hidden="true"></i></button>
 	                                              </div>	                                                  	                                                                                         
 	                                          <a href="message_send_delete_detail?message_no=${ message.message_No }&sender=${ loginuser.memberId }" class="col-mail col-mail-3">  
-	                                              <div class="sender">${ message.sender }</div>
+	                                              <div class="sender">${ message.receiver }</div>
 	                                              <div class="subject">${ message.message_Title }</div>
 	                                         	  <div class="date">${ message.send_Date }</div>                                              
 	                                          </a>  

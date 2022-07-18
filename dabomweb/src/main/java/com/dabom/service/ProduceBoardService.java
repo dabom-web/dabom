@@ -37,6 +37,12 @@ public interface ProduceBoardService {
 
 	void updateProducerSupportCount(int produceBoardNo, int count);
 
-//	Member findUserName();
+	ProduceBoard findInforByBoardNo(int boardNo);
+
+	void updateInfor(int boardNo, String sns, String infor, String contact);
+
+	void deletedInforByBoardNo(int boardNo);
+
+
 	
 }

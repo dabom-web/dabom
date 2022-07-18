@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<% pageContext.setAttribute("replaceChar", "\n"); %>   
+<% pageContext.setAttribute("replaceChar", "\n"); %>  
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +16,13 @@
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.theme.default.min.css">
     <link href="/dabomweb/resources/vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet">
     <link href="/dabomweb/resources/css/style.css" rel="stylesheet">
-
+	<jsp:include page="/WEB-INF/views/modules/css/font.jsp" />
+	<style type="text/css">
+		.f {
+			font-family: 'NanumYuNiDdingDdangDdingDdang';
+			font-size: 20pt;
+		}
+	</style>
 </head>
 <body>
 	
@@ -23,6 +30,11 @@
 
 	<div class="content-body">
 		<div class="container-fluid">
+		 <a class="btn btn-light btn-xs" id="back-btn"  
+				    href="javascript:history.back();" style="width: 100px;" > 
+					<span class="mr-2"><i class="fa fa-reply"></i></span> 
+					Back
+				</a><br><br>
 			<div class="row page-titles mx-0">
 				<div class="col-sm-6 p-md-0">
 					<div class="welcome-text">
@@ -57,7 +69,7 @@
 									<a href="/dabomweb/contact-message/contactMessageToUser?memberId=${ loginuser.memberId }"class="list-group-item">
 										<i class="fa fa-star font-18 align-middle mr-2"></i>
 										관리자의 메세지 
-										<span class="badge badge-danger text-white badge-sm float-right">47</span>
+										<span class="badge badge-danger text-white badge-sm float-right"></span>
 									</a> 
 								
 
@@ -77,15 +89,15 @@
 									<div class="card-header d-block">
 										제목
 										<h4 class="card-title" style="font-weight: bold;">${ contact.title }</h4>
-										<p class="mb-0 subtitle">전송일&nbsp;&nbsp; ${ contact.sendDate }</p>
+										<p class="mb-0 subtitle">전송일&nbsp;&nbsp;<fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${ contact.sendDate }"/></p>
 									</div>
 									<div class="col-xl-6">
 										<div class="alert alert-dark notification">
-											<p class="notificaiton-title">
+											<p class="notificaiton-title f">
 												<strong>${ contact.memberId } 회원님</strong>
-												관리자에게 전송한 문의 메세지 내용입니다.
+												<br>관리자에게 전송한 문의 메세지 내용입니다.
 											</p><br>
-											<strong>${fn:replace(contact.content, replaceChar, "<br/>")}</strong>
+											<strong class="f">${fn:replace(contact.content, replaceChar, "<br/>")}</strong>
 										</div>
 									</div>
 								</div>
@@ -98,6 +110,21 @@
 	</div>
 
 	<jsp:include page="/WEB-INF/views/modules/css/bottom.jsp" />
+	<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+	<script type="text/javascript">
 	
+	$(function() {
+		
+		$('#remove-btn').on('click', function(event) {
+			event.preventDefault();
+			
+			var ok = confirm('휴지통으로 이동합니다.');
+			if( ok ) {
+				location.href = 'removeContactUser?memberId=${ loginuser.memberId }&contactNo=' + ${ contact.contactNo };
+			} 
+		});
+		
+	});	
+	</script>
 </body>
 </html>
