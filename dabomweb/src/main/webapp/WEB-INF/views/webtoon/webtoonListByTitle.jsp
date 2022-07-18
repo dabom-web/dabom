@@ -113,7 +113,7 @@ img {
                                         <tbody>
                                        	<c:forEach var="webtoon" items="${webtoonListByTitle }">
                                             <tr>
-                                             <td>${webtoon.number } </td>
+                                             <td>${webtoon.content } </td>
                                             	<td>
                                             	 <a href="/dabomweb/webtoon/detail?boardno=${webtoon.boardNo }&pageNo=${pageNo}&number=${webtoon.number}">
                                             	 <img width="150px" height="100"  src="/dabomweb/resources/upload-files/${ webtoon.files[0].savedFileName }" >
@@ -137,9 +137,12 @@ img {
                                 </div>
                             </div>
                         </div>
+                        <c:if test="${loginuser.type eq '웹툰업로더' }">
+                        	
                         	<div align="center">
 								<a href="/dabomweb/webtoon/webtoonListByTitleRegister?boardno=${webtoonBoard.boardNo}&pageNo=${pageNo}">웹툰 올리기</a>
 							</div>
+							</c:if>
 							<br>
 						
                      

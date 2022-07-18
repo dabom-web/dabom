@@ -1,5 +1,6 @@
 package com.dabom.mapper;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -43,4 +44,10 @@ public interface WebtoonMapper {
 	void deleteAttach(int number);
 
 	void update(WebtoonListByTitle webtoonListByTitle);
+
+	void updateReadCount(int number);
+
+	void updateWebtoonBoardByTitle(WebtoonListByTitleAttach file);
+
+	
 }

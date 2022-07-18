@@ -56,9 +56,10 @@
                                                    
                                               
                                               				<br><br><br>
+                                              				<c:if test="${ loginuser.memberId eq webtoonListByTitle.memberId}">
                                								<a id='delete-btn' href="#">삭제하기</a>
                                								<a id="edit-btn" href="#">수정하기</a>
-                                                    
+                                                    		</c:if>
                                                              
                                     
                                                      

@@ -62,8 +62,17 @@
                                             <label><strong>핸드폰</strong></label>
                                             <input type="text" id="phone" name="phone" class="form-control" placeholder="010-0000-0000">
                                         </div>  
-                                  
-                                 			<select id="single-select" name="type">
+                                  			
+                                  			<br>
+                                  			 <label><strong>성별</strong></label>
+                                  			<select id="gender" name="gender">
+			                                    <option value="남">남자</option>
+			                                    <option value="여">여자</option>
+			                                  
+			                                </select>
+                                  			<br><br>
+                                  			 <label><strong>회원유형</strong></label>
+                                 			<select id="type" name="type">
 			                                    <option value="일반회원">일반회원</option>
 			                                    <option value="영상업로더">영상업로더</option>
 			                                    <option value="웹툰업로더">웹툰업로더</option>

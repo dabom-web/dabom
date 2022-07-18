@@ -1,5 +1,6 @@
 package com.dabom.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.dabom.dto.WebtoonBoard;
@@ -32,6 +33,10 @@ public interface WebtoonService {
 	public void deleteAttach(int number);
 
 	public void update(WebtoonListByTitle webtoonListByTitle);
+
+	public void updateWebtoonBoardByTitle(ArrayList<WebtoonListByTitleAttach> files);
+
+	
 
 
 	
