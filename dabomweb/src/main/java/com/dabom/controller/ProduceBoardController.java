@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.dabom.common.Util;
 import com.dabom.dto.Member;
 import com.dabom.dto.ProduceBoard;
+import com.dabom.dto.ProduceBoardComment;
 import com.dabom.dto.ProduceSupport;
 import com.dabom.dto.ProducerAttach;
 import com.dabom.service.AccountService;
@@ -244,5 +245,24 @@ public class ProduceBoardController {
 		return "success";
 	}
 	
+	@PostMapping(path = { "/write-comment" })
+	@ResponseBody
+	public String writeComment(ProduceBoardComment produceBoardComment,
+							   Model model) {
+		produceBoardService.writeCommentByBoardNo(produceBoardComment);
+		
+		
+		return "success";
+	}
+	
+	@GetMapping(path = { "/comment-list" })
+	public String listComment(@RequestParam(name="boardNo") int boardNo, Model model) {
+		
+		List<ProduceBoardComment> commentList = produceBoardService.findCommentListByBoardNo(boardNo);
+		model.addAttribute("commentList", commentList);
+		
+		return "produceBoard/actorDetail";
+		
+	}
 	
 }

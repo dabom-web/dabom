@@ -1,6 +1,9 @@
 package com.dabom.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Many;
 import org.apache.ibatis.annotations.One;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
@@ -53,12 +56,39 @@ public interface MypageMapper {
 			+ "from channel where member_id = #{ memberId }")
 	MyChannel selectMyChannelByMemberId(@Param("memberId")String memberId);
 	
-	@Select("select boardno, title, content, regdate, readcount, memberid "
-			+ "from webtoon_board where memberid = #{ memberId }")
-	WebtoonBoard selectWebtoonByMemberId(String memberId);
+//	@Select("select boardno, title, content, regdate, readcount, memberid "
+//			+ "from webtoon_board where memberid = #{ memberId } "
+//			+ "order by boardno desc")
+	@Select("select wb.boardno, wb.title, wb.regdate, max(wl.content) content, sum(wl.readcount) readCount "
+	+ "from webtoon_board wb "
+	+ "left outer join webtoonlistbytitle wl "
+	+ "on wb.boardno = wl.boardno "
+	+ "where wb.memberid = #{ memberId }")
+	@Results({
+		@Result(id= true, column = "boardno", property = "boardNo"),
+		@Result(column="title", property="title"),
+		@Result(column="content", property="content"),
+		@Result(column="regdate", property="regdate"),
+		@Result(column="readcount", property="readCount"),
+		@Result(column="deleted", property="deleted"),
+		@Result(column="memberid", property="memberId"),
+		@Result(column="boardno", property="WebtoonListByTitle",
+				many = @Many(resultMap = "webtoonListByTitle"))
+	})
+	List<WebtoonBoard> selectTitleListByMemberIdOfWriter(String memberId);
 	
-	
-	
+	@Results(id="webtoonListByTitle", value = {
+		@Result(id = true, column = "boardno", property = "boardNo"),
+		@Result(id = true, column = "number", property = "number"),
+		@Result(column = "title", property="title"),
+		@Result(column = "content", property="content"),
+		@Result(column = "regdate", property="regdate"),
+		@Result(column = "readcount", property="readCount"),
+		@Result(column = "deleted", property="deleted"),
+		@Result(column = "memberid", property="memberId"),
+		@Result(column = "boardno", property="boardNo")
+	})
+	void webtoonListByTitle();		
 	
 
 

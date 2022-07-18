@@ -1,5 +1,7 @@
 package com.dabom.service;
 
+import java.util.List;
+
 import com.dabom.dto.Member;
 import com.dabom.dto.MyChannel;
 import com.dabom.dto.WebtoonBoard;
@@ -18,6 +20,6 @@ public interface MypageService {
 
 	MyChannel findMyChannelByLoginUserMemberId(String memberId);
 
-	WebtoonBoard findWebtoonBoardByLoginUserByMemberId(String memberId);
+	List<WebtoonBoard> findWebtoonListByMemberIdOfWriter(String memberId);
 	
 }

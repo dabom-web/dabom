@@ -44,10 +44,10 @@ public class MypageController {
 		Member loginUser = (Member)session.getAttribute("loginuser");
 		
 		MyChannel myChannel = mypageService.findMyChannelByLoginUserMemberId(loginUser.getMemberId());
-		WebtoonBoard webtoon = mypageService.findWebtoonBoardByLoginUserByMemberId(loginUser.getMemberId());
+		List<WebtoonBoard> webtoonTitleList = mypageService.findWebtoonListByMemberIdOfWriter(loginUser.getMemberId());
 		
 		model.addAttribute("myChannel", myChannel);
-		model.addAttribute("webtoon",webtoon);
+		model.addAttribute("webtoonList", webtoonTitleList);
 		
 		
 		

@@ -328,10 +328,10 @@
 						                                                <td>연재 시작일</td>
 						                                            </tr>
 						                                             <tr>
-						                                                <td>${ webtoon.title }</td>
-						                                                <td>${ webtoon.content }</td>
-						                                            	<td>${ webtoon.readCount }</td>
-						                                                <td><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${ webtoon.regdate }"/></td>
+						                                                <td>${ webtoonList.title }</td>
+						                                                <td>${ webtoonList.content }</td>
+						                                            	<td>${ webtoonList.readCount }</td>
+						                                                <td><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${ webtoonList.regdate }"/></td>
 						                                             </tr>
 						                                        </tbody>
 						                                    </table>
@@ -480,7 +480,7 @@
 															</div>
 														</div>
 												
-											<div class="tab-pane fade" id="list-leave">
+												<div class="tab-pane fade" id="list-leave">
 													<h4 class="mb-4">회원 탈퇴</h4>
 													<p class="bl">지금 까지 작성한 내용은 삭제되지 않습니다. 탈퇴한 회원은 영구 탈퇴처리 됩니다.</p>
 														<a class="btn btn-light btn-xs bl" id="disabled-btn"  
@@ -491,7 +491,7 @@
 														    href="javascript:" > 
 															계정탈퇴
 														</a>	
-											</div>
+												</div>
 											</div>
 										</div>
 									</div>

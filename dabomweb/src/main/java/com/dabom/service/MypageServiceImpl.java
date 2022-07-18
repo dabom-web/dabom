@@ -1,5 +1,7 @@
 package com.dabom.service;
 
+import java.util.List;
+
 import com.dabom.dto.Member;
 import com.dabom.dto.MyChannel;
 import com.dabom.dto.WebtoonBoard;
@@ -51,10 +53,11 @@ public class MypageServiceImpl implements MypageService {
 		return myChannel;
 	}
 
+
 	@Override
-	public WebtoonBoard findWebtoonBoardByLoginUserByMemberId(String memberId) {
-		WebtoonBoard webtoon = mypageMapper.selectWebtoonByMemberId(memberId);
-		return webtoon;
+	public List<WebtoonBoard> findWebtoonListByMemberIdOfWriter(String memberId) {
+		List<WebtoonBoard> titleList = mypageMapper.selectTitleListByMemberIdOfWriter(memberId);
+		return titleList;
 	}
 	
 	
