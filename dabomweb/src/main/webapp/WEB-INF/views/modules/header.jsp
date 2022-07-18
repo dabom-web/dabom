@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>     
      <!--**********************************
             Nav header start
         ***********************************-->
@@ -120,8 +121,10 @@
                                         <i class="icon-key"></i>
                                         <span class="ml-2">Logout </span>
                                     </a>
-                                     <a href="#" class="dropdown-item">
-                                        <span class="ml-2">4,800point 보유 </span>
+                                     <a href="/dabomweb/payment/purchase-point" class="dropdown-item">
+                                        <span class="ml-2">
+                                     	 <fmt:formatNumber value="${ loginuser.point }" pattern="#,###" />
+                                       point 보유 </span>
                                     </a>
                                 </div>
                             </li>

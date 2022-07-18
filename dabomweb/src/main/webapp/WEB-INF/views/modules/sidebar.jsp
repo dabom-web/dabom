@@ -118,10 +118,9 @@
 	                    <li class="nav-label first">결제하기</li>
 	                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
 	                    💸 결제하기</span></a>
-	                        <ul aria-expanded="false">
-	                        
-	                            <li><a href="/dabomweb/payment/purchase-point">결제하기</a></li>
-	                 	                            
+	                        <ul aria-expanded="false">	                        
+	                            <li><a href="/dabomweb/payment/purchase-point">포인트결제</a></li>
+	                 	        <li><a href="/dabomweb/payment/use-point">포인트사용</a></li>                    
 	                        </ul>
 	                    </li>
 	                    

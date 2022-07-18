@@ -8,7 +8,7 @@
 						http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd">
 			
 	<bean id="mypageService" class="com.dabom.service.MypageServiceImpl">
-		<property name="memberMapper" ref="memberMapper"/>
+		<property name="mypageMapper" ref="mypageMapper"/>
 	</bean> 
 	
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">

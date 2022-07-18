@@ -16,4 +16,7 @@ public class PointPurchase {
 	private String memberId;
 	private Boolean accept;
 	private int usePoint;
+	private int totalPoint;
+	
+	private Member member;
 }
