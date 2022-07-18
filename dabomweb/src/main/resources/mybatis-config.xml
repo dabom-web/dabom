@@ -13,6 +13,7 @@
 		<typeAlias type="com.dabom.dto.WebtoonBoardAttach" alias="WebtoonBoardAttach"/>
 		<typeAlias type="com.dabom.dto.WebtoonListByTitle" alias="WebtoonListByTitle"/>
 		<typeAlias type="com.dabom.dto.WebtoonListByTitleAttach" alias="WebtoonListByTitleAttach"/>
+		<typeAlias type="com.dabom.dto.WebtoonListByTitleComment" alias="WebtoonlistByTitleComment"/>
 	</typeAliases>
 
 	<mappers>	

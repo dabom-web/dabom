@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.dabom.dto.WebtoonBoard;
 import com.dabom.dto.WebtoonBoardAttach;
+import com.dabom.dto.WebtoonListByTitleComment;
 import com.dabom.dto.WebtoonListByTitle;
 import com.dabom.dto.WebtoonListByTitleAttach;
 
@@ -35,6 +36,10 @@ public interface WebtoonService {
 	public void update(WebtoonListByTitle webtoonListByTitle);
 
 	public void updateWebtoonBoardByTitle(ArrayList<WebtoonListByTitleAttach> files);
+
+	public void writeWebtoonComment(WebtoonListByTitleComment webtoonComment);
+
+	public List<WebtoonListByTitleComment> findCommentsByNumber(int number);
 
 	
 
