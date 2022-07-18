@@ -46,7 +46,7 @@ public class WebtoonController {
 		  List<WebtoonBoard> boardList = webtoonservice.findByPage(pageNo, pageSize); 
 		  count = webtoonservice.findBoardCount(); // 데이터베이스에 전체 개시물 개수 조회
 		  
-		  ThePager pager = new ThePager(count, pageNo, pageSize, pagerSize, "list");
+		  ThePager pager = new ThePager(count, pageNo, pageSize, pagerSize, "webtoonList");
 		 
 		model.addAttribute("boardList", boardList);
 		model.addAttribute("pager", pager);
@@ -155,6 +155,7 @@ public class WebtoonController {
 		webtoonListByTitle.setFiles(files);
 		webtoonservice.writeWebtoonBoardByTitle(webtoonListByTitle);
 		
+		
 		return String.format("redirect:webtoonListByTitle?boardno=%d&pageNo=%d", webtoonListByTitle.getBoardNo(), pageNo);
 		
 	}
@@ -197,24 +198,61 @@ public class WebtoonController {
 		}
 		
 		WebtoonListByTitle webtoonListByTitle = webtoonservice.findByNumber(number);
+		 List<WebtoonListByTitleAttach> attach = webtoonservice.webtoonByTitlefindAttach(number);
+		 int thumbnailAttachNo = attach.get(0).getAttachNo();
+		 int webtoonAttachNo = attach.get(1).getAttachNo();
 		if(webtoonListByTitle == null) {
 			return String.format("redirect:webtoonListByTitle?boardno=%d&pageNo=%d", boardNo,pageNo);
 		}
 		
 		model.addAttribute("webtoonListByTitle",webtoonListByTitle);
-		
+		model.addAttribute("thumbnailAttachNo",thumbnailAttachNo);
+		model.addAttribute("webtoonAttachNo",webtoonAttachNo);
 		 return "webtoon/edit";
 	}
 	
 	@PostMapping(path= {"/edit"})
 	public String edit(WebtoonListByTitle webtoonListByTitle, 
 					   @RequestParam(name="pageNo", defaultValue = "-1")int pageNo,
-					   @RequestParam(name="boardNo", defaultValue = "-1")int boardNo) {
+					   @RequestParam(name="boardNo", defaultValue = "-1")int boardNo,
+					   @RequestParam(name="thumbnailAttachNo", defaultValue = "-1")int thumbnailAttachNo,
+					   @RequestParam(name="webtoonAttachNo", defaultValue = "-1")int webtoonAttachNo,
+					   MultipartFile[] attach, HttpServletRequest req) {
 		if(pageNo < 1) {
 			return String.format("redirect:webtoonListByTitle?boardno=%d&pageNo=%d", boardNo,pageNo);
 		}
 		
 		webtoonservice.update(webtoonListByTitle);
+		
+		//첨부파일 가져오기
+		
+		String uploadDir = req.getServletContext().getRealPath("/resources/upload-files");
+				
+				ArrayList<WebtoonListByTitleAttach> files = new ArrayList<>();
+				
+				for(MultipartFile uploadFile : attach) {
+					String userFileName = uploadFile.getOriginalFilename();
+					if(userFileName != null && userFileName.length() > 0) {
+						WebtoonListByTitleAttach f = new WebtoonListByTitleAttach();
+						String savedFileName = Util.makeUniqueFileName(userFileName);			
+						f.setUserFileName(userFileName);
+						f.setSavedFileName(savedFileName);
+						try {
+							File savedFile = new File(uploadDir, savedFileName);
+							uploadFile.transferTo(savedFile); // 파일 저장
+							files.add(f);
+						}catch(Exception ex) {
+							ex.printStackTrace();
+						}
+					}
+				}
+		
+		//webtoonListByTitle.setBoardNo(webtoonListByTitle.getBoardNo());
+		//webtoonListByTitle.setFiles(files);
+		files.get(0).setAttachNo(thumbnailAttachNo);
+		files.get(1).setAttachNo(webtoonAttachNo);
+		webtoonservice.updateWebtoonBoardByTitle(files);
+		
 		
 		return String.format("redirect:webtoonListByTitle?boardno=%d&pageNo=%d", boardNo,pageNo);
 		

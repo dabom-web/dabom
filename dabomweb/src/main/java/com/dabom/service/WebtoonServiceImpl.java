@@ -1,5 +1,6 @@
 package com.dabom.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -107,6 +108,9 @@ public class WebtoonServiceImpl implements WebtoonService {
 		
 		WebtoonListByTitle webtoonListByTitle = webtoonMapper.findByNumber(number);
 		
+		webtoonMapper.updateReadCount(number);
+		webtoonListByTitle.setReadCount(webtoonListByTitle.getReadCount()+1);
+		
 		return webtoonListByTitle;
 		
 	};
@@ -129,6 +133,12 @@ public class WebtoonServiceImpl implements WebtoonService {
 	
 	public void update(WebtoonListByTitle webtoonListByTitle) {
 		webtoonMapper.update(webtoonListByTitle);
+	};
+	
+	public void updateWebtoonBoardByTitle(ArrayList<WebtoonListByTitleAttach> files) {
+		for (WebtoonListByTitleAttach file : files) {
+			webtoonMapper.updateWebtoonBoardByTitle(file);
+		}
 	};
 	
 }

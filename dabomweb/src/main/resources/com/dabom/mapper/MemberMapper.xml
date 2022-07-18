@@ -15,8 +15,8 @@
 
 	<insert id="insertMember" parameterType="com.dabom.dto.Member">
 		
-		INSERT INTO member (username, birth, memberid, nickname, email, phone)
-		VALUES (#{userName},#{birth},#{memberId},#{nickName},#{email},#{phone})
+		INSERT INTO member (username, birth, memberid, nickname, email, phone, gender)
+		VALUES (#{userName},#{birth},#{memberId},#{nickName},#{email},#{phone},#{gender})
 	</insert>
 	
 	 <resultMap id="memberResultMap" type="Member">
@@ -30,12 +30,13 @@
 		<result column="active" property="active"/>
 		<result column="point" property="point"/>
 		<result column="leved" property="leved"/>
-		<result column="username" property="userName"/>	
+		<result column="username" property="userName"/>
+		<result column="gender"	property="gender"/>
 	</resultMap>
 
 	<select id="loginUser" parameterType="Member" resultMap="memberResultMap">
 	
-		SELECT user.memberid, nickname, birth, email, phone, passwd, grade, active, username, type, point, leved
+		SELECT user.memberid, nickname, birth, email, phone, passwd, grade, active, username, type, point, leved, gender
 		FROM user
 		LEFT OUTER JOIN member
 		ON user.memberid = member.memberid

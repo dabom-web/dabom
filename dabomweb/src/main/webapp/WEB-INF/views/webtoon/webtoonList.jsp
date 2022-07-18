@@ -62,9 +62,11 @@
 				
 				</div>
 				
-				<div align="center">
-					<a href="/dabomweb/webtoon/webtoonRegister"> 웹툰 등록 </a>
-				</div>
+				  <c:if test="${loginuser.type eq '웹툰업로더' }">
+					<div align="center">
+						<a href="/dabomweb/webtoon/webtoonRegister"> 웹툰 등록 </a>
+					</div>
+				</c:if>
 				<br><br>
 				<div align="center">
 				${ pager } 
