@@ -327,12 +327,14 @@
 						                                                <td>조회수</td>
 						                                                <td>연재 시작일</td>
 						                                            </tr>
+						                                            <c:forEach var="webtoon" items="${ webtoonList }">
 						                                             <tr>
-						                                                <td>${ webtoonList.title }</td>
-						                                                <td>${ webtoonList.content }</td>
-						                                            	<td>${ webtoonList.readCount }</td>
-						                                                <td><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${ webtoonList.regdate }"/></td>
+						                                                <td>${ webtoon.title }</td>
+						                                                <td>${ webtoon.content }</td>
+						                                            	<td>${ webtoon.readCount }</td>
+						                                                <td><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${ webtoon.regdate }"/></td>
 						                                             </tr>
+						                                             </c:forEach>
 						                                        </tbody>
 						                                    </table>
 						                                      <h5 class="bl">🎨 작품 구독료 정보</h5>

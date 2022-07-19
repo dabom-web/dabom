@@ -26,7 +26,7 @@
 
                 <!-- row -->
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-10">
                         <div class="card">
                             <div class="card-body">
                                 <div class="email-box ml-0 ml-sm-4 ml-sm-0">
@@ -39,7 +39,9 @@
                                                     </div>
                                                     <div class="media-body">
                                                     		<br>
-                                                            <h5 class="text-primary">[${ vUpload.videoType }] ${ vUpload.videoTitle }</h5>
+                                                            <h5 class="text-primary">[${ vUpload.videoType }] ${ vUpload.videoTitle }<button type="button" class="btn btn-danger float-right">Like it<span
+						                                        class="btn-icon-right"><i class="fa fa-heart"></i></span>
+						                                </button></h5>
                                                             <p class="mb-0">${ vUpload.uploadTime }</p>
                                                         </div>
                                                     <hr>
@@ -70,10 +72,11 @@
                         	<c:if test="${ loginuser.memberId eq vUpload.memberId }">
                         	<button class="btn btn-primary btn-sl-sm mb-5" id="to-update-btn" type="button">수정</button>
                         	<button class="btn btn-primary btn-sl-sm mb-5" id="to-delete-btn" type="button">삭제</button>
+                        	 <button class="btn btn-primary btn-sl-sm mb-5" id="to-uploadList-btn" type="button">업로드 목록</button>
                         	</c:if>
                         	<!-- <button class="btn btn-primary btn-sl-sm mb-5" type="button">목록</button> -->
                         	<button class="btn btn-primary btn-sl-sm mb-5" id="to-list-btn" type="button">채널목록</button>
-                            <button class="btn btn-primary btn-sl-sm mb-5" id="to-uploadList-btn" type="button">업로드 목록</button>
+                           
                         </div>
                     </div>
                 </div>

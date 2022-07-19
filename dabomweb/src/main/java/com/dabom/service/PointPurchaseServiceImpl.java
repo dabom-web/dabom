@@ -2,6 +2,7 @@ package com.dabom.service;
 
 import java.util.List;
 
+import com.dabom.dto.Member;
 import com.dabom.dto.PointPurchase;
 import com.dabom.mapper.PointPurchaseMapper;
 
@@ -88,5 +89,6 @@ public class PointPurchaseServiceImpl implements PointPurchaseService {
 		pointPurchaseMapper.updateDropdownUsePointByMemberId(memberId, usePoint);
 
 	}
+
 	
 }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dabom.dto.Member;
 import com.dabom.dto.PointPurchase;
+import com.dabom.service.MypageService;
 import com.dabom.service.PointPurchaseService;
 
 @Controller
@@ -26,24 +27,31 @@ public class PointPurchaseController {
 	@Qualifier("pointPurchaseService")
 	private PointPurchaseService pointPurchaseService;
 	
+	@Autowired
+	@Qualifier("mypageService")
+	private MypageService mypageService;
 	
 	@GetMapping(path = { "/purchase-point" })
 	public String paymentForm(HttpSession session, Model model) {
 		
 		Member loginUser = (Member)session.getAttribute("loginuser");
 		List<PointPurchase> pointPurchaseList = pointPurchaseService.findPointPurchaseByMemberId(loginUser.getMemberId());
-		
 		model.addAttribute("pointPurchaseList", pointPurchaseList);
+		
+		
 		
 		return "payment/purchase-point";
 	}
 	
 	@PostMapping(path= {"/purchase-point"})
-	public String payment(PointPurchase pointPurchase) {
+	public String payment(PointPurchase pointPurchase, HttpSession session,@RequestParam(name="memberId")String memberId) {
 		
 		// 데이터베이스에 데이터 저장
 		pointPurchaseService.purchasePoint(pointPurchase);
 		pointPurchaseService.plusPointByMemberId(pointPurchase);
+		
+		Member member2 = mypageService.selectUpdateByMemberId(memberId);		
+		session.setAttribute("loginuser", member2);
 		
 		return "redirect:purchase-point";
 	}

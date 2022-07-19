@@ -1,5 +1,6 @@
 package com.dabom.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
@@ -14,6 +15,7 @@ import org.apache.ibatis.annotations.Update;
 import com.dabom.dto.Member;
 import com.dabom.dto.MyChannel;
 import com.dabom.dto.WebtoonBoard;
+import com.dabom.dto.WebtoonListByTitle;
 
 public interface MypageMapper {
 
@@ -72,10 +74,10 @@ public interface MypageMapper {
 		@Result(column="readcount", property="readCount"),
 		@Result(column="deleted", property="deleted"),
 		@Result(column="memberid", property="memberId"),
-		@Result(column="boardno", property="WebtoonListByTitle",
+		@Result(column="boardno", property="webtoonListByTitle",
 				many = @Many(resultMap = "webtoonListByTitle"))
 	})
-	List<WebtoonBoard> selectTitleListByMemberIdOfWriter(String memberId);
+	List<WebtoonBoard> selectTitleListByMemberIdOfWriter(@Param("memberId") String memberId);
 	
 	@Results(id="webtoonListByTitle", value = {
 		@Result(id = true, column = "boardno", property = "boardNo"),
@@ -85,10 +87,12 @@ public interface MypageMapper {
 		@Result(column = "regdate", property="regdate"),
 		@Result(column = "readcount", property="readCount"),
 		@Result(column = "deleted", property="deleted"),
-		@Result(column = "memberid", property="memberId"),
-		@Result(column = "boardno", property="boardNo")
+		@Result(column = "memberid", property="memberId")
 	})
-	void webtoonListByTitle();		
+	@Select("select title, content, regdate, readcount, deleted, readcount, memberid, boardno " +
+			"from webtoonlistbytitle " +
+			"where boardno = #{ boardNo } ")
+	List<WebtoonListByTitle> webtoonListByTitle(@Param("boardNo") int boardNo);		
 	
 
 

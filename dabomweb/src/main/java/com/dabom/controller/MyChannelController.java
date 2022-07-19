@@ -24,7 +24,9 @@ import com.dabom.dto.Member;
 import com.dabom.dto.Message;
 import com.dabom.dto.MyChannel;
 import com.dabom.dto.MyChannelBanner;
+import com.dabom.dto.MyChannelCommunity;
 import com.dabom.dto.MyChannelProfile;
+import com.dabom.dto.VideoUpload;
 import com.dabom.dto.WebtoonListByTitleAttach;
 import com.dabom.service.MessageService;
 import com.dabom.service.MyChannelService;
@@ -49,7 +51,8 @@ public class MyChannelController {
 		List<ChannelSubscribe> channelSubscribeList = myChannelService.findSubscribeList(member_Id);
 		List<ChannelSubscribe> channelSubscribeList2 = myChannelService.findSubscribeList2(member_Id);
 		MyChannelProfile myChannelProfile = myChannelService.findMyChannelProfil(member_Id);
-//		MyChannelBanner myChannelBanner = myChannelService.findMyChannelBanner(member_Id);
+		MyChannelBanner myChannelBanner = myChannelService.findMyChannelBanner(member_Id);
+//		VideoUpload upload = myChannelService.findMyUload(member_Id);
 		int subCount = myChannelService.findSubscribeCount(member_Id);
 //		ChannelSubscribe channelSubscribe = myChannelService.findSub(member_Id, loginUser.getMemberId());
 		
@@ -58,7 +61,7 @@ public class MyChannelController {
 		model.addAttribute("channelSubscribeList", channelSubscribeList);
 		model.addAttribute("channelSubscribeList2", channelSubscribeList2);
 		model.addAttribute("myChannelProfile", myChannelProfile);
-//		model.addAttribute("myChannelBanner", myChannelBanner);
+		model.addAttribute("myChannelBanner", myChannelBanner);
 		model.addAttribute("subCount", subCount);
 		
 		
@@ -71,11 +74,13 @@ public class MyChannelController {
 		
 		MyChannel myChannel = myChannelService.findMyChannel(member_Id);		
 		MyChannelProfile myChannelProfile = myChannelService.findMyChannelProfil(member_Id);
+		MyChannelBanner myChannelBanner = myChannelService.findMyChannelBanner(member_Id);
 		ChannelSubscribe channelSubscribe = myChannelService.findSub(member_Id, subscriber);
 		
 		
 		model.addAttribute("myChannel", myChannel);
 		model.addAttribute("myChannelProfile", myChannelProfile);
+		model.addAttribute("myChannelBanner", myChannelBanner);
 		model.addAttribute("channelSubscribe", channelSubscribe);
 		
 		return "mychannel/channel"; 	
@@ -89,8 +94,7 @@ public class MyChannelController {
 	
 	
 	@PostMapping(path = { "/mychannel_create" })
-	public String myChannelCreate(MyChannel myChannel, String member_Id, 
-								  MultipartFile[] attach, HttpServletRequest req) {
+	public String myChannelCreate(MyChannel myChannel, MultipartFile[] attach, HttpServletRequest req) {
 		
 		String uploadDir = req.getServletContext().getRealPath("/resources/upload-files");		
 		ArrayList<MyChannelProfile> files = new ArrayList<>();
@@ -114,7 +118,7 @@ public class MyChannelController {
 		myChannel.setFiles(files);		
 		myChannelService.createMyChannel(myChannel);		
 		
-		return ("redirect:mychannel?member_Id=" + member_Id);
+		return ("redirect:mychannel?member_Id=" + myChannel.getMember_Id());
 	}
 	
 	@GetMapping(path = { "/mychannel_create_banner" })
@@ -127,11 +131,10 @@ public class MyChannelController {
 	}
 	
 	@PostMapping(path = { "/mychannel_create_banner" })
-	public String myChannelCreateBanner(MyChannel myChannel, String member_Id, 
-			  					  	MultipartFile[] attach, HttpServletRequest req){
+	public String myChannelCreateBanner(MyChannel myChannel, MultipartFile[] attach, HttpServletRequest req){
 		
 		String uploadDir = req.getServletContext().getRealPath("/resources/upload-files");
-		ArrayList<MyChannelBanner> files2 = new ArrayList<>();
+		ArrayList<MyChannelBanner> files = new ArrayList<>();
 		
 		for(MultipartFile uploadFile : attach) {
 			String userFileName = uploadFile.getOriginalFilename();
@@ -143,15 +146,16 @@ public class MyChannelController {
 				try {
 					File savedFile = new File(uploadDir, savedFileName);
 					uploadFile.transferTo(savedFile); // 파일 저장
-					files2.add(f);
+					files.add(f);
 				}catch(Exception ex) {
 					ex.printStackTrace();
 				}
 			}
 		}
-		myChannel.setFiles2(files2);
+		myChannel.setFiles2(files);
+		myChannelService.uploadBanner(myChannel);
 		
-		return ("redirect:mychannel?member_Id=" + member_Id);
+		return ("redirect:mychannel?member_Id=" + myChannel.getMember_Id());
 	}
 	
 	@GetMapping(path = { "/mychannel_update" })
@@ -164,9 +168,8 @@ public class MyChannelController {
 	}
 	
 	@PostMapping(path = { "/mychannel_update" })
-	public String myChannelUpdate(MyChannel myChannel, String member_Id, 
-								MultipartFile[] attach, HttpServletRequest req) {
-		myChannelService.deleteProfile(member_Id);
+	public String myChannelUpdate(MyChannel myChannel, MultipartFile[] attach, HttpServletRequest req) {
+		
 		String uploadDir = req.getServletContext().getRealPath("/resources/upload-files");		
 		ArrayList<MyChannelProfile> files = new ArrayList<>();
 		
@@ -189,7 +192,7 @@ public class MyChannelController {
 		myChannel.setFiles(files);	
 		myChannelService.updateMyChannelInfo(myChannel);
 		
-		return "redirect:mychannel?member_Id=" + member_Id;
+		return "redirect:mychannel?member_Id=" + myChannel.getMember_Id();
 	}
 	
 	@GetMapping(path= { "/delete" }) 
@@ -239,7 +242,49 @@ public class MyChannelController {
 		return "redirect:/message/message_send_list?sender="+ loginUser.getMemberId();
 	}
     
-    
+  ////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	// @ResponseBody : return 값이 viewname이 아니고 응답 컨텐츠임을 알려주는 설정	
+	@PostMapping(path = { "/community-write" }, produces = { "text/plain; charset=utf-8" })
+	@ResponseBody	
+	public String writeCommunity(MyChannelCommunity myChannelCommunity) {
+		
+		myChannelService.writeCommunity(myChannelCommunity);
+		
+		return "success"; // /WEB-INF/View/success.jsp
+		
+}
+	
+	@GetMapping(path = { "/community-list" })
+	public String listComment(@RequestParam(name="member_Id")String member_Id, Model model) {
+		
+		List<MyChannelCommunity> myChannelCommunity = myChannelService.findCommunity(member_Id);
+		
+		model.addAttribute("myChannelCommunity", myChannelCommunity);
+		
+		return "mychannel/mychannelcommunity";
+		
+	}
+	
+	@GetMapping(path = { "/community-delete" }, produces = { "text/plain; charset=utf-8" })
+	@ResponseBody
+	public String deleteComment(@RequestParam(name = "communityno") int community_No) {
+	
+		myChannelService.deleteCommunity(community_No);
+		
+		return "success";
+	}
+	
+	@PostMapping(path = { "/community-update" }, produces = "text/plain;charset=utf-8")
+	@ResponseBody
+	public String updateComment(MyChannelCommunity myChannelCommunity) {
+		
+		myChannelService.updateBoardCommunity(myChannelCommunity);
+		
+		return "success";
+		
+	}
+		
     
     
     

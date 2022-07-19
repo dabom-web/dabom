@@ -163,56 +163,36 @@
 													</div>
 												</div>
 												<div class="card" >
-								                          <table class="table table-hover bl" id="comment-list">
-						                                        <tbody>
-						                                        	<tr style="font-size: 8pt; color: black; font-weight: bolder;">
-						                                                <td colspan="5">댓글</td>
-						                                            </tr>
-						                                            <div id="comment-list">
-							                                             <c:forEach var="comment" items="${ commentList }">
-							                                             <tr  style="font-size: 9pt; color: black; font-weight: bolder;">
-							                                                <td width="10%;">${ comment.writer }</td>
-							                                                <td width="50%">${fn:replace(comment.content, replaceChar, "<br/>")}</td>
-							                                                <td><fmt:formatDate pattern="yy-MM-dd hh:mm" value="${ comment.regdate }"/></td>
-							                                               	<td width="10%"><a class="btn btn-light btn-xs b" id="comment-update-btn"  
-																			    href="javascript:" > 
-																				수정
-																			</a></td>
-							                                               	<td width="10%"><a class="btn btn-light btn-xs b" id="deleted-comment-btn"  
-																			    href="javascript:"> 
-																				삭제
-																			</a></td>
-							                                            </tr>
-							                                            </c:forEach>
-						                                            </div>
-						                                        </tbody>
-						                                    </table>
-						                                    
-								                      <div class="card-header">
+													<div class="b">댓글</div>
+								                        <table class="table table-hover bl">
+					                                       <tbody id="comment-list">
+					                                        </tbody>
+					                                    </table>
+							                      <div class="card-header">
 								                      <h4 class="card-title b">댓글작성</h4>
-								                     </div>
-							                            <div class="card-body">
-							                                <div class="basic-form">
-							                                    <form id="comment-form" method="post" action="write-comment">
-							                                    <input name="writer" value="${ loginuser.memberId }" type="hidden">
-							                                    <input name="boardNo" value="${ produceBoard.boardNo }" type="hidden">
-							                                        <div class="form-group">
-							                                            <textarea name="content"
-							                                            class="form-control" rows="6" 
-							                                            id="comment" style="resize: none;"></textarea>
-							                                        </div>
-							                                    </form>
-							                                </div>
-							                                <div>
-								                                <a class="btn btn-light btn-xs b" id="comment-btn"  
-																   style="width: 100px;" > 
-																	댓글등록
-																</a>
-																 <a class="btn btn-light btn-xs b" id="comment-cancel-btn"  
-																   style="width: 100px;" > 
-																	입력취소
-																</a>
-															</div>
+	 						                     </div>
+						                            <div class="card-body">
+						                                <div class="basic-form">
+						                                    <form id="comment-form" method="post" action="write-comment">
+						                                    <input name="writer" value="${ loginuser.memberId }" type="hidden">
+						                                    <input name="boardNo" value="${ produceBoard.boardNo }" type="hidden">
+						                                        <div class="form-group">
+						                                            <textarea name="content"
+						                                            class="form-control" rows="6" 
+						                                            id="comment" style="resize: none;"></textarea>
+						                                        </div>
+						                                    </form>
+						                                </div>
+						                                <div>
+							                                <a class="btn btn-light btn-xs b" id="comment-btn"  
+															   style="width: 100px;" > 
+																댓글등록
+															</a>
+															 <a class="btn btn-light btn-xs b" id="comment-cancel-btn"  
+															   style="width: 100px;" > 
+																입력취소
+															</a>
+														</div>
 							                            </div>
 						                        	</div>
 												</div>
@@ -282,6 +262,8 @@
 			});
 		});
 		
+		
+	
 		$('#comment-list').load('comment-list?boardNo=' + ${ produceBoard.boardNo });
 		
 		$('#comment-btn').click(function(event) {
@@ -296,9 +278,10 @@
 				"success" : function(result, status, xhr) {
 					if (result === "success") {
 						alert('등록성공');
-						$('#comment-list').load('comment-list?boardno=' + ${ produceBoard.boardNo  });
-						//location.href = "/dabomweb/produceBoard/actorDetail?boardno=${produceBoard.boardNo}";
-						//return;
+						$('#comment-list').load('comment-list?boardNo=' + ${ produceBoard.boardNo  });
+						//location.href = "/dabomweb/produceBoard/actorDetail?boardNo=${produceBoard.boardNo}";
+						$('#comment-form')[0].reset();
+						return;
 					} else {
 						alert('입력 실패');
 					}
@@ -314,7 +297,8 @@
 			event.preventDefault();
 			var ok = confirm('입력을 취소합니다');
 			if( ok ) {
-				location.href = "/dabomweb/produceBoard/actorDetail?boardno=${produceBoard.boardNo}";
+				//location.href = "/dabomweb/produceBoard/actorDetail?boardno=${produceBoard.boardNo}";
+				$('#comment-form')[0].reset();
 				return;
 			}
 		});

@@ -261,7 +261,7 @@ public class ProduceBoardController {
 		List<ProduceBoardComment> commentList = produceBoardService.findCommentListByBoardNo(boardNo);
 		model.addAttribute("commentList", commentList);
 		
-		return "produceBoard/actorDetail";
+		return "produceBoard/comments";
 		
 	}
 	

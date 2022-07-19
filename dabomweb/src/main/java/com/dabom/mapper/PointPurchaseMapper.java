@@ -70,11 +70,6 @@ public interface PointPurchaseMapper {
 	@Update("update member set point = point - #{ usePoint } where memberid = #{ memberId }")
 	void updateDropdownUsePointByMemberId(@Param("memberId")String memberId, @Param("usePoint")int usePoint);
 
-	
-	
-	
-
-
 
 
 

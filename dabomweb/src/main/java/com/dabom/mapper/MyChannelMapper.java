@@ -1,11 +1,13 @@
 package com.dabom.mapper;
 
+import java.nio.channels.Channel;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.Update;
 
 import com.dabom.dto.ChannelSubscribe;
@@ -13,6 +15,7 @@ import com.dabom.dto.Member;
 import com.dabom.dto.Message;
 import com.dabom.dto.MyChannel;
 import com.dabom.dto.MyChannelBanner;
+import com.dabom.dto.MyChannelCommunity;
 import com.dabom.dto.MyChannelProfile;
 
 public interface MyChannelMapper {
@@ -70,11 +73,6 @@ public interface MyChannelMapper {
 	@Delete("DELETE FROM channel_subscribe WHERE member_id = #{member_Id} ")
 	void deleteSucribe(String member_Id);
 	
-//	@Delete("DELETE FROM channel_subscribe WHERE subscriber = #{subscriber} ")
-//	void deleteSucribe2(@Param("subscriber")String member_Id);
-	
-//	void deleteMyChannelB(String member_Id);
-	
 	// 구독
 	@Insert("INSERT channel_subscribe (member_id, subscriber, subscribe ) "
 			+ "values ( #{ member_Id }, #{ subscriber }, #{ subscribe } ) ")		
@@ -105,6 +103,46 @@ public interface MyChannelMapper {
 			+ "FROM channel_subscribe "
 			+ "WHERE member_id = #{ member_Id } and subscriber = #{subscriber}")
 	ChannelSubscribe selectSub(@Param("member_Id")String member_Id, @Param("subscriber")String subscriber);
+	
+	@Update("UPDATE channel_profile SET userfilename = ${userFileName}, savedfilename = ${savedFileName} where member_id = #{ member_Id }")	
+	void updateMyChannelProfile(MyChannelProfile file);
+
+	@Insert("INSERT channel_banner (member_id, userfilename, savedfilename) "
+			+ "VALUES (#{member_Id}, #{userFileName}, #{savedFileName}) ")
+	void insertMyChannelBanner(MyChannelBanner file);
+
+	
+	@Select("SELECT attachno, member_id, userfilename, savedfilename "
+			+ "FROM channel_banner "
+			+ "WHERE member_id = #{member_Id}")	
+	MyChannelBanner selectMyChannelBanner(String member_Id);
+
+	@Insert("INSERT INTO channel_community (member_id, content, groupno, step, depth) "
+			+ "VALUES ( #{member_Id}, #{content}, 0, 1, 0)")
+	@SelectKey(statement = "select last_insert_id()",
+	   resultType = Integer.class,
+	   keyProperty = "community_No",
+	   before = false)	
+	void insertCommunity(MyChannelCommunity myChannelCommunity);
+
+	@Select("SELECT community_no, member_id, content, writedate, deleted, groupno, step, depth "
+			+ "FROM channel_community "
+			+ "WHERE member_id = #{member_Id} and deleted = FALSE "
+			+ "ORDER BY community_no DESC" )
+	List<MyChannelCommunity> selectCommunity(String member_Id);
+
+	@Delete("UPDATE channel_community "
+			+ "SET deleted = TRUE "
+			+ "WHERE community_no = #{ community_No }" )
+	void delete(int community_No);
+
+	@Update("UPDATE channel_community "
+			+ "SET content = #{content} "
+			+ "WHERE community_no = #{ community_No } ")
+	void update(MyChannelCommunity myChannelCommunity);
+	
+//	@Select("select member_id, channel_name, channel_info, subscribe from channel order by reg_date desc")
+//	List<Channel> selectAllChannel();
 
 	
 

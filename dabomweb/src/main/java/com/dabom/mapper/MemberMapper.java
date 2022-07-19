@@ -1,7 +1,12 @@
 package com.dabom.mapper;
 
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
+import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.dabom.dto.Member;
@@ -32,6 +37,24 @@ public interface MemberMapper {
 	void updateUserTypeByMemberId(@Param("memberId")String memberId, @Param("type")String type);
 	Member selectByMemberIdAndEmail(Member member);
 	void updatePasswd(@Param("memberId") String memberId,@Param("passwd") String passwd);
+	
+	@Select("select user.memberid, nickname, birth, email, phone, passwd, grade, active, username, type, point, leved, block, revenupoint "
+			+ "from user left outer join member "
+			+ "on user.memberid = member.memberid")
+	@Results({
+		@Result(id= true, column = "memberid", property = "memberId"),
+		@Result(column="type", property="type"),
+		@Result(column="nickname", property="nickName"),
+		@Result(column="birth", property="birth"),
+		@Result(column="email", property="email"),
+		@Result(column="phone", property="phone"),
+		@Result(column="active", property="active"),
+		@Result(column="point", property="point"),
+		@Result(column="grade", property="grade"),
+		@Result(column="leved", property="leved"),
+		@Result(column="block", property="block"),
+		@Result(column="revenupoint", property="revenuPoint")
+	})	List<Member> selectAllMember();
 
 
 }

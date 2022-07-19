@@ -77,9 +77,9 @@
 	                        <ul aria-expanded="false">                        
 	                        	<li><a href="/dabomweb/contact-message/contactMessage">문의메세지</a></li>
 	                        	<li><a href="/dabomweb/administerPrivilege/site-revenue">사이트 수익관리</a></li>
-	                            <li><a href="#">회원계정관리</a></li>                           
-	                            <li><a href="#">채널관리</a></li>
-	                            <li><a href="#">게시글&댓글관리</a></li>
+	                            <li><a href="/dabomweb/administerPrivilege/member-management">회원계정관리</a></li>                           
+	                            <li><a href="/dabomweb/administerPrivilege/channel-management">채널관리</a></li>
+	                            <li><a href="/dabomweb/administerPrivilege/board-and-comment-management">게시글&댓글관리</a></li>
 	                            <li><a href="/dabomweb/administerPrivilege/accept">업로드승인 new(<span id="accept-request-count">${ count }</span>)</a></li>                        
 	                        </ul>
 	                    </li>

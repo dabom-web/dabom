@@ -1,6 +1,8 @@
 package com.dabom.service;
 
 
+import java.util.List;
+
 import org.springframework.mail.MailException;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
@@ -112,8 +114,16 @@ public class AccountServiceImpl implements AccountService {
 		
 		return str;
 	}
-	
-	
+
+
+	@Override
+	public List<Member> findAllMember() {
+		List<Member> memberList = memberMapper.selectAllMember();
+		return memberList;
+	}
+
+
+
 	
 
 }

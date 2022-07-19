@@ -1,5 +1,7 @@
 package com.dabom.service;
 
+import java.util.List;
+
 import com.dabom.dto.Email;
 import com.dabom.dto.Member;
 
@@ -13,6 +15,7 @@ public interface AccountService {
 	public Email finId(String memberId, String passwd, String email);
 	void deleteAccountByMemberId(String memberId);
 	void disabledAccountByMemberId(String memberId);
+	public List<Member> findAllMember();
 	
 
 }

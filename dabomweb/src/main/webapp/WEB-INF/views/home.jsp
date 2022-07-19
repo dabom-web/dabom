@@ -8,12 +8,35 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<title>웹툰 올리기</title>
+	<title>DABOM</title>
 	<link rel="icon" type="image/png" sizes="16x16" href="resources/images/dabom.jpg">
 	<link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.carousel.min.css">
 	<link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.theme.default.min.css">
 	<link href="/dabomweb/resources/vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet">
 	<link href="/dabomweb/resources/css/style.css" rel="stylesheet">
+	
+	 <style type="text/css">
+
+	img {
+		 object-fit: cover;
+ 		 overflow: hidden;
+	}
+	
+	.box {
+		width: 100%;
+		height: 300px;
+	}
+	
+	.text-box {
+			  overflow: hidden;
+			  text-overflow: ellipsis;
+			  white-space: nowrap;
+			  width: 100%;
+			  
+			}
+	
+</style>
+	
 </head>
 <body>
 
