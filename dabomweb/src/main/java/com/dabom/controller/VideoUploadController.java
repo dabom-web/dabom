@@ -13,11 +13,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.dabom.common.Util;
+import com.dabom.dto.VideoComment;
 import com.dabom.dto.VideoUpload;
 import com.dabom.service.VideoUploadService;
+import com.dabom.ui.ThePager;
 
 @Controller
 @RequestMapping(path = { "/video" })
@@ -28,11 +31,20 @@ public class VideoUploadController {
 	private VideoUploadService videoUploadService;
 
 	@GetMapping(path = { "/uploadList" })
-	public String uploadList(Model model) {
+	public String uploadList(String memberId, @RequestParam(defaultValue = "1" ) int uPageNo, Model model) {
+		
+		int uPageSize = 30;
+		int uPagerSize = 10;
+		int uCount = 0;
 
-		List<VideoUpload> vUploadList = videoUploadService.findAll();
-
+//		List<VideoUpload> vUploadList = videoUploadService.findAll();
+		List<VideoUpload> vUploadList = videoUploadService.findByUploadPage(uPageNo, uPageSize);
+		
+		ThePager uPager = new ThePager(uCount, uPageNo, uPageSize, uPagerSize, memberId);
+//		
 		model.addAttribute("vUploadList", vUploadList);
+		model.addAttribute("uPager", uPager);	// , 없는거 못보냐 정신 안차려?
+		model.addAttribute("uPageNo", uPageNo);
 
 		return "video/uploadList";
 
@@ -95,19 +107,29 @@ public class VideoUploadController {
 	}
 
 	@GetMapping(path = { "/list" })
-	public String List(Model model) {
+	public String List(String memberId, @RequestParam(defaultValue = "1") int pageNo, Model model) {
 		
-		List<VideoUpload> vList = videoUploadService.viewerFindAll();
+		int pageSize = 30;
+		int pagerSize = 10;
+		int count = 0;
+		
+//		List<VideoUpload> vList = videoUploadService.viewerFindAll();
+		List<VideoUpload> vList = videoUploadService.findByPage(pageNo, pageSize);
 
+		ThePager pager = new ThePager(count, pageNo, pageSize, pagerSize, memberId);
+		
 		model.addAttribute("vList", vList);
+		model.addAttribute("pager", pager);
+		model.addAttribute("pageNo", pageNo);
 
 		return "video/list";
 
 	}
 
 	@GetMapping(path = { "/detail" })
-	public String detail(@RequestParam(name="videoNo", defaultValue = "-1") int videoNo, Model model) {
-		if(videoNo == -1) {
+	public String detail(@RequestParam(name="videoNo", defaultValue = "-1") int videoNo,
+						@RequestParam(name = "pageNo", defaultValue = "-1") int pageNo, Model model) {
+		if(videoNo < 1 && pageNo < 1) {
 			return "redirect:list";
 		}
 		
@@ -117,6 +139,7 @@ public class VideoUploadController {
 		}
 		
 		model.addAttribute("vUpload", vUpload);
+		model.addAttribute("pageNo", pageNo);
 		
 		return "video/detail";
 
@@ -146,9 +169,10 @@ public class VideoUploadController {
 	}
 
 	@GetMapping(path = { "/update" })
-	public String showEditForm(@RequestParam(name = "videoNo", defaultValue = "-1") int videoNo, Model model) {
+	public String showEditForm(@RequestParam(name = "videoNo", defaultValue = "-1") int videoNo,
+							@RequestParam(name = "uPageNo", defaultValue = "-1") int uPageNo, Model model) {
 		
-		if(videoNo < 1) {	// 동영상 게시글이 없을 때(게시글 번호가 1보다 작을 때)
+		if(videoNo < 1 && uPageNo < 1) {	// 동영상 게시글이 없을 때(게시글 번호가 1보다 작을 때)
 			return "redirect:uploadList";	// 직접적인 리다이렉트 주소보다는 그냥 뒤로가기 기능만 하고 싶은데...
 		}
 		
@@ -158,6 +182,7 @@ public class VideoUploadController {
 		}
 		
 		model.addAttribute("vUpload", vUpload);
+		model.addAttribute("uPageNo", uPageNo);
 		
 		return "video/update";
 
@@ -231,5 +256,49 @@ public class VideoUploadController {
 		return "redirect:uploadList";
 
 	}
+	
+	@PostMapping(path = {"/videoComment-write"}, produces = {"text/plain;charset=utf-8"})
+	@ResponseBody
+	public String writeVideoComment(VideoComment vComment) {
+		videoUploadService.writeVideoComment(vComment);
+		
+		return "success";
+	}
 
+	@GetMapping(path = {"/videoComment-list"})
+	public String listVideoComment(@RequestParam(name="videoNo") int videoNo, Model model) {
+		List<VideoComment>vComments = videoUploadService.findVideoCommentsByVideoNo(videoNo);
+		
+		model.addAttribute("vComments", vComments);
+		
+		return "video/comments";
+		
+	}
+	
+	@GetMapping(path = {"/videoComment-delete"}, produces = {"text/plain; charset=utf-8"})
+	@ResponseBody
+	public String deleteVideoComment(@RequestParam(name = "vCommentNo") int vCommentNo) {
+		videoUploadService.deleteVideoComment(vCommentNo);
+		
+		return "success";
+		
+	}
+	
+	@PostMapping(path = {"/videoComment-update"}, produces = {"text/plain; charset=utf-8"})
+	@ResponseBody
+	public String updateVideoComment(VideoComment vComment) {
+		videoUploadService.updateVideoComment(vComment);
+		
+		return "success";
+	}
+	
+//	@PostMapping(path = {"videoRecomment-write"}, produces = {"text/plain;charset=utf-8"})
+//	@ResponseBody
+//	public String WriteVideoReComment(VideoComment vComment) {
+//		
+//		videoUploadService.writeVideoReComment(vComment);
+//		
+//		return "success";
+//		
+//	}
 }
