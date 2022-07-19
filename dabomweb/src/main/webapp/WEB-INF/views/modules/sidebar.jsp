@@ -13,59 +13,27 @@
                 <!-- 홈 -->
                 <li class="nav-label first">DA!BOM Home</li>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                    <span class="nav-text">🚀 Collect</span></a>
-                        <ul aria-expanded="false">                        
-                      		
+                   
+                    <span class="nav-text">📺 Channel</span></a>
+                        <ul aria-expanded="false">  
+                            <li><a href="#">라이브방송</a></li>                      
                       		<li><a href="/dabomweb/collect/chart">채널차트</a></li>
                             <li><a href="/dabomweb/collect/newUpdateVideo">최근 업데이트 영상</a></li>                           
                             <li><a href="/dabomweb/collect/hotChannel">인기 채널</a></li>
-                            <li><a href="/dabomweb/collect/subscribeChannel">구독 채널</a></li>
+                        </ul>
+                    </li>
+                 
+                    <li class="nav-label first">탐색</li>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <span class="nav-text">🚀 Collect</span></a>
+                        <ul aria-expanded="false">
+                        	 <li><a href="/dabomweb/collect/subscribeChannel">구독 채널</a></li>
                             <li><a href="/dabomweb/collect/wishList">찜 목록</a></li>
                             <li><a href="/dabomweb/collect/supportDirector">응원 감독 영상</a></li> 
-                            <li><a href="/dabomweb/collect/supportActor">응원 배우 영상</a></li>                                          
-                       
+                            <li><a href="/dabomweb/collect/supportActor">응원 배우 영상</a></li>       
                             
                         </ul>
                     </li>
-                 <!-- 홈 -->
-                
-                 <!-- / 채널영역 -->
-                 
-                    <li class="nav-label first">채널영역</li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                    <span class="nav-text">📺 Channel</span></a>
-                        <ul aria-expanded="false">
-                        
-                        	<!-- 추수은 -->
-                        	<c:choose>
-                            <c:when test="${ !empty loginuser.memberId }">                         	
-	                        	<li><a href="/dabomweb/mychannel/mychannel?member_Id=${loginuser.memberId}">내 채널</a></li>
-                            </c:when>
-                            <c:otherwise>                            	
-	                            <li><a href="/dabomweb/account/login">내 채널</a></li>
-	                        </c:otherwise>
-                            </c:choose>     
-                            <!-- 추수은 -->
-                            
-                            <!-- 강효준 -->
-                            
-                            <c:choose>
-                            <c:when test="${ loginuser.type eq '영상업로더' }"> 
-                            	 <li><a href="/dabomweb/video/uploadList">영상업로드</a></li>
-	                        </c:when>
-                            <c:otherwise>
-                            </c:otherwise>
-                            </c:choose>
-                           
-                            <li><a href="/dabomweb/video/list">채널 영상</a></li>
-                            <li><a href="/dabomweb/video/liveStream">라이브방송</a></li>
-                            <!-- 강효준 -->
-                            
-                        </ul>
-                    </li>
-                    
-                    <!-- / 채널영역 -->
-                    
                     
                      
                  <c:choose>
@@ -92,7 +60,7 @@
                     
                  <!-- / 웹툰 -->
                  
-                    <li class="nav-label first">웹툰영역</li>
+                    <li class="nav-label first">웹툰</li>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
                     <span class="nav-text">👻 Webtoon</span></a>
                         <ul aria-expanded="false">
@@ -124,9 +92,9 @@
 	                    
 	                    <!-- / 결제 -->
 	                 
-	                    <li class="nav-label first">결제하기</li>
+	                    <li class="nav-label first">포인트구매</li>
 	                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
-	                    💸 결제하기</span></a>
+	                    💸 Point </span></a>
 	                        <ul aria-expanded="false">	                        
 	                            <li><a href="/dabomweb/payment/purchase-point">포인트결제</a></li>
 	                 	        <li><a href="/dabomweb/payment/use-point">포인트사용</a></li>                    

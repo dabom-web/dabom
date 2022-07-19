@@ -1,16 +1,13 @@
 package com.dabom.service;
 
-import java.nio.channels.Channel;
 import java.util.List;
 
 import com.dabom.dto.ChannelSubscribe;
-import com.dabom.dto.Member;
 import com.dabom.dto.Message;
 import com.dabom.dto.MyChannel;
 import com.dabom.dto.MyChannelBanner;
 import com.dabom.dto.MyChannelCommunity;
 import com.dabom.dto.MyChannelProfile;
-import com.dabom.mapper.MyChannelCommunityMapper;
 import com.dabom.mapper.MyChannelMapper;
 
 import lombok.Setter;
@@ -173,13 +170,6 @@ public class MyChannelServiceImpl implements MyChannelService {
 	}
 
 
-//	@Override
-//	public List<Channel> findAllChannelList() {
-//		List<Channel> channelList = myChannelMapper.selectAllChannel();
-//		return channelList;
-//	}
-
-
 	@Override
 	public void updateMyChannelInfo(MyChannel myChannel) {
 		myChannelMapper.updateMyChannel(myChannel);
@@ -206,6 +196,12 @@ public class MyChannelServiceImpl implements MyChannelService {
 	public void updateBoardCommunity(MyChannelCommunity myChannelCommunity) {
 		myChannelMapper.update(myChannelCommunity);
 		
+	}
+
+	@Override
+	public List<MyChannel> findAllChannelList() {
+		List<MyChannel> channelList = myChannelMapper.selectAllChannel();
+		return channelList;
 	}
 
 //	@Override
