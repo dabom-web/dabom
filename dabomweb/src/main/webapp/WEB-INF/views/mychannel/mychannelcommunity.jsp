@@ -27,14 +27,14 @@
 		                    	
 		                    	<a class="badge bg-label-primary editcommunity"
 		                    	   type="button"
-		                    	   data-community_no='${ community.community_No }' 
+		                    	   data-communityno='${ community.community_No }' 
 		                    	   href="javascript:"		                    	   
 		                    	   >편집</a>
 		                    		&nbsp;
 		                    	<a class="badge bg-label-primary deletecommunity"
 		                    	   type="button"
 		                    	   href="javascript:"
-		                    	   data-community_no="${ community.community_No }"
+		                    	   data-communityno="${ community.community_No }"
 		                    	   >삭제</a>
 		                    	   	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			                    </div>
@@ -62,14 +62,14 @@
 							
 							<a class="badge bg-label-primary updatecommunity" 
 							   type=" button"
-							   data-community_no="${ community.community_No }"
+							   data-communityno="${ community.community_No }"
 							   href="javascript:" 							   
 							   >수정</a> 
 								&nbsp; 
 							
 							<a class="badge bg-label-primary cancel"
 							   type=" button"
-							   data-community_no="${ community.community_No }"
+							   data-communityno="${ community.community_No }"
 							   href="javascript:" 
 							   >취소</a>
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -96,14 +96,14 @@
 		                    	
 		                    	<a class="badge bg-label-primary editcommunity"
 		                    	   type="button"
-		                    	   data-community_no='${ community.community_No }' 
+		                    	   data-communityno='${ community.community_No }' 
 		                    	   href="javascript:"		                    	   
 		                    	   >편집</a>
 		                    		&nbsp;
 		                    	<a class="badge bg-label-primary deletecommunity"
 		                    	   type="button"
 		                    	   href="javascript:"
-		                    	   data-community_no="${ community.community_No }"
+		                    	   data-communityno="${ community.community_No }"
 		                    	   >삭제</a>
 		                    	   	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			                    </div>
@@ -126,14 +126,14 @@
 							
 							<a class="badge bg-label-primary updatecommunity" 
 							   type=" button"
-							   data-community_no="${ community.community_No }"
+							   data-communityno="${ community.community_No }"
 							   href="javascript:" 							   
 							   >수정</a> 
 								&nbsp; 
 							
 							<a class="badge bg-label-primary cancel"
 							   type=" button"
-							   data-community_no="${ community.community_No }"
+							   data-communityno="${ community.community_No }"
 							   href="javascript:" 
 							   >취소</a>
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

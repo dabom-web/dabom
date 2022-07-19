@@ -26,6 +26,7 @@ import com.dabom.dto.MyChannel;
 import com.dabom.dto.MyChannelBanner;
 import com.dabom.dto.MyChannelCommunity;
 import com.dabom.dto.MyChannelProfile;
+import com.dabom.dto.VideoUpload;
 import com.dabom.dto.WebtoonListByTitleAttach;
 import com.dabom.service.MessageService;
 import com.dabom.service.MyChannelService;
@@ -51,6 +52,7 @@ public class MyChannelController {
 		List<ChannelSubscribe> channelSubscribeList2 = myChannelService.findSubscribeList2(member_Id);
 		MyChannelProfile myChannelProfile = myChannelService.findMyChannelProfil(member_Id);
 		MyChannelBanner myChannelBanner = myChannelService.findMyChannelBanner(member_Id);
+//		VideoUpload upload = myChannelService.findMyUload(member_Id);
 		int subCount = myChannelService.findSubscribeCount(member_Id);
 //		ChannelSubscribe channelSubscribe = myChannelService.findSub(member_Id, loginUser.getMemberId());
 		
@@ -260,7 +262,7 @@ public class MyChannelController {
 		
 		model.addAttribute("myChannelCommunity", myChannelCommunity);
 		
-		return "mychannel/myChannelCommunity";
+		return "mychannel/mychannelcommunity";
 		
 	}
 	

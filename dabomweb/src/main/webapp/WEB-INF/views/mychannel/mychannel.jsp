@@ -154,9 +154,9 @@
 											<div class="mt-4">
 												<a href="javascript:void()"
 													class="btn btn-primary pl-5 pr-5 mr-3 mb-4"
-													id="send-messege">메세지</a> <a href="javascript:void()"
+													id="send-messege">메세지</a><a href="/dabomweb/video/list?member_Id="
 													class="btn btn-primary pl-5 pr-5 mr-3 mb-4">동영상</a>
-												<a href="javascript:void()" class="btn btn-secondary pl-5 pr-5 mb-4">
+												<a href="/dabomweb/video/uploadList" class="btn btn-secondary pl-5 pr-5 mb-4">
 												동영상 업로드</a>	
 											</div>
 										</div>
@@ -184,9 +184,9 @@
 													<div class="my-post-content pt-3">
 														<div class="profile-uoloaded-post border-bottom-1 pb-2">															
 															<a class="post-title" href="javascript:">
-																<h4>내용</h4>
-																 <table id="community-list" style="width:800px;margin:0 auto"></table>
-															</a>																												
+																<h4>내용</h4>																 
+															</a>			
+																<table id="community-list" style="width:100%;margin:0 auto"></table>																									
 														</div>
 														
 														<div class="col-12">
@@ -339,7 +339,7 @@
 		/////////////////////////////////////////////////////////////////////////////
 			    
 		 // comment 목록 표시 ( load : 비동기 요청 결과 HTML을 지정된 요소에 삽입)
-		$('#community-list').load('community-list?member_Id=' + ${ loginuser.memberId });		
+		$('#community-list').load('community-list?member_Id=${ loginuser.memberId }');		
       
 	      $('#uploadBtn').click(function(event) {
 	         event.preventDefault();
@@ -353,7 +353,7 @@
 	            "success" : function(result, status, xhr) {
 	               if (result === "success") {
 	                  alert('등록성공');
-	                  $('#community-list').load('community-list?member_Id=' + ${ loginuser.memberId });
+	                  $('#community-list').load('community-list?member_Id=${ loginuser.memberId }');
 	                  location.href = "/dabomweb/mychannel/mychannel?member_Id=${ loginuser.memberId }";
 	                  return;
 	               } else {
