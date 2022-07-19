@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <% pageContext.setAttribute("replaceChar", "\n"); %>
 <!DOCTYPE html>
 <html>
@@ -153,6 +154,40 @@
 													</div>
 												</div>
 											</div>
+												<div class="card" >
+												<div class="b">댓글</div>
+							                        <table class="table table-hover bl">
+				                                       <tbody id="comment-list">
+				                                        </tbody>
+				                                    </table>
+						                      <div class="card-header">
+							                      <h4 class="card-title b">댓글작성</h4>
+ 						                     </div>
+					                            <div class="card-body">
+					                                <div class="basic-form">
+					                                    <form id="comment-form" method="post" action="write-comment">
+					                                    <input name="writer" value="${ loginuser.memberId }" type="hidden">
+					                                    <input name="boardNo" value="${ produceBoard.boardNo }" type="hidden">
+					                                        <div class="form-group">
+					                                            <textarea name="content"
+					                                            class="form-control" rows="6" 
+					                                            id="comment" style="resize: none;"></textarea>
+					                                        </div>
+					                                    </form>
+					                                </div>
+					                                <div>
+						                                <a class="btn btn-light btn-xs b" id="comment-btn"  
+														   style="width: 100px;" > 
+															댓글등록
+														</a>
+														 <a class="btn btn-light btn-xs b" id="comment-cancel-btn"  
+														   style="width: 100px;" > 
+															입력취소
+														</a>
+													</div>
+						                            </div>
+					                        	</div>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -162,7 +197,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
 
 
 
@@ -219,6 +253,44 @@
 				}
 			});
 		});
+		
+		$('#comment-list').load('comment-list?boardNo=' + ${ produceBoard.boardNo });
+		
+		$('#comment-btn').click(function(event) {
+			event.preventDefault();
+			var formData = $('#comment-form').serialize();
+			$.ajax({
+				"url" : "write-comment",
+				"method" : "post",
+				"async" : true,
+				"data" : formData,
+				"dataType" : "text",
+				"success" : function(result, status, xhr) {
+					if (result === "success") {
+						alert('등록성공');
+						$('#comment-list').load('comment-list?boardno=' + ${ produceBoard.boardNo  });
+						location.href = "/dabomweb/produceBoard/actorDetail?boardno=${produceBoard.boardNo}";
+						return;
+					} else {
+						alert('입력 실패');
+					}
+				},
+				"error" : function(xhr, status, err) {
+					alert('등록 실패하였습니다.');
+				}
+			});
+		});
+		
+			
+		$('#comment-cancel-btn').on('click', function(event) {
+			event.preventDefault();
+			var ok = confirm('입력을 취소합니다');
+			if( ok ) {
+				location.href = "/dabomweb/produceBoard/actorDetail?boardno=${produceBoard.boardNo}";
+				return;
+			}
+		});
+		
 	});
 		
 	</script>

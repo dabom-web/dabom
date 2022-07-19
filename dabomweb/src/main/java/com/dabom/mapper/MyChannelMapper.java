@@ -1,5 +1,6 @@
 package com.dabom.mapper;
 
+import java.nio.channels.Channel;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
@@ -139,6 +140,10 @@ public interface MyChannelMapper {
 			+ "SET content = #{content} "
 			+ "WHERE community_no = #{ community_No } ")
 	void update(MyChannelCommunity myChannelCommunity);
+	
+//	@Select("select member_id, channel_name, channel_info, subscribe from channel order by reg_date desc")
+//	List<Channel> selectAllChannel();
+
 	
 
 	

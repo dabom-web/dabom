@@ -1,5 +1,6 @@
 package com.dabom.service;
 
+import java.nio.channels.Channel;
 import java.util.List;
 
 import com.dabom.dto.ChannelSubscribe;
@@ -171,6 +172,14 @@ public class MyChannelServiceImpl implements MyChannelService {
 		}		
 	}
 
+
+//	@Override
+//	public List<Channel> findAllChannelList() {
+//		List<Channel> channelList = myChannelMapper.selectAllChannel();
+//		return channelList;
+//	}
+
+
 	@Override
 	public void updateMyChannelInfo(MyChannel myChannel) {
 		myChannelMapper.updateMyChannel(myChannel);
@@ -214,6 +223,5 @@ public class MyChannelServiceImpl implements MyChannelService {
 		
 	
 
-	
 	
 }
