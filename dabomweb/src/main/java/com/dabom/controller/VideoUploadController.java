@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.dabom.common.Util;
+import com.dabom.dto.Member;
 import com.dabom.dto.VideoComment;
 import com.dabom.dto.VideoUpload;
 import com.dabom.service.VideoUploadService;
@@ -31,16 +33,18 @@ public class VideoUploadController {
 	private VideoUploadService videoUploadService;
 
 	@GetMapping(path = { "/uploadList" })
-	public String uploadList(String memberId, @RequestParam(defaultValue = "1" ) int uPageNo, Model model) {
+	public String uploadList(@RequestParam(defaultValue = "1" ) int uPageNo, Model model, HttpSession session) {
+		
+		Member member = (Member)session.getAttribute("loginuser");
 		
 		int uPageSize = 30;
 		int uPagerSize = 10;
 		int uCount = 0;
 
 //		List<VideoUpload> vUploadList = videoUploadService.findAll();
-		List<VideoUpload> vUploadList = videoUploadService.findByUploadPage(uPageNo, uPageSize);
+		List<VideoUpload> vUploadList = videoUploadService.findByUploadPage(uPageNo, uPageSize, member.getMemberId());
 		
-		ThePager uPager = new ThePager(uCount, uPageNo, uPageSize, uPagerSize, memberId);
+		ThePager uPager = new ThePager(uCount, uPageNo, uPageSize, uPagerSize, "uploadList");
 //		
 		model.addAttribute("vUploadList", vUploadList);
 		model.addAttribute("uPager", uPager);	// , 없는거 못보냐 정신 안차려?

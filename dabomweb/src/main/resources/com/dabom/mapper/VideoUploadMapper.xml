@@ -19,6 +19,7 @@
 	<select id="selectByUploadRange" parameterType="hashmap" resultType="com.dabom.dto.VideoUpload">
 		SELECT open open, video_no videoNo, video_type videoType, thumbnail_file_name thumbnailFilename, thumbnail_saved_name thumbnailSavedName, video_title videoTitle, upload_time uploadTime, update_time updateTime, read_count readCount
 		FROM upload_video
+		WHERE member_id = #{ memberId }
 		ORDER BY video_no DESC
 		LIMIT #{uFrom}, #{uCount}
 	</select>

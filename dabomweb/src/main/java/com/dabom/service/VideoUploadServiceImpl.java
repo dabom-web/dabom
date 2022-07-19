@@ -62,13 +62,14 @@ public class VideoUploadServiceImpl implements VideoUploadService {
 	}
 
 	@Override
-	public List<VideoUpload> findByUploadPage(int uPageNo, int uPageSize) {
+	public List<VideoUpload> findByUploadPage(int uPageNo, int uPageSize, String memberId) {
 		int uFrom = (uPageNo - 1) * uPageSize;
 		int uCount = uPageSize;
 		
 		HashMap<String, Object> uParams = new HashMap<>();
 		uParams.put("uFrom", uFrom);
 		uParams.put("uCount", uCount);
+		uParams.put("memberId", memberId);
 //		HashMap은 이름 그대로 해싱 (Hashing)을 사용하기 때문에 많은 양의 데이터를 검색하는 데 있어서 뛰어난 성능을 보입니다. 위 그림과 같이 HashMap은 내부에 '키'와 '값'을 저장하는 자료 구조를 가지고 있습니다. HashMap은 해시 함수를 통해 '키'와 '값'이 저장되는 위치를 결정하므로, 사용자는 그 위치를 알 수 없고, 삽입되는 순서와 들어 있는 위치 또한 관계가 없습니다.
 
 		List<VideoUpload> vUploadList = videoUploadMapper.selectByUploadRange(uParams);
