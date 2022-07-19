@@ -79,7 +79,7 @@ body {
 			$('#findId_form').submit();
 		});
 		
-		if(${not empty param.findFail}){
+		if(${not empty findFail}){
 			alert("올바른 아이디와 이메일을 입력해주세요")
 		}
 	</script>

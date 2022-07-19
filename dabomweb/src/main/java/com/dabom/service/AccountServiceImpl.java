@@ -72,8 +72,8 @@ public class AccountServiceImpl implements AccountService {
 	}
 	
 	public Member selectByMemberIdAndEmail(Member member) {
-		memberMapper.selectByMemberIdAndEmail(member);
-		return member;
+		Member member2 = memberMapper.selectByMemberIdAndEmail(member);
+		return member2;
 	};
 
 	// 메일 내용 생성, 임시비밀번호로 회원 비밀번호 변경
