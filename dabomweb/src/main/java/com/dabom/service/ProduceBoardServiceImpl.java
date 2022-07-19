@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.dabom.dto.Member;
 import com.dabom.dto.ProduceBoard;
+import com.dabom.dto.ProduceBoardComment;
 import com.dabom.dto.ProduceSupport;
 import com.dabom.dto.ProducerAttach;
 import com.dabom.mapper.ProduceBoardMapper;
@@ -107,6 +108,35 @@ public class ProduceBoardServiceImpl implements ProduceBoardService {
 		
 	}
 
+	@Override
+	public ProduceBoard findInforByBoardNo(int boardNo) {
+	ProduceBoard produceBoard = produceBoardMapper.selectInforByBoardNo(boardNo);
+		return produceBoard;
+	}
+
+	@Override
+	public void updateInfor(int boardNo, String sns, String infor, String contact) {
+		produceBoardMapper.updateInfor(boardNo, sns, infor, contact);
+		
+	}
+
+	@Override
+	public void deletedInforByBoardNo(int boardNo) {
+		produceBoardMapper.updateInforDeletedByBoardNo(boardNo);
+		
+	}
+
+	@Override
+	public void writeCommentByBoardNo(ProduceBoardComment produceBoardComment) {
+		produceBoardMapper.insertCommentByBoardNo(produceBoardComment);
+		
+	}
+
+	@Override
+	public List<ProduceBoardComment> findCommentListByBoardNo(int boardNo) {
+		List<ProduceBoardComment> commentList = produceBoardMapper.selectCommentListByBoardNo(boardNo);
+		return commentList ;
+	}
 
 	
 }

@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
+import org.apache.ibatis.annotations.Update;
 
 import com.dabom.dto.ContactMessage;
 import com.dabom.dto.Member;
@@ -32,25 +33,30 @@ public interface ContactMapper {
 	List<Member> selectUserMemberId();
 
 	@Select("select contact_no contactNo, title, content, send_date sendDate, member_id memberId, admin_id adminId, read_contact readContact, deleted, writertype "
-			+ "from contact_message where writertype = 'admin' order by contact_no desc")
+			+ "from contact_message where writertype = 'admin' and deleted = false order by contact_no desc")
 	List<ContactMessage> selectAllContactList();
 	
 	@Select("select contact_no contactNo, title, content, send_date sendDate, member_id memberId, admin_id adminId, read_contact readContact, deleted, writertype "
-			+ "from contact_message where writertype = 'user' and member_id = #{ memberId } order by contact_no desc")
+			+ "from contact_message where deleted = false and writertype = 'user' and member_id = #{ memberId } order by contact_no desc")
 	List<ContactMessage> selectSendContactListByUser(@Param("memberId")String memberId);
 	
 	@Select("select contact_no contactNo, title, content, send_date sendDate, member_id memberId, admin_id adminId, read_contact readContact, deleted, writertype "
-			+ "from contact_message where writertype = 'user' order by contact_no desc")
+			+ "from contact_message where writertype = 'user' and deleted = false and read_contact = false order by contact_no desc")
 	List<ContactMessage> selectContactListToAdmin();
 	
 	@Select("select contact_no contactNo, title, content, send_date sendDate, member_id memberId, admin_id adminId, read_contact readContact, deleted, writertype "
 			+ "from contact_message where writertype = 'admin' and member_id = #{ memberId } order by contact_no desc")
 	List<ContactMessage> selectContactListToUser(String memberId);
 	
+	
 	@Select("select contact_no contactNo, title, content, send_date sendDate, member_id memberId, admin_id adminId, read_contact readContact, deleted, writertype "
 			+ "from contact_message where contact_no = #{ contactNo }")
 	ContactMessage selectByContactNo(@Param("contactNo")int contactNo);
 
+	@Update("update contact_message set read_contact = true "
+			+ "where contact_no = #{ contactNo }")
+	void selectByReadContactNo(@Param("contactNo")int contactNo);
+	
 	@Select("select contact_no contactNo, title, content, send_date sendDate, member_id memberId, admin_id adminId, read_contact readContact, deleted, writertype "
 			+ "from contact_message where contact_no = #{ contactNo } and member_id = #{ memberId } and writertype = 'admin' ")	
 	ContactMessage selectByContactNoAndMemberId(@Param("contactNo")int contactNo,@Param("memberId")String memberId);
@@ -63,10 +69,31 @@ public interface ContactMapper {
 	   before = false)	
 	void insertReplyContact(ContactMessage contactMessage);
 
+	@Update("update contact_message set deleted = true where contact_no = #{ checkNo }")
+	void updateDeletedcontact(int checkNo);
+
+	@Update("update contact_message set deleted = true where contact_no = #{ contactNo }")
+	void updateDeletedDetail(int contactNo);
+
+	@Select("select contact_no contactNo, title, content, send_date sendDate, member_id memberId, admin_id adminId, read_contact readContact, deleted, writertype "
+			+ "from contact_message where deleted = true order by contact_no desc")
+	List<ContactMessage> deletedContactList(ContactMessage contactMessage);
+	
+
+	@Select("select contact_no contactNo, title, content, send_date sendDate, member_id memberId, admin_id adminId, read_contact readContact, deleted, writertype "
+			+ "from contact_message where deleted = false and read_contact = true order by contact_no desc")
+	List<ContactMessage> selectReadList();
+
+	@Select("select count(*) from contact_message "
+			  + "where deleted = false and read_contact = false and writertype = 'user'")
+	int selectReceivedContactCount();
 	
 	@Select("select count(*) from contact_message "
-		  + "where deleted = false and read_contact = false and writertype = 'user'")
-	int selectReceivedContactCount();
+			  + "where deleted = false and read_contact = false and writertype = 'admin'")
+	int selectReceivedContactCountToUser();
+
+	@Select("select count(*) from contact_message where read_contact = false and member_id = #{ memberId }")
+	int selectNewMessage(@Param("memberId")String memberId);
 
 
 

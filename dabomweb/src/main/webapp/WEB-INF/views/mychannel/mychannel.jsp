@@ -2,14 +2,16 @@
 		 contentType="text/html; charset=utf-8"
     	 pageEncoding="utf-8"%>  
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>      
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>     
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+ 
 <!DOCTYPE html>
 <html>
 <head>
  <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
- 	<title>MYCHANNEL</title>
+ 	<title>내채널</title>
     <link rel="icon" type="image/png" sizes="16x16" href="/dabomweb/resources/images/dabom.jpg">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.theme.default.min.css">
@@ -33,12 +35,28 @@
 						<div class="profile-head">
 							<div class="photo-content">
 								<div class="cover-photo">
-									<img src="/dabomweb/resources/images/avatar/BDNSYOYO.png"
-										style="min-height: 250px; width: 100%;">
+									<c:choose>
+										<c:when test="${ empty myChannelBanner.savedFileName }">
+											<img src="/dabomweb/resources/images/avatar/기본배너2.png"
+												 style="min-height: 250px; width: 100%;">
+										</c:when>	
+										<c:otherwise>	
+											<img src="/dabomweb/resources/upload-files/${ myChannelBanner.savedFileName }"
+												 style="min-height: 250px; width: 100%;">
+										</c:otherwise>									
+									</c:choose>				 
 								</div>
 								<div class="profile-photo">
-									<img src="/dabomweb/resources/images/avatar/BDNS.jpg"
-										class="img-fluid rounded-circle" alt="">
+									<c:choose>
+										<c:when test="${ empty myChannelProfile.savedFileName }">
+											<img src="/dabomweb/resources/images/avatar/기본.jpg"
+												 class="img-fluid rounded-circle" alt="">
+										</c:when>	
+										<c:otherwise>
+											<img src="/dabomweb/resources/upload-files/${ myChannelProfile.savedFileName }"
+												 class="img-fluid rounded-circle" alt="">
+										</c:otherwise>									
+									</c:choose>									
 								</div>
 							</div>
 							<div class="profile-info">
@@ -48,30 +66,24 @@
 											<div class="col-2"></div>
 											<div class="col-8 border-right-1 prf-col">
 												<c:choose>
-													<c:when test="${ empty myChannel.channel_Name }">
+													<c:when test="${ !empty myChannel.channel_Name }">
 														<div class="profile-name"
 															style="width: 500px; float: left; heigh: 100%">
-															<h3 class="text-primary">${ loginuser.memberId }의
-																채널입니다.</h3>
-															<p>구독자가 없습니다</p>
-														</div>
+															<h3 class="text-primary">&nbsp;${ myChannel.channel_Name }</h3>
+															<p>구독자 : ${ myChannel.subscribe }명</p>
+														</div>														
 													</c:when>
 													<c:otherwise>
 														<div class="profile-name"
 															style="width: 500px; float: left; heigh: 100%">
-															<h3 class="text-primary">${ myChannel.channel_Name }</h3>
-															<p>구독자 : 명</p>
+															<a href="mychannel_create?member_id=${ loginuser.memberId }">
+															<h3 class="text-primary">여기를 클릭해서 채널을 등록해주세요</h3></a>
+															<p>구독자가 없습니다</p>
 														</div>
 													</c:otherwise>
 												</c:choose>
 											</div>
-											<div class="col-2">
-												<br>
-												<div style="width: 170px; float: right; heigh: 100%;">
-													<button class="btn btn-danger" type="button"
-														style="width: 80pt; heigh: 80pt">구독</button>
-												</div>
-											</div>
+											
 										</div>
 									</div>
 								</div>
@@ -86,13 +98,21 @@
 										<div class="text-center mt-4 border-bottom-1 pb-3">
 											<div class="row">
 												<div class="col">
-													<h3 class="m-b-0">150</h3>
-													<span>팔로워</span>
+													<h3 class="m-b-0">${subCount}</h3>
+													<span>구독한채널</span>
 												</div>
 												<div class="col">
-													<h3 class="m-b-0">140</h3>
-													<span>좋아요</span>
+													<c:choose>
+													<c:when test="${ empty myChannel.channel_Name }">
+													<h3 class="m-b-0">0</h3>
+													</c:when>
+													<c:otherwise>													
+													<h3 class="m-b-0">${ myChannel.subscribe }</h3>
+													</c:otherwise>
+													</c:choose>
+													<span>구독자</span>
 												</div>
+												
 												<div class="col">
 													<h3 class="m-b-0">45</h3>
 													<span>영상</span>
@@ -100,11 +120,10 @@
 											</div>
 											<div class="mt-4">
 												<a href="javascript:void()"
-													class="btn btn-primary pl-4 pr-4 mr-3 mb-4">메세지</a> <a
+													class="btn btn-primary pl-4 pr-4 mr-3 mb-4"
+													id="send-messege">메세지</a> <a
 													href="javascript:void()"
-													class="btn btn-primary pl-4 pr-4 mr-3 mb-4">좋아요</a> <a
-													href="javascript:void()"
-													class="btn btn-dark pl-5 pr-5 mb-4">동영상</a>
+													class="btn btn-primary pl-4 pr-4 mr-3 mb-4">동영상</a> 
 											</div>
 										</div>
 									</div>
@@ -116,8 +135,7 @@
 								<div class="card-body">
 									<div class="profile-tab">
 										<div class="custom-tab-1">
-										<c:choose>
-											<c:when test="${ !empty myChannel.channel_Name }">
+										
 												<c:choose>
 													<c:when test="${ loginuser.memberId eq myChannel.member_Id }">
 														<ul class="nav nav-tabs">
@@ -125,6 +143,10 @@
 																data-toggle="tab" class="nav-link active show">커뮤니티</a></li>
 															<li class="nav-item"><a href="#about-me"
 																data-toggle="tab" class="nav-link">채널정보</a></li>
+															<li class="nav-item"><a href="#subscribe"
+																data-toggle="tab" class="nav-link">구독중인 채널</a></li>
+<!-- 															<li class="nav-item"><a href="#subscribe" -->
+<!-- 																data-toggle="tab" class="nav-link">나를 구독중인 채널</a></li>		 -->
 															<li class="nav-item"><a href="#profile-settings"
 																data-toggle="tab" class="nav-link">채널정보 수정</a></li>
 														</ul>
@@ -134,26 +156,15 @@
 															<li class="nav-item"><a href="#my-posts"
 																data-toggle="tab" class="nav-link active show">커뮤니티</a></li>
 															<li class="nav-item"><a href="#about-me"
-																data-toggle="tab" class="nav-link">채널정보</a></li>
+																data-toggle="tab" class="nav-link">채널정보</a></li>																	
 															</ul>	
 													</c:otherwise>
-												</c:choose>	
-											</c:when>																								
-											<c:otherwise>																								
-												<ul class="nav nav-tabs">
-													<li class="nav-item"><a href="#my-posts"
-														data-toggle="tab" class="nav-link active show">커뮤니티</a></li>
-													<li class="nav-item"><a href="#about-me"
-														data-toggle="tab" class="nav-link">채널정보</a></li>
-												</ul>																							
-											</c:otherwise>														
-										</c:choose>											
+												</c:choose>												
 											
 											<div class="tab-content">
 												<div id="my-posts" class="tab-pane fade active show">
 													<div class="my-post-content pt-3">
-														<div class="profile-uoloaded-post border-bottom-1 pb-2">
-															<img src="images/profile/8.jpg" alt="" class="img-fluid">
+														<div class="profile-uoloaded-post border-bottom-1 pb-2">															
 															<a class="post-title" href="javascript:void()">
 																<h4>제목</h4>
 															</a>
@@ -205,91 +216,87 @@
 												</div>
 												<div id="about-me" class="tab-pane fade">
 													<div class="profile-about-me">
-														<div class="pt-4 border-bottom-1 pb-4">
-															<h4 class="text-primary">설명</h4>
+														<div class="pt-4 border-bottom-1 pb-4">															
 															<c:choose>
 																<c:when test="${ empty myChannel.channel_Info }">
 																	<p>정보를 등록해주세요</p>
 																</c:when>
 																<c:otherwise>
-																	<p>${ myChannel.channel_Info }</p>
+																	<div id="info-list" style="text-align: center">
+																	<h6>
+																	<% String enter2 = "\r\n"; %>
+<c:set var="enter" value="
+" />
+		                								${ fn:replace(myChannel.channel_Info, enter, '<br>') }</h6>
 																</c:otherwise>
 															</c:choose>
+															</div>
 														</div>
 													</div>
 												</div>
+												<div id="subscribe" class="tab-pane fade">
+													<div class="profile-about-me">
+														<div class="pt-4 border-bottom-1 pb-4">		
+															<c:choose>
+																<c:when test="${ empty channelSubscribeList }">
+																 	<p style="text-align: center;">구독 내역이 없습니다.</p>	
+																</c:when>	
+																<c:otherwise>																									
+																	<c:forEach var="channelSubscribeList" items="${ channelSubscribeList }">
+																		<a href="channel?member_Id=${ channelSubscribeList.member_Id }&subscriber=${loginuser.memberId}">
+																			<h5 style="text-align:center">
+																			${ channelSubscribeList.member_Id }의 채널로 이동</h>
+																		</a><hr>
+																	</c:forEach>
+																</c:otherwise>		
+															</c:choose>														
+														</div>
+													</div>
+												</div>
+<!-- 												<div id="subscribe" class="tab-pane fade"> -->
+<!-- 													<div class="profile-about-me"> -->
+<!-- 														<div class="pt-4 border-bottom-1 pb-4">		 -->
+<%-- 															<c:choose> --%>
+<%-- 																<c:when test="${ empty channelSubscribeList2 }"> --%>
+<!-- 																 	<p style="text-align: center;">구독 내역이 없습니다.</p>	 -->
+<%-- 																</c:when>	 --%>
+<%-- 																<c:otherwise>																									 --%>
+<%-- 																	<c:forEach var="channelSubscribeList" items="${ channelSubscribeList2 }"> --%>
+<%-- 																		<a href="channel?member_Id=${ channelSubscribeList2.subscriber }&subscriber=${loginuser.memberId}"> --%>
+<!-- 																			<h5 style="text-align:center"> -->
+<%-- 																			${ channelSubscribeList2.subscriber }의 채널로 이동</h> --%>
+<!-- 																		</a><hr> -->
+<%-- 																	</c:forEach> --%>
+<%-- 																</c:otherwise>		 --%>
+<%-- 															</c:choose>														 --%>
+<!-- 														</div> -->
+<!-- 													</div> -->
+<!-- 												</div> -->
 
 												<div id="profile-settings" class="tab-pane fade">
 													<div class="pt-3">
 														<div class="settings-form">
-															<h4 class="text-primary" style="text-align: center;">
-																<br>정보를 입력하세요
-															</h4>
-															<div class="card-body justify-content-center">
-																<div class="form-validation">
-																	<form id="mychannel" action="mychannel_main"
-																		method="post" enctype="multipart/form-data">
-																		<div class="row">
-																			<div class="col-12"
-																				style="float: none; margin: 0 auto;">
-																				<div class="form-group row justify-content-center">
-																					<div class="col-lg-7">
-																						<input type="hidden" name="member_Id"
-																							id="member_Id" value="${ loginuser.memberId }">
-																					</div>
-																				</div>
-																				<div class="form-group row justify-content-center">
-																					<label class="col-lg-2 col-form-label text-muted"
-																						for="val-name"> 채널이름<span
-																						class="text-danger">*</span>
-																					</label>
-																					<div class="col-lg-7">
-																						<input type="text" class="form-control"
-																							id="channel_Name" name="channel_Name">
-																					</div>
-																				</div>
-																				<div class="form-group row justify-content-center">
-																					<label class="col-lg-2 col-form-label text-muted"
-																						for="val-confirm-password"> 프로필 사진 </label>
-																					<div class="col-lg-7">
-																						<input type="password" class="form-control"
-																							id="val-confirm-password"
-																							name="val-confirm-password">
-																					</div>
-																				</div>
-																				<div class="form-group row justify-content-center">
-																					<label class="col-lg-2 col-form-label text-muted"
-																						for="val-confirm-password"> 배너 사진 </label>
-																					<div class="col-lg-7">
-																						<input type="password" class="form-control"
-																							id="val-confirm-password"
-																							name="val-confirm-password"
-																							placeholder="..and confirm it!">
-																					</div>
-																				</div>
-																				<div class="form-group row justify-content-center">
-																					<label class="col-lg-2 col-form-label text-muted"
-																						for="val-suggestions"> 채널소개</label>
-																					<div class="col-lg-7">
-																						<textarea class="form-control" id="channel_Info"
-																							name="channel_Info" rows="5"></textarea>
-																					</div>
-																				</div>
-																				<div class="form-group row">
-																					<div class="col-lg-7 ml-auto">
-																						<button class="btn btn-primary" id="create"
-																							type="button" href="javascript:">등록</button>
-																						<a href="javascript:history.back()">
-																							<button class="btn btn-primary" id="cancel"
-																								type="button" href="javascript:history.back();">취소</button>
-																						</a>
-																					</div>
-																				</div>
-																			</div>
-																		</div>
-																	</form>
-																</div>
-															</div>
+																<br><br>
+																<div style=" float:left; margin-left:160px;">																														
+																<button class="btn btn-warning pl-4 pr-4 mr-3 mb-4" 
+																	 	type="button"	
+																	 	onclick="location.href='mychannel_update?member_Id=${ loginuser.memberId }' ">
+																	 	정보 수정하기																
+																</button></div>
+																<div style=" float:right; margin-right:160px;">
+																<button class="btn btn-warning pl-4 pr-4 mr-3 mb-4" 
+																	 	type="button"	
+																	 	onclick="location.href='mychannel_create_banner?member_Id=${ loginuser.memberId }' ">
+																	 	배너 등록하기																
+																</button></div>
+																
+																<div style=" float:left; margin-left:230px;">
+																<button class="btn btn-danger pl-5 pr-5 mb-7" 
+																	 	type="button"	
+																	 	id="delelte-btn">
+																	 	채널 삭제하기																
+																</button><br><br><br></div>
+																											
 														</div>
 													</div>
 												</div>
@@ -312,17 +319,47 @@
 
 			<jsp:include page="/WEB-INF/views/modules/css/bottom.jsp" />
 			
-			<script type="text/javascript">
-				$(function() {
-					$('#create').on('click', function(event) {
-						event.preventDefault();
-						var ok = confirm('채널정보가 수정되었습니다');
-						if (ok) {
-							$('#mychannel').submit();
-						}
-					});
-				});
+			<script type="text/javascript">	
+			
+				var sendMessege = document.querySelector('#send-messege');
+				sendMessege.addEventListener('click', function (event) {
+				event.preventDefault();									
+					location.href = 'message_direct?member_Id=${myChannel.member_Id}';				
+				});			
+			
+				
+				var deleteBtn = document.querySelector('#delelte-btn');
+				deleteBtn.addEventListener('click', function (event) {
+				event.preventDefault();		
+				var ok = confirm('채널을 삭제하시겠습니까?');				
+				if (ok) {					
+					location.href = 'delete?member_Id=${ loginuser.memberId }';				
+				}			
+			});
+				
+				
+				
+				
+				
+									
 			</script>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			
 </body>

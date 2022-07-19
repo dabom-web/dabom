@@ -16,4 +16,6 @@ public class WebtoonBoard {
 	private boolean deleted;
 	private String memberId;
 	private List<WebtoonBoardAttach> files;
+	
+	private List<WebtoonListByTitle> webtoonListByTitle;
 }

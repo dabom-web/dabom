@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dabom.dto.Member;
 import com.dabom.dto.PointPurchase;
@@ -41,8 +43,43 @@ public class PointPurchaseController {
 		
 		// 데이터베이스에 데이터 저장
 		pointPurchaseService.purchasePoint(pointPurchase);
+		pointPurchaseService.plusPointByMemberId(pointPurchase);
 		
-		return "redirect:/home";
-		
+		return "redirect:purchase-point";
 	}
+	
+	@GetMapping(path = { "/use-point" })
+	public String usePointform() {
+	
+		return "payment/use-point";
+	}
+	
+	@PostMapping(path = { "/use-point" })
+	@ResponseBody
+	public String usePoint(HttpSession session) {
+		Member loginUser = (Member)session.getAttribute("loginuser");
+		if (loginUser.getPoint() == 0) {
+			return "redirect:purchase-point";
+		}
+		
+		pointPurchaseService.usePointByMemberIdInsert(loginUser.getMemberId());
+		pointPurchaseService.usePointByMemberId(loginUser.getMemberId());
+		return "success";
+	}
+	
+	@PostMapping(path = { "/use-point-dropdown" })
+	@ResponseBody
+	public String usePointDropdown(HttpSession session, 
+								   @RequestParam(name = "usePoint")int usePoint) {
+		Member loginUser = (Member)session.getAttribute("loginuser");
+		if (loginUser.getPoint() == 0) {
+			return "redirect:purchase-point";
+		}
+		pointPurchaseService.dropdownUsePointByMemberIdInsert(loginUser.getMemberId(), usePoint);
+		pointPurchaseService.dropdonwUsePointByMemberId(loginUser.getMemberId(), usePoint);
+		return "success";
+	}
+	
+
+	
 }

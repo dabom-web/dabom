@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.dabom.common.Util;
 import com.dabom.dto.Member;
 import com.dabom.dto.ProduceBoard;
+import com.dabom.dto.ProduceBoardComment;
 import com.dabom.dto.ProduceSupport;
 import com.dabom.dto.ProducerAttach;
 import com.dabom.service.AccountService;
@@ -141,7 +142,7 @@ public class ProduceBoardController {
 		ProduceSupport produceSupport = produceBoardService.findProduceSupportByMemberIdAndProduceBoardNo(loginUser.getMemberId(), boardNo);
 		
 		if (produceBoard == null) {
-			return "redirect:/produceBoard/director";		
+			return "redirect:produceBoard/director";		
 		}
 		
 		model.addAttribute("uploadDir", "/resources/upload-files/");
@@ -157,8 +158,7 @@ public class ProduceBoardController {
 	public String produceActorDetailForm(@RequestParam(name="boardno", defaultValue = "-1")int boardNo,
 										 HttpSession session,
 										 Model model) {
-		
-		
+				
 		if (boardNo == -1) {
 			return "redirect:/produceBoard/actor";
 		}
@@ -168,12 +168,9 @@ public class ProduceBoardController {
 		ProducerAttach producerAttach = produceBoardService.findByProducerByBoardNo(boardNo);
 		Member loginUser = (Member)session.getAttribute("loginuser");
 		ProduceSupport produceSupport = produceBoardService.findProduceSupportByMemberIdAndProduceBoardNo(loginUser.getMemberId(), boardNo);
-		
-	
-		
-		
+				
 		if (produceBoard == null) {
-			return "redirect:/produceBoard/actor";		
+			return "redirect:produceBoard/actor";		
 		}
 		
 		model.addAttribute("uploadDir", "/resources/upload-files/");
@@ -181,7 +178,6 @@ public class ProduceBoardController {
 		model.addAttribute("producerAttach", producerAttach);
 		model.addAttribute("member", member);
 		model.addAttribute("produceSupport", produceSupport);
-	
 		
 		return "produceBoard/actorDetail";
 	}
@@ -202,5 +198,71 @@ public class ProduceBoardController {
 		return String.format("{ \"result\" : \"success\", \"count\" : %d }", count);
 	}	
 	
+	@GetMapping(path = { "/editActorInfor" })
+	public String editActorInforForm(Model model, 
+									 @RequestParam(name="boardno", defaultValue = "-1") int boardNo) {
+		ProduceBoard produceBoard = produceBoardService.findInforByBoardNo(boardNo);
+		
+		if ( boardNo == -1 ) {
+			return "redirect:actor";
+		}		
+		model.addAttribute("produceBoard", produceBoard);
+		return "produceBoard/editActorInfor";
+	}
+	
+	@GetMapping(path = { "/editDirectorInfor" })
+	public String editDirectorInforForm(Model model, 
+									 @RequestParam(name="boardno", defaultValue = "-1") int boardNo) {
+		ProduceBoard produceBoard = produceBoardService.findInforByBoardNo(boardNo);
+		
+		if ( boardNo == -1 ) {
+			return "redirect:director";
+		}
+		
+		model.addAttribute("produceBoard", produceBoard);
+		return "produceBoard/editDirectorInfor";
+	}
+	
+	@PostMapping(path = { "/editActorInfor" })
+	public String editActorInfor(int boardNo, String sns, String infor, String contact) {
+		produceBoardService.updateInfor(boardNo, sns, infor, contact);
+		return String.format("redirect:actorDetail?boardno=%d", boardNo);
+		
+	}
+	
+	@PostMapping(path = { "/editDirectorInfor" })
+	public String editDirectorInfor(int boardNo, String sns, String infor, String contact) {
+		produceBoardService.updateInfor(boardNo, sns, infor, contact);
+		return String.format("redirect:directorDetail?boardno=%d", boardNo);
+	}
+	
+		
+	@PostMapping(path = { "/remove-post" })
+	@ResponseBody
+	public String acceptPost(@RequestParam(name="boardno", defaultValue = "-1")int boardNo) {
+		
+		produceBoardService.deletedInforByBoardNo(boardNo);
+		return "success";
+	}
+	
+	@PostMapping(path = { "/write-comment" })
+	@ResponseBody
+	public String writeComment(ProduceBoardComment produceBoardComment,
+							   Model model) {
+		produceBoardService.writeCommentByBoardNo(produceBoardComment);
+		
+		
+		return "success";
+	}
+	
+	@GetMapping(path = { "/comment-list" })
+	public String listComment(@RequestParam(name="boardNo") int boardNo, Model model) {
+		
+		List<ProduceBoardComment> commentList = produceBoardService.findCommentListByBoardNo(boardNo);
+		model.addAttribute("commentList", commentList);
+		
+		return "produceBoard/actorDetail";
+		
+	}
 	
 }

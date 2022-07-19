@@ -1,8 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<<<<<<< HEAD
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+=======
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+>>>>>>> branch 'main' of https://github.com/dabom-web/dabom.git
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,6 +44,7 @@
     
 </head>
 <body>
+
     
     <div id="preloader">
         <div class="sk-three-bounce">
@@ -163,6 +168,10 @@
 
     <script src="/dabomweb/resources/js/dashboard/dashboard-1.js"></script>
 
+
+
+   <jsp:include page="/WEB-INF/views/modules/css/top.jsp" />   
+   <jsp:include page="/WEB-INF/views/modules/css/bottom.jsp" />
 
 </body>
 </html>

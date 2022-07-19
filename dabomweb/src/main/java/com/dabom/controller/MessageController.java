@@ -306,18 +306,18 @@ public class MessageController {
 	
 	@GetMapping(path= { "/delete" }) 
 	public String delete(String receiver, String sender,
-			@RequestParam(name = "message_no", defaultValue = "-1") int messageNo)
-			/*@RequestParam(defaultValue = "-1") int pageNo)*/ {		
-		
-		/*if ( messageNo > 0 && pageNo > 0 ) {
-			boardService.delete(messageNo);
-			return "redirect:list?pageNo="+pageNo;
-		}*/
-		
-		if ( messageNo > 0 ) {
-			messageService.delete(messageNo);
-			return "redirect:message_receive_delete_list?receiver=" + receiver + "&sender=" + sender;
-		}		
+						@RequestParam(name = "message_no", defaultValue = "-1") int messageNo)
+						/*@RequestParam(defaultValue = "-1") int pageNo)*/ {		
+	
+	/*if ( messageNo > 0 && pageNo > 0 ) {
+		boardService.delete(messageNo);
+		return "redirect:list?pageNo="+pageNo;
+	}*/
+	
+	if ( messageNo > 0 ) {
+		messageService.delete(messageNo);
+		return "redirect:message_receive_delete_list?receiver=" + receiver + "&sender=" + sender;
+	}		
 		return "message/delete";
 	}
 		

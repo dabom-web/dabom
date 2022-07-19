@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.dabom.dto.Member;
 import com.dabom.dto.ProduceBoard;
+import com.dabom.dto.ProduceBoardComment;
 import com.dabom.dto.ProduceSupport;
 import com.dabom.dto.ProducerAttach;
 
@@ -37,6 +38,16 @@ public interface ProduceBoardService {
 
 	void updateProducerSupportCount(int produceBoardNo, int count);
 
-//	Member findUserName();
+	ProduceBoard findInforByBoardNo(int boardNo);
+
+	void updateInfor(int boardNo, String sns, String infor, String contact);
+
+	void deletedInforByBoardNo(int boardNo);
+
+	void writeCommentByBoardNo(ProduceBoardComment produceBoardComment);
+
+	List<ProduceBoardComment> findCommentListByBoardNo(int boardNo);
+
+
 	
 }

@@ -13,6 +13,11 @@
 <style type="text/css">
 
 	body {
+			background-image: url('/dabomweb/resources/images/dabom.gif');
+			background-size: cover;
+			background-color: black; 
+			background-repeat: no-repeat;
+			background-position: left -10%; 
 			background-color: #050a23;
 			opacity: 0.9;
 		  }
@@ -47,7 +52,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <a href="page-forgot-password.html">비밀번호를 잃어버리셨나요?</a>
+                                                <a href="/dabomweb/account/findId">비밀번호를 잃어버리셨나요?</a>
                                             </div>
                                         </div>
                                         <div class="text-center">
@@ -55,7 +60,7 @@
                                         </div>
                                     </form>
                                     <div class="new-account mt-3">
-                                        <p>Don't have an account? <a class="text-primary" href="resources/page-register.html">Sign up</a></p>
+                                        <p>Don't have an account? <a class="text-primary" href="/dabomweb/account/register">Sign up</a></p>
                                     </div>
                                 </div>
                             </div>

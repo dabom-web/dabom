@@ -24,7 +24,7 @@ img {
  <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
- 	<title>타이틀수정하세요</title>
+ 	<title>${ webtoonBoard.title }</title>
     <link rel="icon" type="image/png" sizes="16x16" href="resources/images/dabom.jpg">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.theme.default.min.css">
@@ -55,7 +55,7 @@ img {
                             <div class="profile-head">
                                 <div class="photo-content">
                                     <div class="cover-photo">
-                                    	<img src="/dabomweb/resources/images/webtoon2.jpg"
+                                    	<img src="/dabomweb/resources/images/dabomwebtoon.png"
                                     	style="min-height: 100px; width: 100%">
                                     </div>                                   
                                     <div class="profile-photo">
@@ -113,7 +113,7 @@ img {
                                         <tbody>
                                        	<c:forEach var="webtoon" items="${webtoonListByTitle }">
                                             <tr>
-                                             <td>${webtoon.number } </td>
+                                             <td>${webtoon.content } </td>
                                             	<td>
                                             	 <a href="/dabomweb/webtoon/detail?boardno=${webtoon.boardNo }&pageNo=${pageNo}&number=${webtoon.number}">
                                             	 <img width="150px" height="100"  src="/dabomweb/resources/upload-files/${ webtoon.files[0].savedFileName }" >
@@ -137,9 +137,12 @@ img {
                                 </div>
                             </div>
                         </div>
+                        <c:if test="${loginuser.type eq '웹툰업로더' }">
+                        	
                         	<div align="center">
 								<a href="/dabomweb/webtoon/webtoonListByTitleRegister?boardno=${webtoonBoard.boardNo}&pageNo=${pageNo}">웹툰 올리기</a>
 							</div>
+							</c:if>
 							<br>
 						
                      

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +22,11 @@
 
 	<div class="content-body">
 		<div class="container-fluid">
+		 <a class="btn btn-light btn-xs" id="back-btn"  
+				    href="javascript:history.back();" style="width: 100px;" > 
+					<span class="mr-2"><i class="fa fa-reply"></i></span> 
+					Back
+				</a><br><br>
 			<div class="row page-titles mx-0">
 				<div class="col-sm-6 p-md-0">
 					<div class="welcome-text">
@@ -55,7 +61,7 @@
 									<a href="/dabomweb/contact-message/contactMessageToUser?memberId=${ loginuser.memberId }"class="list-group-item">
 										<i class="fa fa-star font-18 align-middle mr-2"></i>
 										관리자의 메세지 
-										<span class="badge badge-danger text-white badge-sm float-right">47</span>
+										<span class="badge badge-danger text-white badge-sm float-right"></span>
 									</a> 
 									
 									</div>
@@ -75,12 +81,12 @@
 											<div>
 												<div class="d-flex message-single">
 													<div class="custom-control custom-checkbox pl-4">
-														<input type="checkbox">
+														<input type="checkbox" name="checkbox" value="${ contact.contactNo }">
 													</div>
 												</div>
 												<a href="sendContactUserDetail?contactNo=${ contact.contactNo }"
-													class="col-mail col-mail-2">
-													<div>${ contact.title }</div>												
+													class="col-mail col-mail-2" style="font-weight: bolder; color: black; font-size: 10pt;">
+													<div>💬 ${ contact.title }</div>												
 												</a>
 
 											</div>
@@ -96,9 +102,34 @@
 	</div>
 
 
-
-
 	<jsp:include page="/WEB-INF/views/modules/css/bottom.jsp" />
+	<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+	<script type="text/javascript">
+	
+		$(function() {
+			$('#remove-btn').on('click', function(event) {
+				event.preventDefault();
+				
+				var checkboxNo = '';
+				$('input[name="checkbox"]:checked').each(function(idx, checkBox) { 
+					checkboxNo += $(checkBox).val() + ',';
+				});
+				
+				checkboxNo = checkboxNo.substring(0, checkboxNo.lastIndexOf(','));
+				
+				if( checkboxNo == ''){
+					alert('삭제 할 메세지를 선택하세요.');
+					return false;
+				}
+				
+				var ok = confirm('선택한 항목을 삭제합니다.');
+				if ( ok ) {
+					location.href = 'removeChecked2?memberId=${ loginuser.memberId }&checkNos=' + checkboxNo;
+				}
+			});	
+		});
+	
+	</script>
 
 </body>
 </html>

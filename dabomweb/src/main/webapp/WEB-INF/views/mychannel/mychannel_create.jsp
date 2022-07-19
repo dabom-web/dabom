@@ -47,7 +47,7 @@
 												</label>
 												<div class="col-lg-8">
 													<input type="hidden"
-							 						   	   name="memberId" id="memberId" value="${ loginuser.memberId }"> 
+							 						   	   name="member_Id" id="member_Id" value="${ loginuser.memberId }"> 
 		                                            <p class="text-muted">&nbsp;&nbsp; ${ loginuser.memberId }</p>
 												</div>
 											</div>
@@ -63,22 +63,15 @@
 											<div class="form-group row justify-content-center">
 												<label class="col-lg-2 col-form-label text-muted"
 													   for="val-confirm-password">
-													프로필 사진 </label>
-												<div class="col-lg-8">
-													<input type="password" class="form-control"
-														   id="val-confirm-password" name="val-confirm-password">
+													프로필 사진 <i class="fa fa-paperclip"></i></label>													
+												<div class="col-lg-8">													
+			                                        <div class="d-flex flex-column align-items-center justify-content-center">
+			                                            <div class="fallback w-100">
+			                                                <input name="attach" id="attach" type="file" class="dropify" data-default-file="" />
+			                                            </div>
+			                                        </div>													
 												</div>
-											</div>
-											<div class="form-group row justify-content-center">
-												<label class="col-lg-2 col-form-label text-muted"
-													   for="val-confirm-password">
-													배너 사진 </label>
-												<div class="col-lg-8">
-													<input type="password" class="form-control"
-														id="val-confirm-password" name="val-confirm-password"
-														placeholder="..and confirm it!">
-												</div>
-											</div>
+											</div>											
 											<div class="form-group row justify-content-center">
 												<label class="col-lg-2 col-form-label text-muted" for="val-suggestions">
 													채널소개</label>
@@ -119,23 +112,28 @@
 		event.preventDefault();
 		if (!check()) {
 			return;
-		}	
-		
-		var ok = confirm('채널이 생성 되었습니다!');
+		}			
+		var ok = confirm('채널이 생성되었습니다!');
 		if (ok) {
-			$('#mychannelcreate').submit();				
+			$('#mychannelcreate').submit();			
 		}					
+		
 	})
 	 
 	function check(){
-		var memberId = document.getElementById("memberId");
+		var memberId = document.getElementById("member_Id");
 		var channelName = document.getElementById("channel_Name");
-		
+		var attachCheck = document.getElementById("attach");
 		if(memberId.value==""){
 			alert("로그인 하세요")	
 			location.href = '/dabomweb/account/login';	
 		}else if(channelName.value==""){
 			alert("채널이름을 입력하세요")
+			$("#channel_Name").focus();
+			return false;
+		}else if(attachCheck.val==""){
+			alert("프로필 사진을 등록하세요")
+			$("#attach").focus();
 			return false;
 		}
 		return true;

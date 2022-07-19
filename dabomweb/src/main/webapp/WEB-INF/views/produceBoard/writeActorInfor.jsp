@@ -43,7 +43,7 @@
 				<div
 					class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
 					<ol class="breadcrumb">
-						<li class="breadcrumb-item"><a href="#">수정제안하기</a></li>
+						<li class="breadcrumb-item"><a href="#">정보입력</a></li>
 					</ol>
 				</div>
 			</div>
@@ -58,7 +58,7 @@
 							<div class="form-validation">
 								<form id="write-form"
 									class="form-valide" 
-									action="writeDirectorInfor" 
+									action="writeActorInfor" 
 									method="post"
 									enctype="multipart/form-data">
 									
@@ -107,7 +107,7 @@
 										<div class="col-xl-6">
 
 											<div class="form-group row">
-												<label class="col-lg-4 col-form-label">Phone<span
+												<label class="col-lg-4 col-form-label">Contact<span
 													class="text-danger"></span>
 												</label>
 												<div class="col-lg-6">
@@ -132,7 +132,7 @@
 												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 												 <a id="write" href="javascript:">
 												 <button class="btn btn-primary">Submit</button></a>
-												  <a id="cancel" href="javascript:history.back();">
+												  <a id="cancel" href="javascript:">
 												  <button class="btn btn-primary">Cancel</button></a>
 												 
 											</div>
@@ -156,7 +156,20 @@
 	$(function () {
 		$('#write').on('click', function (event) {
 			event.preventDefault();
-			$('#write-form').submit();			
+			
+			var ok = confirm('등록하시겠습니까?');
+			if( ok ) {
+				$('#write-form').submit();
+			} 
+		});	
+		
+		$('#cancel').on('click', function (event) {
+			event.preventDefault();
+			
+			var ok = confirm('취소하시겠습니까?');
+			if( ok ) {
+				history.back();
+			} 
 		});		
 	});
 

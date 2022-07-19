@@ -11,7 +11,7 @@
  <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
- 	<title>MESSAGEDETAIL(${ receiveCount })</title>
+ 	<title>메세지읽기(${ receiveCount })</title>
     <link rel="icon" type="image/png" sizes="16x16" href="/dabomweb/resources/images/dabom.jpg">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.theme.default.min.css">
@@ -97,7 +97,7 @@
 					                                            </button>
 					                                            <div class="dropdown-menu dropdown-menu-right">
 					                                                <a class="dropdown-item" 
-					                                                   href="/dabomweb/mychannel/mychannel_main">채널방문</a>
+					                                                   href="href=/dabomweb/mychannel/mychannel?member_Id=${ message.sender }">채널방문</a>
 					                                                <a class="dropdown-item" 
 					                                                   href="message_direct_write?receiver=${ message.sender }&message_no=${ message.message_No }">
 					                                                   메세지 보내기</a>					                                                

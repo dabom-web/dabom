@@ -20,6 +20,9 @@ public class Member {
 	private int accountno;
 	private String passwd;
 	private String type;
+	private Boolean leved;
+	private String gender;
 	
-	
+	private Member member;
+	private MyChannel myChannel;
 }

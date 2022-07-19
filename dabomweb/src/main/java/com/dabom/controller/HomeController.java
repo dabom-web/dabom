@@ -25,6 +25,7 @@ public class HomeController {
 		return "home";
 	}
 
+
 	@GetMapping(path =  {"/", "home"})
 	public String videoList(Model model) {
 		List<VideoUpload> videoList = videoUploadService.findHomeList();
@@ -33,4 +34,7 @@ public class HomeController {
 	
 	return "home";
 	}
+
+	
+
 }

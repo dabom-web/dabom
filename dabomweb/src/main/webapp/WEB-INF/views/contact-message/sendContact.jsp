@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,6 +22,11 @@
 
 	<div class="content-body">
 		<div class="container-fluid">
+		<a class="btn btn-light btn-xs" id="back-btn"  
+				    href="javascript:history.back();" style="width: 100px;" > 
+					<span class="mr-2"><i class="fa fa-reply"></i></span> 
+					Back
+				</a><br><br>
 			<div class="row page-titles mx-0">
 				<div class="col-sm-6 p-md-0">
 					<div class="welcome-text">
@@ -41,35 +46,7 @@
 									<a href="/dabomweb/contact-message/contactMessage"
 										class="btn btn-primary btn-block">Message</a>
 								</div>
-								<div class="mail-list mt-4">
-									<a href="/dabomweb/contact-message/sendContact" class="list-group-item active"> 
-										<i class="fa fa-inbox font-18 align-middle mr-2"></i> 
-										메세지 작성하기 
-										<span class="badge badge-primary badge-sm float-right"></span>
-									</a>
-									
-									 <a href="/dabomweb/contact-message/sendContactList" class="list-group-item"> 
-										 <i class="fa fa-paper-plane font-18 align-middle mr-2"></i>
-										  보낸 메세지함
-									 </a> 
-									
-									<a href="/dabomweb/contact-message/contactMessage"class="list-group-item">
-										<i class="fa fa-star font-18 align-middle mr-2"></i>
-										문의 메세지함 
-										<span class="badge badge-danger text-white badge-sm float-right">47</span>
-									</a> 
-									
-									<a href="#" class="list-group-item">
-										<i class="mdi mdi-file-document-box font-18 align-middle mr-2"></i>
-										읽은메세지함
-									</a> 
-									
-									<a href="#" class="list-group-item">
-										<i class="fa fa-trash font-18 align-middle mr-2"></i>
-										삭제한 메세지
-									</a>
-
-								</div>
+								<jsp:include page="/WEB-INF/views/contact-message/adminContactListLink.jsp" />
 
 							</div>
 							<div class="email-right-box ml-0 ml-sm-4 ml-sm-0">
