@@ -154,6 +154,10 @@ public class WebtoonServiceImpl implements WebtoonService {
 		
 		return comments;
 	};
+	
+	public void deleteComment(int commentNo) {
+		webtoonMapper.deleteComment(commentNo);
+	};
 
 	
 }

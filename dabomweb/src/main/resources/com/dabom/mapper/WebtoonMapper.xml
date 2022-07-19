@@ -128,5 +128,10 @@
 			FROM webtoonlistbytitlecomment
 			WHERE number = #{number}
 		</select>	
+		
+		<delete id="deleteComment" parameterType="int">
+			DELETE FROM webtoonlistbytitlecomment
+			WHERE commentno = #{commentNo}
+		</delete>
   	
   </mapper>

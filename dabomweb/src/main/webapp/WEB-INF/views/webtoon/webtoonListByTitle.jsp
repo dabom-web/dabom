@@ -107,6 +107,7 @@ img {
                                                 <th>제목</th>
                                                 <th>작가</th>
                                                 <th>날짜</th>
+                                                <th>결제</th>
                                                 <th>조회수</th>
                                             </tr>
                                         </thead>
@@ -128,6 +129,11 @@ img {
                                                 <td><span class="badge badge-primary">${webtoon.memberId }</span>
                                                 </td>
                                                 <td>${webtoon.regdate }</td>
+                                                <td>
+                                                 <a id="use-point-dropdown-btn" class="btn btn-outline-danger b btn-xs" href="javascript:">
+												 결제하기
+												 </a>
+												 </td>
                                                 <td class="color-primary">${webtoon.readCount }</td>
                                             </tr>
                                            </c:forEach>

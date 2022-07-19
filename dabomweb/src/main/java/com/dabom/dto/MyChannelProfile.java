@@ -9,5 +9,6 @@ public class MyChannelProfile {
 	private String userFileName;
 	private String savedFileName;
 	private String member_Id;
+	
 
 }

@@ -56,6 +56,8 @@ public interface WebtoonMapper {
 
 	List<WebtoonListByTitleComment> selectCommentsByNumber(int number);
 
+	void deleteComment(int commentNo);
+
 
 	
 }

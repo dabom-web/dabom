@@ -10,7 +10,7 @@ public class WebtoonListByTitleComment {
 	private int commentNo;
 	private String writer;
 	private String content;
-	private Date regdate;
+	private Date regDate;
 	private int number;
 	
 

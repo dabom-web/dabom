@@ -41,6 +41,8 @@ public interface WebtoonService {
 
 	public List<WebtoonListByTitleComment> findCommentsByNumber(int number);
 
+	public void deleteComment(int commentNo);
+
 	
 
 
