@@ -9,6 +9,7 @@ import com.dabom.dto.MyChannelBanner;
 import com.dabom.dto.MyChannelCommunity;
 import com.dabom.dto.MyChannelProfile;
 import com.dabom.dto.VideoUpload;
+
 import com.dabom.mapper.MyChannelMapper;
 
 import lombok.Setter;
@@ -171,13 +172,6 @@ public class MyChannelServiceImpl implements MyChannelService {
 	}
 
 
-//	@Override
-//	public List<Channel> findAllChannelList() {
-//		List<Channel> channelList = myChannelMapper.selectAllChannel();
-//		return channelList;
-//	}
-
-
 	@Override
 	public void updateMyChannelInfo(MyChannel myChannel) {
 		myChannelMapper.updateMyChannel(myChannel);
@@ -208,16 +202,14 @@ public class MyChannelServiceImpl implements MyChannelService {
 
 	@Override
 	public List<MyChannel> findAllChannelList() {
-		// TODO Auto-generated method stub
-		return null;
+		List<MyChannel> channelList = myChannelMapper.selectAllChannel();
+		return channelList;
 	}
 
 	@Override
 	public int findMyUloadCount(String member_Id) {
 		int upload = myChannelMapper.selectMyUloadCount(member_Id);
 		return upload;
-	}
-
 	
 //	@Override
 //	public void updateMyChannelInfo(String member_Id) {
@@ -235,4 +227,5 @@ public class MyChannelServiceImpl implements MyChannelService {
 	
 
 	
+}
 }

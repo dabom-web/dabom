@@ -1,6 +1,6 @@
 package com.dabom.controller;
 
-import java.nio.channels.Channel;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.dabom.dto.Member;
+import com.dabom.dto.MyChannel;
 import com.dabom.service.AccountService;
 import com.dabom.service.MyChannelService;
 
@@ -58,8 +59,8 @@ public class AdministerPrivilegeController {
 	@GetMapping(path = { "/channel-management"})
 	public String channelManagement(Model model) {
 		
-//		List<Channel> channelList = myChannelService.findAllChannelList();
-//		model.addAttribute("channelList", channelList);
+		List<MyChannel> channelList = myChannelService.findAllChannelList();
+		model.addAttribute("channelList", channelList);
 		return "administerPrivilege/channel-management";
 	}
 	

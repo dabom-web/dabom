@@ -46,8 +46,6 @@ public interface MyChannelService {
 
 	ChannelSubscribe findSub(String member_Id, String subscriber);
 
-	List<MyChannel> findAllChannelList();
-
 	void uploadBanner(MyChannel myChannel);
 
 	MyChannelBanner findMyChannelBanner(String member_Id);
@@ -61,6 +59,9 @@ public interface MyChannelService {
 	void updateBoardCommunity(MyChannelCommunity myChannelCommunity);
 
 	int findMyUloadCount(String member_Id);
+
+	List<MyChannel> findAllChannelList();
+
 
 	
 

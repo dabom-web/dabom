@@ -148,8 +148,8 @@ public interface MyChannelMapper {
 
 	
 	
-//	@Select("select member_id, channel_name, channel_info, subscribe from channel order by reg_date desc")
-//	List<Channel> selectAllChannel();
+	@Select("select member_id, channel_name, channel_info, subscribe, reg_date from channel order by reg_date desc")
+	List<MyChannel> selectAllChannel();
 
 	
 

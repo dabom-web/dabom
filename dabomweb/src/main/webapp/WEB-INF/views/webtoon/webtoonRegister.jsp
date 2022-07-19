@@ -39,7 +39,6 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-  \
                                 <div class="email-right-box ml-0 ml-sm-4 ml-sm-0" >
                                     <div class="toolbar mb-4" role="toolbar">
                                     
