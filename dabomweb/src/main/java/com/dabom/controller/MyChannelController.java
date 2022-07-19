@@ -52,7 +52,8 @@ public class MyChannelController {
 		List<ChannelSubscribe> channelSubscribeList2 = myChannelService.findSubscribeList2(member_Id);
 		MyChannelProfile myChannelProfile = myChannelService.findMyChannelProfil(member_Id);
 		MyChannelBanner myChannelBanner = myChannelService.findMyChannelBanner(member_Id);
-//		VideoUpload upload = myChannelService.findMyUload(member_Id);
+		
+		int upload = myChannelService.findMyUloadCount(member_Id);
 		int subCount = myChannelService.findSubscribeCount(member_Id);
 //		ChannelSubscribe channelSubscribe = myChannelService.findSub(member_Id, loginUser.getMemberId());
 		
@@ -62,6 +63,8 @@ public class MyChannelController {
 		model.addAttribute("channelSubscribeList2", channelSubscribeList2);
 		model.addAttribute("myChannelProfile", myChannelProfile);
 		model.addAttribute("myChannelBanner", myChannelBanner);
+		
+		model.addAttribute("upload", upload);
 		model.addAttribute("subCount", subCount);
 		
 		
@@ -91,8 +94,7 @@ public class MyChannelController {
 				
 		return "mychannel/mychannel_create";
 	}
-	
-	
+		
 	@PostMapping(path = { "/mychannel_create" })
 	public String myChannelCreate(MyChannel myChannel, MultipartFile[] attach, HttpServletRequest req) {
 		

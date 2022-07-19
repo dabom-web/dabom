@@ -31,10 +31,10 @@
     object-fit: contain;
     }
   .photo-content .profile-photo {
-    bottom: -75px;
+   	bottom: -75px;
     left: 100px;
-    max-width: 400px;
-    object-fit: contain; }
+    max-width: 150px;
+    position: absolute; }
     
    .container {
 	 width: 100%;
@@ -78,7 +78,8 @@
 									<c:choose>
 										<c:when test="${ empty myChannelProfile.savedFileName }">
 											<img src="/dabomweb/resources/images/avatar/기본.jpg"
-												class="img-fluid rounded-circle" alt="">
+												class="img-fluid rounded-circle" alt=""
+												>
 										</c:when>
 										<c:otherwise>
 											<div style="overflow: hidden">
@@ -147,14 +148,22 @@
 												</div>
 
 												<div class="col">
-													<h3 class="m-b-0">45</h3>
+													<c:choose>
+														<c:when test="${ empty upload  }">
+															<h3 class="m-b-0">0</h3>
+														</c:when>
+														<c:otherwise>
+															<h3 class="m-b-0">${ upload }</h3>
+														</c:otherwise>
+													</c:choose>													
 													<span>영상</span>
 												</div>
 											</div>
 											<div class="mt-4">
 												<a href="javascript:void()"
 													class="btn btn-primary pl-5 pr-5 mr-3 mb-4"
-													id="send-messege">메세지</a><a href="/dabomweb/video/list?member_Id="
+													id="send-messege">메세지</a>
+												<a href="/dabomweb/video/mylist?memberId=${ myChannel.member_Id }"
 													class="btn btn-primary pl-5 pr-5 mr-3 mb-4">동영상</a>
 												<a href="/dabomweb/video/uploadList" class="btn btn-secondary pl-5 pr-5 mb-4">
 												동영상 업로드</a>	
