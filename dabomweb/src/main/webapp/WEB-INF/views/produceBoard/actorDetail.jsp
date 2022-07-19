@@ -132,7 +132,7 @@
 														<div class="tab-content" id="nav-tabContent">
 															<div class="tab-pane fade show active" id="list-home">
 																<h4 class="mb-4">Channel</h4>
-																<a href="/dabomweb/mychannel/mychannel_main?member_Id=${ member.memberId }">
+																<a href="/dabomweb/mychannel/channel?member_Id=${ member.memberId }&subscriber=${ loginuser.memberId }">
 																<p style="font-size: 45pt; font-family: 'Lobster', 'Gugi';">📺 ${ member.nickName } CHNNEL</p>
 																</a>
 																

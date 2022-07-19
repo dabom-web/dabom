@@ -95,14 +95,16 @@
 			                                        <tbody>
 			                                            <c:forEach var="channel" items="${ channelList }" >
 			                                            <tr>
-			                                                <td width="15%;">채널명</td>
-			                                                <td>${ channel.channel_Name }</td>
-			                                                <td>채널정보</td>
-			                                                <td>${ channel.channel_Info }</td>
-			                                                <td>계정정보</td>
-															 <td><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${ channel.reg_Date }"/></td>
-			                                                <td>구독자수</td>
-			                                                <td>${ channel.subscribe }</td>
+			                                                <td width="10%">채널명</td>
+			                                                <td width="15%">${ channel.channel_Name }</td>
+			                                                <td width="10%">채널정보</td>
+			                                                <td width="20%">${ channel.channel_Info }</td>
+			                                                <td width="8%">계정정보</td>
+			                                                <td width="5%">${ channel.member_Id }</td>
+			                                                <td width="5%">개설일</td>
+															<td width="12%"><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${ channel.reg_Date }"/></td>
+			                                                <td width="10%">구독자수</td>
+			                                                <td width="5%">${ channel.subscribe }</td>
 			                                            </tr>
 			                                            </c:forEach>
 			                                        </tbody>
@@ -113,20 +115,21 @@
 												<h4 class="mb-4 bl">차단채널목록</h4>
 												  <table class="table table-hover bl">
 			                                        <tbody>
-			                                            <c:forEach var="channel" items="${ channelList }" >
+			                                          
 			                                            <tr>
-			                                                <td width="15%;">채널명</td>
-			                                                <td>${ channel.channel_Name }</td>
-			                                                <td>채널정보</td>
-			                                                <td>${ channel.channel_Info }</td>
-			                                                <td>계정정보</td>
-			                                                <td>${ channel.member_Id }</td>
-			                                                 <td>개설일</td>
-			                                                 <td><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${ channel.reg_Date }"/></td>
-			                                                <td>구독자수</td>
-			                                                <td>${ channel.subscribe }</td>
+			                                              <td width="10%">채널명</td>
+			                                                <td width="15%">${ channel.channel_Name }</td>
+			                                                <td width="10%">채널정보</td>
+			                                                <td width="10%">${ channel.channel_Info }</td>
+			                                                <td width="8%">계정정보</td>
+			                                                <td width="5%">${ channel.member_Id }</td>
+			                                                <td width="5%">개설일</td>
+															<td width="12%"><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${ channel.reg_Date }"/></td>
+			                                                <td width="10%">구독자수</td>
+			                                                <td width="5%">${ channel.subscribe }</td>
+			                                                <td width="10%">차단해제</td>
 			                                            </tr>
-			                                            </c:forEach>
+			                                         
 			                                        </tbody>
 			                                    </table>
 						              		  </div>
