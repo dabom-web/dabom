@@ -36,6 +36,11 @@
 
 	<div class="content-body">
 		<div class="container-fluid">
+			<a class="btn btn-light btn-xs" id="back-btn"  
+			    href="javascript:history.back();" style="width: 100px;" > 
+				<span class="mr-2"><i class="fa fa-reply"></i></span> 
+				Back
+			</a><br><br>
 			<div class="row page-titles mx-0">
 				<div class="col-sm-6 p-md-0">
 					<div class="welcome-text tr">
@@ -97,16 +102,9 @@
 					</div>
 				</div>
 			</div>
-				
+		</div>		
 		</div>
-		<div style="vertical-align: right;">
-			<a class="btn btn-outline-dark" id="back-btn"  
-			    href="javascript:history.back();" style="width: 100px;" > 
-				<span class="mr-2"><i class="fa fa-reply"></i></span> 
-				Back
-			</a>
-		</div>	
-	</div>
+	
 	
 	
 	

@@ -293,7 +293,7 @@
 				                                      <div style="text-align: right;">
 				                                    	<a class="btn btn-light btn-xs bl"  
 														    href="/dabomweb/mychannel/mychannel?member_Id=${loginuser.memberId}" > 
-															채널수정
+															내 채널
 														</a>
 				                                    	<a class="btn btn-light btn-xs bl" id="delete-channel"  
 														    href="#" > 

@@ -8,6 +8,8 @@ import com.dabom.dto.MyChannel;
 import com.dabom.dto.MyChannelBanner;
 import com.dabom.dto.MyChannelCommunity;
 import com.dabom.dto.MyChannelProfile;
+import com.dabom.dto.VideoUpload;
+
 import com.dabom.mapper.MyChannelMapper;
 
 import lombok.Setter;
@@ -204,6 +206,11 @@ public class MyChannelServiceImpl implements MyChannelService {
 		return channelList;
 	}
 
+	@Override
+	public int findMyUloadCount(String member_Id) {
+		int upload = myChannelMapper.selectMyUloadCount(member_Id);
+		return upload;
+	
 //	@Override
 //	public void updateMyChannelInfo(String member_Id) {
 //		MyChannel myChannel = myChannelMapper.updateMyChannel2(member_Id);	
@@ -220,4 +227,5 @@ public class MyChannelServiceImpl implements MyChannelService {
 	
 
 	
+}
 }

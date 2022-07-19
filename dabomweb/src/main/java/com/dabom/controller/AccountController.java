@@ -83,8 +83,8 @@ public class AccountController {
 		Member member2 = accountService.selectByMemberIdAndEmail(member);
 		
 		if(member2 == null) {
-			
-			return "redirect:account/findId?findFail=아이디 찾기 실패";
+			model.addAttribute("findFail", true);
+			return "account/findId";
 		}
 		
 		Email dto =accountService.finId(member2.getMemberId(), member2.getPasswd(), member2.getEmail());

@@ -194,15 +194,22 @@
 												</div>
 												
 												<div class="col">
-													<h3 class="m-b-0">45</h3>
+													<c:choose>
+														<c:when test="${ empty upload  }">
+															<h3 class="m-b-0">0</h3>
+														</c:when>
+														<c:otherwise>
+															<h3 class="m-b-0">${ upload }</h3>
+														</c:otherwise>
+													</c:choose>	
 													<span>영상</span>
 												</div>
 											</div>
 											<div class="mt-4">
 												<a href="javascript:void()"
 													class="btn btn-primary pl-4 pr-4 mr-3 mb-4"
-													id="send-messege">메세지</a> <a
-													href="javascript:void()"
+													id="send-messege">메세지</a> 
+												<a href="/dabomweb/video/mylist?memberId=${ myChannel.member_Id }"
 													class="btn btn-primary pl-4 pr-4 mr-3 mb-4">동영상</a> 
 											</div>
 										</div>
