@@ -53,7 +53,7 @@
 				<div class="col-sm-6 p-md-0">
 					<div class="welcome-text">
 						<h4>DABOM</h4>
-						<span class="ml-1">(대충 사이트 소개 문구)</span>
+						<span class="ml-1">Channel</span>
 					</div>
 				</div>
 				<div
