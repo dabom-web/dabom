@@ -15,6 +15,7 @@ import org.apache.ibatis.annotations.Update;
 
 import com.dabom.dto.Member;
 import com.dabom.dto.ProduceBoard;
+import com.dabom.dto.ProduceBoardComment;
 import com.dabom.dto.ProduceSupport;
 import com.dabom.dto.ProducerAttach;
 
@@ -167,6 +168,18 @@ public interface ProduceBoardMapper {
 
 	@Update("update produceboard set deleted = true where boardno = #{ boardNo }")
 	void updateInforDeletedByBoardNo(@Param("boardNo")int boardNo);
+
+	@Insert("insert into produceBoardComment ( content, writer, boardno ) "
+			+ "values ( #{ content }, #{ writer }, #{ boardNo } )")
+	@SelectKey(statement = "select last_insert_id()",
+	   resultType = Integer.class,
+	   keyProperty = "boardNo",
+	   before = false)	
+	void insertCommentByBoardNo(ProduceBoardComment produceBoardComment);
+
+	@Select("select content, writer, boardno boardNo, regdate, commentno commentNo, deleted, groupno, depth, step "
+			+ "from produceBoardComment where boardno = #{ boardNo }")
+	List<ProduceBoardComment> selectCommentListByBoardNo(int boardNo);
 
 
 	

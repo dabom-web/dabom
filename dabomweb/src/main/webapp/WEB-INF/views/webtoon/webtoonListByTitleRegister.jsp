@@ -49,6 +49,10 @@
                                     <input type="hidden" name="pageNo" value="${ param.pageNo }">
                                     
                                     <div class="compose-content">
+                                    
+                                    		 <div class="form-group">
+	                                                <input type="text" name="content" class="form-control bg-transparent" placeholder=" 회차:">
+	                                            </div>
                                             <div class="form-group">
 	                                                <input type="text" name="title" class="form-control bg-transparent" placeholder=" 제목:">
 	                                            </div>

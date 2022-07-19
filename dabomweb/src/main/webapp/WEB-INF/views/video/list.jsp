@@ -69,14 +69,11 @@
                              
                             <div class="container-fluid">
                             <div class="row page-titles mx-0">
-                            
                             <c:forEach var="vUpload" items="${ vList }">
                                 <div class="col-xl-4 col-xxl-6 col-lg-6 col-sm-6">
-                                <c:choose>
-                            <c:when test="${ vUpload.open }">
+                            <c:if test="${ vUpload.open }">
                             	
-                            </c:when>
-                            <c:otherwise>
+                            </c:if>
                                 <a href="/dabomweb/video/detail?videoNo=${ vUpload.videoNo }">
                         <div class="card mb-3">
                             <img class="box" src='/dabomweb/resources/upload-files/${ vUpload.thumbnailSavedName }'>
@@ -87,11 +84,10 @@
                             <div class="card-body">
                                 <p class="card-text text-box">${ vUpload.content }</p>
                                 <p class="card-text text-dark">${ vUpload.uploadTime }</p>
+                                <p class="card-text text-dark">조회수: ${ vUpload.readCount }</p>
                             </div>
                         </div>
                          </a>
-                         </c:otherwise>
-                         </c:choose>
                     </div>
                     
                     </c:forEach>
@@ -106,10 +102,13 @@
                                         </div>
                                         <div class="col-5">
                                             <div class="btn-group float-right">
-                                                <button class="btn btn-dark" type="button"><i class="fa fa-angle-left"></i>
+                                                <!-- <button class="btn btn-dark" type="button"><i class="fa fa-angle-left"></i>
                                                 </button>
                                                 <button class="btn btn-dark" type="button"><i class="fa fa-angle-right"></i>
-                                                </button>
+                                                </button> -->
+                                                <ul class="pagination pagination-sm m-0">
+					                            	${ pager }
+				                            	</ul>
                                             </div>
                                         </div>
                                     </div>

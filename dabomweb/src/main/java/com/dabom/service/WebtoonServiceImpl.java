@@ -1,10 +1,12 @@
 package com.dabom.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import com.dabom.dto.WebtoonBoard;
 import com.dabom.dto.WebtoonBoardAttach;
+import com.dabom.dto.WebtoonListByTitleComment;
 import com.dabom.dto.WebtoonListByTitle;
 import com.dabom.dto.WebtoonListByTitleAttach;
 import com.dabom.mapper.WebtoonMapper;
@@ -107,6 +109,9 @@ public class WebtoonServiceImpl implements WebtoonService {
 		
 		WebtoonListByTitle webtoonListByTitle = webtoonMapper.findByNumber(number);
 		
+		webtoonMapper.updateReadCount(number);
+		webtoonListByTitle.setReadCount(webtoonListByTitle.getReadCount()+1);
+		
 		return webtoonListByTitle;
 		
 	};
@@ -130,5 +135,29 @@ public class WebtoonServiceImpl implements WebtoonService {
 	public void update(WebtoonListByTitle webtoonListByTitle) {
 		webtoonMapper.update(webtoonListByTitle);
 	};
+	
+	public void updateWebtoonBoardByTitle(ArrayList<WebtoonListByTitleAttach> files) {
+		for (WebtoonListByTitleAttach file : files) {
+			webtoonMapper.updateWebtoonBoardByTitle(file);
+		}
+	};
+	
+	public void writeWebtoonComment(WebtoonListByTitleComment webtoonComment) {
+		
+		webtoonMapper.insertWebtoonComment(webtoonComment);
+		
+	};
+	
+	public List<WebtoonListByTitleComment> findCommentsByNumber(int number){
+		
+		List<WebtoonListByTitleComment> comments = webtoonMapper.selectCommentsByNumber(number);
+		
+		return comments;
+	};
+	
+	public void deleteComment(int commentNo) {
+		webtoonMapper.deleteComment(commentNo);
+	};
+
 	
 }

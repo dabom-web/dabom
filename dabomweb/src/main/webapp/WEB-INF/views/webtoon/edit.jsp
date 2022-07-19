@@ -46,7 +46,10 @@
                                     </div>
                                     <form id="editForm" action="edit" method="post" enctype="multipart/form-data">
                                     <input type="hidden" name="boardNo" value="${ param.boardno }">
+                                    <input type="hidden" name="number" value="${ param.number }">
                                     <input type="hidden" name="pageNo" value="${ param.pageNo }">
+                                    <input type="hidden" name="thumbnailAttachNo" value="${ thumbnailAttachNo }">
+                                    <input type="hidden" name="webtoonAttachNo" value="${ webtoonAttachNo}">
                                     
                                     <div class="compose-content">
                                             <div class="form-group">

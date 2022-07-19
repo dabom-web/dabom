@@ -11,4 +11,9 @@ public class NonMembersHomeController {
 		return "nonMembersHome";
 	}
 	
+	@GetMapping(path = { "/disabledMemberHome" })
+	public String disabledMembersHome() {
+		return "disabledMemberHome";
+	}
+	
 }

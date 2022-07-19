@@ -6,7 +6,7 @@
  <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
- 	<title>타이틀수정하세요</title>
+ 	<title>웹툰리스트</title>
     <link rel="icon" type="image/png" sizes="16x16" href="resources/images/dabom.jpg">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.theme.default.min.css">
@@ -15,6 +15,17 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<style type="text/css">
+	img {
+		 object-fit: cover;
+ 		 overflow: hidden;
+	}
+	
+	.box {
+		width: 100%;
+		height: 300px;
+	}
+</style>
 </head>
 <body>
 	
@@ -32,11 +43,11 @@
 				
 				   <div class="row page-titles mx-0">
 				
-				<c:forEach var="board" items="${ requestScope.boardList}">
+				<c:forEach var="board" items="${ requestScope.boardList }">
                     <div class="col-xl-4 col-xxl-6 col-lg-6 col-sm-6">
-                        <div class="card mb-3">
+                        <div class="card mb-3" >
                            <a href="/dabomweb/webtoon/webtoonListByTitle?boardno=${board.boardNo}&pageNo=${pageNo}">
-                            <img class="card-img-top img-fluid" src="/dabomweb/resources/upload-files/${board.files[0].savedFileName}" alt="Card image cap">
+                            <img class="card-img-top img-fluid box" src="/dabomweb/resources/upload-files/${board.files[0].savedFileName}" alt="Card image cap">
                            </a>
                             <div class="card-header">
                                 <h5 class="card-title">${ board.title }</h5>
@@ -51,12 +62,14 @@
 				
 				</div>
 				
-				<div align="center">
-					<a href="/dabomweb/webtoon/webtoonRegister"> 웹툰 등록 </a>
-				</div>
+				  <c:if test="${loginuser.type eq '웹툰업로더' }">
+					<div align="center">
+						<a href="/dabomweb/webtoon/webtoonRegister"> 웹툰 등록 </a>
+					</div>
+				</c:if>
 				<br><br>
 				<div align="center">
-				${ pager} 
+				${ pager } 
 				</div>
 				<br><br>
 			</div>

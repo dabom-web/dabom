@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dabom.dto.Member;
+import com.dabom.dto.MyChannel;
 import com.dabom.dto.PointPurchase;
+import com.dabom.dto.WebtoonBoard;
 import com.dabom.service.AccountService;
 import com.dabom.service.MypageService;
 import com.dabom.service.PointPurchaseService;
@@ -38,29 +40,37 @@ public class MypageController {
 
 	@GetMapping(path = { "/profile" })
 	public String showProfile(HttpSession session, Model model) {
-		
-		//결제 정보
+	
 		Member loginUser = (Member)session.getAttribute("loginuser");
+		
+		MyChannel myChannel = mypageService.findMyChannelByLoginUserMemberId(loginUser.getMemberId());
+		List<WebtoonBoard> webtoonTitleList = mypageService.findWebtoonListByMemberIdOfWriter(loginUser.getMemberId());
+		
+		model.addAttribute("myChannel", myChannel);
+		model.addAttribute("webtoonList", webtoonTitleList);
+		
+		
 		
 		if (loginUser.getPoint() == 0) {
 			
 			List<PointPurchase> pointList = null;
-			int totalPrice = 0;
+			int totalPoint = 0;
 			int totalAmount = 0;
 			int totalUsePoint = 0;
 			model.addAttribute("pointList", pointList);
-			model.addAttribute("totalPrice", totalPrice);
+			model.addAttribute("totalPoint", totalPoint);
 			model.addAttribute("totalAmount", totalAmount);
 			model.addAttribute("totalUsePoint", totalUsePoint);
 
 		} else {
 		
-		List<PointPurchase> pointList = pointPurchaseService.findPointListByMemberId(loginUser.getMemberId());
-		int totalPrice = pointPurchaseService.findTotalPriceByMemberId(loginUser.getMemberId());
+		//List<PointPurchase> pointList = pointPurchaseService.findPointListByMemberId(loginUser.getMemberId());
+		List<PointPurchase> pointList = pointPurchaseService.findPointList(loginUser.getMemberId());
+		int totalPoint = pointPurchaseService.findTotalPriceByMemberId(loginUser.getMemberId());
 		int totalAmount = pointPurchaseService.findTotalAmountByMemberId(loginUser.getMemberId());
 		int totalUsePoint = pointPurchaseService.findTotalUsePointByMemberId(loginUser.getMemberId());
 		model.addAttribute("pointList", pointList);
-		model.addAttribute("totalPrice", totalPrice);
+		model.addAttribute("totalPoint", totalPoint);
 		model.addAttribute("totalAmount", totalAmount);
 		model.addAttribute("totalUsePoint", totalUsePoint);
 		}
@@ -74,17 +84,31 @@ public class MypageController {
 									@RequestParam(name="email")String email,
 									@RequestParam(name="phone")int phone,
 									@RequestParam(name="userName")String userName,
-									@RequestParam(name="type")String type ) {
+									@RequestParam(name="type")String type, 
+									HttpSession session) {
 		mypageService.updateMemberInfor(memberId, nickName, birth, email, phone, userName);
 		mypageService.updateUserType(memberId, type);
-	return "redirect:profile";	
+
+		Member member2 = mypageService.selectUpdateByMemberId(memberId);		
+		session.setAttribute("loginuser", member2);
+		
+//		//2. 
+//		Member loginUser = (Member)session.getAttribute("loginuser");
+//		loginUser.setNickName(nickName);
+//		loginUser.setBirth(birth);
+//		// ....
+		
+		return "redirect:profile";	
 	}
 	
 	@PostMapping(path = { "/change-type" })
 	@ResponseBody
 	public String changeUserTypeByMemberId(@RequestParam(name="memberId")String memberId, 
-										   @RequestParam(name="type")String type) {
+										   @RequestParam(name="type")String type,
+										   HttpSession session) {
 		mypageService.changeUserTypeByMemberId(memberId, type);
+		Member member2 = mypageService.selectUpdateByMemberId(memberId);		
+		session.setAttribute("loginuser", member2);
 		return "success";
 	}
 	

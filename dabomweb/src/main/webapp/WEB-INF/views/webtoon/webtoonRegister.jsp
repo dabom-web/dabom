@@ -50,7 +50,7 @@
 	                                                <input type="text" name="title" class="form-control bg-transparent" placeholder=" 제목:">
 	                                            </div>
 	                                          	 <div class="form-group">
-	                                                <input type="text" name="memberid" class="form-control bg-transparent" value=${ loginuser.memberId} readonly>
+	                                                <input type="text" name="memberId" class="form-control bg-transparent" value=${ loginuser.memberId } readonly>
 	                                            </div>
 	                                     
 		                                        <h5 class="mb-4"><i class="fa fa-paperclip"></i> 썸네일</h5>

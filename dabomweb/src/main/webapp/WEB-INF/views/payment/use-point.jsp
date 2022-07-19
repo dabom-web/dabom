@@ -9,7 +9,7 @@
  <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
- 	<title>배우정보상세보기</title>
+ 	<title>포인트사용테스트</title>
     <link rel="icon" type="image/png" sizes="16x16" href="resources/images/dabom.jpg">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.theme.default.min.css">
@@ -76,17 +76,17 @@
 													<p>테스트화면</p>
 												</div>
 											</div>
-											   <form action="use-point" method="post">
 											<div class="col-xl-4 col-sm-4 border-right-1 prf-col">
-											 <select id="point-box" class="transition-all bg-gray-50 border-2 border-gray-200 text-gray-900 text-sm rounded-lg focus:bg-gray-150 focus:border-blue-200 block w-full p-2.5">
-	                                            <option name="use-option" selected value="300" data-price="300" data-point="300">300 point 결제</option>
-	                                            <option name="use-option" value="2100"  data-price="2100" data-point="2100">2,100 point 결제</option>
-	                                            <option name="use-option" value="4900" data-price="4900" data-point="4900">4,900 point 결제</option>
-	                                         </select>
-	                                         <input type="hidden" id="price" name="price" value="300" class="form-control">
-	                                          <input type="hidden" id="amount" name="amount" value="300" class="form-control">
-												
-												  <button type="submit" class="btn btn-outline-danger b">결제하기</button>
+											   <form id="usePointForm" action="use-point-dropdown" method="post">											
+												 <select name='usePoint' id="point-box" class="transition-all bg-gray-50 border-2 border-gray-200 text-gray-900 rounded-lg focus:bg-gray-150 focus:border-blue-200 block w-full p-2.5">
+		                                            <option id="use-option1" selected value="300" data-price="300" data-point="300">300 point 결제</option>
+		                                            <option id="use-option2" value="2100"  data-price="2100" data-point="2100">2,100 point 결제</option>
+		                                            <option id="use-option3" value="4900" data-price="4900" data-point="4900">4,900 point 결제</option>
+		                                         </select>
+		                                         <br><br>                                     
+												 <a id="use-point-dropdown-btn" class="btn btn-outline-danger b btn-xs" href="javascript:">
+												 결제하기
+												 </a>
 												</form>
 												
 												<p>--------------------------------------</p>
@@ -94,7 +94,7 @@
 													<a id="use-point-btn" href="javascript:" class="btn btn-outline-danger b">
 													결제하기</a> 
 													<p class="small">500 point</p>
-													<p class="small" id="have-point" value="${ havePoint }">보유하신 포인트는 ${ havePoint } point입니다.</p>
+													<p class="small" id="have-point" data-point="${ loginuser.point }">보유하신 포인트는 ${ loginuser.point } point입니다.</p>
 												</div> 
 											</div>
 										</div>
@@ -149,21 +149,45 @@
 	
 			$(function () {
 				
-				$(function() {
-					$("input[name=use-option]").on('click', function(event) {
-						$('#price').val($(this).attr('data-price'));
-						$('#amount').val($(this).attr('data-point'));
+				$('#use-point-dropdown-btn').on('click', function (event) {
+					event.preventDefault();
+					var selectedPointAmount = $('#point-box').val();
+					var havePoint = $('#have-point').attr('data-point');
+					var formData = $('#usePointForm').serialize();
+					
+					if (havePoint < selectedPointAmount ) {
+						alert('보유포인트가 부족합니다.');
+						location.href = "/dabomweb/payment/purchase-point";
+						return;
+					}
+					
+					$.ajax({
+						"url" : "use-point-dropdown",
+						"method" : "post",
+						"async" : true,
+						"data" : formData,
+						"dataType" : "text",
+						"success" : function(result, status, xhr) {
+							if (result === "success") {
+								alert('결제완료');
+							} else {
+								alert('결제실패');
+							}
+						},
+						"error" : function(xhr, status, err) {
+							alert('결제 실패하였습니다.');
+						}
 					});
 				});
-				
 		
 				
 				$('#use-point-btn').on('click', function (event) {
 						event.preventDefault();
-						var havePoint = $('#have-point')
+						var havePoint = $('#have-point').attr('data-point');
 						if (havePoint < 500) {
 							alret('보유포인트가 부족합니다.')
 							location.href = "/dabomweb/payment/purchase-point";
+							return;
 						}
 						
 						$.ajax({
@@ -171,7 +195,7 @@
 							"method" : "post",
 							"async" : true,
 							"data" : "memberId=&{loginuser.memberId}",
-							"dataType" : "json",
+							//"dataType" : "json",
 							"success" : function(result, status, xhr) {
 								if (result === "success") {
 									alert('결제완료');
@@ -185,84 +209,6 @@
 						});
 					});
 				
-				
-					$('#cancel-btn').click(function (event) {
-						event.preventDefault();
-						var ok = confirm("정말 취소하시겠습니까?");
-						if (ok) {
-							location.href = "/dabomweb/mypage/profile?memberId=${ loginuser.memberId }";	
-						}
-					});
-					
-					$('#change-type-btn').click(function(event) {
-						event.preventDefault();
-						var formData = $('#change-type-form').serialize();
-						$.ajax({
-							"url" : "change-type",
-							"method" : "post",
-							"async" : true,
-							"data" : formData,
-							"dataType" : "text",
-							"success" : function(result, status, xhr) {
-								if (result === "success") {
-									alert('변경되었습니다..');
-								} else {
-									alert('변경 실패');
-								}
-							},
-							"error" : function(xhr, status, err) {
-								alert('변경 실패하였습니다.');
-							}
-						});
-					});
-					
-					$('#leved-btn').click(function (event) {
-						event.preventDefault();
-						var ok = confirm("계정을 삭제하시겠습니까? 한번 탈퇴하면 영구 삭제 됩니다.");
-						if (ok) {
-							$.ajax({
-								"url" : "delete-account",
-								"method" : "post",
-								"async" : true,
-								"data" : "memberId=${loginuser.memberId}",
-								"dataType" : "json",
-								"success" : function(result, status, xhr) {
-									if(result === "success"){
-										alert('계정 삭제 성공');
-										location.href = "/dabomweb/account/logout";	
-									}
-								},
-								"error" : function(xhr, status, err) {
-									alert('계정 삭제 실패');
-								}
-							});
-						}
-					});
-					
-					$('#disabled-btn').click(function (event) {
-						event.preventDefault();
-						var ok = confirm("계정을 비활성화합니다.");
-						if (ok) {
-							$.ajax({
-								"url" : "disabled-account",
-								"method" : "post",
-								"async" : true,
-								"data" : "memberId=${loginuser.memberId}",
-								"dataType" : "json",
-								"success" : function(result, status, xhr) {
-									if(result === "success") {
-										alert('비활성화 성공');
-										location.href = "/dabomweb/account/logout";	
-									}
-								},
-								"error" :function(xhr, status, err) {
-									alert('비활성화 실패하였습니다.');
-								}
-							});
-						}
-					});
-				
-					
 				});	
 
 	</script>

@@ -1,5 +1,6 @@
 package com.dabom.mapper;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -7,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.dabom.dto.WebtoonBoard;
 import com.dabom.dto.WebtoonBoardAttach;
+import com.dabom.dto.WebtoonListByTitleComment;
 import com.dabom.dto.WebtoonListByTitle;
 import com.dabom.dto.WebtoonListByTitleAttach;
 
@@ -43,4 +45,19 @@ public interface WebtoonMapper {
 	void deleteAttach(int number);
 
 	void update(WebtoonListByTitle webtoonListByTitle);
+
+	void updateReadCount(int number);
+
+	void updateWebtoonBoardByTitle(WebtoonListByTitleAttach file);
+
+	//////////////////// 댓글
+	
+	void insertWebtoonComment(WebtoonListByTitleComment webtoonComment);
+
+	List<WebtoonListByTitleComment> selectCommentsByNumber(int number);
+
+	void deleteComment(int commentNo);
+
+
+	
 }

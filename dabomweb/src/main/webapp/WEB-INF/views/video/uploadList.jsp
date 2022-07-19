@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,9 +70,9 @@
                                         
                                         <tbody>
                                         	
-                                            <c:forEach var="vUpload" items="${ vUploadList }">
+                                        	<c:forEach var="vUpload" items="${ vUploadList }">
+                                        	
                                             <tr>
-                                            
                                             	<td style="text-align:center"><input type="checkbox" name="videoCheck" value="${ vUpload.videoNo }" /></td>
                                             
                                             	<td style="text-align:center">${ vUpload.open }</td>
@@ -81,7 +82,10 @@
                                             	<td style="text-align:center">${ vUpload.uploadTime }</td>
                                             	<td style="text-align:center">${ vUpload.updateTime }</td>
                                             </tr>
+                                            
                                             </c:forEach>
+                                        	
+                                            
                                             
                                         </tbody>
                                         
@@ -100,10 +104,14 @@
                                         </div>
                                         <div class="col-5">
                                             <div class="btn-group float-right">
-                                                <button class="btn btn-dark" type="button"><i class="fa fa-angle-left"></i>
+                                                <!-- <button class="btn btn-dark" type="button"><i class="fa fa-angle-left"></i>
                                                 </button>
                                                 <button class="btn btn-dark" type="button"><i class="fa fa-angle-right"></i>
-                                                </button>
+                                                </button> -->
+                                                <ul class="pagination pagination-sm m-0">
+					                            	${ uPager }
+				                            	</ul>
+                                                
                                             </div>
                                         </div>
                                     </div>

@@ -48,7 +48,15 @@
                             <!-- 추수은 -->
                             
                             <!-- 강효준 -->
-                            <li><a href="/dabomweb/video/uploadList">영상업로드</a></li>
+                            
+                            <c:choose>
+                            <c:when test="${ loginuser.type eq '영상업로더' }"> 
+                            	 <li><a href="/dabomweb/video/uploadList">영상업로드</a></li>
+	                        </c:when>
+                            <c:otherwise>
+                            </c:otherwise>
+                            </c:choose>
+                           
                             <li><a href="/dabomweb/video/list">채널 영상</a></li>
                             <li><a href="/dabomweb/video/liveStream">라이브방송</a></li>
                             <!-- 강효준 -->
@@ -68,9 +76,10 @@
 	                    <span class="nav-text">🥞 Management</span></a>
 	                        <ul aria-expanded="false">                        
 	                        	<li><a href="/dabomweb/contact-message/contactMessage">문의메세지</a></li>
-	                            <li><a href="resources/index.html">회원계정관리</a></li>                           
-	                            <li><a href="resources/index2.html">채널관리</a></li>
-	                            <li><a href="resources/index2.html">게시글&댓글관리</a></li>
+	                        	<li><a href="/dabomweb/administerPrivilege/site-revenue">사이트 수익관리</a></li>
+	                            <li><a href="#">회원계정관리</a></li>                           
+	                            <li><a href="#">채널관리</a></li>
+	                            <li><a href="#">게시글&댓글관리</a></li>
 	                            <li><a href="/dabomweb/administerPrivilege/accept">업로드승인 new(<span id="accept-request-count">${ count }</span>)</a></li>                        
 	                        </ul>
 	                    </li>

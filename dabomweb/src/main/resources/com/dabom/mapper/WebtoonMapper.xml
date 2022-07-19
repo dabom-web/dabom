@@ -51,8 +51,8 @@
 	
 	<insert id="insertWebtoonBoardByTitle" parameterType="WebtoonListByTitle">
 		<selectKey keyProperty="number" resultType="int" order="AFTER"> SELECT LAST_INSERT_ID()</selectKey>
-	  	INSERT INTO webtoonlistbytitle (boardno, title, memberid)
-	  	VALUES(#{boardNo}, #{title}, #{memberId})
+	  	INSERT INTO webtoonlistbytitle (boardno, title, memberid, content)
+	  	VALUES(#{boardNo}, #{title}, #{memberId}, #{content})
 	</insert>
 	
 	<insert id="insertWebtoonBoardbyTitleAttach" parameterType="WebtoonListByTitleAttach">
@@ -62,14 +62,14 @@
   	</insert>
   	
   	<select id="webtoonListByTitleSelectAll" resultType="WebtoonListByTitle" parameterType="int">
-  		SELECT number, boardno, title, memberid, readcount, regdate, deleted
+  		SELECT number, boardno, title, memberid, readcount, regdate, deleted, content
   		FROM webtoonlistbytitle
   		WHERE boardno = #{ boardNo }
   		ORDER BY number DESC
   	</select>
   	
   	<select id="findByNumber" parameterType="int" resultType="WebtoonListByTitle">
-  		SELECT number, boardno, title, memberid, readcount, regdate, deleted
+  		SELECT number, boardno, title, memberid, readcount, regdate, deleted, content
   		FROM webtoonlistbytitle
   		WHERE number = #{ number }
   	</select>
@@ -102,5 +102,36 @@
   		SET title = #{title}
   		WHERE number = #{number}
   	</update>
+  	
+  	<update id="updateReadCount" parameterType="webtoonListByTitle">
+  		UPDATE webtoonlistbytitle
+  		SET readcount = readcount + 1
+  		WHERE number = #{number}
+  	</update>
+  	
+  	<update id="updateWebtoonBoardByTitle" parameterType="WebtoonListByTitleAttach">
+  		UPDATE webtoonlistbytitleattach
+  		SET userfilename = #{userFileName}, savedfilename = #{savedFileName}
+  		WHERE attachno = #{attachNo}
+  	</update>
+  	
+  	<!-- 댓글 -->
+  	
+  	  	<insert id="insertWebtoonComment" parameterType="WebtoonListByTitleComment"
+				useGeneratedKeys="true" keyColumn="commentno" keyProperty="commentNo">
+			INSERT INTO webtoonlistbytitlecomment (number, writer, content)
+			VALUES (#{number}, #{writer}, #{content})
+		</insert> 
+		
+		<select id="selectCommentsByNumber" parameterType="int" resultType="WebtoonListByTitleComment">
+			SELECT commentno, number, writer, content, regdate
+			FROM webtoonlistbytitlecomment
+			WHERE number = #{number}
+		</select>	
+		
+		<delete id="deleteComment" parameterType="int">
+			DELETE FROM webtoonlistbytitlecomment
+			WHERE commentno = #{commentNo}
+		</delete>
   	
   </mapper>
