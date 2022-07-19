@@ -63,7 +63,7 @@
                                                 <input type="text" class="form-control bg-transparent" name="videoTitle" placeholder=" 제목을 입력하세요">
                                             </div>
                                             <div class="form-group">
-                                            <input type="hidden" name="memberId" value="${ vUpload.memberId }" >
+                                            <input type="hidden" name="memberId" value="${ loginuser.memberId }" >
                                             </div>
                                             <div class="form-group">
                                                 <textarea id="email-compose-editor" class="textarea_editor form-control bg-transparent" name="content" rows="15" placeholder="내용을 소개해보세요" style="resize:none"></textarea>

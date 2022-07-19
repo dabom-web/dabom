@@ -1,4 +1,5 @@
 <%@page import="com.dabom.dto.VideoUpload"%>
+<%@page import="com.dabom.dto.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -46,13 +47,17 @@
                                                         <p>${ vUpload.content }</p>
                                                         <hr>
                                                     </div>
-                                                    <hr>
-                                                    <div class="form-group pt-3">
-                                                        <textarea class="w-100" name="write-email" id="write-email" cols="30" rows="5" placeholder="댓글을 입력하세요"></textarea>
+                                                    <hr><!-- 댓글표시영역 시작 -->
+                                                    <br>
+                                                    <table id="comment-list">
+                                                    
+                                                    </table>
+                                                    <div class="form-group pt-3" id="comment-box">
+                                                        <textarea class="w-100" name="write-comment" id="write-comment" cols="30" rows="5" placeholder="댓글을 입력하세요"></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="text-right">
-                                                    <button class="btn btn-primary btn-sl-sm mb-5" type="button">댓글작성</button>
+                                                    <button class="btn btn-primary btn-sl-sm mb-5" id="submit-comment" type="button">댓글작성</button>
                                                     
                                                 </div>
                                             </div>
@@ -62,8 +67,10 @@
                             </div>
                         </div>
                         <div class="text-right">
+                        	<c:if test="${ loginuser.memberId eq vUpload.memberId }">
                         	<button class="btn btn-primary btn-sl-sm mb-5" id="to-update-btn" type="button">수정</button>
                         	<button class="btn btn-primary btn-sl-sm mb-5" id="to-delete-btn" type="button">삭제</button>
+                        	</c:if>
                         	<!-- <button class="btn btn-primary btn-sl-sm mb-5" type="button">목록</button> -->
                         	<button class="btn btn-primary btn-sl-sm mb-5" id="to-list-btn" type="button">채널목록</button>
                             <button class="btn btn-primary btn-sl-sm mb-5" id="to-uploadList-btn" type="button">업로드 목록</button>
@@ -102,6 +109,63 @@
 		$('#to-update-btn').on('click',function(event){
 			event.preventDefault();
 			location.href='update?videoNo=${vUpload.videoNo}';
+		});
+		
+		////////////////////////////////////////////////////////
+		
+		// 댓글 목록 가져오기
+		//$('#comment-list').load('comment-list?videoNo=' + ${vUpload.videoNo});
+		
+		// 댓글 쓰기
+		$('#submit-comment').on('click', function(event){
+			/* var content = $('#write-comment').val;
+			if(content.leng == 0){
+				alert('내용을 작성하세요');
+				return;
+			}
+			
+			var formData = $('#comment-form').serialize();
+			
+			$.ajax({
+				"url" : $('#comment-form').attr('action'),
+				"method" : "post",
+				"async" : true,
+				"data" : formData,
+				"dataType" : "text"
+				"success" : function(data, status, xhr){
+					if(data === "success"){
+						$('#comment-list').load('comment-list?videoNo=' + ${vUpload.videoNo});
+					}else{
+						alert('댓글 작성에 실패하였습니다.');
+					}
+				},
+				"error" : function(xhr, status, err){
+					alert('댓글 작성 중 오류 발생');
+				}
+			}); */
+		});
+		
+		$('#comment-list').on('click', '.delete-comment', function(event){
+			var commentNo = $(this).attr("data-commentno");
+			var ok = confirm(commentNo + "삭제한 댓글은 복구가 불가능합니다. 정말로 삭제하시겠습니까?");
+			if (!ok){
+				return;
+			}
+			
+			$.ajax({
+				"url" : "comment-delete",
+				"method" : "get",
+				"async" : true,
+				"data" : "commentno=" + commentNo,
+				"dataType" : "text",
+				"success" : function(data, status, xhr){
+					$('#comment-list').load('comment-list?videoNo=' + ${vUpload.videoNo});
+				},
+				"error" : function(xhr, status, err){
+					alert('삭제에 실패하였습니다.');
+				}
+			});
+			
 		});
 		
 	</script>

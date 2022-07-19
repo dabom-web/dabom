@@ -48,7 +48,15 @@
                             <!-- 추수은 -->
                             
                             <!-- 강효준 -->
-                            <li><a href="/dabomweb/video/uploadList">영상업로드</a></li>
+                            
+                            <c:choose>
+                            <c:when test="${ loginuser.type eq '영상업로더' }"> 
+                            	 <li><a href="/dabomweb/video/uploadList">영상업로드</a></li>
+	                        </c:when>
+                            <c:otherwise>
+                            </c:otherwise>
+                            </c:choose>
+                           
                             <li><a href="/dabomweb/video/list">채널 영상</a></li>
                             <li><a href="/dabomweb/video/liveStream">라이브방송</a></li>
                             <!-- 강효준 -->

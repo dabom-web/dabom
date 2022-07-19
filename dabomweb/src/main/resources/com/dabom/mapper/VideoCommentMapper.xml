@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+				 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+				 
+<mapper namespace="com.dabom.mapper.VideoCommentMapper">
+
+	
+	<insert id="insertVideoComment" parameterType="com.dabom.dto.VideoComment" useGeneratedKeys="true" keyColumn="commentno" keyProperty="vCommentNo">
+		INSERT INTO video_comment (commentno, comment, writedate, modifydate, deletecomment, video_no, member_id)
+		VALUES (#{commentNo}, #{comment}, #{writeDate}, #{modifyDate}, #{deleteComment}, #{videoNo}, #{memberId})
+	</insert>
+
+	<select id="selectByVideoNo" parameterType="int" resultType="com.dabom.dto.VideoComment">
+		SELECT commentno commentNo, comment comment, writedate writeDate, modifydate modifyDate, deletecomment deleteComment, video_no videoNo, member_id memberId
+		FROM video_comment
+		WHERE video_no = #{videoNo} and deleted = FALSE
+		ORDER BY video_no DESC
+	</select>
+	
+	<select id="selectRangeByVideoNo" parameterType="hashmap" resultType="com.dabom.dto.VideoComment">
+		SELECT commentno commentNo, comment comment, writedate writeDate, modifydate modifyDate, deletecomment deleteComment, video_no videoNo, member_id memberId
+		FROM video_comment
+		WHERE video_no = #{videoNo} and deleted = FALSE
+		ORDER BY video_no DESC
+		LIMIT #{from}, #{count}
+	</select> <!-- <![CDATA[]]>특수문자 무시하고 읽게 하는 기능 -->
+	
+	<select id="selectVideoCommentCount" parameterType="int" resultType="com.dabom.dto.VideoComment">
+		SELEC COUNT(*) FROM video_comment
+	</select>
+	
+	<select id="update" parameterType="com.dabom.dto.VideoComment">
+		UPDATE video_comment
+		SET comment = #{comment}
+		WHERE commentno = #{commentNo}
+	</select>
+	
+	<select id="delete" parameterType="int">
+		DELETE 
+		FROM video_comment
+		WHERE commentno = #{commentNo}
+	</select>
+
+</mapper>
