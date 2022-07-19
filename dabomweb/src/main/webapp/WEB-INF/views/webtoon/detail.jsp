@@ -71,25 +71,29 @@
                                                 </div>
                                             </div>
                                       
-                           
+    
                                           
                                         </div>
                                     </div>
                                 </div>
+        
                             </div>
                         </div>
+               <!-- comment 표시 영역 -->
+                     <br>
+		        <hr style="width:800px;margin:0 auto">
+		        <br>
+		        <table id="comment-list" style="width:800px;margin:0 auto">
+		        
+		        </table>
+		        
                     </div>
 				</div>
 			</div>
 		</div>	
 		
 		  <!-- comment 표시 영역 -->
-        <br>
-        <hr style="width:800px;margin:0 auto">
-        <br>
-        <table id="comment-list" style="width:800px;margin:0 auto">
-        
-        </table>
+      
 		
 		<!-- modal -->
 		
@@ -203,6 +207,30 @@
 			});
 		});
 		
+	   // $('.deletecomment').on('click', function(event) { // 현재 존재하는 .deletecomment
+	    	$('#comment-list').on('click', '.deletecomment', function(event) { // 현재 + 미래에 존재하는 .deletecomment
+	    	var commentNo = $(this).attr("data-commentno");
+	    	
+	    	var ok = confirm(commentNo + "번 댓글을 삭제할까요?");
+			if (!ok) {
+				return;
+			}
+	    
+	    	$.ajax({
+				"url": "comment-delete",
+				"method" : "get",
+				"async" : true,
+				"data" : "commentno=" + commentNo,
+				"dataType" : "text",
+				"success" : function(data, status, xhr) {					
+					// 갱신된 목록 표시 ( load : 비동기 요청 결과 HTML을 지정된 요소에 삽입)
+					$('#comment-list').load('comment-list?number=' + ${ webtoonListByTitle.number });
+				},
+				"error" : function(xhr, status, err) {
+					alert('삭제 실패');
+				}
+			});
+		});
 	</script>
 
 </body>
