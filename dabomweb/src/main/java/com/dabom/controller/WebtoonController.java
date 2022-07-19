@@ -279,8 +279,17 @@ public class WebtoonController {
 		
 		model.addAttribute("comments", comments);
 		
-		return "board/comments";
+		return "webtoon/comments";
 		
+	}
+	
+	@GetMapping(path = { "/comment-delete" }, produces = { "text/plain; charset=utf-8" })
+	@ResponseBody
+	public String deleteComment(@RequestParam(name = "commentno") int commentNo) {
+	
+		webtoonservice.deleteComment(commentNo);
+		
+		return "success";
 	}
 	
 }
