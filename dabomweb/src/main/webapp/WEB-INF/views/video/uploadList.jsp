@@ -73,7 +73,6 @@
                                         	<c:forEach var="vUpload" items="${ vUploadList }">
                                         	
                                             <tr>
-                                            <c:if test="${ loginuser.memberId eq vUpload.memberId }">
                                             	<td style="text-align:center"><input type="checkbox" name="videoCheck" value="${ vUpload.videoNo }" /></td>
                                             
                                             	<td style="text-align:center">${ vUpload.open }</td>
@@ -82,7 +81,6 @@
                                             	<td><a href="/dabomweb/video/update?videoNo=${ vUpload.videoNo }">${ vUpload.videoTitle }</a></td>
                                             	<td style="text-align:center">${ vUpload.uploadTime }</td>
                                             	<td style="text-align:center">${ vUpload.updateTime }</td>
-                                            </c:if>
                                             </tr>
                                             
                                             </c:forEach>

@@ -13,7 +13,7 @@ public interface VideoUploadService {
 	void delete(int videoNo);	//2
 	void update(VideoUpload vUpload);	//3
 	List<VideoUpload> viewerFindAll();	//1
-	List<VideoUpload> findByUploadPage(int uPageNo, int uPageSize);	//4
+	List<VideoUpload> findByUploadPage(int uPageNo, int uPageSize, String memberId);	//4
 	List<VideoUpload> findByPage(int pageNo, int pageSize);	//4
 	void writeVideoComment(VideoComment vComment);
 	List<VideoComment> findVideoCommentsByVideoNo(int videoNo);

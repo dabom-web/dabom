@@ -14,27 +14,28 @@ import com.dabom.service.VideoUploadService;
 
 @Controller
 public class HomeController {
-	 
+
 	@Autowired
 	@Qualifier("videoUploadService")
 	VideoUploadService videoUploadService;
-	
-	
+
 	@RequestMapping(path = { "/", "home" })
-	public String home() {
+	public String home(Model model) {
+
+		List<VideoUpload> videoList = videoUploadService.findHomeList();
+
+		model.addAttribute("videoList", videoList);
+
 		return "home";
 	}
 
-
-	@GetMapping(path =  {"/", "home"})
-	public String videoList(Model model) {
-		List<VideoUpload> videoList = videoUploadService.findHomeList();
-	
-	model.addAttribute("videoList", videoList);
-	
-	return "home";
-	}
-
-	
+//	@GetMapping(path = { "/", "home" })
+//	public String videoList(Model model) {
+//		List<VideoUpload> videoList = videoUploadService.findHomeList();
+//
+//		model.addAttribute("videoList", videoList);
+//
+//		return "home";
+//	}
 
 }
