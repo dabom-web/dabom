@@ -76,7 +76,7 @@ public class VideoUploadServiceImpl implements VideoUploadService {
 		
 		return vUploadList;
 	}
-
+	
 	@Override
 	public List<VideoUpload> findByPage(int pageNo, int pageSize) {
 		int from = (pageNo - 1) * pageSize;
@@ -126,6 +126,9 @@ public class VideoUploadServiceImpl implements VideoUploadService {
 		List<VideoUpload> videoList = videoUploadMapper.selectHomeList();
 		return videoList;
 	}
+
+	
+	
 
 //	@Override
 //	public void writeVideoReComment(VideoComment vComment) {

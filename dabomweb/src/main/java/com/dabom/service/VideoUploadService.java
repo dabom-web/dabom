@@ -21,4 +21,6 @@ public interface VideoUploadService {
 	void updateVideoComment(VideoComment vComment);
 //	void writeVideoReComment(VideoComment vComment);
 	List<VideoUpload> findHomeList();
+	
+	
 }

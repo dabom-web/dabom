@@ -1,22 +1,24 @@
 package com.dabom.mapper;
 
-import java.nio.channels.Channel;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.One;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.Update;
 
 import com.dabom.dto.ChannelSubscribe;
-import com.dabom.dto.Member;
 import com.dabom.dto.Message;
 import com.dabom.dto.MyChannel;
 import com.dabom.dto.MyChannelBanner;
 import com.dabom.dto.MyChannelCommunity;
 import com.dabom.dto.MyChannelProfile;
+import com.dabom.dto.VideoUpload;
 
 public interface MyChannelMapper {
 	
@@ -140,6 +142,11 @@ public interface MyChannelMapper {
 			+ "SET content = #{content} "
 			+ "WHERE community_no = #{ community_No } ")
 	void update(MyChannelCommunity myChannelCommunity);
+
+	@Select("select COUNT(video_title) from upload_video where member_id =#{ member_Id }")
+	int selectMyUloadCount(String member_Id);
+
+	
 	
 //	@Select("select member_id, channel_name, channel_info, subscribe from channel order by reg_date desc")
 //	List<Channel> selectAllChannel();

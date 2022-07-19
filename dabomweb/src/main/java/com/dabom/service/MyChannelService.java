@@ -1,15 +1,14 @@
 package com.dabom.service;
 
-import java.nio.channels.Channel;
 import java.util.List;
 
 import com.dabom.dto.ChannelSubscribe;
-import com.dabom.dto.Member;
 import com.dabom.dto.Message;
 import com.dabom.dto.MyChannel;
 import com.dabom.dto.MyChannelBanner;
 import com.dabom.dto.MyChannelCommunity;
 import com.dabom.dto.MyChannelProfile;
+import com.dabom.dto.VideoUpload;
 
 public interface MyChannelService {
 
@@ -47,7 +46,7 @@ public interface MyChannelService {
 
 	ChannelSubscribe findSub(String member_Id, String subscriber);
 
-//	List<Channel> findAllChannelList();
+	List<MyChannel> findAllChannelList();
 
 	void uploadBanner(MyChannel myChannel);
 
@@ -60,6 +59,8 @@ public interface MyChannelService {
 	void deleteCommunity(int communityNo);
 
 	void updateBoardCommunity(MyChannelCommunity myChannelCommunity);
+
+	int findMyUloadCount(String member_Id);
 
 	
 

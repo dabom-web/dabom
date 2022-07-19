@@ -129,6 +129,28 @@ public class VideoUploadController {
 		return "video/list";
 
 	}
+	
+	@GetMapping(path = { "/mylist" })
+	public String myList(@RequestParam(defaultValue = "1" ) int uPageNo, Model model, String memberId, HttpSession session)  {
+		
+		int uPageSize = 30;
+		int uPagerSize = 10;
+		int uCount = 0;
+
+//		List<VideoUpload> vUploadList = videoUploadService.findAll();
+		List<VideoUpload> vUploadList = videoUploadService.findByUploadPage(uPageNo, uPageSize, memberId);
+		
+		ThePager uPager = new ThePager(uCount, uPageNo, uPageSize, uPagerSize, "uploadList");
+//		
+		model.addAttribute("vUploadList", vUploadList);
+		model.addAttribute("uPager", uPager);	// , 없는거 못보냐 정신 안차려?
+		model.addAttribute("uPageNo", uPageNo);
+
+		return "video/uploadList";		
+	
+	}
+	
+	
 
 	@GetMapping(path = { "/detail" })
 	public String detail(@RequestParam(name="videoNo", defaultValue = "-1") int videoNo,

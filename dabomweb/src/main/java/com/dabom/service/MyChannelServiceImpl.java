@@ -1,16 +1,14 @@
 package com.dabom.service;
 
-import java.nio.channels.Channel;
 import java.util.List;
 
 import com.dabom.dto.ChannelSubscribe;
-import com.dabom.dto.Member;
 import com.dabom.dto.Message;
 import com.dabom.dto.MyChannel;
 import com.dabom.dto.MyChannelBanner;
 import com.dabom.dto.MyChannelCommunity;
 import com.dabom.dto.MyChannelProfile;
-import com.dabom.mapper.MyChannelCommunityMapper;
+import com.dabom.dto.VideoUpload;
 import com.dabom.mapper.MyChannelMapper;
 
 import lombok.Setter;
@@ -208,6 +206,19 @@ public class MyChannelServiceImpl implements MyChannelService {
 		
 	}
 
+	@Override
+	public List<MyChannel> findAllChannelList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int findMyUloadCount(String member_Id) {
+		int upload = myChannelMapper.selectMyUloadCount(member_Id);
+		return upload;
+	}
+
+	
 //	@Override
 //	public void updateMyChannelInfo(String member_Id) {
 //		MyChannel myChannel = myChannelMapper.updateMyChannel2(member_Id);	
