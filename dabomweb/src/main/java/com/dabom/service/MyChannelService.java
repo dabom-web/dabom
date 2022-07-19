@@ -7,6 +7,7 @@ import com.dabom.dto.Member;
 import com.dabom.dto.Message;
 import com.dabom.dto.MyChannel;
 import com.dabom.dto.MyChannelBanner;
+import com.dabom.dto.MyChannelCommunity;
 import com.dabom.dto.MyChannelProfile;
 
 public interface MyChannelService {
@@ -44,6 +45,24 @@ public interface MyChannelService {
 	void DirectwriteMessage(Message message);
 
 	ChannelSubscribe findSub(String member_Id, String subscriber);
+
+	void uploadBanner(MyChannel myChannel);
+
+	MyChannelBanner findMyChannelBanner(String member_Id);
+
+	void writeCommunity(MyChannelCommunity myChannelCommunity);
+
+	List<MyChannelCommunity> findCommunity(String member_Id);
+
+	void deleteCommunity(int communityNo);
+
+	void updateBoardCommunity(MyChannelCommunity myChannelCommunity);
+
+	
+
+	
+
+
 
 	
 

@@ -56,7 +56,11 @@
 													채널이름<span class="text-danger">*</span>
 												</label>
 												<div class="col-lg-8">
-													<p class="text-muted">&nbsp;&nbsp;${myChannel.channel_Name }</p>														  
+												<input type="hidden"
+							 						   	   name="channel_Info" id="channel_Info" value="${ myChannel.channel_Info }"> 
+												<input type="hidden"
+							 						   	   name="channel_Name" id="channel_Name" value="${ myChannel.channel_Name }"> 
+													<p class="text-muted">&nbsp;&nbsp;${ myChannel.channel_Name }</p>														  
 												</div>
 											</div>
 											<div class="form-group row justify-content-center">
@@ -74,12 +78,10 @@
 											<div class="form-group row">
 												<div class="col-lg-7 ml-auto">
 													<button class="btn btn-primary"
-															id="updatebanner" type="button"
-															href="javascript:">등록</button>
+															id="updatebanner" type="button">등록</button>
 													<a href="javascript:history.back()">
 													<button class="btn btn-primary" 
-															id="cancel" type="button"
-															href="javascript:history.back();">취소</button></a>
+															id="cancel" type="button">취소</button></a>
 												</div>
 											</div>
 										</div>

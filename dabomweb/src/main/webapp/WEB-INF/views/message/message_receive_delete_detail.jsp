@@ -92,7 +92,7 @@
 					                                            </button>
 					                                            <div class="dropdown-menu dropdown-menu-right">
 					                                                <a class="dropdown-item" 
-					                                                	href="href=/dabomweb/mychannel/mychannel?member_Id=${ message.sender }">채널방문</a>
+					                                                	href="/dabomweb/mychannel/mychannel?member_Id=${ message.sender }">채널방문</a>
 					                                                <a class="dropdown-item" 
 					                                                   href="message_direct_write?receiver=${ message.sender }&message_no=${ message.message_No}">
 					                                                   메세지 보내기</a>					                                                
