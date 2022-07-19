@@ -1,5 +1,6 @@
 package com.dabom.mapper;
 
+import java.nio.channels.Channel;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
@@ -105,6 +106,10 @@ public interface MyChannelMapper {
 			+ "FROM channel_subscribe "
 			+ "WHERE member_id = #{ member_Id } and subscriber = #{subscriber}")
 	ChannelSubscribe selectSub(@Param("member_Id")String member_Id, @Param("subscriber")String subscriber);
+
+	
+//	@Select("select member_id, channel_name, channel_info, subscribe from channel order by reg_date desc")
+//	List<Channel> selectAllChannel();
 
 	
 

@@ -1,14 +1,32 @@
 package com.dabom.controller;
 
+import java.nio.channels.Channel;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.dabom.dto.Member;
+import com.dabom.service.AccountService;
+import com.dabom.service.MyChannelService;
 
 @Controller
 @RequestMapping(path = {"/administerPrivilege"})
 public class AdministerPrivilegeController {
 
+	@Autowired
+	@Qualifier("accountService")
+	private AccountService accountService;
+	
+	@Autowired
+	@Qualifier("myChannelService")
+	private MyChannelService myChannelService;	
+	
 	@GetMapping(path = { "/list" })
 	public String list() {
 		return "administerPrivilege/list";
@@ -26,5 +44,29 @@ public class AdministerPrivilegeController {
 		return "administerPrivilege/site-revenue";
 
 	}
+	
+	@GetMapping(path = { "/member-management"})
+	public String userManagement(Model model) {
+		
+		List<Member> memberList = accountService.findAllMember();
+		model.addAttribute("memberList", memberList);
+		
+		
+		return "administerPrivilege/member-management";
+	}
+		
+	@GetMapping(path = { "/channel-management"})
+	public String channelManagement(Model model) {
+		
+//		List<Channel> channelList = myChannelService.findAllChannelList();
+//		model.addAttribute("channelList", channelList);
+		return "administerPrivilege/channel-management";
+	}
+	
+	@GetMapping(path = { "/board-and-comment-management"})
+	public String boardAndCommentManagement() {
+		return "administerPrivilege/board-and-comment-management";
+	}
+	
 	
 }

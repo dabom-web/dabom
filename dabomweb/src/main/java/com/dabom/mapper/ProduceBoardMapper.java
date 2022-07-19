@@ -178,7 +178,8 @@ public interface ProduceBoardMapper {
 	void insertCommentByBoardNo(ProduceBoardComment produceBoardComment);
 
 	@Select("select content, writer, boardno boardNo, regdate, commentno commentNo, deleted, groupno, depth, step "
-			+ "from produceBoardComment where boardno = #{ boardNo }")
+			+ "from produceBoardComment where boardno = #{ boardNo } "
+			+ "order by commentno desc")
 	List<ProduceBoardComment> selectCommentListByBoardNo(int boardNo);
 
 

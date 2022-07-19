@@ -1,5 +1,7 @@
 package com.dabom.dto;
 
+import java.util.Date;
+
 import lombok.Data;
 
 @Data
@@ -22,6 +24,9 @@ public class Member {
 	private String type;
 	private Boolean leved;
 	private String gender;
+	private Boolean block;
+	private int revenuPoint;
+	private Date regdate;
 	
 	private Member member;
 	private MyChannel myChannel;

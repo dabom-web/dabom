@@ -2,6 +2,7 @@ package com.dabom.service;
 
 import java.util.List;
 
+import com.dabom.dto.Member;
 import com.dabom.dto.PointPurchase;
 
 public interface PointPurchaseService {
@@ -31,5 +32,7 @@ public interface PointPurchaseService {
 	public void dropdownUsePointByMemberIdInsert(String memberId, int usePoint);
 
 	public void dropdonwUsePointByMemberId(String memberId, int usePoint);
+
+	
 
 }

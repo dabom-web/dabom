@@ -1,5 +1,6 @@
 package com.dabom.service;
 
+import java.nio.channels.Channel;
 import java.util.List;
 
 import com.dabom.dto.ChannelSubscribe;
@@ -44,6 +45,8 @@ public interface MyChannelService {
 	void DirectwriteMessage(Message message);
 
 	ChannelSubscribe findSub(String member_Id, String subscriber);
+
+//	List<Channel> findAllChannelList();
 
 	
 
