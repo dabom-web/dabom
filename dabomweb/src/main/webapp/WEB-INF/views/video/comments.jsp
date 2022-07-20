@@ -10,9 +10,11 @@
 		<td width="50%">${fn:replace(comment.comment, replaceChar, "<br/>")}</td>
 		<td><fmt:formatDate pattern="yy-MM-dd hh:mm"
 				value="${ comment.writeDate }" /></td>
+			<c:if test="${ loginuser.memberId eq comment.memberId }">
 		<td width="10%"><a class="btn btn-light btn-xs b"
 			id="comment-update-btn" href="javascript:"> 수정 </a></td>
 		<td width="10%"><a class="btn btn-light btn-xs b"
 			id="deleted-comment-btn" href="javascript:"> 삭제 </a></td>
+			</c:if>
 	</tr>
 </c:forEach>
