@@ -145,11 +145,13 @@ public interface MyChannelMapper {
 
 	@Select("select COUNT(video_title) from upload_video where member_id =#{ member_Id }")
 	int selectMyUloadCount(String member_Id);
-
 	
 	
 	@Select("select member_id, channel_name, channel_info, subscribe, reg_date from channel order by reg_date desc")
 	List<MyChannel> selectAllChannel();
+
+	@Select("select COUNT(member_Id) from channel_community where member_id =#{ member_Id }")
+	int selectCommunityCount(String member_Id);
 
 	
 

@@ -78,16 +78,12 @@
 									<c:choose>
 										<c:when test="${ empty myChannelProfile.savedFileName }">
 											<img src="/dabomweb/resources/images/avatar/기본.jpg"
-												class="img-fluid rounded-circle" alt=""
-												>
+												class="img-fluid rounded-circle" alt="">
 										</c:when>
 										<c:otherwise>
-											<div style="overflow: hidden">
-												<img
-													src="/dabomweb/resources/upload-files/${ myChannelProfile.savedFileName }"
-													class="img-fluid rounded-circle" alt=""
-													style="max-height: 400px; width: 100%;">
-											</div>
+											<img
+												src="/dabomweb/resources/upload-files/${ myChannelProfile.savedFileName }"
+												id="box" class="img-fluid rounded-circle" alt="">
 										</c:otherwise>
 									</c:choose>
 								</div>
@@ -155,18 +151,18 @@
 														<c:otherwise>
 															<h3 class="m-b-0">${ upload }</h3>
 														</c:otherwise>
-													</c:choose>													
+													</c:choose>
 													<span>영상</span>
 												</div>
 											</div>
 											<div class="mt-4">
 												<a href="javascript:void()"
 													class="btn btn-primary pl-5 pr-5 mr-3 mb-4"
-													id="send-messege">메세지</a>
-												<a href="/dabomweb/video/mylist?memberId=${ myChannel.member_Id }"
-													class="btn btn-primary pl-5 pr-5 mr-3 mb-4">동영상</a>
-												<a href="/dabomweb/video/uploadList" class="btn btn-secondary pl-5 pr-5 mb-4">
-												동영상 업로드</a>	
+													id="send-messege">메세지</a> <a
+													href="/dabomweb/video/mylist?memberId=${ myChannel.member_Id }"
+													class="btn btn-primary pl-5 pr-5 mr-3 mb-4">동영상</a> <a
+													href="/dabomweb/video/uploadList"
+													class="btn btn-secondary pl-5 pr-5 mb-4"> 동영상 업로드</a>
 											</div>
 										</div>
 									</div>
@@ -184,43 +180,55 @@
 												<li class="nav-item"><a href="#about-me"
 													data-toggle="tab" class="nav-link">채널정보</a></li>
 												<li class="nav-item"><a href="#subscribe"
-													data-toggle="tab" class="nav-link">구독중인 채널</a></li>												
+													data-toggle="tab" class="nav-link">구독중인 채널</a></li>
 												<li class="nav-item"><a href="#profile-settings"
 													data-toggle="tab" class="nav-link">채널정보 수정</a></li>
 											</ul>
 											<div class="tab-content">
 												<div id="my-posts" class="tab-pane fade active show">
 													<div class="my-post-content pt-3">
-														<div class="profile-uoloaded-post border-bottom-1 pb-2">															
-															<a class="post-title" href="javascript:">
-																<h4>내용</h4>																 
-															</a>			
-																<table id="community-list" style="width:100%;margin:0 auto"></table>																									
-														</div>
-														
-														<div class="col-12">
-															<div class="btn-group float-right">
-																<button class="btn btn-dark" type="button">
-																	<i class="fa fa-angle-left"></i>
-																</button>
-																<button class="btn btn-dark" type="button">
-																	<i class="fa fa-angle-right"></i>
-																</button>
+														<div class="profile-uoloaded-post border-bottom-1 pb-2">
+															<div class="row col-12">
+																<p>🔔지금 바로 채널의 정보를 확인하세요🔔
+																<p>
+																<div class="btn-group float-right">
+																	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+																	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+																	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+																	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+																	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+																	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+																	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+																	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+																	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+																	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+																	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+																	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+																	<button class="btn btn-dark" type="button">
+																		<i class="fa fa-angle-left"></i>
+																	</button>
+																	<button class="btn btn-dark " type="button">
+																		<i class="fa fa-angle-right"></i>
+																	</button>
+																</div>
+																<table id="community-list"
+																	style="width: 100%; margin: 0 auto">
+																</table>
 															</div>
-															<br> <br>
-															<hr>
 														</div>
-														
-															<div class="post-input">
-															<form id="community-form" method="post" action="community-write">
-																<input type="hidden" name="member_Id" value="${ loginuser.memberId }">
-																<textarea name="content" id="content" cols="30"
-																	rows="5" class="form-control bg-transparent"
-																	placeholder="채널주인만 볼수있게...."></textarea>
-																	</form>	
-																<a id="uploadBtn" href="javascript:void()" class="btn btn-primary">등록</a>
-															</div>
-													
+
+														<div class="post-input">
+															<form id="community-form" method="post"
+																action="community-write">
+																<input type="hidden" name="member_Id"
+																	value="${ loginuser.memberId }">
+																<textarea name="content" id="content" cols="30" rows="5"
+																	class="form-control bg-transparent"
+																	placeholder="소식을 입력해주세요...."></textarea>
+															</form>
+															<a id="uploadBtn" href="javascript:void()"
+																class="btn btn-primary">등록</a>
+														</div>
 													</div>
 												</div>
 												<div id="about-me" class="tab-pane fade">
@@ -234,75 +242,59 @@
 																	<div id="info-list" style="text-align: center">
 																		<h6>
 																			<% String enter2 = "\r\n"; %>
-<c:set var="enter" value="
+																			<c:set var="enter" value="
 " />
-		                													${ fn:replace(myChannel.channel_Info, enter, '<br>') }
+																			${ fn:replace(myChannel.channel_Info, enter, '<br>') }
 																		</h6>
+																	</div>
 																</c:otherwise>
 															</c:choose>
 														</div>
 													</div>
 												</div>
-											</div>
-											<div id="subscribe" class="tab-pane fade">
-												<div class="profile-about-me">
-													<div class="pt-4 border-bottom-1 pb-4">
-														<c:choose>
-															<c:when test="${ empty channelSubscribeList }">
-																<p style="text-align: center;">구독 내역이 없습니다.</p>
-															</c:when>
-															<c:otherwise>
-																<c:forEach var="channelSubscribeList"
-																	items="${ channelSubscribeList }">
-																	<a href="channel?member_Id=${ channelSubscribeList.member_Id }&subscriber=${loginuser.memberId}">
-																		<h5 style="text-align: center">
-																			${ channelSubscribeList.member_Id }의 채널로 이동
-																		</h>
-																	</a>
-																	<hr>
-																</c:forEach>
-															</c:otherwise>
-														</c:choose>
+												<div id="subscribe" class="tab-pane fade">
+													<div class="profile-about-me">
+														<div class="pt-4 border-bottom-1 pb-4">
+															<c:choose>
+																<c:when test="${ empty channelSubscribeList }">
+																	<p style="text-align: center;">구독 내역이 없습니다.</p>
+																</c:when>
+																<c:otherwise>
+																	<c:forEach var="channelSubscribeList"
+																		items="${ channelSubscribeList }">
+																		<a
+																			href="channel?member_Id=${ channelSubscribeList.member_Id }&subscriber=${loginuser.memberId}">
+																			<h5 style="text-align: center">
+																				${ channelSubscribeList.member_Id }의 채널로 이동
+																				</h>
+																		</a>
+																		<hr>
+																	</c:forEach>
+																</c:otherwise>
+															</c:choose>
+														</div>
 													</div>
 												</div>
-											</div>											
-											<div id="profile-settings" class="tab-pane fade">
-												<div class="pt-3"><br>
-													<div class="row settings-form">
-														<div class="col-xl-4">
-					                                        <div class="alert alert-dark alert-dismissible fade show">					                                            
-					                                            <div class="media">
-					                                                <div class="media-body"><br><br>
-					                                                    <a href="mychannel_create_banner?member_Id=${ loginuser.memberId }">
-					                                                    <h5 class="mt-1 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					                                                    배너 등록하기</h5></a><br><br>				          			                                                   
-					                                                </div>
-					                                            </div>
-					                                        </div>
-				                                        </div>
-														<div class="col-xl-4">
-					                                        <div class="alert alert-dark alert-dismissible fade show" style="text-align:center">					                                            
-					                                            <div class="media">
-					                                                <div class="media-body"><br><br>
-					                                                	<a href="mychannel_update?member_Id=${ loginuser.memberId }">
-					                                                    <h5 class="mt-1 mb-1" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					                                                    정보 수정하기</h5></a><br><br>				                                                   
-					                                                </div>
-					                                            </div>
-					                                        </div>
-				                                        </div>				                                        
-				                                        <div class="col-xl-4">
-					                                        <div class="alert alert-danger alert-dismissible fade show">					                                            
-					                                            <div class="media">
-					                                                <div class="media-body"><br><br>
-					                                                	<div class="button"> 
-					                                                	<a id="delelte-btn" href="javascript:">
-					                                                    <h5 class="mt-1 mb-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					                                                    채널 삭제하기</h5></a><br><br></div>					                                                   
-					                                                </div>
-					                                            </div>
-					                                        </div>
-				                                        </div><br><br>
+												<div id="profile-settings" class="tab-pane fade">
+													<div class="pt-3">
+														<div class="mt-4">
+														<div class="row justify-content-center">
+															<a href="mychannel_create_banner?member_Id=${ loginuser.memberId }"
+																class="btn btn-primary pl-5 pr-5 mr-3 mb-4"
+																id="send-messege">배너등록하기</a> <a
+																href="mychannel_update?member_Id=${ loginuser.memberId }"
+																class="btn btn-primary pl-5 pr-5 mr-3 mb-4">
+																정보수정하기</a> 
+														</div>	
+															<hr><br>	
+																<h4 style="text-align: center;">채널삭제시 이전에 구독내용도 함께 사라집니다. 삭제하시겠습니까?<br></h4><br>		
+																	<div class="row justify-content-center">														
+																<a href="/dabomweb/video/uploadList"
+																	class="btn btn-danger pl-5 pr-5 mb-4"
+																	id="delelte-btn" href="javascript:"> 
+																	채널삭제하기</a>
+															</div>
+														</div>														
 													</div>
 												</div>
 											</div>
@@ -315,7 +307,9 @@
 				</div>
 			</div>
 		</div>
-		
+	</div>
+
+
 
 
 	<!--********************************** Content body end ***********************************-->
@@ -345,54 +339,57 @@
 				}			
 			});
 			
-		/////////////////////////////////////////////////////////////////////////////
-			    
-		 // comment 목록 표시 ( load : 비동기 요청 결과 HTML을 지정된 요소에 삽입)
-		$('#community-list').load('community-list?member_Id=${ loginuser.memberId }');		
-      
-	      $('#uploadBtn').click(function(event) {
-	         event.preventDefault();
-	         var formData = $('#community-form').serialize();
-	         $.ajax({
-	            "url" : "community-write",
-	            "method" : "post",
-	            "async" : true,
-	            "data" : formData,
-	            "dataType" : "text",
-	            "success" : function(result, status, xhr) {
-	               if (result === "success") {
-	                  alert('등록성공');
-	                  $('#community-list').load('community-list?member_Id=${ loginuser.memberId }');
-	                  location.href = "/dabomweb/mychannel/mychannel?member_Id=${ loginuser.memberId }";
-	                  return;
-	               } else {
-	                  alert('입력 실패');
-	               }
-	            },
-	            "error" : function(xhr, status, err) {
-	               alert('등록 실패하였습니다.');
-	            }
-	         });
-	      });
-			
-		});	
-      
-         
-//       $('#comment-cancel-btn').on('click', function(event) {
-//          event.preventDefault();
-//          var ok = confirm('입력을 취소합니다');
-//          if( ok ) {
-//             location.href = "/dabomweb/produceBoard/actorDetail?boardno=${produceBoard.boardNo}";
-//             return;
-//          }
-//       });
-      
-		
-			
-			
-			
-								
-		</script>
+		//////////////////////////////////////////////////////////
+				///////////////////
+
+					// comment 목록 표시 ( load : 비동기 요청 결과 HTML을 지정된 요소에 삽입)
+					$('#community-list').load(
+							'community-list?member_Id=${ loginuser.memberId }');
+
+					$('#uploadBtn')
+							.click(
+									function(event) {
+										event.preventDefault();
+										var formData = $('#community-form')
+												.serialize();
+										$
+												.ajax({
+													"url" : "community-write",
+													"method" : "post",
+													"async" : true,
+													"data" : formData,
+													"dataType" : "text",
+													"success" : function(
+															result, status, xhr) {
+														if (result === "success") {
+															alert('등록성공');
+															$('#community-list')
+																	.load(
+																			'community-list?member_Id=${ loginuser.memberId }');
+															location.href = "/dabomweb/mychannel/mychannel?member_Id=${ loginuser.memberId }";
+															return;
+														} else {
+															alert('입력 실패');
+														}
+													},
+													"error" : function(xhr,
+															status, err) {
+														alert('등록 실패하였습니다.');
+													}
+												});
+									});
+
+				});
+
+				//       $('#comment-cancel-btn').on('click', function(event) {
+				//          event.preventDefault();
+				//          var ok = confirm('입력을 취소합니다');
+				//          if( ok ) {
+				//             location.href = "/dabomweb/produceBoard/actorDetail?boardno=${produceBoard.boardNo}";
+				//             return;
+				//          }
+				//       });
+			</script>
 			
 			
 			

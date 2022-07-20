@@ -73,7 +73,7 @@
 		INSERT INTO message (message_title, receiver, sender, message_content)
 		VALUES ( #{message_Title}, #{receiver}, #{sender}, #{message_Content} )
 	</insert>
-		
+	
 	<select id="selectReceiver" resultType="Member">
 		SELECT memberid	FROM member		
 	</select>

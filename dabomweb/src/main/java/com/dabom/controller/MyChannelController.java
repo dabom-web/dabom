@@ -79,12 +79,13 @@ public class MyChannelController {
 		MyChannelProfile myChannelProfile = myChannelService.findMyChannelProfil(member_Id);
 		MyChannelBanner myChannelBanner = myChannelService.findMyChannelBanner(member_Id);
 		ChannelSubscribe channelSubscribe = myChannelService.findSub(member_Id, subscriber);
-		
+		int community = myChannelService.findCommunityCount(member_Id);
 		
 		model.addAttribute("myChannel", myChannel);
 		model.addAttribute("myChannelProfile", myChannelProfile);
 		model.addAttribute("myChannelBanner", myChannelBanner);
 		model.addAttribute("channelSubscribe", channelSubscribe);
+		model.addAttribute("community", community);		
 		
 		return "mychannel/channel"; 	
 	}
