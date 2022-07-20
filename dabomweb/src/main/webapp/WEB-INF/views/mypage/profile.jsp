@@ -426,7 +426,7 @@
 						                                            <div class="col">
 						                                                <h3 class="m-b-0">
 						                                                <fmt:formatNumber value="${ totalAmount }" pattern="#,###" />
-						                                               won</h3><span>구매 누적 포인트</span>
+						                                               P</h3><span>구매 누적 포인트</span>
 						                                            </div>
 						                                            <div class="col">
 						                                                <h3 class="m-b-0">

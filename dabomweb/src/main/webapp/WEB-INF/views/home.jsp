@@ -52,8 +52,8 @@
 			<div class="row page-titles mx-0">
 				<div class="col-sm-6 p-md-0">
 					<div class="welcome-text">
-						<h4>DABOM</h4>
-						<span class="ml-1">(대충 사이트 소개 문구)</span>
+						<h4>DA:BOM</h4>
+						<span class="ml-1">(DABOM Home Video)</span>
 					</div>
 				</div>
 				<div

@@ -1,44 +1,53 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
- <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
- 	<title>인기 채널</title>
-    <link rel="icon" type="image/png" sizes="16x16" href="resources/images/dabom.jpg">
-    <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.theme.default.min.css">
-    <link href="/dabomweb/resources/vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet">
-    <link href="/dabomweb/resources/css/style.css" rel="stylesheet">
-	<style type="text/css">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Hot Channel</title>
+	<link rel="icon" type="image/png" sizes="16x16" href="resources/images/dabom.jpg">
+	<link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="/dabomweb/resources/vendor/owl-carousel/css/owl.theme.default.min.css">
+	<link href="/dabomweb/resources/vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet">
+	<link href="/dabomweb/resources/css/style.css" rel="stylesheet">
 	
-		img {
-			 object-fit: cover;
-	 		 overflow: hidden;
-		}
-		
-		.box {
-			width: 100%;
-			height: 300px;
-		}
-		
-		.text-box {
-				  overflow: hidden;
-				  text-overflow: ellipsis;
-				  white-space: nowrap;
-				  width: 100%;
-				  
-				}
-		
-	</style>
+	 <style type="text/css">
+
+	img {
+		 object-fit: cover;
+ 		 overflow: hidden;
+	}
+	
+	.box {
+		width: 100%;
+		height: 300px;
+	}
+	
+	.text-box {
+			  overflow: hidden;
+			  text-overflow: ellipsis;
+			  white-space: nowrap;
+			  width: 100%;
+			  
+			}
+	
+</style>
+	
 </head>
 <body>
-	
+
 	<jsp:include page="/WEB-INF/views/modules/css/top.jsp" />
-   
-		<div class="content-body">
+
+
+	<!--**********************************
+          여기다 입력하시면 됩니다~
+        ***********************************-->
+
+	<div class="content-body">
 		<div class="container-fluid">
 			<div class="row page-titles mx-0">
 				<div class="col-sm-6 p-md-0">
@@ -115,14 +124,13 @@
 			</div>
 
 		</div>
-	</div>	
-		
-
-
-
+	</div>
 
 
 	<jsp:include page="/WEB-INF/views/modules/css/bottom.jsp" />
+
+
+
 
 </body>
 </html>
