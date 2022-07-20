@@ -40,16 +40,6 @@
 	 width: 100%;
 	 height: 100%;
 	 overflow: hidden;
-	 
-	 img {
-	  object-fit: cover;
-	  overflow: hidden;
-	}
-	#box {
-	    width: 150px;
-	    height: 150px; 
-	    border-radius: 70%;
-	    overflow: hidden;
 }
 	
 </style>
@@ -74,28 +64,28 @@
 									<c:choose>
 										<c:when test="${ empty myChannelBanner.savedFileName }">
 											<img src="/dabomweb/resources/images/avatar/기본배너2.png"
-												 style="min-height: 250px; width: 100%;">
-										</c:when>	
-										<c:otherwise>	
-										<div class='container'>										
-											<img src="/dabomweb/resources/upload-files/${ myChannelBanner.savedFileName }"
-												 style="max-height: 400px; width: 100%;">
-										</div>	
-										</c:otherwise>									
-									</c:choose>				 
+												style="min-height: 100px; width: 100%;">
+										</c:when>
+										<c:otherwise>
+											<img
+												src="/dabomweb/resources/upload-files/${ myChannelBanner.savedFileName }"
+												style="max-height: 400px; width: 100%;">
+
+										</c:otherwise>
+									</c:choose>
 								</div>
 								<div class="profile-photo">
 									<c:choose>
 										<c:when test="${ empty myChannelProfile.savedFileName }">
 											<img src="/dabomweb/resources/images/avatar/기본.jpg"
-												 class="img-fluid rounded-circle" alt="">
-										</c:when>	
+												class="img-fluid rounded-circle" alt="">
+										</c:when>
 										<c:otherwise>
-											<img src="/dabomweb/resources/upload-files/${ myChannelProfile.savedFileName }"
-												 id="box"
-												 class="img-fluid rounded-circle" alt="">
-										</c:otherwise>									
-									</c:choose>									
+											<img
+												src="/dabomweb/resources/upload-files/${ myChannelProfile.savedFileName }"
+												id="box" class="img-fluid rounded-circle" alt="">
+										</c:otherwise>
+									</c:choose>
 								</div>
 							</div>
 							<div class="profile-info">
@@ -168,27 +158,26 @@
 								<div class="card-body">
 									<div class="profile-statistics">
 										<div class="text-center mt-4 border-bottom-1 pb-3">
-											<div class="row">
+											<div class="row">												
 												<div class="col">
 													<c:choose>
-													<c:when test="${ empty subCount }">
-													<h3 class="m-b-0">0</h3>
-													</c:when>
-													<c:otherwise>													
-													<h3 class="m-b-0">${subCount}</h3>
-													</c:otherwise>
-													</c:choose>
-													<h3 class="m-b-0">${subCount}</h3>
+														<c:when test="${ empty community }">
+															<h3 class="m-b-0">0</h3>
+														</c:when>
+														<c:otherwise>													
+															<h3 class="m-b-0">${community}</h3>
+														</c:otherwise>
+													</c:choose>													
 													<span>작성글 수</span>
 												</div>
 												<div class="col">
 													<c:choose>
-													<c:when test="${ empty myChannel.channel_Name }">
-													<h3 class="m-b-0">0</h3>
-													</c:when>
-													<c:otherwise>													
-													<h3 class="m-b-0">${ myChannel.subscribe }</h3>
-													</c:otherwise>
+														<c:when test="${ empty myChannel.channel_Name }">
+															<h3 class="m-b-0">0</h3>
+														</c:when>
+														<c:otherwise>													
+															<h3 class="m-b-0">${ myChannel.subscribe }</h3>
+														</c:otherwise>
 													</c:choose>
 													<span>구독자</span>
 												</div>
@@ -250,19 +239,33 @@
 												<div id="my-posts" class="tab-pane fade active show">
 													<div class="my-post-content pt-3">
 														<div class="profile-uoloaded-post border-bottom-1 pb-2">
-															<p>내용</p>
-														</div>														
-														<div class="col-12">
-															<div class="btn-group float-right">
-																<button class="btn btn-dark" type="button">
-																	<i class="fa fa-angle-left"></i>
-																</button>
-																<button class="btn btn-dark" type="button">
-																	<i class="fa fa-angle-right"></i>
-																</button>
+															<div class="row col-12">
+																<p>🔔지금 바로 채널의 정보를 확인하세요🔔
+																<p>
+																<div class="btn-group float-right">
+																	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+																	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+																	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+																	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+																	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+																	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+																	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+																	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+																	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+																	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+																	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+																	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+																	<button class="btn btn-dark" type="button">
+																		<i class="fa fa-angle-left"></i>
+																	</button>
+																	<button class="btn btn-dark " type="button">
+																		<i class="fa fa-angle-right"></i>
+																	</button>
+																</div>
+																<table id="community-list"
+																	style="width: 100%; margin: 0 auto">
+																</table>
 															</div>
-															<br> <br>
-															<hr>
 														</div>														
 													</div>
 												</div>
@@ -418,6 +421,9 @@
 							}
 						});
 					});
+					
+					$('#community-list').load(
+					'community-list?member_Id=${ myChannel.member_Id }');
 				});
 				
 				

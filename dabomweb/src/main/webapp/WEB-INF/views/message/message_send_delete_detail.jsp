@@ -94,7 +94,7 @@
 					                                                <a class="dropdown-item" 
 					                                                   href="/dabomweb/mychannel/channel?member_Id=${ message.receiver }&subscriber=${loginuser.memberId}">채널방문</a>
 					                                                <a class="dropdown-item" 
-					                                                   href="message_direct_write?receiver=${ message.sender }&message_no=${ message.message_No}">
+					                                                   href="message_direct_write?receiver=${ message.receiver }&message_no=${ message.message_No}">
 					                                                   메세지 보내기</a>					                                                
 					                                            </div>
 					                                        </div>

@@ -127,6 +127,12 @@ public class VideoUploadServiceImpl implements VideoUploadService {
 		return videoList;
 	}
 
+	@Override
+	public List<VideoUpload> findNewUploadList() {
+		List<VideoUpload> videoList = videoUploadMapper.selectNewUploadList();
+		return videoList;
+	}
+
 	
 	
 

@@ -32,7 +32,7 @@
 					<div class="card">					
 						<div class="card-header justify-content-center">
 							<h4>
-								<br>정보를 입력하세요
+								<br>배너를 등록하세요
 							</h4>
 						</div>
 						<div class="card-body justify-content-center">

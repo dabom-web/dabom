@@ -228,4 +228,10 @@ public class MyChannelServiceImpl implements MyChannelService {
 
 	
 }
+
+	@Override
+	public int findCommunityCount(String member_Id) {
+		int community = myChannelMapper.selectCommunityCount(member_Id);
+		return community;
+	}
 }

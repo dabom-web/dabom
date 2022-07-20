@@ -21,12 +21,13 @@ public interface MessageService {
 	void writeMessage(Message message);
 	
 	void DirectwriteMessage(Message message);
-
+	
 	List<Member> findMemberid();
 
 	Message findByMessageNo(int messageNo);
 
 	void delete(int messageNo);
+	
 
 
 }

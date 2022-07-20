@@ -51,6 +51,7 @@ public interface MessageMapper {
 	Message selectByMessageNo(int messageNo);
 	
 	void deleteByMessageNo(int messageNo);
+
 	
 	
 	

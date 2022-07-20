@@ -167,7 +167,7 @@ public class MessageController {
 		}
 	}
 	@GetMapping(path = { "/message_direct_write" })
-	public String messageSenderDirectWriteForm(@RequestParam(name="message_no", defaultValue = "-1" )int messageNo,
+	public String messageDirectWriteForm(@RequestParam(name="message_no", defaultValue = "-1" )int messageNo,
 												HttpSession session, String receiver, String sender, Model model) {
 				
 		int receiveCount = 0;
@@ -193,7 +193,7 @@ public class MessageController {
 	}
 
 	@PostMapping(path = { "/message_direct_write" })
-	public String messageSenderDirectWrite(Message message, String receiver, String sender, Model model) {	
+	public String messageDirectWrite(Message message, String receiver, String sender, Model model) {	
 		
 		int receiveCount = 0;
 		receiveCount = messageService.findMessageReceiveCount(receiver);
@@ -208,6 +208,48 @@ public class MessageController {
 		return "redirect:message_send_list?receiver=" + receiver + "&sender=" + sender;
 	}
 		
+	@GetMapping(path = { "/message_sender_direct_write" })
+	public String messageSenderDirectWriteForm(@RequestParam(name="message_no", defaultValue = "-1" )int messageNo,
+												HttpSession session, String receiver, String sender, Model model) {
+				
+		int receiveCount = 0;
+		receiveCount = messageService.findMessageReceiveCount(receiver);
+		model.addAttribute("receiveCount",receiveCount);
+		int sendCount = 0;
+		sendCount = messageService.findMessageSendCount(sender);
+		model.addAttribute("sendCount",sendCount);
+		
+		List<Member> memberList = messageService.findMemberid();		
+		model.addAttribute("memberList", memberList);
+				
+		if(messageNo == -1) {
+			return "redirect:message_send_list?receiver=" + receiver + "&sender=" + sender;
+		}
+		
+		Message message = messageService.findByMessageNo(messageNo);
+		if (message == null) { // 해당 번호의 게시글이 없는 경우
+			return "redirect:message_send_list?receiver=" + receiver + "&sender=" + sender;
+		}
+		model.addAttribute("message", message);
+		return "message/message_direct_write";		
+	}
+
+	@PostMapping(path = { "/message_sender_direct_write" })
+	public String messageSenderDirectWrite(Message message, String receiver, String sender, Model model) {	
+		
+		int receiveCount = 0;
+		receiveCount = messageService.findMessageReceiveCount(receiver);
+		model.addAttribute("receiveCount",receiveCount);
+		int sendCount = 0;
+		sendCount = messageService.findMessageSendCount(sender);
+		model.addAttribute("sendCount",sendCount);
+		
+		messageService.DirectwriteMessage(message);
+		
+		
+		return "redirect:message_send_list?receiver=" + receiver + "&sender=" + sender;
+	}
+	
 	@GetMapping(path = { "/message_receive_detail" })
 	public String messageReceiveDetail(@RequestParam(name="message_no", defaultValue = "-1" )int messageNo, 
 									   String receiver, String sender,Model model) {
@@ -316,7 +358,7 @@ public class MessageController {
 	
 	if ( messageNo > 0 ) {
 		messageService.delete(messageNo);
-		return "redirect:message_receive_delete_list?receiver=" + receiver + "&sender=" + sender;
+		return "redirect:message_receive_list?receiver=" + receiver + "&sender=" + sender;
 	}		
 		return "message/delete";
 	}

@@ -62,6 +62,8 @@ public interface MyChannelService {
 
 	List<MyChannel> findAllChannelList();
 
+	int findCommunityCount(String member_Id);
+
 
 	
 
