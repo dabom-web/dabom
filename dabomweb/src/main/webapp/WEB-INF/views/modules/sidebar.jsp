@@ -23,7 +23,7 @@
                         </ul>
                     </li>
                  
-                    <li class="nav-label first">탐색</li>
+                   <!--  <li class="nav-label first">탐색</li>
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
                     <span class="nav-text">🚀 Collect</span></a>
                         <ul aria-expanded="false">
@@ -33,7 +33,7 @@
                             <li><a href="/dabomweb/collect/supportActor">응원 배우 영상</a></li>       
                             
                         </ul>
-                    </li>
+                    </li> -->
                     
                      
                  <c:choose>

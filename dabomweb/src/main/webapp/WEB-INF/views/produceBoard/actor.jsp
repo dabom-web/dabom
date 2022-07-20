@@ -48,6 +48,12 @@
 						<h4>배우 정보</h4>
 					</div>
 				</div>
+				<div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item small">
+						<a href="/dabomweb/produceBoard/writeActorInfor">배우 정보 업데이트 신청</a></li>						
+					</ol>
+				</div>
 			</div>
 				
 
