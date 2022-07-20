@@ -1,15 +1,12 @@
-
 <%@page import="com.dabom.dto.VideoUpload"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
 <!DOCTYPE html>
 <html>
 <head>
-
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -68,9 +65,6 @@ img {
 			</div>
 			<!-- row -->
 			<div class="email-box col-lg-12">
-
-
-				<div class="card">
 					<div class="card-header">
 						<h4 class="card-title">
 							<b>업로드한 동영상</b>
@@ -126,16 +120,11 @@ img {
 					</div>
 				</div>
 			</div>
-
 		</div>
 	</div>
 
 
 	<jsp:include page="/WEB-INF/views/modules/css/bottom.jsp" />
-
-
-
-
 
 
 </body>
