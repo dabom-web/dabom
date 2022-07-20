@@ -292,8 +292,8 @@ public class VideoUploadController {
 	}
 
 	@GetMapping(path = {"/videoComment-list"})
-	public String listVideoComment(@RequestParam(name="videoNo") int videoNo, Model model) {
-		List<VideoComment>vComments = videoUploadService.findVideoCommentsByVideoNo(videoNo);
+	public String listVideoComment(@RequestParam(name="movieNo") int movieNo, Model model) {
+		List<VideoComment>vComments = videoUploadService.findVideoCommentsByVideoNo(movieNo);
 		
 		model.addAttribute("vComments", vComments);
 		

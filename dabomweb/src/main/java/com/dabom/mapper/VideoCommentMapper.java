@@ -10,8 +10,8 @@ public interface VideoCommentMapper {
 
 	void insertVideoComment(VideoComment vComment);
 
-	List<VideoComment> selectByVideoNo(int videoNo);
-	List<VideoComment> selectRangeByVideoNo(@Param("videoNo")int videoNo, @Param("from")int from, @Param("count")int count);
+	List<VideoComment> selectByVideoNo(int movieNo);
+	List<VideoComment> selectRangeByVideoNo(@Param("videoNo")int movieNo, @Param("from")int from, @Param("count")int count);
 	int selectVideoCommentCount();
 	void delete(int vCommentNo);
 

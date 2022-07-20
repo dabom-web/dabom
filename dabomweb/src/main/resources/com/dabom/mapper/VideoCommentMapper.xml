@@ -6,24 +6,27 @@
 
 	
 	<insert id="insertVideoComment" parameterType="com.dabom.dto.VideoComment" useGeneratedKeys="true" keyColumn="commentno" keyProperty="vCommentNo">
-		INSERT INTO video_comment (commentno, comment, writedate, modifydate, deletecomment, video_no, member_id)
-		VALUES (#{commentNo}, #{comment}, #{writeDate}, #{modifyDate}, #{deleteComment}, #{videoNo}, #{memberId})
+		<selectKey keyProperty="commentNo" resultType="int" order="AFTER">
+			SELECT LAST_INSERT_ID()		
+		</selectKey>	
+		INSERT INTO video_comment (comment, movie_no, member_id)
+		VALUES (#{comment}, #{movieNo}, #{memberId})
 	</insert>
 
 	<select id="selectByVideoNo" parameterType="int" resultType="com.dabom.dto.VideoComment">
-		SELECT commentno commentNo, comment comment, writedate writeDate, modifydate modifyDate, deletecomment deleteComment, video_no videoNo, member_id memberId
+		SELECT commentno commentNo, comment comment, writedate writeDate, modifydate modifyDate, deletecomment deleteComment, movie_no movieNo, member_id memberId
 		FROM video_comment
-		WHERE video_no = #{videoNo} and deleted = FALSE
-		ORDER BY video_no DESC
+		WHERE movie_no = #{movieNo}
+		ORDER BY movie_no DESC
 	</select>
 	
-	<select id="selectRangeByVideoNo" parameterType="hashmap" resultType="com.dabom.dto.VideoComment">
+	<!-- <select id="selectRangeByVideoNo" parameterType="hashmap" resultType="com.dabom.dto.VideoComment">
 		SELECT commentno commentNo, comment comment, writedate writeDate, modifydate modifyDate, deletecomment deleteComment, video_no videoNo, member_id memberId
 		FROM video_comment
 		WHERE video_no = #{videoNo} and deleted = FALSE
 		ORDER BY video_no DESC
 		LIMIT #{from}, #{count}
-	</select> <!-- <![CDATA[]]>특수문자 무시하고 읽게 하는 기능 -->
+	</select> <![CDATA[]]>특수문자 무시하고 읽게 하는 기능
 	
 	<select id="selectVideoCommentCount" parameterType="int" resultType="com.dabom.dto.VideoComment">
 		SELEC COUNT(*) FROM video_comment
@@ -39,6 +42,6 @@
 		DELETE 
 		FROM video_comment
 		WHERE commentno = #{commentNo}
-	</select>
+	</select> -->
 
 </mapper>

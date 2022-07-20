@@ -103,8 +103,8 @@ public class VideoUploadServiceImpl implements VideoUploadService {
 	}
 
 	@Override
-	public List<VideoComment> findVideoCommentsByVideoNo(int videoNo) {
-		List<VideoComment> vComments = videoCommentMapper.selectByVideoNo(videoNo);
+	public List<VideoComment> findVideoCommentsByVideoNo(int movieNo) {
+		List<VideoComment> vComments = videoCommentMapper.selectByVideoNo(movieNo);
 		return vComments;
 		
 	}

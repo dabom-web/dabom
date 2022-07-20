@@ -9,6 +9,7 @@
 	
 	<bean id="videoUploadService" class="com.dabom.service.VideoUploadServiceImpl">
 		<property name="videoUploadMapper" ref="videoUploadMapper" />
+		<property name="videoCommentMapper" ref="videoCommentMapper" />
 	</bean>
 	
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">

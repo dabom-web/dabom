@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -94,7 +94,7 @@
 											</div>
 											<div class="card-body">
 												<p class="card-text text-box">${ vUpload.content }</p>
-												<p class="card-text text-dark">${ vUpload.uploadTime }</p>
+												<p class="card-text text-dark"><fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="${ vUpload.uploadTime }"/></p>
 												<p class="card-text text-dark">조회수: ${ vUpload.readCount }</p>
 											</div>
 										</div>

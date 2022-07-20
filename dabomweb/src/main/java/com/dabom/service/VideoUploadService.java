@@ -16,7 +16,7 @@ public interface VideoUploadService {
 	List<VideoUpload> findByUploadPage(int uPageNo, int uPageSize, String memberId);	//4
 	List<VideoUpload> findByPage(int pageNo, int pageSize);	//4
 	void writeVideoComment(VideoComment vComment);
-	List<VideoComment> findVideoCommentsByVideoNo(int videoNo);
+	List<VideoComment> findVideoCommentsByVideoNo(int movieNo);
 	void deleteVideoComment(int vCommentNo);
 	void updateVideoComment(VideoComment vComment);
 //	void writeVideoReComment(VideoComment vComment);

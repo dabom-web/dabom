@@ -4,6 +4,7 @@
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -79,7 +80,7 @@
                                             	<td style="text-align:center">${ vUpload.videoType }</td>
                                             	<td style="text-align:center"><a href="/dabomweb/video/update?videoNo=${ vUpload.videoNo }"><img src='/dabomweb/resources/upload-files/${ vUpload.thumbnailSavedName }' width="100" height="50"></a></td>
                                             	<td><a href="/dabomweb/video/update?videoNo=${ vUpload.videoNo }">${ vUpload.videoTitle }</a></td>
-                                            	<td style="text-align:center">${ vUpload.uploadTime }</td>
+                                            	<td style="text-align:center"><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${ vUpload.uploadTime }"/></td>
                                             	<td style="text-align:center">${ vUpload.updateTime }</td>
                                             </tr>
                                             

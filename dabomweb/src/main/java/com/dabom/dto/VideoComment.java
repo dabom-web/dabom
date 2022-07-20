@@ -12,7 +12,7 @@ public class VideoComment {
 	private Date writeDate;
 	private Date modifyDate;
 	private boolean deleteComment;
-	private int videoNo;
+	private int movieNo;
 	private String memberId;
 	
 	// 글의 표시 순서(논리적인 순서) 관리를 위한 변수

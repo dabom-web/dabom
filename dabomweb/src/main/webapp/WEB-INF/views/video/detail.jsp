@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,7 +43,7 @@
                                                             <h5 class="text-primary">[${ vUpload.videoType }] ${ vUpload.videoTitle }<button type="button" class="btn btn-danger float-right">Like it<span
 						                                        class="btn-icon-right"><i class="fa fa-heart"></i></span>
 						                                </button></h5>
-                                                            <p class="mb-0">${ vUpload.uploadTime }</p>
+                                                            <p class="mb-0"><fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="${ vUpload.uploadTime }"/></p>
                                                         </div>
                                                     <hr>
                                                     <div class="media mb-4 mt-5">
@@ -51,17 +52,39 @@
                                                     </div>
                                                     <hr><!-- 댓글표시영역 시작 -->
                                                     <br>
-                                                    <table id="comment-list">
-                                                    
-                                                    </table>
-                                                    <div class="form-group pt-3" id="comment-box">
-                                                        <textarea class="w-100" name="write-comment" id="write-comment" cols="30" rows="5" placeholder="댓글을 입력하세요"></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="text-right">
-                                                    <button class="btn btn-primary btn-sl-sm mb-5" id="submit-comment" type="button">댓글작성</button>
-                                                    
-                                                </div>
+                                                    		<div class="card" >
+													<div class="b">댓글</div>
+								                        <table class="table table-hover bl">
+					                                       <tbody id="videoComment-list">
+					                                        </tbody>
+					                                    </table>
+							                      <div class="card-header">
+								                      <h4 class="card-title b">댓글작성</h4>
+	 						                     </div>
+						                            <div class="card-body">
+						                                <div class="basic-form">
+						                                    <form id="comment-form" method="post" action="videoComment-write">
+						                                    <input name="memberId" value="${ loginuser.memberId }" type="hidden">
+						                                    <input name="movieNo" value="${ vUpload.videoNo }" type="hidden">
+						                                        <div class="form-group">
+						                                            <textarea name="comment"
+						                                            class="form-control" rows="6" 
+						                                            id="comment" style="resize: none;"></textarea>
+						                                        </div>
+						                                    </form>
+						                                </div>
+						                                <div>
+							                                <a class="btn btn-light btn-xs b" id="comment-btn"  
+															   style="width: 100px;" > 
+																댓글등록
+															</a>
+															 <a class="btn btn-light btn-xs b" id="comment-cancel-btn"  
+															   style="width: 100px;" > 
+																입력취소
+															</a>
+														</div>
+							                            </div>
+						                        	</div>
                                             </div>
                                         </div>
                                     </div>
@@ -120,7 +143,7 @@
 		//$('#comment-list').load('comment-list?videoNo=' + ${vUpload.videoNo});
 		
 		// 댓글 쓰기
-		$('#submit-comment').on('click', function(event){
+		/* $('#submit-comment').on('click', function(event){
 			/* var content = $('#write-comment').val;
 			if(content.leng == 0){
 				alert('내용을 작성하세요');
@@ -146,7 +169,7 @@
 					alert('댓글 작성 중 오류 발생');
 				}
 			}); */
-		});
+		/* });
 		
 		$('#comment-list').on('click', '.delete-comment', function(event){
 			var commentNo = $(this).attr("data-commentno");
@@ -167,9 +190,54 @@
 				"error" : function(xhr, status, err){
 					alert('삭제에 실패하였습니다.');
 				}
+			}); */
+			
+		/* }); */ 
+		
+		$(function() {
+		
+			$('#videoComment-list').load('videoComment-list?movieNo=' + ${ vUpload.videoNo });
+			
+			$('#comment-btn').click(function(event) {
+				event.preventDefault();
+				var formData = $('#comment-form').serialize();
+				$.ajax({
+					"url" : "videoComment-write",
+					"method" : "post",
+					"async" : true,
+					"data" : formData,
+					"dataType" : "text",
+					"success" : function(result, status, xhr) {
+						if (result === "success") {
+							alert('등록성공');
+							$('#videoComment-list').load('videoComment-list?movieNo=' + ${ vUpload.videoNo  });
+							//location.href = "/dabomweb/produceBoard/actorDetail?boardNo=${produceBoard.boardNo}";
+							$('#comment-form')[0].reset();
+							return;
+						} else {
+							alert('입력 실패');
+						}
+					},
+					"error" : function(xhr, status, err) {
+						alert('등록 실패하였습니다.');
+					}
+				});
 			});
 			
+				
+			$('#comment-cancel-btn').on('click', function(event) {
+				event.preventDefault();
+				var ok = confirm('입력을 취소합니다');
+				if( ok ) {
+					//location.href = "/dabomweb/produceBoard/actorDetail?boardno=${produceBoard.boardNo}";
+					$('#comment-form')[0].reset();
+					return;
+				}
+			});
+			
+		
 		});
+		
 		
 	</script>
 </body>
